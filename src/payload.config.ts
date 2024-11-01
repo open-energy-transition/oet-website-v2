@@ -1,7 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
@@ -35,6 +34,7 @@ import { Page, Post } from 'src/payload-types'
 
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
+import { gcsStorage } from '@payloadcms/storage-gcs'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -199,7 +199,19 @@ export default buildConfig({
         },
       },
     }),
-    payloadCloudPlugin(), // storage-adapter-placeholder
+    gcsStorage({
+      collections: {
+        media: {
+          prefix: 'media',
+        },
+      },
+      options: {
+        // you can choose any method for authentication, and authorization which is being provided by `@google-cloud/storage`
+        // keyFilename: './gcp_key.json',
+        credentials: JSON.parse(process.env.GCS_KEYFILE || '{}'),
+      },
+      bucket: process.env.GCS_BUCKET || '',
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET!,
   sharp,

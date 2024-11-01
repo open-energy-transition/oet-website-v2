@@ -22,6 +22,7 @@
     "@payloadcms/live-preview-react": "beta",
     "@payloadcms/next": "beta",
     "@payloadcms/payload-cloud": "beta",
+    "@payloadcms/storage-gcs": "3.0.0-beta.123",
     "@payloadcms/plugin-form-builder": "beta",
     "@payloadcms/plugin-nested-docs": "beta",
     "@payloadcms/plugin-redirects": "beta",
