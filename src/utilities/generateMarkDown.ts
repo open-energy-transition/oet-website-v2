@@ -6,9 +6,8 @@ import configPromise from '@payload-config'
 import { $convertToMarkdownString } from '@lexical/markdown'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { defaultEditorConfig, defaultEditorFeatures } from '@payloadcms/richtext-lexical' // <= make sure this package is installed
-// import { defaultMarkdownTransformers } from '@lexical/markdown'
 
-// export type NodeTypes = DefaultNodeTypes
+import { UploadMarkdownTransformer } from './uploadMarkTrans'
 
 type Props = any
 
@@ -45,7 +44,12 @@ export const getMarkdownFromLexical = async ({ nodes }: Props): Promise<string> 
 
   let markdown: string
   editor.getEditorState().read(() => {
-    markdown = $convertToMarkdownString(editorConfig?.features?.markdownTransformers)
+    markdown = $convertToMarkdownString([
+      ...editorConfig?.features?.markdownTransformers,
+      UploadMarkdownTransformer,
+    ])
+    // markdown = $convertToMarkdownString(markdownTransformers)
+    // markdown = $convertToMarkdownString()
     console.log('markdown', markdown)
   })
 
