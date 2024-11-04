@@ -17,6 +17,7 @@ export interface Config {
     categories: Category;
     users: User;
     'handbook-pages': HandbookPage;
+    'handbook-page-collection': HandbookPageCollection;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -32,6 +33,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'handbook-pages': HandbookPagesSelect<false> | HandbookPagesSelect<true>;
+    'handbook-page-collection': HandbookPageCollectionSelect<false> | HandbookPageCollectionSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -592,6 +594,60 @@ export interface HandbookPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "handbook-page-collection".
+ */
+export interface HandbookPageCollection {
+  id: string;
+  Name: string;
+  maintainer?: (string | null) | User;
+  maintainerSecondary?: (string | null) | User;
+  pageContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  layout?: HandBookPageBlock[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HandBookPageBlock".
+ */
+export interface HandBookPageBlock {
+  maintainer?: (string | null) | User;
+  maintainerSecondary?: (string | null) | User;
+  pageContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'handbook-page-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -688,6 +744,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'handbook-pages';
         value: string | HandbookPage;
+      } | null)
+    | ({
+        relationTo: 'handbook-page-collection';
+        value: string | HandbookPageCollection;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -963,6 +1023,31 @@ export interface UsersSelect<T extends boolean = true> {
 export interface HandbookPagesSelect<T extends boolean = true> {
   title?: T;
   content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "handbook-page-collection_select".
+ */
+export interface HandbookPageCollectionSelect<T extends boolean = true> {
+  Name?: T;
+  maintainer?: T;
+  maintainerSecondary?: T;
+  pageContent?: T;
+  layout?:
+    | T
+    | {
+        'handbook-page-block'?:
+          | T
+          | {
+              maintainer?: T;
+              maintainerSecondary?: T;
+              pageContent?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }
