@@ -14,7 +14,7 @@ type Props = any
 export const getMarkdownFromLexical = async ({ nodes }: Props): Promise<string> => {
   // Still some problems...
 
-  console.log('nodess', nodes)
+  // console.log('nodess', nodes)
 
   // const initialEditorState = await loadContent()
 
@@ -38,9 +38,9 @@ export const getMarkdownFromLexical = async ({ nodes }: Props): Promise<string> 
   editor.setEditorState(t)
 
   const editorState = editor.getEditorState()
-  console.log('Editor State:', editorState.toJSON())
+  // console.log('Editor State:', editorState.toJSON())
 
-  console.log(editorState.isEmpty())
+  // console.log(editorState.isEmpty())
 
   let markdown: string
   editor.getEditorState().read(() => {
