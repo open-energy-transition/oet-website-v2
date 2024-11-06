@@ -38,7 +38,7 @@ export const getMarkdownFromLexical = async ({ nodes }: Props): Promise<string> 
   editor.setEditorState(t)
 
   const editorState = editor.getEditorState()
-  // console.log('Editor State:', editorState.toJSON())
+  console.log('Editor State:', editorState.toJSON())
 
   // console.log(editorState.isEmpty())
 
