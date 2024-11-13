@@ -18,6 +18,7 @@ export interface Config {
     users: User;
     'handbook-pages': HandbookPage;
     'handbook-page-collection': HandbookPageCollection;
+    'edit-page': EditPage;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -34,6 +35,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     'handbook-pages': HandbookPagesSelect<false> | HandbookPagesSelect<true>;
     'handbook-page-collection': HandbookPageCollectionSelect<false> | HandbookPageCollectionSelect<true>;
+    'edit-page': EditPageSelect<false> | EditPageSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -648,6 +650,31 @@ export interface HandBookPageBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "edit-page".
+ */
+export interface EditPage {
+  id: string;
+  title: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -748,6 +775,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'handbook-page-collection';
         value: string | HandbookPageCollection;
+      } | null)
+    | ({
+        relationTo: 'edit-page';
+        value: string | EditPage;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1048,6 +1079,16 @@ export interface HandbookPageCollectionSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "edit-page_select".
+ */
+export interface EditPageSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -17,14 +17,14 @@ export default async function Page() {
     overrideAccess: false,
   })
 
-  console.log('handbookPage', handbookPage)
+  // console.log('handbookPage', handbookPage)
   //   console.log('pages', pages.docs[0].content)
   getMarkdownFromLexical({ nodes: handbookPage.docs[0].content })
 
-  getLexicalFromMarkDown({
-    markdownString:
-      'ab\n\nc\n\n\n\n - item\n- item2\n1. item1\n2. item2\n3. item3\n\nTest\n\nTest\n- another list\n- with items\n-  {{additional_information}} ',
-  })
+  // getLexicalFromMarkDown({
+  //   markdownString:
+  //     'ab\n\nc\n\n\n\n - item\n- item2\n1. item1\n2. item2\n3. item3\n\nTest\n\nTest\n- another list\n- with items\n-  {{additional_information}} ',
+  // })
 
   return (
     <div>

@@ -37,6 +37,8 @@ import { ResolvedServerFeature } from '@payloadcms/richtext-lexical'
 
 import { ResolvedClientFeatureMap } from '@payloadcms/richtext-lexical'
 
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+
 type Props = {
   markdownString: string
 }
@@ -59,18 +61,12 @@ export const getLexicalFromMarkDown = async ({ markdownString }: Props) => {
   })
 
   registerMarkdownShortcuts(editor, transformers)
-  //   editor.setEditorState($convertFromMarkdownString(markdownString, transformers))
+
   editor.update(
     () => {
       // Convert Markdown to editor state
       console.log('markdownString', markdownString)
       $convertFromMarkdownString(markdownString, transformers)
-
-      // Debug: log the editor state to see if children exist
-      const editorState = editor.getEditorState()
-
-      // Convert the updated editor state back to markdown
-      //   const convertedMarkdown = $convertToMarkdownString(editorState, transformers)
     },
     { discrete: true },
   )
@@ -78,12 +74,7 @@ export const getLexicalFromMarkDown = async ({ markdownString }: Props) => {
   const editorState = editor.getEditorState()
   console.log('Editor State:', editorState.toJSON())
 
-  //   editor.getEditorState().read(() => {
-  //     const markdown = $convertToMarkdownString(transformers)
-  //     console.log('markdown', markdown)
-  //   })
-
-  return editor
+  return editorState
 }
 
 export const createPalylodEditor = (): LexicalRichTextAdapterProvider => {
