@@ -9,9 +9,13 @@ const baseClass = 'before-dashboard'
 const BeforeDashboard  = () => {
   return (
     <div className={baseClass}>
-      <Banner className={`${baseClass}__banner`} type="success">
-        <h4>Welcome to OET Website dashboard!</h4>
-      </Banner>
+      <img  
+      src="/favicon.svg"
+        alt="OET Logo"
+        
+      />
+        <h4 >Welcome to OET Website dashboard!</h4>
+      
       </div>
      
   )

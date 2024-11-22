@@ -286,3 +286,18 @@
     --theme-accent-1000: var(--color-accent-0);
   }
   
+.my_logo {
+    scale: 1.2;
+    border: 1px solid white;
+    width: 4rem;
+  img {
+    height: 400px;
+    margin: auto;
+    object-fit: fill;
+  }
+
+//   h1 {
+//     margin: rem auto;
+//     text-align: center;
+//   }
+}

@@ -1,12 +1,11 @@
 import React from 'react';
-import './Logo.scss';
+// import './Logo.scss';
 
 export const Logo = () => (
-  <div classname = "Logo"> 
+  // <div className='my_logo'> 
     <img
-      src="/oet.png"
+      src="/favicon.svg"
       alt="OET Logo"
-     
     />
-  </div>
+  // </div>
 )
