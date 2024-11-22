@@ -1,11 +1,10 @@
 import React from 'react'
 
-const BeforeLogin: React.FC = () => {
+const BeforeLogin = () => {
   return (
     <div>
       <p>
-        <b>Welcome to your dashboard!</b>
-        {' This is where site admins will log in to manage your website.'}
+        <b>Welcome to OET Dashboard</b>        
       </p>
     </div>
   )

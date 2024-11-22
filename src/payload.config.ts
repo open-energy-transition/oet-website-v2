@@ -42,7 +42,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+  return doc?.title ? `${doc.title} | OET Website` : 'OET Website'
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
@@ -53,7 +53,24 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
 
 export default buildConfig({
   admin: {
+    meta: {
+      titleSuffix: 'OET',
+      icons: [
+        {
+          fetchPriority: 'high',
+          url: '/favicon.ico',
+          sizes: '32x32',
+          type: 'image/vnd',
+          rel: 'icon',
+        },
+      ],
+    },
+
     components: {
+      graphics: {
+        Logo: '/graphics/Logo.js#Logo',
+        Icon: '/graphics/Logo.js#Logo',
+      },
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: ['@/components/BeforeLogin'],

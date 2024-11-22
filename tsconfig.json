@@ -43,7 +43,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "redirects.js",
-    "next.config.js"
+    "next.config.js",
+    "src/graphics/Logo.js"
   ],
   "exclude": [
     "node_modules"
