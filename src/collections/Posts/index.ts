@@ -29,6 +29,10 @@ import { slugField } from '@/fields/slug'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
+  labels: {
+    singular: 'Project',
+    plural: 'Projects',
+  },
   access: {
     create: authenticated,
     delete: authenticated,
@@ -60,6 +64,7 @@ export const Posts: CollectionConfig = {
   fields: [
     {
       name: 'title',
+      label: 'Project Title',
       type: 'text',
       required: true,
     },
@@ -87,12 +92,13 @@ export const Posts: CollectionConfig = {
               required: true,
             },
           ],
-          label: 'Content',
+          label: 'Tell Me More',
         },
         {
           fields: [
             {
               name: 'relatedPosts',
+              label: 'Related Projects',
               type: 'relationship',
               admin: {
                 position: 'sidebar',
@@ -170,6 +176,7 @@ export const Posts: CollectionConfig = {
     },
     {
       name: 'authors',
+      label: 'Contributors',
       type: 'relationship',
       admin: {
         position: 'sidebar',

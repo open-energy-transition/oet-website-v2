@@ -37,6 +37,7 @@ import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { gcsStorage } from '@payloadcms/storage-gcs'
 import { HandBookPageCollection } from './blocks/HaandbookPage/config'
+import { EditPage } from './collections/EditPages/EditPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -140,7 +141,16 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users, HandbookPages, HandBookPageCollection],
+  collections: [
+    Pages,
+    Posts,
+    Media,
+    Categories,
+    Users,
+    // HandbookPages,
+    // HandBookPageCollection,
+    // EditPage,
+  ],
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   endpoints: [

@@ -4,6 +4,10 @@ import { authenticated } from '../../access/authenticated'
 
 const Users: CollectionConfig = {
   slug: 'users',
+  labels: {
+    singular: 'Team Member',
+    plural: 'Team Members',
+  },
   access: {
     admin: authenticated,
     create: authenticated,
@@ -20,6 +24,12 @@ const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+    },
+    {
+      name: 'image',
+      label: 'Profile Picture',
+      type: 'upload',
+      relationTo: 'media',
     },
   ],
   timestamps: true,
