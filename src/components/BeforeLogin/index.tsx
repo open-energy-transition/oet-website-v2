@@ -1,11 +1,10 @@
 import React from 'react'
 
-const BeforeLogin: React.FC = () => {
+const BeforeLogin = () => {
   return (
     <div>
       <p>
-        <b>Welcome to OET's Dashboard</b>
-        
+        <b>Welcome to OET Dashboard</b>        
       </p>
     </div>
   )
