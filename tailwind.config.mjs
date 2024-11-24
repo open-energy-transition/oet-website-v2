@@ -58,6 +58,9 @@ export default {
           foreground: 'hsl(var(--accent-foreground))',
         },
         background: 'hsl(var(--background))',
+        oetred: 'hsl(var(--oet-red))',
+        oetlggreen: 'hsl(var(--oet-light-green))',
+        'secondary-color': 'var(--secondary-color)',
         border: 'hsl(var(--border))',
         card: {
           DEFAULT: 'hsl(var(--card))',

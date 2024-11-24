@@ -15,6 +15,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
 import './globals.css'
+import { FakeFotter, FakeHeader } from '@/WebsiteComponents/LayoutComponents'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -27,18 +28,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon-oet.png" rel="icon" type="image/png" />
         <title>OET Website</title>
       </head>
-      <body>
+      <body className="w-[100vw] overflow-x-hidden">
         <Providers>
-          <AdminBar
+          {/* <AdminBar
             adminBarProps={{
               preview: isEnabled,
             }}
-          />
+          /> */}
           <LivePreviewListener />
 
-          <Header />
+          {/* <Header /> */}
+          <FakeHeader />
           {children}
-          <Footer />
+          {/* <Footer /> */}
+          <FakeFotter />
         </Providers>
       </body>
     </html>

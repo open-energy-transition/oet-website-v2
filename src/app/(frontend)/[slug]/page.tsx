@@ -13,6 +13,14 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
+import Hero from '@/WebsiteComponents/Hero'
+import RedHeadingText from '@/WebsiteComponents/RedHeadingText'
+import { TextCard } from '@/WebsiteComponents/TextCard'
+import Textslider from '@/WebsiteComponents/Textslider'
+import { OutputCard } from '@/WebsiteComponents/OutputCard'
+import ProjectsCard from '@/WebsiteComponents/ProjectsCard'
+import BlackHeadingText from '@/WebsiteComponents/BlackHeadingText'
+import { TeamMemberComponent } from '@/WebsiteComponents/TeamMemberComponent'
 
 export async function generateStaticParams() {
   const payload = await getPayloadHMR({ config: configPromise })
@@ -62,14 +70,45 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page
 
   return (
-    <article className="pt-16 pb-24">
-      <PageClient />
+    <>
+      <Hero />
+      <TextCard />
+      <OutputCard />
+      <ProjectsCard />
+      <TeamMemberComponent />
+      <div className="w-full h-24 text-center flex justify-center align-middle items-center">
+        <BlackHeadingText text="MISSION" />
+      </div>
+      <div className="w-[100vw] overflow-hidden flex justify-center align-middle items-center">
+        <Textslider CardComponent={TextCard} />
+      </div>
+      <div className="w-full h-24 text-center flex justify-center align-middle items-center">
+        <BlackHeadingText text="OUTPUTS" />
+      </div>
+      <div className="w-[100vw] flex overflow-hidden justify-center align-middle items-center">
+        <Textslider CardComponent={OutputCard} />
+      </div>
+      <div className="w-full h-24 text-center flex justify-center align-middle items-center">
+        <BlackHeadingText text="PROJECTS" />
+      </div>
+      <div className="w-[100vw] flex justify-center align-middle items-center">
+        <Textslider CardComponent={ProjectsCard} />
+      </div>
+      <div className="w-full h-24 text-center flex justify-center align-middle items-center">
+        <BlackHeadingText text="Text Component" />
+      </div>
+      <div className="w-[100vw] flex justify-center align-middle items-center">
+        <Textslider CardComponent={TeamMemberComponent} />
+      </div>
+      {/* <article className="pt-16 pb-24"> */}
+      {/* <PageClient /> */}
       {/* Allows redirects for valid pages too */}
-      <PayloadRedirects disableNotFound url={url} />
-
+      {/* <PayloadRedirects disableNotFound url={url} />
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
-    </article>
+      <RenderBlocks blocks={layout} /> */}
+      {/* <div>sedvg</div> */}
+      {/* </article> */}
+    </>
   )
 }
 
