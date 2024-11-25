@@ -16,7 +16,9 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
-    redirects: Redirect;
+    OutputCardPayload: OutputCardPayload;
+    TextCardPayload: TextCardPayload;
+    projectCard: ProjectCard;
     forms: Form;
     'form-submissions': FormSubmission;
     search: Search;
@@ -30,7 +32,9 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    OutputCardPayload: OutputCardPayloadSelect<false> | OutputCardPayloadSelect<true>;
+    TextCardPayload: TextCardPayloadSelect<false> | TextCardPayloadSelect<true>;
+    projectCard: ProjectCardSelect<false> | ProjectCardSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
@@ -41,14 +45,8 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {
-    header: Header;
-    footer: Footer;
-  };
-  globalsSelect?: {
-    header: HeaderSelect<false> | HeaderSelect<true>;
-    footer: FooterSelect<false> | FooterSelect<true>;
-  };
+  globals: {};
+  globalsSelect?: {};
   locale: null;
   user: User & {
     collection: 'users';
@@ -362,6 +360,7 @@ export interface Post {
 export interface User {
   id: string;
   name?: string | null;
+  description?: string | null;
   image?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -566,24 +565,35 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
+ * via the `definition` "OutputCardPayload".
  */
-export interface Redirect {
+export interface OutputCardPayload {
   id: string;
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: string | Post;
-        } | null);
-    url?: string | null;
-  };
+  title: string;
+  category: (string | Category)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextCardPayload".
+ */
+export interface TextCardPayload {
+  id: string;
+  title: string;
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projectCard".
+ */
+export interface ProjectCard {
+  id: string;
+  title: string;
+  description: string;
+  image: string | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -660,8 +670,16 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'redirects';
-        value: string | Redirect;
+        relationTo: 'OutputCardPayload';
+        value: string | OutputCardPayload;
+      } | null)
+    | ({
+        relationTo: 'TextCardPayload';
+        value: string | TextCardPayload;
+      } | null)
+    | ({
+        relationTo: 'projectCard';
+        value: string | ProjectCard;
       } | null)
     | ({
         relationTo: 'forms';
@@ -916,6 +934,7 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  description?: T;
   image?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -929,17 +948,32 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects_select".
+ * via the `definition` "OutputCardPayload_select".
  */
-export interface RedirectsSelect<T extends boolean = true> {
-  from?: T;
-  to?:
-    | T
-    | {
-        type?: T;
-        reference?: T;
-        url?: T;
-      };
+export interface OutputCardPayloadSelect<T extends boolean = true> {
+  title?: T;
+  category?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextCardPayload_select".
+ */
+export interface TextCardPayloadSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projectCard_select".
+ */
+export interface ProjectCardSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1149,100 +1183,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
- */
-export interface Header {
-  id: string;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer".
- */
-export interface Footer {
-  id: string;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
- */
-export interface HeaderSelect<T extends boolean = true> {
-  navItems?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer_select".
- */
-export interface FooterSelect<T extends boolean = true> {
-  navItems?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

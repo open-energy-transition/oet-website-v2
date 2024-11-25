@@ -49,56 +49,56 @@ type Args = {
 }
 
 export default async function Page({ params: paramsPromise }: Args) {
-  const { slug = 'home' } = await paramsPromise
-  const url = '/' + slug
+  // const { slug = 'home' } = await paramsPromise
+  // const url = '/' + slug
 
-  let page: PageType | null
+  // let page: PageType | null
 
-  page = await queryPageBySlug({
-    slug,
-  })
+  // page = await queryPageBySlug({
+  //   slug,
+  // })
 
-  // Remove this code once your website is seeded
-  if (!page && slug === 'home') {
-    page = homeStatic
-  }
+  // // Remove this code once your website is seeded
+  // if (!page && slug === 'home') {
+  //   page = homeStatic
+  // }
 
-  if (!page) {
-    return <PayloadRedirects url={url} />
-  }
+  // if (!page) {
+  //   return <PayloadRedirects url={url} />
+  // }
 
-  const { hero, layout } = page
+  // const { hero, layout } = page
 
   return (
     <>
-      <Hero />
+      {/* <Hero />
       <TextCard />
       <OutputCard />
       <ProjectsCard />
-      <TeamMemberComponent />
+      <TeamMemberComponent /> */}
       <div className="w-full h-24 text-center flex justify-center align-middle items-center">
         <BlackHeadingText text="MISSION" />
       </div>
       <div className="w-[100vw] overflow-hidden flex justify-center align-middle items-center">
-        <Textslider CardComponent={TextCard} />
+        <Textslider CardComponent={TextCard} endpoint="TextCardPayload" />
       </div>
       <div className="w-full h-24 text-center flex justify-center align-middle items-center">
         <BlackHeadingText text="OUTPUTS" />
       </div>
       <div className="w-[100vw] flex overflow-hidden justify-center align-middle items-center">
-        <Textslider CardComponent={OutputCard} />
+        <Textslider CardComponent={OutputCard} endpoint="OutputCardPayload" />
       </div>
       <div className="w-full h-24 text-center flex justify-center align-middle items-center">
         <BlackHeadingText text="PROJECTS" />
       </div>
       <div className="w-[100vw] flex justify-center align-middle items-center">
-        <Textslider CardComponent={ProjectsCard} />
+        <Textslider CardComponent={ProjectsCard} endpoint="projectCard" />
       </div>
       <div className="w-full h-24 text-center flex justify-center align-middle items-center">
         <BlackHeadingText text="Text Component" />
       </div>
       <div className="w-[100vw] flex justify-center align-middle items-center">
-        <Textslider CardComponent={TeamMemberComponent} />
+        <Textslider CardComponent={TeamMemberComponent} endpoint="users" />
       </div>
       {/* <article className="pt-16 pb-24"> */}
       {/* <PageClient /> */}

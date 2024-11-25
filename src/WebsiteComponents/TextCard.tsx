@@ -21,20 +21,22 @@ import {
 } from '@/components/ui/select'
 import RedHeadingText from './RedHeadingText'
 
-export function TextCard() {
+import type { TextCardPayload } from '@/payload-types'
+
+export function TextCard({
+  description,
+  title,
+  redTextKey,
+}: TextCardPayload & { redTextKey: string }) {
   return (
     <Card>
       <CardHeader>
         <CardTitle>
-          <RedHeadingText text="01" />
-          <span className="pl-1">OUR GLOBAL IMPACT WITH OPEN ENERGY PLANNING</span>
+          <RedHeadingText text={redTextKey} />
+          <span className="pl-1">{title}</span>
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        Open Energy Transition (OET) is a non-profit environmental think tank and software company
-        dedicated to tackle energy planning challenges. We co-maintain some of the most popular
-        open-source Python tools that empower people
-      </CardContent>
+      <CardContent>{description}</CardContent>
     </Card>
   )
 }

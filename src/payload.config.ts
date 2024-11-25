@@ -38,6 +38,11 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { gcsStorage } from '@payloadcms/storage-gcs'
 import { HandBookPageCollection } from './blocks/HaandbookPage/config'
 import { EditPage } from './collections/EditPages/EditPage'
+// import ProjectCard from './WebsiteComponents/ProjectCrd'
+// import OutputCArd from './WebsiteComponents/OutputCard'
+import TextCardPayload from './WebsiteComponents/TextCardPayload'
+import OutputCardPayload from './WebsiteComponents/OutputCardPayload'
+import ProjectCardPayload from './WebsiteComponents/ProjectCrd'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -147,6 +152,9 @@ export default buildConfig({
     Media,
     Categories,
     Users,
+    OutputCardPayload,
+    TextCardPayload,
+    ProjectCardPayload,
     // HandbookPages,
     // HandBookPageCollection,
     // EditPage,
@@ -162,30 +170,32 @@ export default buildConfig({
       path: '/seed',
     },
   ],
-  globals: [Header, Footer],
+  globals: [
+    // Header, Footer
+  ],
   plugins: [
-    redirectsPlugin({
-      collections: ['pages', 'posts'],
-      overrides: {
-        // @ts-expect-error
-        fields: ({ defaultFields }) => {
-          return defaultFields.map((field) => {
-            if ('name' in field && field.name === 'from') {
-              return {
-                ...field,
-                admin: {
-                  description: 'You will need to rebuild the website when changing this field.',
-                },
-              }
-            }
-            return field
-          })
-        },
-        hooks: {
-          afterChange: [revalidateRedirects],
-        },
-      },
-    }),
+    // redirectsPlugin({
+    //   collections: ['pages', 'posts'],
+    //   overrides: {
+    //     // @ts-expect-error
+    //     fields: ({ defaultFields }) => {
+    //       return defaultFields.map((field) => {
+    //         if ('name' in field && field.name === 'from') {
+    //           return {
+    //             ...field,
+    //             admin: {
+    //               description: 'You will need to rebuild the website when changing this field.',
+    //             },
+    //           }
+    //         }
+    //         return field
+    //       })
+    //     },
+    //     hooks: {
+    //       afterChange: [revalidateRedirects],
+    //     },
+    //   },
+    // }),
     nestedDocsPlugin({
       collections: ['categories'],
     }),
