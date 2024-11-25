@@ -71,8 +71,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   return (
     <>
-      {/* <Hero />
-      <TextCard />
+      <Hero />
+      {/*<TextCard />
       <OutputCard />
       <ProjectsCard />
       <TeamMemberComponent /> */}
