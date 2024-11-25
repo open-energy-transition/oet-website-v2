@@ -5,6 +5,10 @@ import { authenticated } from '../access/authenticated'
 
 const TextCardPayload: CollectionConfig = {
   slug: 'TextCardPayload',
+  labels: {
+    singular: 'Text Card',
+    plural: 'Text Cards',
+  },
   access: {
     create: anyone,
     delete: anyone,

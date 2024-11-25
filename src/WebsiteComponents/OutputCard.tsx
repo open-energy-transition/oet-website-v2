@@ -25,36 +25,26 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 import RedHeadingText from './RedHeadingText'
 
-export function OutputCard() {
+import type { OutputCardPayload } from '@/payload-types'
+
+export function OutputCard({ title, category }: OutputCardPayload) {
   return (
     <Card className=" bg-[#cddbb5]">
       <CardHeader>
         <CardTitle>
-          <span className="pl-1">OUR GLOBAL IMPACT WITH OPEN ENERGY PLANNING</span>
+          <span className="pl-1">{title}</span>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline" className="m-1">
-              Technology
-            </Button>
-          </PopoverTrigger>
-        </Popover>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline" className="m-1">
-              Technology
-            </Button>
-          </PopoverTrigger>
-        </Popover>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline" className="m-1">
-              Technology
-            </Button>
-          </PopoverTrigger>
-        </Popover>
+        {category?.map((cat) => (
+          <Popover key={typeof cat === 'string' ? cat : cat.title}>
+            <PopoverTrigger asChild>
+              <Button variant="outline" className="m-1">
+                {typeof cat === 'string' ? cat : cat.title}
+              </Button>
+            </PopoverTrigger>
+          </Popover>
+        ))}
       </CardContent>
     </Card>
   )

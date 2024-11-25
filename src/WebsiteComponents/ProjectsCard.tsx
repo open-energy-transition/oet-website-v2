@@ -24,24 +24,23 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 
 import Image from 'next/image'
+import type { ProjectCard } from '@/payload-types'
 
-const ProjectsCard = () => {
+const ProjectsCard = ({ title, description, image }: ProjectCard) => {
   return (
     <Card className="bg-[#7C9885] bg-opacity-[0.7]">
       <CardHeader>
         <CardTitle>
-          <Image src="/api/media/file/system.png" width={600} height={600} alt="technology" />
+          {typeof image === 'string' ? (
+            <Image src={image} width={600} height={600} alt="technology" />
+          ) : (
+            <Image src={image.url} width={600} height={600} alt="technology" />
+          )}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-4">
-        <p className="pb-2 font-bold ">
-          Open Energy Transition (OET) is a non-profit environmental think tank
-        </p>
-        <p>
-          Open Energy Transition (OET) is a non-profit environmental think tank and software company
-          dedicated to tackle energy planning challenges. We co-maintain some of the most popular
-          open-source Python tools that empower people
-        </p>
+        <p className="pb-2 font-bold ">{title}</p>
+        <p>{description}</p>
       </CardContent>
     </Card>
   )

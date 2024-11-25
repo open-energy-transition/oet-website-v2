@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 
+
 const OutputCardPayload: CollectionConfig = {
   slug: 'OutputCardPayload',
   labels: {
@@ -22,11 +23,6 @@ const OutputCardPayload: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      required: true,
-    },
-    {
-      name: 'description',
-      type: 'textarea',
       required: true,
     },
     {

@@ -19,7 +19,6 @@ export interface Config {
     OutputCardPayload: OutputCardPayload;
     TextCardPayload: TextCardPayload;
     projectCard: ProjectCard;
-    redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
     search: Search;
@@ -36,7 +35,6 @@ export interface Config {
     OutputCardPayload: OutputCardPayloadSelect<false> | OutputCardPayloadSelect<true>;
     TextCardPayload: TextCardPayloadSelect<false> | TextCardPayloadSelect<true>;
     projectCard: ProjectCardSelect<false> | ProjectCardSelect<true>;
-    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
@@ -362,6 +360,7 @@ export interface Post {
 export interface User {
   id: string;
   name?: string | null;
+  description?: string | null;
   image?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -571,7 +570,6 @@ export interface Form {
 export interface OutputCardPayload {
   id: string;
   title: string;
-  description: string;
   category: (string | Category)[];
   updatedAt: string;
   createdAt: string;
@@ -596,29 +594,6 @@ export interface ProjectCard {
   title: string;
   description: string;
   image: string | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: string;
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: string | Post;
-        } | null);
-    url?: string | null;
-  };
   updatedAt: string;
   createdAt: string;
 }
@@ -705,10 +680,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projectCard';
         value: string | ProjectCard;
-      } | null)
-    | ({
-        relationTo: 'redirects';
-        value: string | Redirect;
       } | null)
     | ({
         relationTo: 'forms';
@@ -963,6 +934,7 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  description?: T;
   image?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -980,7 +952,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface OutputCardPayloadSelect<T extends boolean = true> {
   title?: T;
-  description?: T;
   category?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1003,22 +974,6 @@ export interface ProjectCardSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   image?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects_select".
- */
-export interface RedirectsSelect<T extends boolean = true> {
-  from?: T;
-  to?:
-    | T
-    | {
-        type?: T;
-        reference?: T;
-        url?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }
