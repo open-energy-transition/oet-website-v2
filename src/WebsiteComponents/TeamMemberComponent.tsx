@@ -9,7 +9,7 @@ export function TeamMemberComponent({ name, description, image }: User) {
     <Card className="bg-[#E41E3C]">
       <CardContent className="border flex flex-col justify-center align-middle items-center w-full h-[35vh]">
         <Avatar className="scale-[2] sm:scale-[5] md:scale-[5]">
-          <AvatarImage src={typeof image === 'string' ? image : image?.url} />
+          <AvatarImage src={typeof image === 'string' ? image : (image?.url ?? undefined)} />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </CardContent>
