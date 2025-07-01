@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { cn } from 'src/utilities/cn'
+import { cn } from '@/utilities/ui'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import React from 'react'
@@ -8,14 +8,13 @@ import React from 'react'
 import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
-import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
 import './globals.css'
-import { FakeFotter, FakeHeader } from '@/WebsiteComponents/LayoutComponents'
+import { getServerSideURL } from '@/utilities/getURL'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -23,25 +22,21 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
       <head>
-        {/* <InitTheme /> */}
+        <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
-        <link href="/favicon-oet.png" rel="icon" type="image/png" />
-        <title>OET Website</title>
+        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body className="w-[100vw] overflow-x-hidden">
+      <body>
         <Providers>
-          {/* <AdminBar
+          <AdminBar
             adminBarProps={{
               preview: isEnabled,
             }}
-          /> */}
-          <LivePreviewListener />
+          />
 
-          {/* <Header /> */}
-          <FakeHeader />
+          <Header />
           {children}
-          {/* <Footer /> */}
-          <FakeFotter />
+          <Footer />
         </Providers>
       </body>
     </html>
@@ -49,7 +44,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'https://payloadcms.com'),
+  metadataBase: new URL(getServerSideURL()),
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',

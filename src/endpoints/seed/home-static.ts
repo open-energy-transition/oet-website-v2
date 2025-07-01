@@ -1,8 +1,7 @@
-import type { Page } from '@/payload-types'
+import type { RequiredDataFromCollectionSlug } from 'payload'
 
 // Used for pre-seeded content so that the homepage is not empty
-// @ts-expect-error
-export const homeStatic: Page = {
+export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
   slug: 'home',
   _status: 'published',
   hero: {
@@ -20,7 +19,7 @@ export const homeStatic: Page = {
                 format: 0,
                 mode: 'normal',
                 style: '',
-                text: 'OET Website',
+                text: 'Payload Website Template',
                 version: 1,
               },
             ],
@@ -82,7 +81,8 @@ export const homeStatic: Page = {
   },
   meta: {
     description: 'An open-source website built with Payload and Next.js.',
-    title: 'OET Website',
+    title: 'Payload Website Template',
   },
   title: 'Home',
+  layout: [],
 }
