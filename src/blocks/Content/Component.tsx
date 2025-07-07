@@ -1,6 +1,7 @@
 import { cn } from '@/utilities/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
+import { Media } from '@/components/Media'
 
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
@@ -13,6 +14,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
     full: '12',
     half: '6',
     oneThird: '4',
+    oneFourth: '3',
     twoThirds: '8',
   }
 
@@ -22,7 +24,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
         {columns &&
           columns.length > 0 &&
           columns.map((col, index) => {
-            const { enableLink, link, richText, size } = col
+            const { enableLink, link, media, richText, size } = col
 
             return (
               <div
@@ -31,8 +33,18 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 })}
                 key={index}
               >
+                {/* Display Media with constrained width */}
+                {media && typeof media === 'object' && (
+                  <div className="media-wrapper w-full mb-4">
+                    <div className="aspect-video w-full overflow-hidden rounded-lg">
+                      <Media resource={media} className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                )}
+                {/* Display Rich Text */}
                 {richText && <RichText data={richText} enableGutter={false} />}
 
+                {/* Display Link */}
                 {enableLink && <CMSLink {...link} />}
               </div>
             )

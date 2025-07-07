@@ -191,7 +191,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | DonateBlock | MediaBlock | ArchiveBlock | FormBlock | AboutBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -447,7 +447,7 @@ export interface CallToActionBlock {
 export interface ContentBlock {
   columns?:
     | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        size?: ('oneThird' | 'oneFourth' | 'half' | 'twoThirds' | 'full') | null;
         richText?: {
           root: {
             type: string;
@@ -483,12 +483,46 @@ export interface ContentBlock {
            */
           appearance?: ('default' | 'outline') | null;
         };
+        media?: (number | null) | Media;
         id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DonateBlock".
+ */
+export interface DonateBlock {
+  title: string;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  listItems?:
+    | {
+        iconClass: string;
+        title: string;
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'donate';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -733,6 +767,47 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock".
+ */
+export interface AboutBlock {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  media: number | Media;
+  listItems?:
+    | {
+        iconClass: string;
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  actionItems?:
+    | {
+        iconClass: string;
+        title: string;
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'about';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1022,9 +1097,11 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
+        donate?: T | DonateBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        about?: T | AboutBlockSelect<T>;
       };
   meta?:
     | T
@@ -1085,6 +1162,25 @@ export interface ContentBlockSelect<T extends boolean = true> {
               label?: T;
               appearance?: T;
             };
+        media?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DonateBlock_select".
+ */
+export interface DonateBlockSelect<T extends boolean = true> {
+  title?: T;
+  richText?: T;
+  listItems?:
+    | T
+    | {
+        iconClass?: T;
+        title?: T;
+        link?: T;
         id?: T;
       };
   id?: T;
@@ -1121,6 +1217,32 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock_select".
+ */
+export interface AboutBlockSelect<T extends boolean = true> {
+  richText?: T;
+  media?: T;
+  listItems?:
+    | T
+    | {
+        iconClass?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  actionItems?:
+    | T
+    | {
+        iconClass?: T;
+        title?: T;
+        link?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

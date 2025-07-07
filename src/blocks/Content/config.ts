@@ -20,6 +20,10 @@ const columnFields: Field[] = [
         value: 'oneThird',
       },
       {
+        label: 'One Fourth',
+        value: 'oneFourth',
+      },
+      {
         label: 'Half',
         value: 'half',
       },
@@ -61,6 +65,12 @@ const columnFields: Field[] = [
       },
     },
   }),
+  {
+    name: 'media',
+    type: 'upload',
+    relationTo: 'media',
+    required: false,
+  },
 ]
 
 export const Content: Block = {
