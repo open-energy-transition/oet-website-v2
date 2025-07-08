@@ -62,6 +62,7 @@ export default buildConfig({
   db: vercelPostgresAdapter({
     pool: {
       connectionString: process.env.POSTGRES_URL || '',
+      max: 1,
     },
   }),
   collections: [Pages, Posts, Media, Categories, Users],
