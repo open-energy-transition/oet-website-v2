@@ -72,6 +72,7 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    projects: Project;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -88,6 +89,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -149,7 +151,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'homeHero' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
       root: {
         type: string;
@@ -191,7 +193,16 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | DonateBlock | MediaBlock | ArchiveBlock | FormBlock | AboutBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | DonateBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | AboutBlock
+    | ProjectTabsBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -555,7 +566,7 @@ export interface ArchiveBlock {
     [k: string]: unknown;
   } | null;
   populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
+  relationTo?: ('posts' | 'projects') | null;
   categories?: (number | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
@@ -811,6 +822,84 @@ export interface AboutBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectTabsBlock".
+ */
+export interface ProjectTabsBlock {
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  showTabs?: boolean | null;
+  tabLabels?: {
+    inProgressLabel?: string | null;
+    completedLabel?: string | null;
+  };
+  displayOptions?: {
+    showService?: boolean | null;
+    showDate?: boolean | null;
+    showSubtitle?: boolean | null;
+  };
+  /**
+   * Filter projects by categories (optional)
+   */
+  categories?: (number | Category)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'projectTabs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  subTitle: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  service: string;
+  projectStatus: 'in-progress' | 'completed';
+  date: string;
+  imageUrl?: (number | null) | Media;
+  categories?: (number | Category)[] | null;
+  relatedProjects?: (number | Project)[] | null;
+  slug?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1003,6 +1092,10 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'projects';
+        value: number | Project;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1102,6 +1195,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         about?: T | AboutBlockSelect<T>;
+        projectTabs?: T | ProjectTabsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1243,6 +1337,30 @@ export interface AboutBlockSelect<T extends boolean = true> {
         link?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectTabsBlock_select".
+ */
+export interface ProjectTabsBlockSelect<T extends boolean = true> {
+  introContent?: T;
+  showTabs?: T;
+  tabLabels?:
+    | T
+    | {
+        inProgressLabel?: T;
+        completedLabel?: T;
+      };
+  displayOptions?:
+    | T
+    | {
+        showService?: T;
+        showDate?: T;
+        showSubtitle?: T;
+      };
+  categories?: T;
   id?: T;
   blockName?: T;
 }
@@ -1412,6 +1530,33 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  subTitle?: T;
+  content?: T;
+  service?: T;
+  projectStatus?: T;
+  date?: T;
+  imageUrl?: T;
+  categories?: T;
+  relatedProjects?: T;
+  slug?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
