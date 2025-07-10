@@ -2,7 +2,7 @@ import type { Field, GroupField } from 'payload'
 
 import deepMerge from '@/utilities/deepMerge'
 
-export type LinkAppearances = 'default' | 'outline'
+export type LinkAppearances = 'default' | 'outline' | 'internal' | 'external' | 'github'
 
 export const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
   default: {
@@ -12,6 +12,18 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
   outline: {
     label: 'Outline',
     value: 'outline',
+  },
+  internal: {
+    label: 'Internal',
+    value: 'internal',
+  },
+  external: {
+    label: 'External',
+    value: 'external',
+  },
+  github: {
+    label: 'GitHub',
+    value: 'github',
   },
 }
 

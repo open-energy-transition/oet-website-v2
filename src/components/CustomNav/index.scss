@@ -1,0 +1,229 @@
+.template-default__nav-toggler-container {
+  display: none;
+}
+
+.custom-nav {
+  border-right: 3px solid transparent;
+  border-image: linear-gradient(
+    to bottom,
+    var(--theme-success-500),
+    var(--theme-border),
+    var(--theme-success-500)
+  ) 1;
+  background-color: var(--color-success-50);
+  overflow-y: auto;
+  width: 280px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.collapsed {
+    width: 80px;
+
+    .nav-logo {
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      img {
+        margin-right: 0;
+      }
+    }
+
+    .nav-item {
+      justify-content: center;
+      padding: 0.75rem;
+
+      .nav-icon {
+        margin-right: 0;
+      }
+    }
+
+    .section-title {
+      display: none;
+    }
+  }
+}
+
+// Toggle Button Styles
+.nav-toggle {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.toggle-btn {
+  background: var(--theme-bg);
+  border: 2px solid var(--theme-border);
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-text);
+
+  &:hover {
+    background: var(--theme-elevation-100);
+    border-color: var(--theme-success-500);
+    transform: scale(1.05);
+    color: var(--theme-success-500);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  svg {
+    transition: all 0.3s ease;
+  }
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-right: 0.75rem;
+  transition: margin 0.3s ease;
+  color: var(--theme-text);
+
+  svg {
+    transition: color 0.3s ease;
+  }
+}
+
+// Logo Styles
+.nav-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--theme-border);
+  transition: all 0.3s ease;
+
+  img {
+    border-radius: 8px;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+    object-fit: contain;
+  }
+}
+
+.nav-brand {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--theme-text);
+    line-height: 1.2;
+  }
+
+  span {
+    font-size: 0.75rem;
+    color: var(--theme-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Section Styles
+.nav-section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--theme-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.nav-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: var(--theme-text);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.95rem;
+  font-weight: 500;
+  position: relative;
+
+  &:hover {
+    background-color: var(--theme-elevation-100);
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .nav-icon svg {
+      color: var(--theme-success-500);
+    }
+  }
+
+  &:active {
+    transform: translateX(2px);
+  }
+
+  // Active state
+  &.active {
+    background-color: var(--theme-success-100);
+    color: var(--theme-success-700);
+
+    .nav-icon svg {
+      color: var(--theme-success-600);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: var(--theme-success-500);
+      border-radius: 0 2px 2px 0;
+    }
+  }
+}
+
+.nav-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+  flex: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .custom-nav {
+    width: 100%;
+
+    &.collapsed {
+      width: 70px;
+    }
+  }
+
+  .toggle-btn {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+}

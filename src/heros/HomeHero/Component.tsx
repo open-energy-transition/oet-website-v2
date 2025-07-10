@@ -2,12 +2,17 @@
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 import Particles from '@tsparticles/react'
+import { loadSlim } from '@tsparticles/slim'
+import { tsParticles } from '@tsparticles/engine'
 
 import type { Page } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+
+// Initialize particles engine
+loadSlim(tsParticles)
 
 export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
   const { setHeaderTheme } = useHeaderTheme()
@@ -26,29 +31,47 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => 
         id="tsparticles"
         className="absolute inset-0"
         options={{
-          background: {
-            color: {
-              value: 'transparent',
-            },
-          },
-          fpsLimit: 120,
+          detectRetina: false,
           interactivity: {
             events: {
               onClick: {
-                enable: true,
-                mode: 'push',
+                enable: false,
+                mode: 'bubble',
               },
               onHover: {
                 enable: true,
-                mode: 'repulse',
+                mode: 'bubble',
               },
               resize: {
                 enable: true,
               },
             },
             modes: {
+              bubble: {
+                distance: 200,
+                duration: 2,
+                opacity: 8,
+                size: 10,
+                speed: 3,
+              },
+              connect: {
+                distance: 40,
+                links: {
+                  opacity: 0.5,
+                },
+                radius: 250,
+              },
+              grab: {
+                distance: 300,
+                links: {
+                  opacity: 1,
+                },
+              },
               push: {
                 quantity: 4,
+              },
+              remove: {
+                quantity: 2,
               },
               repulse: {
                 distance: 200,
@@ -58,13 +81,14 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => 
           },
           particles: {
             color: {
-              value: '#ffffff',
+              value: ['#ffffff'],
             },
             links: {
-              color: '#ffffff',
-              distance: 150,
+              blink: false,
+              color: 'random',
+              distance: 60,
               enable: true,
-              opacity: 0.2,
+              opacity: 0.8,
               width: 1,
             },
             move: {
@@ -74,26 +98,36 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => 
                 default: 'bounce',
               },
               random: false,
-              speed: 1,
+              speed: 0.5,
               straight: false,
             },
             number: {
               density: {
-                enable: true,
+                enable: false,
               },
-              value: 80,
+              value: 150,
             },
             opacity: {
-              value: 0.3,
+              animation: {
+                enable: true,
+                speed: 2,
+                sync: false,
+                startValue: 'min',
+              },
+              value: 0.8,
             },
             shape: {
               type: 'circle',
             },
             size: {
-              value: { min: 1, max: 5 },
+              animation: {
+                enable: false,
+                speed: 20,
+                sync: false,
+              },
+              value: { min: 3, max: 8 },
             },
           },
-          detectRetina: true,
         }}
       />
       <div className="container mb-8 z-10 relative flex items-center justify-center">

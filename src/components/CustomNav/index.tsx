@@ -1,0 +1,82 @@
+'use client'
+
+import Image from 'next/image'
+import React, { useState } from 'react'
+import { useNav } from '@payloadcms/ui'
+// import { Menu, X } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import './index.scss'
+import Link from 'next/link'
+
+const CustomNav: React.FC = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const { navOpen, setNavOpen } = useNav()
+  const pathname = usePathname()
+  const navItems = [
+    { label: '📄 Pages', href: '/admin/collections/pages' },
+    { label: '📝 Posts', href: '/admin/collections/posts' },
+    { label: '🚀 Projects', href: '/admin/collections/projects' },
+    { label: '📱 Models', href: '/admin/collections/models' },
+    { label: '🏷️ Categories', href: '/admin/collections/categories' },
+    { label: '🖼️ Media', href: '/admin/collections/media' },
+  ]
+
+  const toggleNav = () => {
+    setIsCollapsed(!isCollapsed)
+    setNavOpen(!navOpen)
+  }
+
+  // Check if current path matches nav item
+  const isActive = (href: string) => {
+    return pathname === href || pathname.startsWith(href)
+  }
+
+  return (
+    <aside
+      className={`nav nav--nav-animate nav--nav-hydrated custom-nav ${isCollapsed ? 'collapsed' : 'nav--nav-open'}`}
+    >
+      {/* Custom Toggle Button */}
+      {/* <div className="nav-toggle">
+        <button
+          className="toggle-btn"
+          onClick={toggleNav}
+          aria-label={isCollapsed ? 'Expand Menu' : 'Collapse Menu'}
+        >
+          {isCollapsed ? <Menu size={20} /> : <X size={20} />}
+        </button>
+      </div> */}
+      <div className="nav__scroll">
+        {/* Logo Section */}
+        <div className="nav-logo">
+          <Link href="/admin">
+            <Image
+              src="/oet-logo-red-n-subtitle.png"
+              width={isCollapsed ? 40 : 140}
+              height={isCollapsed ? 40 : 140}
+              alt="oet-logo"
+            />
+          </Link>
+        </div>
+
+        {/* Navigation Section */}
+        <div className="nav-section">
+          <div className="nav-wrapper">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`nav-item ${isActive(item.href) ? 'active' : ''}`}
+                title={isCollapsed ? item.label.substring(2) : ''}
+              >
+                <span className="nav-icon">{item.label.split(' ')[0]}</span>
+                {!isCollapsed && <span className="nav-text">{item.label.substring(2)}</span>}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </aside>
+  )
+}
+
+export default CustomNav
