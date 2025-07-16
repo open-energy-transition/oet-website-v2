@@ -12,6 +12,7 @@ const CustomNav: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const { navOpen, setNavOpen } = useNav()
   const pathname = usePathname()
+
   const navItems = [
     { label: '📄 Pages', href: '/admin/collections/pages' },
     { label: '📝 Posts', href: '/admin/collections/posts' },
@@ -19,6 +20,11 @@ const CustomNav: React.FC = () => {
     { label: '📱 Models', href: '/admin/collections/models' },
     { label: '🏷️ Categories', href: '/admin/collections/categories' },
     { label: '🖼️ Media', href: '/admin/collections/media' },
+  ]
+
+  const globalItems = [
+    { label: '🔝 Header', href: '/admin/globals/header' },
+    { label: '🔻 Footer', href: '/admin/globals/footer' },
   ]
 
   const toggleNav = () => {
@@ -35,16 +41,6 @@ const CustomNav: React.FC = () => {
     <aside
       className={`nav nav--nav-animate nav--nav-hydrated custom-nav ${isCollapsed ? 'collapsed' : 'nav--nav-open'}`}
     >
-      {/* Custom Toggle Button */}
-      {/* <div className="nav-toggle">
-        <button
-          className="toggle-btn"
-          onClick={toggleNav}
-          aria-label={isCollapsed ? 'Expand Menu' : 'Collapse Menu'}
-        >
-          {isCollapsed ? <Menu size={20} /> : <X size={20} />}
-        </button>
-      </div> */}
       <div className="nav__scroll">
         {/* Logo Section */}
         <div className="nav-logo">
@@ -58,10 +54,29 @@ const CustomNav: React.FC = () => {
           </Link>
         </div>
 
-        {/* Navigation Section */}
+        {/* Collections Section */}
         <div className="nav-section">
+          {!isCollapsed && <div className="section-title">COLLECTIONS</div>}
           <div className="nav-wrapper">
             {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`nav-item ${isActive(item.href) ? 'active' : ''}`}
+                title={isCollapsed ? item.label.substring(2) : ''}
+              >
+                <span className="nav-icon">{item.label.split(' ')[0]}</span>
+                {!isCollapsed && <span className="nav-text">{item.label.substring(2)}</span>}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Globals Section */}
+        <div className="nav-section">
+          {!isCollapsed && <div className="section-title">GLOBALS</div>}
+          <div className="nav-wrapper">
+            {globalItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
