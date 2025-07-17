@@ -204,6 +204,7 @@ export interface Page {
     | FormBlock
     | AboutBlock
     | ProjectTabsBlock
+    | TabsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -461,6 +462,11 @@ export interface ContentBlock {
   columns?:
     | {
         size?: ('oneThird' | 'oneFourth' | 'half' | 'twoThirds' | 'full') | null;
+        /**
+         * Choose the display type for this column
+         */
+        type?: ('content' | 'cardModal') | null;
+        modal?: (number | null) | Model;
         richText?: {
           root: {
             type: string;
@@ -503,6 +509,41 @@ export interface ContentBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "models".
+ */
+export interface Model {
+  id: number;
+  title: string;
+  description?: string | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'github' | 'internal' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -862,38 +903,44 @@ export interface ProjectTabsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "models".
+ * via the `definition` "TabsBlock".
  */
-export interface Model {
-  id: number;
-  title: string;
+export interface TabsBlock {
+  /**
+   * Optional title for the entire tabs section
+   */
+  title?: string | null;
+  /**
+   * Optional description for the tabs section
+   */
   description?: string | null;
-  links?:
+  /**
+   * Add multiple tabs with their own content
+   */
+  tabs?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'github' | 'internal' | 'outline') | null;
-        };
+        /**
+         * The title that will appear on the tab button
+         */
+        title: string;
+        /**
+         * Add content blocks to this tab
+         */
+        content?: (ContentBlock | ArchiveBlock | ProjectTabsBlock)[] | null;
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
+  /**
+   * Choose the visual style for the tabs
+   */
+  tabStyle?: ('default' | 'pills' | 'underline' | 'bordered') | null;
+  /**
+   * Position of the tab navigation
+   */
+  tabPosition?: ('top' | 'left' | 'right') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tabs';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1237,6 +1284,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         about?: T | AboutBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
+        tabs?: T | TabsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1285,6 +1333,8 @@ export interface ContentBlockSelect<T extends boolean = true> {
     | T
     | {
         size?: T;
+        type?: T;
+        modal?: T;
         richText?: T;
         enableLink?: T;
         link?:
@@ -1402,6 +1452,31 @@ export interface ProjectTabsBlockSelect<T extends boolean = true> {
         showSubtitle?: T;
       };
   categories?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabsBlock_select".
+ */
+export interface TabsBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  tabs?:
+    | T
+    | {
+        title?: T;
+        content?:
+          | T
+          | {
+              content?: T | ContentBlockSelect<T>;
+              archive?: T | ArchiveBlockSelect<T>;
+              projectTabs?: T | ProjectTabsBlockSelect<T>;
+            };
+        id?: T;
+      };
+  tabStyle?: T;
+  tabPosition?: T;
   id?: T;
   blockName?: T;
 }

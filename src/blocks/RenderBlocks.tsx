@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { DonateBlock } from '@/blocks/Donate/Component'
 import { AboutBlock } from '@/blocks/About/Component'
 import { ProjectTabsBlock } from '@/blocks/ProjectTabsBlock/Component'
+import { TabsBlock } from '@/blocks/TabsBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents = {
   donate: DonateBlock,
   about: AboutBlock,
   projectTabs: ProjectTabsBlock,
+  tabs: TabsBlock,
 }
 
 export const RenderBlocks: React.FC<{

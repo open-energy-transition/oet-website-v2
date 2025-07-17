@@ -38,6 +38,33 @@ const columnFields: Field[] = [
     ],
   },
   {
+    name: 'type',
+    type: 'select',
+    defaultValue: 'content',
+    options: [
+      {
+        label: 'Content',
+        value: 'content',
+      },
+      {
+        label: 'Card Modal',
+        value: 'cardModal',
+      },
+    ],
+    admin: {
+      description: 'Choose the display type for this column',
+    },
+  },
+  {
+    name: 'modal',
+    type: 'relationship',
+    relationTo: 'models',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'cardModal',
+    },
+    required: true,
+  },
+  {
     name: 'richText',
     type: 'richText',
     editor: lexicalEditor({
@@ -55,12 +82,15 @@ const columnFields: Field[] = [
   {
     name: 'enableLink',
     type: 'checkbox',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'content',
+    },
   },
   link({
     overrides: {
       admin: {
         condition: (_data, siblingData) => {
-          return Boolean(siblingData?.enableLink)
+          return Boolean(siblingData?.enableLink && siblingData?.type === 'content')
         },
       },
     },
@@ -70,6 +100,9 @@ const columnFields: Field[] = [
     type: 'upload',
     relationTo: 'media',
     required: false,
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'content',
+    },
   },
 ]
 

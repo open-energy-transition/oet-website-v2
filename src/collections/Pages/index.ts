@@ -10,6 +10,7 @@ import { Donate } from '../../blocks/Donate/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ProjectTabs } from '../../blocks/ProjectTabsBlock/config'
+import { TabsBlock } from '../../blocks/TabsBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -87,6 +88,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 About,
                 ProjectTabs,
+                TabsBlock,
               ],
               required: true,
               admin: {

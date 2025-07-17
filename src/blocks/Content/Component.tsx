@@ -24,7 +24,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
         {columns &&
           columns.length > 0 &&
           columns.map((col, index) => {
-            const { enableLink, link, media, richText, size } = col
+            const { type, modal, enableLink, link, media, richText, size } = col
 
             return (
               <div
@@ -33,19 +33,39 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 })}
                 key={index}
               >
-                {/* Display Media with constrained width */}
-                {media && typeof media === 'object' && (
-                  <div className="media-wrapper w-full mb-4">
-                    <div className="aspect-video w-full overflow-hidden rounded-lg">
-                      <Media resource={media} className="w-full h-full object-cover" />
-                    </div>
-                  </div>
-                )}
-                {/* Display Rich Text */}
-                {richText && <RichText data={richText} enableGutter={false} />}
+                {type === 'cardModal' ? (
+                  // Card Modal Type
+                  <div className="card-modal bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer">
+                    {/* Display Rich Text for card modal */}
+                    {richText && (
+                      <div className="mb-4">
+                        <RichText data={richText} enableGutter={false} />
+                      </div>
+                    )}
 
-                {/* Display Link */}
-                {enableLink && <CMSLink {...link} />}
+                    {/* Modal trigger - you can customize this based on your modal implementation */}
+                    {modal && typeof modal === 'object' && (
+                      <div className="text-sm text-gray-500">Modal: {modal.title || modal.id}</div>
+                    )}
+                  </div>
+                ) : (
+                  // Default Content Type
+                  <>
+                    {/* Display Media with constrained width */}
+                    {media && typeof media === 'object' && (
+                      <div className="media-wrapper w-full mb-4">
+                        <div className="aspect-video w-full overflow-hidden rounded-lg">
+                          <Media resource={media} className="w-full h-full object-cover" />
+                        </div>
+                      </div>
+                    )}
+                    {/* Display Rich Text */}
+                    {richText && <RichText data={richText} enableGutter={false} />}
+
+                    {/* Display Link */}
+                    {enableLink && <CMSLink {...link} />}
+                  </>
+                )}
               </div>
             )
           })}
