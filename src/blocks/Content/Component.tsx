@@ -2,6 +2,7 @@ import { cn } from '@/utilities/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
 import { Media } from '@/components/Media'
+import { CardBlock } from '../CardBlock/Component'
 
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
@@ -24,7 +25,20 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
         {columns &&
           columns.length > 0 &&
           columns.map((col, index) => {
-            const { type, modal, enableLink, link, media, richText, size } = col
+            const {
+              type,
+              modal,
+              enableLink,
+              link,
+              media,
+              richText,
+              size,
+              tag,
+              title,
+              subtitle,
+              description,
+              action,
+            } = col
 
             return (
               <div
@@ -35,19 +49,33 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
               >
                 {type === 'cardModal' ? (
                   // Card Modal Type
-                  <div className="card-modal bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer">
+                  <div className="">
                     {/* Display Rich Text for card modal */}
                     {richText && (
                       <div className="mb-4">
                         <RichText data={richText} enableGutter={false} />
                       </div>
                     )}
-
-                    {/* Modal trigger - you can customize this based on your modal implementation */}
+                    {/* Modal trigger */}
                     {modal && typeof modal === 'object' && (
-                      <div className="text-sm text-gray-500">Modal: {modal.title || modal.id}</div>
+                      <CardBlock
+                        tag={'Model'}
+                        title={modal.title ?? ''}
+                        subtitle={modal.description ?? ''}
+                        description={undefined}
+                        action={action}
+                      />
                     )}
                   </div>
+                ) : type === 'card' ? (
+                  // Card Type
+                  <CardBlock
+                    tag={tag ?? undefined}
+                    title={title ?? ''}
+                    subtitle={subtitle ?? ''}
+                    description={typeof description === 'string' ? description : undefined}
+                    action={action}
+                  />
                 ) : (
                   // Default Content Type
                   <>

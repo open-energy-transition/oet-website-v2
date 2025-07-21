@@ -465,7 +465,7 @@ export interface ContentBlock {
         /**
          * Choose the display type for this column
          */
-        type?: ('content' | 'cardModal') | null;
+        type?: ('content' | 'card' | 'cardModal') | null;
         modal?: (number | null) | Model;
         richText?: {
           root: {
@@ -503,6 +503,28 @@ export interface ContentBlock {
           appearance?: ('default' | 'outline') | null;
         };
         media?: (number | null) | Media;
+        tag?: string | null;
+        title?: string | null;
+        subtitle?: string | null;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        action?: {
+          label: string;
+          url: string;
+        };
         id?: string | null;
       }[]
     | null;
@@ -1348,6 +1370,16 @@ export interface ContentBlockSelect<T extends boolean = true> {
               appearance?: T;
             };
         media?: T;
+        tag?: T;
+        title?: T;
+        subtitle?: T;
+        description?: T;
+        action?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+            };
         id?: T;
       };
   id?: T;

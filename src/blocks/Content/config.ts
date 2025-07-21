@@ -47,6 +47,10 @@ const columnFields: Field[] = [
         value: 'content',
       },
       {
+        label: 'Card',
+        value: 'card',
+      },
+      {
         label: 'Card Modal',
         value: 'cardModal',
       },
@@ -103,6 +107,66 @@ const columnFields: Field[] = [
     admin: {
       condition: (_, siblingData) => siblingData?.type === 'content',
     },
+  },
+  {
+    name: 'tag',
+    type: 'text',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'card',
+      width: '50%',
+    },
+  },
+  {
+    name: 'title',
+    type: 'text',
+    required: false,
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'card',
+      width: '100%',
+    },
+  },
+  {
+    name: 'subtitle',
+    type: 'text',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'card',
+      width: '100%',
+    },
+  },
+  {
+    name: 'description',
+    type: 'richText',
+    editor: lexicalEditor({
+      features: ({ rootFeatures }) => [
+        ...rootFeatures,
+        HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+        FixedToolbarFeature(),
+        InlineToolbarFeature(),
+      ],
+    }),
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'card',
+      width: '100%',
+    },
+  },
+  {
+    name: 'action',
+    type: 'group',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'card',
+    },
+    fields: [
+      {
+        name: 'label',
+        type: 'text',
+        required: true,
+      },
+      {
+        name: 'url',
+        type: 'text',
+        required: true,
+      },
+    ],
   },
 ]
 

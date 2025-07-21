@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react'
 import { cn } from '@/utilities/ui'
-import RichText from '@/components/RichText'
+import { CardBlock } from '../CardBlock/Component'
 
 import type { TabsBlock as TabsBlockProps } from '@/payload-types'
+import { ContentBlock } from '../Content/Component'
 
 // Simple block renderer that doesn't import payload config
 const renderTabContent = (content: any[]) => {
@@ -15,9 +16,11 @@ const renderTabContent = (content: any[]) => {
       case 'content':
         return (
           <div key={index} className="prose max-w-none">
-            <RichText data={block.richText} />
+            <ContentBlock key={index} {...block} />
           </div>
         )
+      case 'card':
+        return <CardBlock key={index} {...block} />
       case 'mediaBlock':
         return (
           <div key={index} className="my-8">
@@ -29,15 +32,43 @@ const renderTabContent = (content: any[]) => {
         return (
           <div key={index} className="bg-blue-50 p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4">{block.richText}</h3>
-            {block.links?.map((link, linkIndex) => (
-              <a
-                key={linkIndex}
-                href={link.url}
-                className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
-              >
-                {link.label}
-              </a>
-            ))}
+            {block.links?.map(
+              (
+                link: {
+                  url: string | undefined
+                  label:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | React.ReactElement<unknown, string | React.JSXElementConstructor<any>>
+                    | Iterable<React.ReactNode>
+                    | React.ReactPortal
+                    | Promise<
+                        | string
+                        | number
+                        | bigint
+                        | boolean
+                        | React.ReactPortal
+                        | React.ReactElement<unknown, string | React.JSXElementConstructor<any>>
+                        | Iterable<React.ReactNode>
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
+                },
+                linkIndex: React.Key | null | undefined,
+              ) => (
+                <a
+                  key={linkIndex}
+                  href={link.url}
+                  className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
           </div>
         )
       default:
