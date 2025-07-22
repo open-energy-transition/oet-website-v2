@@ -199,6 +199,30 @@ export interface Page {
     | CallToActionBlock
     | ContentBlock
     | DonateBlock
+    | {
+        /**
+         * Upload a circular image (UI will display as circle)
+         */
+        image: number | Media;
+        quote?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'quote';
+      }
     | MediaBlock
     | ArchiveBlock
     | FormBlock
@@ -1301,6 +1325,14 @@ export interface PagesSelect<T extends boolean = true> {
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         donate?: T | DonateBlockSelect<T>;
+        quote?:
+          | T
+          | {
+              image?: T;
+              quote?: T;
+              id?: T;
+              blockName?: T;
+            };
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;

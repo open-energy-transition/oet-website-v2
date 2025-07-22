@@ -12,11 +12,13 @@ import { AboutBlock } from '@/blocks/About/Component'
 import { ProjectTabsBlock } from '@/blocks/ProjectTabsBlock/Component'
 import { TabsBlock } from '@/blocks/TabsBlock/Component'
 import { CardBlock } from '@/blocks/CardBlock/Component'
+import { QuoteBlock } from '@/blocks/QuoteBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
   card: CardBlock,
+  quote: QuoteBlock,
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
