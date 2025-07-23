@@ -23,7 +23,7 @@ export const Projects: CollectionConfig = {
           collection: 'projects',
           req,
         })
-        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+        return `${process.env.NEXT_PUBLIC_SERVER_URL}/projects/${typeof data?.slug === 'string' ? data.slug : ''}`
       },
     },
     preview: (data, { req }) => {
@@ -32,7 +32,7 @@ export const Projects: CollectionConfig = {
         collection: 'projects',
         req,
       })
-      return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+      return `${process.env.NEXT_PUBLIC_SERVER_URL}/projects/${typeof data?.slug === 'string' ? data.slug : ''}`
     },
     useAsTitle: 'title',
   },

@@ -11,17 +11,19 @@ interface QuoteBlockProps {
 }
 
 export const QuoteBlock: React.FC<QuoteBlockProps> = ({ image, quote }) => (
-  <div className="flex items-center gap-6 my-8">
-    {image && (
-      <Image
-        src={image.url}
-        alt={image.alt || 'Quote avatar'}
-        width={80}
-        height={80}
-        className="w-20 h-20 rounded-full object-cover border shadow"
-      />
-    )}
-    <div className="prose max-w-none">
+  <div className="flex items-start gap-3 my-8 container">
+    <div className="w-20 h-20 relative rounded-full overflow-hidden border shadow">
+      {image && (
+        <Image
+          src={image.url}
+          alt={image.alt || 'Quote avatar'}
+          width={80}
+          height={80}
+          className="object-cover"
+        />
+      )}
+    </div>
+    <div className="prose w-3/4">
       {quote && <RichText className="mb-0" data={quote} enableGutter={false} />}
     </div>
   </div>

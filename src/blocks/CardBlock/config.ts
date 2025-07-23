@@ -32,6 +32,32 @@ export const CardBlock: Block = {
       admin: { width: '100%' },
     },
     {
+      name: 'useBorder',
+      label: 'Use Border',
+      type: 'checkbox',
+      required: false,
+      admin: { width: '50%' },
+    },
+    {
+      name: 'cardSize',
+      label: 'Card Size',
+      type: 'select',
+      required: true,
+      defaultValue: 'full',
+      options: [
+        { label: 'Full', value: 'full' },
+        { label: 'Small', value: 'small' },
+      ],
+      admin: { width: '50%' },
+    },
+    {
+      name: 'iconClass',
+      label: 'Icon Class',
+      type: 'text',
+      required: false,
+      admin: { width: '100%' },
+    },
+    {
       name: 'action',
       type: 'group',
       required: false,
@@ -39,12 +65,12 @@ export const CardBlock: Block = {
         {
           name: 'label',
           type: 'text',
-          required: true,
+          required: false,
         },
         {
           name: 'url',
           type: 'text',
-          required: true,
+          required: false,
         },
       ],
     },

@@ -150,8 +150,30 @@ const columnFields: Field[] = [
     },
   },
   {
+    name: 'useBorder',
+    label: 'Use Border',
+    type: 'checkbox',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'card',
+    },
+  },
+  {
+    name: 'cardSize',
+    label: 'Size',
+    type: 'select',
+    required: true,
+    defaultValue: 'full',
+    options: [
+      { label: 'Full', value: 'full' },
+      { label: 'Small', value: 'small' },
+    ],
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'card',
+    },
+  },
+  {
     name: 'action',
-    type: 'group',
+    type: 'array',
     admin: {
       condition: (_, siblingData) => siblingData?.type === 'card',
     },
@@ -159,12 +181,10 @@ const columnFields: Field[] = [
       {
         name: 'label',
         type: 'text',
-        required: true,
       },
       {
         name: 'url',
         type: 'text',
-        required: true,
       },
     ],
   },

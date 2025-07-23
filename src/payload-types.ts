@@ -545,10 +545,15 @@ export interface ContentBlock {
           };
           [k: string]: unknown;
         } | null;
-        action?: {
-          label: string;
-          url: string;
-        };
+        useBorder?: boolean | null;
+        cardSize?: ('full' | 'small') | null;
+        action?:
+          | {
+              label?: string | null;
+              url?: string | null;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1406,11 +1411,14 @@ export interface ContentBlockSelect<T extends boolean = true> {
         title?: T;
         subtitle?: T;
         description?: T;
+        useBorder?: T;
+        cardSize?: T;
         action?:
           | T
           | {
               label?: T;
               url?: T;
+              id?: T;
             };
         id?: T;
       };
