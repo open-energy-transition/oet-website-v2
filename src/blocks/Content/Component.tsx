@@ -3,6 +3,7 @@ import React from 'react'
 import RichText from '@/components/RichText'
 import { Media } from '@/components/Media'
 import { CardBlock } from '../CardBlock/Component'
+import { ListBlockComponent } from '../List/Component' // <-- import ListBlockComponent
 
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
@@ -38,6 +39,11 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
               subtitle,
               description,
               action,
+              // list fields
+              listTitle,
+              listDirection,
+              listType,
+              listItems,
             } = col
 
             return (
@@ -63,7 +69,15 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                         title={modal.title ?? ''}
                         subtitle={modal.description ?? ''}
                         description={undefined}
-                        action={action}
+                        actions={
+                          action
+                            ? action.map(({ label, url }) => ({
+                                label: label ?? null,
+                                url: url ?? null,
+                              }))
+                            : undefined
+                        }
+                        cardSize={'small'}
                       />
                     )}
                   </div>
@@ -73,9 +87,25 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                     tag={tag ?? undefined}
                     title={title ?? ''}
                     subtitle={subtitle ?? ''}
-                    description={typeof description === 'string' ? description : undefined}
-                    action={action}
+                    description={description}
+                    actions={(action ?? []).map(({ label, url }) => ({
+                      label: label ?? null,
+                      url: url ?? null,
+                    }))}
+                    useBorder={col.useBorder ?? false}
+                    cardSize={col.cardSize ?? 'full'}
+                    // iconClass={col.iconClass}
                   />
+                ) : type === 'list' ? (
+                  // List Block Type
+                  <div>
+                    {listTitle && <h3>{listTitle}</h3>}
+                    <ListBlockComponent
+                      items={listItems ?? []}
+                      direction={listDirection ?? 'vertical'}
+                      type={listType ?? 'normal'}
+                    />
+                  </div>
                 ) : (
                   // Default Content Type
                   <>

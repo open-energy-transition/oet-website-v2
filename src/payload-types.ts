@@ -489,7 +489,7 @@ export interface ContentBlock {
         /**
          * Choose the display type for this column
          */
-        type?: ('content' | 'card' | 'cardModal') | null;
+        type?: ('content' | 'card' | 'cardModal' | 'list') | null;
         modal?: (number | null) | Model;
         richText?: {
           root: {
@@ -551,6 +551,16 @@ export interface ContentBlock {
           | {
               label?: string | null;
               url?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        listTitle?: string | null;
+        listDirection?: ('vertical' | 'horizontal') | null;
+        listType?: ('normal' | 'tag') | null;
+        listItems?:
+          | {
+              title: string;
+              description?: string | null;
               id?: string | null;
             }[]
           | null;
@@ -1418,6 +1428,16 @@ export interface ContentBlockSelect<T extends boolean = true> {
           | {
               label?: T;
               url?: T;
+              id?: T;
+            };
+        listTitle?: T;
+        listDirection?: T;
+        listType?: T;
+        listItems?:
+          | T
+          | {
+              title?: T;
+              description?: T;
               id?: T;
             };
         id?: T;

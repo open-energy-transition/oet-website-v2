@@ -42,18 +42,10 @@ const columnFields: Field[] = [
     type: 'select',
     defaultValue: 'content',
     options: [
-      {
-        label: 'Content',
-        value: 'content',
-      },
-      {
-        label: 'Card',
-        value: 'card',
-      },
-      {
-        label: 'Card Modal',
-        value: 'cardModal',
-      },
+      { label: 'Content', value: 'content' },
+      { label: 'Card', value: 'card' },
+      { label: 'Card Modal', value: 'cardModal' },
+      { label: 'List Block', value: 'list' },
     ],
     admin: {
       description: 'Choose the display type for this column',
@@ -184,6 +176,64 @@ const columnFields: Field[] = [
       },
       {
         name: 'url',
+        type: 'text',
+      },
+    ],
+  },
+  // List block fields, shown only when type === 'list'
+  {
+    name: 'listTitle',
+    type: 'text',
+    label: 'List Title',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'list',
+      width: '100%',
+    },
+  },
+  {
+    name: 'listDirection',
+    type: 'select',
+    label: 'Direction',
+    options: [
+      { label: 'Vertical', value: 'vertical' },
+      { label: 'Horizontal', value: 'horizontal' },
+    ],
+    defaultValue: 'vertical',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'list',
+      width: '50%',
+    },
+  },
+  {
+    name: 'listType',
+    type: 'select',
+    label: 'Type',
+    options: [
+      { label: 'Normal List', value: 'normal' },
+      { label: 'Tag', value: 'tag' },
+    ],
+    defaultValue: 'normal',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'list',
+      width: '50%',
+    },
+  },
+  {
+    name: 'listItems',
+    type: 'array',
+    label: 'Items',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'list',
+      width: '100%',
+    },
+    fields: [
+      {
+        name: 'title',
+        type: 'text',
+        required: true,
+      },
+      {
+        name: 'description',
         type: 'text',
       },
     ],
