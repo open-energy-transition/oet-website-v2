@@ -75,6 +75,25 @@ export const Posts: CollectionConfig<'posts'> = {
       required: true,
     },
     {
+      name: 'shortDescription',
+      type: 'text',
+      required: true,
+      maxLength: 300,
+    },
+    {
+      name: 'tags',
+      type: 'array',
+      label: 'Tags',
+      minRows: 0,
+      fields: [
+        {
+          name: 'tag',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+    {
       type: 'tabs',
       tabs: [
         {
@@ -91,7 +110,7 @@ export const Posts: CollectionConfig<'posts'> = {
                 features: ({ rootFeatures }) => {
                   return [
                     ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }),
                     BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),

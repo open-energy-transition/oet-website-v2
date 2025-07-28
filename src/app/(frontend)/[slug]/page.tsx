@@ -43,6 +43,44 @@ type Args = {
   }>
 }
 
+async function injectTeamMembers(layout: any[]) {
+  const payload = await getPayload({ config: configPromise })
+  return Promise.all(
+    layout.map(async (block) => {
+      if (block.blockType === 'tabs' && Array.isArray(block.tabs)) {
+        // Recursively inject into tabs' content
+        return {
+          ...block,
+          tabs: await Promise.all(
+            block.tabs.map(async (tab: any) => ({
+              ...tab,
+              content: await Promise.all(
+                tab.content.map(async (contentBlock: any) => {
+                  if (contentBlock.blockType === 'teamMembers') {
+                    const teamMembers = await payload.find({
+                      collection: 'team-members',
+                      limit: 100,
+                    })
+                    return { ...contentBlock, teamMembers: teamMembers.docs }
+                  } else if (contentBlock.blockType === 'jobs') {
+                    const jobs = await payload.find({
+                      collection: 'jobs',
+                      limit: 100,
+                    })
+                    return { ...contentBlock, jobs: jobs.docs }
+                  }
+                  return contentBlock
+                }),
+              ),
+            })),
+          ),
+        }
+      }
+      return block
+    }),
+  )
+}
+
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug = 'home' } = await paramsPromise
@@ -65,6 +103,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const { hero, layout } = page
 
+  const enrichedLayout = await injectTeamMembers(layout)
+
   return (
     <article className="pt-16 pb-24">
       <PageClient />
@@ -74,7 +114,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <RenderBlocks blocks={enrichedLayout} />
     </article>
   )
 }

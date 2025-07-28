@@ -4,6 +4,8 @@ import type { Block, Field } from 'payload'
 import { Content } from '../Content/config'
 import { Archive } from '../ArchiveBlock/config'
 import { ProjectTabs } from '../ProjectTabsBlock/config'
+import { TeamMembersBlock } from '../TeamMembersBlock/config'
+import { JobsBlock } from '../JobsBlock/config'
 
 const tabFields: Field[] = [
   {
@@ -17,12 +19,7 @@ const tabFields: Field[] = [
   {
     name: 'content',
     type: 'blocks',
-    blocks: [
-      Content,
-      Archive,
-      ProjectTabs,
-      // You can add more blocks here as needed
-    ],
+    blocks: [Content, Archive, ProjectTabs, TeamMembersBlock, JobsBlock],
     admin: {
       description: 'Add content blocks to this tab',
     },

@@ -21,6 +21,8 @@ const CustomNav: React.FC = () => {
     { label: '🏷️ Categories', href: '/admin/collections/categories' },
     { label: '🖼️ Media', href: '/admin/collections/media' },
     { label: '👤 User', href: '/admin/collections/users' },
+    { label: '👥 Team Members', href: '/admin/collections/team-members' },
+    { label: '📊 Jobs', href: '/admin/collections/jobs' },
   ]
 
   const globalItems = [

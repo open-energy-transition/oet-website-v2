@@ -74,6 +74,8 @@ export interface Config {
     categories: Category;
     users: User;
     projects: Project;
+    'team-members': TeamMember;
+    jobs: Job;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -92,6 +94,8 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
+    jobs: JobsSelect<false> | JobsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -228,6 +232,8 @@ export interface Page {
     | FormBlock
     | AboutBlock
     | ProjectTabsBlock
+    | TeamMembersBlock
+    | JobsBlock
     | TabsBlock
   )[];
   meta?: {
@@ -252,6 +258,13 @@ export interface Page {
 export interface Post {
   id: number;
   title: string;
+  shortDescription: string;
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
   heroImage?: (number | null) | Media;
   content: {
     root: {
@@ -964,6 +977,58 @@ export interface ProjectTabsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamMembersBlock".
+ */
+export interface TeamMembersBlock {
+  tag?: string | null;
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'teamMembers';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "JobsBlock".
+ */
+export interface JobsBlock {
+  tag?: string | null;
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'jobs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TabsBlock".
  */
 export interface TabsBlock {
@@ -987,7 +1052,7 @@ export interface TabsBlock {
         /**
          * Add content blocks to this tab
          */
-        content?: (ContentBlock | ArchiveBlock | ProjectTabsBlock)[] | null;
+        content?: (ContentBlock | ArchiveBlock | ProjectTabsBlock | TeamMembersBlock | JobsBlock)[] | null;
         id?: string | null;
       }[]
     | null;
@@ -1042,6 +1107,78 @@ export interface Project {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-members".
+ */
+export interface TeamMember {
+  id: number;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  linkedIn?: string | null;
+  x?: string | null;
+  externalLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs".
+ */
+export interface Job {
+  id: number;
+  department: string;
+  jobTitle: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  location: string;
+  contactType: string;
+  status:
+    | 'open'
+    | 'closed'
+    | 'paused'
+    | 'filled'
+    | 'draft'
+    | 'expired'
+    | 'cancelled'
+    | 'interviewing'
+    | 'offer_extended'
+    | 'on_hold';
+  startDate?: string | null;
+  endDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1245,6 +1382,14 @@ export interface PayloadLockedDocument {
         value: number | Project;
       } | null)
     | ({
+        relationTo: 'team-members';
+        value: number | TeamMember;
+      } | null)
+    | ({
+        relationTo: 'jobs';
+        value: number | Job;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1353,6 +1498,8 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         about?: T | AboutBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
+        teamMembers?: T | TeamMembersBlockSelect<T>;
+        jobs?: T | JobsBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
       };
   meta?:
@@ -1549,6 +1696,28 @@ export interface ProjectTabsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamMembersBlock_select".
+ */
+export interface TeamMembersBlockSelect<T extends boolean = true> {
+  tag?: T;
+  title?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "JobsBlock_select".
+ */
+export interface JobsBlockSelect<T extends boolean = true> {
+  tag?: T;
+  title?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TabsBlock_select".
  */
 export interface TabsBlockSelect<T extends boolean = true> {
@@ -1564,6 +1733,8 @@ export interface TabsBlockSelect<T extends boolean = true> {
               content?: T | ContentBlockSelect<T>;
               archive?: T | ArchiveBlockSelect<T>;
               projectTabs?: T | ProjectTabsBlockSelect<T>;
+              teamMembers?: T | TeamMembersBlockSelect<T>;
+              jobs?: T | JobsBlockSelect<T>;
             };
         id?: T;
       };
@@ -1578,6 +1749,13 @@ export interface TabsBlockSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
+  shortDescription?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
   heroImage?: T;
   content?: T;
   relatedPosts?: T;
@@ -1790,6 +1968,38 @@ export interface ProjectsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-members_select".
+ */
+export interface TeamMembersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  jobTitle?: T;
+  description?: T;
+  image?: T;
+  linkedIn?: T;
+  x?: T;
+  externalLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs_select".
+ */
+export interface JobsSelect<T extends boolean = true> {
+  department?: T;
+  jobTitle?: T;
+  description?: T;
+  location?: T;
+  contactType?: T;
+  status?: T;
+  startDate?: T;
+  endDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2101,6 +2311,166 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Short description for the footer
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Follow Us section with social links
+   */
+  followUs?: {
+    /**
+     * Title for the Follow Us section
+     */
+    title?: string | null;
+    /**
+     * Description for the Follow Us section
+     */
+    description?: string | null;
+    linkActions?:
+      | {
+          /**
+           * Icon for the social link
+           */
+          icon: number | Media;
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+          };
+          /**
+           * Name of the social platform
+           */
+          name: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * About Us section with links
+   */
+  aboutUs?: {
+    /**
+     * Title for the About Us section
+     */
+    title?: string | null;
+    linkActions?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Copyright notice
+   */
+  copyright?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Privacy Policy text or link
+   */
+  privacyPolicy?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Terms of Use text or link
+   */
+  termsOfUse?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cookie Policy text or link
+   */
+  cookiePolicy?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2146,6 +2516,52 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  description?: T;
+  followUs?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        linkActions?:
+          | T
+          | {
+              icon?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              name?: T;
+              id?: T;
+            };
+      };
+  aboutUs?:
+    | T
+    | {
+        title?: T;
+        linkActions?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
+            };
+      };
+  copyright?: T;
+  privacyPolicy?: T;
+  termsOfUse?: T;
+  cookiePolicy?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

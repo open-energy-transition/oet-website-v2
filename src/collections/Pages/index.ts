@@ -11,6 +11,8 @@ import { QuoteBlock } from '../../blocks/QuoteBlock/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ProjectTabs } from '../../blocks/ProjectTabsBlock/config'
+import { TeamMembersBlock } from '../../blocks/TeamMembersBlock/config'
+import { JobsBlock } from '../../blocks/JobsBlock/config'
 import { TabsBlock } from '../../blocks/TabsBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -90,6 +92,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 About,
                 ProjectTabs,
+                TeamMembersBlock,
+                JobsBlock,
                 TabsBlock,
               ],
               required: true,

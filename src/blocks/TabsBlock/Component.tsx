@@ -6,6 +6,8 @@ import { CardBlock } from '../CardBlock/Component'
 
 import type { TabsBlock as TabsBlockProps } from '@/payload-types'
 import { ContentBlock } from '../Content/Component'
+import { TeamMembersClient } from '../TeamMembersBlock/ClientComponent'
+import { JobsClient } from '../JobsBlock/ClientComponent'
 
 // Simple block renderer that doesn't import payload config
 const renderTabContent = (content: any[]) => {
@@ -21,6 +23,26 @@ const renderTabContent = (content: any[]) => {
         )
       case 'card':
         return <CardBlock key={index} {...block} />
+      case 'teamMembers':
+        return (
+          <TeamMembersClient
+            key={index}
+            tag={block.tag}
+            title={block.title}
+            description={block.description}
+            teamMembers={block.teamMembers}
+          />
+        )
+      case 'jobs':
+        return (
+          <JobsClient
+            key={index}
+            tag={block.tag}
+            title={block.title}
+            description={block.description}
+            jobs={block.jobs}
+          />
+        )
       case 'mediaBlock':
         return (
           <div key={index} className="my-8">

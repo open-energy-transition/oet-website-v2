@@ -10,6 +10,8 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { DonateBlock } from '@/blocks/Donate/Component'
 import { AboutBlock } from '@/blocks/About/Component'
 import { ProjectTabsBlock } from '@/blocks/ProjectTabsBlock/Component'
+import { TeamMembersBlock } from '@/blocks/TeamMembersBlock/Component'
+import { JobsBlock } from '@/blocks/JobsBlock/Component'
 import { TabsBlock } from '@/blocks/TabsBlock/Component'
 import { CardBlock } from '@/blocks/CardBlock/Component'
 import { QuoteBlock } from '@/blocks/QuoteBlock/Component'
@@ -25,6 +27,8 @@ const blockComponents = {
   donate: DonateBlock,
   about: AboutBlock,
   projectTabs: ProjectTabsBlock,
+  teamMembers: TeamMembersBlock,
+  jobs: JobsBlock,
   tabs: TabsBlock,
 }
 
