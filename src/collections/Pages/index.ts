@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { About } from '@/blocks/About/config'
+import { OurService } from '@/blocks/OutServiceBlock/config'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
@@ -14,6 +15,7 @@ import { ProjectTabs } from '../../blocks/ProjectTabsBlock/config'
 import { TeamMembersBlock } from '../../blocks/TeamMembersBlock/config'
 import { JobsBlock } from '../../blocks/JobsBlock/config'
 import { TabsBlock } from '../../blocks/TabsBlock/config'
+import { PartnersBlock } from '@/blocks/PartnersBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -91,10 +93,12 @@ export const Pages: CollectionConfig<'pages'> = {
                 Archive,
                 FormBlock,
                 About,
+                OurService,
                 ProjectTabs,
                 TeamMembersBlock,
                 JobsBlock,
                 TabsBlock,
+                PartnersBlock,
               ],
               required: true,
               admin: {

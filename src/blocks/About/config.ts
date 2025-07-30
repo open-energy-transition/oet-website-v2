@@ -1,10 +1,12 @@
 import type { Block } from 'payload'
 
 import {
+  AlignFeature,
   FixedToolbarFeature,
   HeadingFeature,
   InlineToolbarFeature,
   lexicalEditor,
+  LinkFeature,
 } from '@payloadcms/richtext-lexical'
 
 export const About: Block = {
@@ -15,14 +17,16 @@ export const About: Block = {
       name: 'richText',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [
-            ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            FixedToolbarFeature(),
-            InlineToolbarFeature(),
-          ]
-        },
+        features: ({ rootFeatures }) => [
+          ...rootFeatures,
+          HeadingFeature({
+            enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+          }),
+          FixedToolbarFeature(),
+          InlineToolbarFeature(),
+          AlignFeature(),
+          LinkFeature(),
+        ],
       }),
       label: false,
     },

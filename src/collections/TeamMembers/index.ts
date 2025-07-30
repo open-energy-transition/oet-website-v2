@@ -68,6 +68,15 @@ export const TeamMembers: CollectionConfig = {
       },
     },
     {
+      name: 'github',
+      type: 'text',
+      required: false,
+      label: 'Github Link',
+      admin: {
+        placeholder: 'https://github.com/username',
+      },
+    },
+    {
       name: 'externalLink',
       type: 'text',
       required: false,

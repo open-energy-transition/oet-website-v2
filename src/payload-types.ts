@@ -231,10 +231,12 @@ export interface Page {
     | ArchiveBlock
     | FormBlock
     | AboutBlock
+    | OurServiceBlock
     | ProjectTabsBlock
     | TeamMembersBlock
     | JobsBlock
     | TabsBlock
+    | PartnersBlock
   )[];
   meta?: {
     title?: string | null;
@@ -939,6 +941,65 @@ export interface AboutBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurServiceBlock".
+ */
+export interface OurServiceBlock {
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  unitsButton: {
+    label: string;
+    url: string;
+  };
+  services?:
+    | {
+        number?: string | null;
+        title?: string | null;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        icon?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  bottomImages?:
+    | {
+        image: number | Media;
+        alt: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ourService';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ProjectTabsBlock".
  */
 export interface ProjectTabsBlock {
@@ -1070,6 +1131,38 @@ export interface TabsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersBlock".
+ */
+export interface PartnersBlock {
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  partnerImages?:
+    | {
+        image: number | Media;
+        alt: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partners';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -1135,6 +1228,7 @@ export interface TeamMember {
   image?: (number | null) | Media;
   linkedIn?: string | null;
   x?: string | null;
+  github?: string | null;
   externalLink?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -1177,6 +1271,7 @@ export interface Job {
     | 'on_hold';
   startDate?: string | null;
   endDate?: string | null;
+  externalLink?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1497,10 +1592,12 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         about?: T | AboutBlockSelect<T>;
+        ourService?: T | OurServiceBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
         teamMembers?: T | TeamMembersBlockSelect<T>;
         jobs?: T | JobsBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
+        partners?: T | PartnersBlockSelect<T>;
       };
   meta?:
     | T
@@ -1672,6 +1769,38 @@ export interface AboutBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurServiceBlock_select".
+ */
+export interface OurServiceBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  unitsButton?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  services?:
+    | T
+    | {
+        number?: T;
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  bottomImages?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ProjectTabsBlock_select".
  */
 export interface ProjectTabsBlockSelect<T extends boolean = true> {
@@ -1740,6 +1869,23 @@ export interface TabsBlockSelect<T extends boolean = true> {
       };
   tabStyle?: T;
   tabPosition?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersBlock_select".
+ */
+export interface PartnersBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  partnerImages?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1981,6 +2127,7 @@ export interface TeamMembersSelect<T extends boolean = true> {
   image?: T;
   linkedIn?: T;
   x?: T;
+  github?: T;
   externalLink?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1998,6 +2145,7 @@ export interface JobsSelect<T extends boolean = true> {
   status?: T;
   startDate?: T;
   endDate?: T;
+  externalLink?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -77,5 +77,14 @@ export const Jobs: CollectionConfig = {
       type: 'date',
       required: false,
     },
+    {
+      name: 'externalLink',
+      type: 'text',
+      required: false,
+      label: 'External Link',
+      admin: {
+        placeholder: 'https://example.com/job-details',
+      },
+    },
   ],
 }
