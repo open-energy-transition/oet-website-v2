@@ -76,6 +76,7 @@ export interface Config {
     projects: Project;
     'team-members': TeamMember;
     jobs: Job;
+    icons: Icon;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -96,6 +97,7 @@ export interface Config {
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
     jobs: JobsSelect<false> | JobsSelect<true>;
+    icons: IconsSelect<false> | IconsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -542,6 +544,7 @@ export interface ContentBlock {
           appearance?: ('default' | 'outline') | null;
         };
         media?: (number | null) | Media;
+        icon?: (number | null) | Icon;
         tag?: string | null;
         title?: string | null;
         subtitle?: string | null;
@@ -618,6 +621,20 @@ export interface Model {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
+export interface Icon {
+  id: number;
+  name: string;
+  /**
+   * Paste the raw SVG markup here.
+   */
+  svg: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -1485,6 +1502,10 @@ export interface PayloadLockedDocument {
         value: number | Job;
       } | null)
     | ({
+        relationTo: 'icons';
+        value: number | Icon;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1661,6 +1682,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               appearance?: T;
             };
         media?: T;
+        icon?: T;
         tag?: T;
         title?: T;
         subtitle?: T;
@@ -2146,6 +2168,16 @@ export interface JobsSelect<T extends boolean = true> {
   startDate?: T;
   endDate?: T;
   externalLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons_select".
+ */
+export interface IconsSelect<T extends boolean = true> {
+  name?: T;
+  svg?: T;
   updatedAt?: T;
   createdAt?: T;
 }

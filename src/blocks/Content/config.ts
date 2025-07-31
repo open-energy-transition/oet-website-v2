@@ -1,3 +1,4 @@
+import { RowLabel } from './../../Header/RowLabel'
 import type { Block, Field } from 'payload'
 
 import {
@@ -8,6 +9,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 
 import { link } from '@/fields/link'
+import { IconOption } from './IconOption'
 
 const columnFields: Field[] = [
   {
@@ -98,6 +100,18 @@ const columnFields: Field[] = [
     required: false,
     admin: {
       condition: (_, siblingData) => siblingData?.type === 'content',
+    },
+  },
+  {
+    name: 'icon',
+    type: 'relationship',
+    relationTo: 'icons',
+    admin: {
+      condition: (_, siblingData) => siblingData?.type === 'card',
+      width: '50%',
+      components: {
+        RowLabel: IconOption,
+      },
     },
   },
   {

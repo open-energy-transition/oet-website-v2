@@ -44,7 +44,7 @@ export const CardBlock: React.FC<CardBlockProps> = ({
               {action.label}
             </a>
           ) : (
-            <div key={index} className="mt-4 inline-block px-6 py-2 text-xs transition">
+            <div key={index} className="inline-block px-6 py-2 text-xs transition">
               {action.label}
             </div>
           ),

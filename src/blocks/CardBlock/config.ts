@@ -8,6 +8,13 @@ export const CardBlock: Block = {
   },
   fields: [
     {
+      name: 'icon',
+      type: 'relationship',
+      relationTo: 'icons',
+      required: false,
+      admin: { width: '50%' },
+    },
+    {
       name: 'tag',
       type: 'text',
       required: false,
