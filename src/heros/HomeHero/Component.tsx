@@ -14,7 +14,7 @@ import RichText from '@/components/RichText'
 // Initialize particles engine
 loadSlim(tsParticles)
 
-export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
+export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, columns }) => {
   const { setHeaderTheme } = useHeaderTheme()
 
   useEffect(() => {
@@ -23,72 +23,53 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => 
 
   return (
     <div
-      className="relative -mt-[10.4rem] flex items-center justify-center text-white min-h-screen"
+      className="relative z-10 flex items-center justify-center text-white min-h-screen"
       data-theme="dark"
     >
       {/* Particles Background */}
       <Particles
         id="tsparticles"
-        className="absolute inset-0"
+        className="absolute inset-0 z-max"
         options={{
-          detectRetina: false,
+          background: {
+            color: {
+              value: '#1E2F97',
+            },
+          },
+          fullScreen: {
+            enable: false,
+          },
+          fpsLimit: 120,
           interactivity: {
             events: {
               onClick: {
-                enable: false,
-                mode: 'bubble',
+                enable: true,
+                mode: 'repulse',
               },
               onHover: {
                 enable: true,
-                mode: 'bubble',
-              },
-              resize: {
-                enable: true,
+                mode: 'grab',
               },
             },
             modes: {
-              bubble: {
+              push: {
                 distance: 200,
-                duration: 2,
-                opacity: 8,
-                size: 10,
-                speed: 3,
-              },
-              connect: {
-                distance: 40,
-                links: {
-                  opacity: 0.5,
-                },
-                radius: 250,
+                duration: 15,
               },
               grab: {
-                distance: 300,
-                links: {
-                  opacity: 1,
-                },
-              },
-              push: {
-                quantity: 4,
-              },
-              remove: {
-                quantity: 2,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
+                distance: 150,
               },
             },
           },
           particles: {
             color: {
-              value: ['#ffffff'],
+              value: '#FFFFFF',
             },
             links: {
-              blink: false,
-              color: 'random',
-              distance: 60,
+              color: '#FFFFFF',
+              distance: 150,
               enable: true,
-              opacity: 0.8,
+              opacity: 0.3,
               width: 1,
             },
             move: {
@@ -97,48 +78,32 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => 
               outModes: {
                 default: 'bounce',
               },
-              random: false,
-              speed: 0.5,
+              random: true,
+              speed: 1,
               straight: false,
             },
             number: {
               density: {
-                enable: false,
+                enable: true,
               },
               value: 150,
             },
             opacity: {
-              animation: {
-                enable: true,
-                speed: 2,
-                sync: false,
-                startValue: 'min',
-              },
-              value: 0.8,
+              value: 1.0,
             },
             shape: {
               type: 'circle',
             },
             size: {
-              animation: {
-                enable: false,
-                speed: 20,
-                sync: false,
-              },
-              value: { min: 3, max: 8 },
+              value: { min: 1, max: 3 },
             },
           },
+          detectRetina: true,
         }}
       />
       <div className="container mb-8 z-10 relative flex items-center justify-center">
         <div className="max-w-4xl text-center">
-          {richText && (
-            <RichText
-              className="mb-8 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
-              data={richText}
-              enableGutter={false}
-            />
-          )}
+          {richText && <RichText className="mb-8" data={richText} enableGutter={false} />}
           {Array.isArray(links) && links.length > 0 && (
             <ul className="flex justify-center gap-6 mt-8">
               {links.map(({ link }, i) => {
@@ -152,6 +117,33 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => 
                 )
               })}
             </ul>
+          )}
+          {/* Render columns if present */}
+          {Array.isArray(columns) && columns.length === 3 && (
+            <div className="flex flex-col md:flex-row gap-8 mt-8">
+              {columns.map((col, idx) => (
+                <div key={idx} className="flex-1 flex flex-col gap-6">
+                  {/* Media Row */}
+                  {media && col.media && (
+                    <div className="min-h-[9rem]">
+                      {col.media && (
+                        <Media resource={col.media} imgClassName="object-cover w-full h-32" />
+                      )}
+                    </div>
+                  )}
+
+                  {/* Title/Description Row */}
+                  <div className="bg-white/10 h-full rounded-lg p-6 flex flex-col items-center justify-center text-center text-white min-h-[9rem]">
+                    {col.title && (
+                      <h4 className="text-xl font-bold mb-2 text-center">{col.title}</h4>
+                    )}
+                    {col.description && (
+                      <p className="text-base opacity-80 text-center">{col.description}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </div>

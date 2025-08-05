@@ -3,7 +3,9 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { About } from '@/blocks/About/config'
-import { OurService } from '@/blocks/OutServiceBlock/config'
+import { OurService } from '@/blocks/OurServiceBlock/config'
+import { ToolsWeSupport } from '@/blocks/ToolsWeSupportBlock/config'
+import { ProjectsOverview } from '@/blocks/ProjectsOverviewBlock/config'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
@@ -94,6 +96,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 About,
                 OurService,
+                ToolsWeSupport,
+                ProjectsOverview,
                 ProjectTabs,
                 TeamMembersBlock,
                 JobsBlock,

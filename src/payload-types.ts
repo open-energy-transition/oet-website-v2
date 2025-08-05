@@ -200,6 +200,14 @@ export interface Page {
         }[]
       | null;
     media?: (number | null) | Media;
+    columns?:
+      | {
+          media?: (number | null) | Media;
+          title?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
   };
   layout: (
     | CallToActionBlock
@@ -234,6 +242,8 @@ export interface Page {
     | FormBlock
     | AboutBlock
     | OurServiceBlock
+    | ToolsWeSupportBlock
+    | ProjectsOverviewBlock
     | ProjectTabsBlock
     | TeamMembersBlock
     | JobsBlock
@@ -1017,6 +1027,126 @@ export interface OurServiceBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ToolsWeSupportBlock".
+ */
+export interface ToolsWeSupportBlock {
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  services?:
+    | {
+        icon?: (number | null) | Icon;
+        model: number | Model;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'toolsWeSupport';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectsOverviewBlock".
+ */
+export interface ProjectsOverviewBlock {
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  unitsButton: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+  };
+  projects?:
+    | {
+        project: number | Project;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'projectsOverview';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  subTitle: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  service: string;
+  projectStatus: 'in-progress' | 'completed';
+  date: string;
+  imageUrl?: (number | null) | Media;
+  categories?: (number | Category)[] | null;
+  relatedProjects?: (number | Project)[] | null;
+  slug?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ProjectTabsBlock".
  */
 export interface ProjectTabsBlock {
@@ -1177,46 +1307,6 @@ export interface PartnersBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'partners';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects".
- */
-export interface Project {
-  id: number;
-  title: string;
-  subTitle: string;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  service: string;
-  projectStatus: 'in-progress' | 'completed';
-  date: string;
-  imageUrl?: (number | null) | Media;
-  categories?: (number | Category)[] | null;
-  relatedProjects?: (number | Project)[] | null;
-  slug?: string | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: (number | null) | Media;
-  };
-  publishedAt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1594,6 +1684,14 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
+        columns?:
+          | T
+          | {
+              media?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+            };
       };
   layout?:
     | T
@@ -1614,6 +1712,8 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         about?: T | AboutBlockSelect<T>;
         ourService?: T | OurServiceBlockSelect<T>;
+        toolsWeSupport?: T | ToolsWeSupportBlockSelect<T>;
+        projectsOverview?: T | ProjectsOverviewBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
         teamMembers?: T | TeamMembersBlockSelect<T>;
         jobs?: T | JobsBlockSelect<T>;
@@ -1816,6 +1916,52 @@ export interface OurServiceBlockSelect<T extends boolean = true> {
     | {
         image?: T;
         alt?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ToolsWeSupportBlock_select".
+ */
+export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  services?:
+    | T
+    | {
+        icon?: T;
+        model?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectsOverviewBlock_select".
+ */
+export interface ProjectsOverviewBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  unitsButton?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+      };
+  projects?:
+    | T
+    | {
+        project?: T;
         id?: T;
       };
   id?: T;

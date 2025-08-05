@@ -70,7 +70,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                         title={modal.title ?? ''}
                         subtitle={modal.description ?? ''}
                         description={undefined}
-                        iconClass={icon ?? ''}
+                        iconClass={icon as any}
                         actions={
                           action
                             ? action.map(({ label, url }) => ({

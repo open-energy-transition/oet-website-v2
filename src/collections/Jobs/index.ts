@@ -5,12 +5,20 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { authenticated } from '../../access/authenticated'
+import { authenticatedOrPublishedWithoutDrafts } from '../../access/authenticatedOrPublished'
 
 export const Jobs: CollectionConfig = {
   slug: 'jobs',
   admin: {
     useAsTitle: 'jobTitle',
     defaultColumns: ['jobTitle', 'department', 'status', 'location'],
+  },
+  access: {
+    create: authenticated,
+    delete: authenticated,
+    read: authenticatedOrPublishedWithoutDrafts,
+    update: authenticated,
   },
   fields: [
     {

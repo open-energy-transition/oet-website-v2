@@ -9,7 +9,8 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { DonateBlock } from '@/blocks/Donate/Component'
 import { AboutBlock } from '@/blocks/About/Component'
-import { OurServiceBlock } from '@/blocks/OutServiceBlock/Component'
+import { OurServiceBlock } from '@/blocks/OurServiceBlock/Component'
+import { ToolsWeSupportBlock } from '@/blocks/ToolsWeSupportBlock/Component'
 import { ProjectTabsBlock } from '@/blocks/ProjectTabsBlock/Component'
 import { TeamMembersBlock } from '@/blocks/TeamMembersBlock/Component'
 import { JobsBlock } from '@/blocks/JobsBlock/Component'
@@ -17,6 +18,7 @@ import { TabsBlock } from '@/blocks/TabsBlock/Component'
 import { CardBlock } from '@/blocks/CardBlock/Component'
 import { QuoteBlock } from '@/blocks/QuoteBlock/Component'
 import { PartnersBlock } from './PartnersBlock/Component'
+import { ProjectsOverviewBlock } from './ProjectsOverviewBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -29,6 +31,8 @@ const blockComponents = {
   donate: DonateBlock,
   about: AboutBlock,
   ourService: OurServiceBlock,
+  toolsWeSupport: ToolsWeSupportBlock,
+  projectsOverview: ProjectsOverviewBlock,
   projectTabs: ProjectTabsBlock,
   partners: PartnersBlock,
   teamMembers: TeamMembersBlock,

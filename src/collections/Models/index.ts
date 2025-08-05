@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
+import { authenticatedOrPublishedWithoutDrafts } from '../../access/authenticatedOrPublished'
 import { linkGroup } from '@/fields/linkGroup'
 
 export const Models: CollectionConfig = {
@@ -9,7 +9,7 @@ export const Models: CollectionConfig = {
   access: {
     create: authenticated,
     delete: authenticated,
-    read: authenticatedOrPublished,
+    read: authenticatedOrPublishedWithoutDrafts,
     update: authenticated,
   },
   admin: {

@@ -71,6 +71,34 @@ export const hero: Field = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'columns',
+      type: 'array',
+      minRows: 3,
+      maxRows: 3,
+      admin: {
+        condition: (_, siblingData) => siblingData?.type === 'homeHero',
+        initCollapsed: false,
+      },
+      fields: [
+        {
+          name: 'media',
+          type: 'upload',
+          relationTo: 'media',
+          required: false,
+        },
+        {
+          name: 'title',
+          type: 'text',
+          required: false,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: false,
+        },
+      ],
+    },
   ],
   label: false,
 }

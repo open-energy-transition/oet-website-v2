@@ -5,12 +5,20 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { authenticated } from '../../access/authenticated'
+import { authenticatedOrPublishedWithoutDrafts } from '../../access/authenticatedOrPublished'
 
 export const TeamMembers: CollectionConfig = {
   slug: 'team-members',
   admin: {
     useAsTitle: 'firstName',
     defaultColumns: ['firstName', 'lastName', 'jobTitle'],
+  },
+  access: {
+    create: authenticated,
+    delete: authenticated,
+    read: authenticatedOrPublishedWithoutDrafts,
+    update: authenticated,
   },
   fields: [
     {

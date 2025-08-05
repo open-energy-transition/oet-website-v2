@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
-import { SVGPreviewCell } from './SVGPreviewCell'
+import { authenticated } from '../../access/authenticated'
+import { authenticatedOrPublishedWithoutDrafts } from '../../access/authenticatedOrPublished'
 
 export const Icons: CollectionConfig = {
   slug: 'icons',
@@ -9,6 +10,12 @@ export const Icons: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+  },
+  access: {
+    create: authenticated,
+    delete: authenticated,
+    read: authenticatedOrPublishedWithoutDrafts,
+    update: authenticated,
   },
   fields: [
     {
@@ -23,7 +30,7 @@ export const Icons: CollectionConfig = {
         language: 'html',
         description: 'Paste the raw SVG markup here.',
         components: {
-          Cell: SVGPreviewCell,
+          Cell: '@/components/Icons/SVGPreviewCell',
         },
       },
       required: true,

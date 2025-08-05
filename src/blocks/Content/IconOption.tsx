@@ -1,8 +1,6 @@
 import React from 'react'
 
 export const IconOption = ({ data }: { data: any }) => {
-  console.log(123123)
-
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       {/* Render SVG if available */}

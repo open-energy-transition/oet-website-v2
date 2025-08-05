@@ -1,6 +1,16 @@
 import React from 'react'
 import RichText from '@/components/RichText'
 import { Media } from '@/components/Media'
+import { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
+
+interface PartnersBlockProps {
+  title: string
+  description?: DefaultTypedEditorState
+  partnerImages: {
+    image: string
+    alt: string
+  }[]
+}
 
 export const PartnersBlock: React.FC<PartnersBlockProps> = ({
   title,
