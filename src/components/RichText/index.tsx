@@ -21,6 +21,7 @@ import type {
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { cn } from '@/utilities/ui'
+import { ButtonBlock } from '@/blocks/Button/Component'
 
 type NodeTypes =
   | DefaultNodeTypes
@@ -52,6 +53,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
     ),
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
+    button: ({ node }) => <ButtonBlock {...node.fields} />,
   },
 })
 

@@ -211,6 +211,7 @@ export interface Page {
   };
   layout: (
     | CallToActionBlock
+    | ButtonBlock
     | ContentBlock
     | DonateBlock
     | {
@@ -245,6 +246,7 @@ export interface Page {
     | ToolsWeSupportBlock
     | ProjectsOverviewBlock
     | ProjectTabsBlock
+    | ProjectsListBlock
     | TeamMembersBlock
     | JobsBlock
     | TabsBlock
@@ -507,6 +509,68 @@ export interface CallToActionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ButtonBlock".
+ */
+export interface ButtonBlock {
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  /**
+   * Choose a color style for the button (maps to Tailwind classes)
+   */
+  color?: ('default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'gray') | null;
+  /**
+   * Choose a text size for the button (maps to Tailwind classes)
+   */
+  textSize?: ('default' | 'sm' | 'lg' | '2xl') | null;
+  /**
+   * Choose a size for the button (maps to Tailwind classes)
+   */
+  size?: ('default' | 'sm' | 'lg' | '2xl') | null;
+  /**
+   * Choose a border radius for the button (maps to Tailwind classes)
+   */
+  rounded?: ('none' | 'sm' | 'md' | 'lg' | 'full') | null;
+  /**
+   * Select an icon to display on the button
+   */
+  icon?: (number | null) | Icon;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'button';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
+export interface Icon {
+  id: number;
+  name: string;
+  /**
+   * Paste the raw SVG markup here.
+   */
+  svg: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
@@ -631,20 +695,6 @@ export interface Model {
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "icons".
- */
-export interface Icon {
-  id: number;
-  name: string;
-  /**
-   * Paste the raw SVG markup here.
-   */
-  svg: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -1185,6 +1235,19 @@ export interface ProjectTabsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectsListBlock".
+ */
+export interface ProjectsListBlock {
+  /**
+   * Select one or more projects to display in this block
+   */
+  projects?: (number | Project)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'projectsList';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TeamMembersBlock".
  */
 export interface TeamMembersBlock {
@@ -1260,7 +1323,9 @@ export interface TabsBlock {
         /**
          * Add content blocks to this tab
          */
-        content?: (ContentBlock | ArchiveBlock | ProjectTabsBlock | TeamMembersBlock | JobsBlock)[] | null;
+        content?:
+          | (ContentBlock | ArchiveBlock | ProjectTabsBlock | TeamMembersBlock | JobsBlock | ProjectsListBlock)[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1697,6 +1762,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         cta?: T | CallToActionBlockSelect<T>;
+        button?: T | ButtonBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         donate?: T | DonateBlockSelect<T>;
         quote?:
@@ -1715,6 +1781,7 @@ export interface PagesSelect<T extends boolean = true> {
         toolsWeSupport?: T | ToolsWeSupportBlockSelect<T>;
         projectsOverview?: T | ProjectsOverviewBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
+        projectsList?: T | ProjectsListBlockSelect<T>;
         teamMembers?: T | TeamMembersBlockSelect<T>;
         jobs?: T | JobsBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
@@ -1755,6 +1822,29 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ButtonBlock_select".
+ */
+export interface ButtonBlockSelect<T extends boolean = true> {
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  color?: T;
+  textSize?: T;
+  size?: T;
+  rounded?: T;
+  icon?: T;
   id?: T;
   blockName?: T;
 }
@@ -1993,6 +2083,15 @@ export interface ProjectTabsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectsListBlock_select".
+ */
+export interface ProjectsListBlockSelect<T extends boolean = true> {
+  projects?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TeamMembersBlock_select".
  */
 export interface TeamMembersBlockSelect<T extends boolean = true> {
@@ -2032,6 +2131,7 @@ export interface TabsBlockSelect<T extends boolean = true> {
               projectTabs?: T | ProjectTabsBlockSelect<T>;
               teamMembers?: T | TeamMembersBlockSelect<T>;
               jobs?: T | JobsBlockSelect<T>;
+              projectsList?: T | ProjectsListBlockSelect<T>;
             };
         id?: T;
       };

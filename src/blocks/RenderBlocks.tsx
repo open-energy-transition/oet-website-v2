@@ -4,6 +4,7 @@ import type { Page } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
+import { ButtonBlock } from '@/blocks/Button/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
@@ -19,6 +20,7 @@ import { CardBlock } from '@/blocks/CardBlock/Component'
 import { QuoteBlock } from '@/blocks/QuoteBlock/Component'
 import { PartnersBlock } from './PartnersBlock/Component'
 import { ProjectsOverviewBlock } from './ProjectsOverviewBlock/Component'
+import { ProjectsListBlock } from './ProjectsListBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -26,6 +28,7 @@ const blockComponents = {
   card: CardBlock,
   quote: QuoteBlock,
   cta: CallToActionBlock,
+  button: ButtonBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   donate: DonateBlock,
@@ -34,6 +37,7 @@ const blockComponents = {
   toolsWeSupport: ToolsWeSupportBlock,
   projectsOverview: ProjectsOverviewBlock,
   projectTabs: ProjectTabsBlock,
+  projectsList: ProjectsListBlock,
   partners: PartnersBlock,
   teamMembers: TeamMembersBlock,
   jobs: JobsBlock,

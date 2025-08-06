@@ -8,12 +8,14 @@ import { ToolsWeSupport } from '@/blocks/ToolsWeSupportBlock/config'
 import { ProjectsOverview } from '@/blocks/ProjectsOverviewBlock/config'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
+import { Button } from '../../blocks/Button/config'
 import { Content } from '../../blocks/Content/config'
 import { Donate } from '../../blocks/Donate/config'
 import { QuoteBlock } from '../../blocks/QuoteBlock/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ProjectTabs } from '../../blocks/ProjectTabsBlock/config'
+import { ProjectsList } from '../../blocks/ProjectsListBlock/config'
 import { TeamMembersBlock } from '../../blocks/TeamMembersBlock/config'
 import { JobsBlock } from '../../blocks/JobsBlock/config'
 import { TabsBlock } from '../../blocks/TabsBlock/config'
@@ -88,6 +90,7 @@ export const Pages: CollectionConfig<'pages'> = {
               type: 'blocks',
               blocks: [
                 CallToAction,
+                Button,
                 Content,
                 Donate,
                 QuoteBlock,
@@ -99,6 +102,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ToolsWeSupport,
                 ProjectsOverview,
                 ProjectTabs,
+                ProjectsList,
                 TeamMembersBlock,
                 JobsBlock,
                 TabsBlock,

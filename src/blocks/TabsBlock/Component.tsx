@@ -8,6 +8,7 @@ import type { TabsBlock as TabsBlockProps } from '@/payload-types'
 import { ContentBlock } from '../Content/Component'
 import { TeamMembersClient } from '../TeamMembersBlock/ClientComponent'
 import { JobsClient } from '../JobsBlock/ClientComponent'
+import { ProjectsListBlock } from '../ProjectsListBlock'
 
 // Simple block renderer that doesn't import payload config
 const renderTabContent = (content: any[]) => {
@@ -48,6 +49,12 @@ const renderTabContent = (content: any[]) => {
           <div key={index} className="my-8">
             {/* Simple media rendering */}
             <img src={block.media?.url} alt={block.media?.alt} className="w-full h-auto" />
+          </div>
+        )
+      case 'projectsList':
+        return (
+          <div key={index} className="my-8">
+            <ProjectsListBlock {...block} />
           </div>
         )
       case 'callToAction':

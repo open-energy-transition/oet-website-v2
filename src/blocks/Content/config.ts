@@ -19,12 +19,16 @@ import {
   RelationshipFeature,
   SubscriptFeature,
   TextStateFeature,
-  TreeViewFeature,
+  // TreeViewFeature,
   UnorderedListFeature,
   UploadFeature,
 } from '@payloadcms/richtext-lexical'
 
 import { link } from '@/fields/link'
+import { CallToAction } from '../CallToAction/config'
+import { Button } from '../Button/config'
+import { ProjectTabs } from '../ProjectTabsBlock/config'
+import { ProjectsList } from '../ProjectsListBlock/config'
 
 const columnFields: Field[] = [
   {
@@ -131,18 +135,7 @@ const columnFields: Field[] = [
           BlockquoteFeature(),
           HorizontalRuleFeature(),
           BlocksFeature({
-            blocks: [
-              {
-                slug: 'callout',
-                fields: [
-                  {
-                    name: 'text',
-                    type: 'text',
-                    required: true,
-                  },
-                ],
-              },
-            ],
+            blocks: [CallToAction, Button, ProjectTabs, ProjectsList],
             inlineBlocks: [
               {
                 slug: 'mention',
