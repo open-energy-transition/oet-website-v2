@@ -1,3 +1,4 @@
+import { PostsListBlock } from './../../blocks/PostsListBlock/Component'
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
@@ -16,6 +17,7 @@ import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ProjectTabs } from '../../blocks/ProjectTabsBlock/config'
 import { ProjectsList } from '../../blocks/ProjectsListBlock/config'
+import { PostsList } from '../../blocks/PostsListBlock/config'
 import { TeamMembersBlock } from '../../blocks/TeamMembersBlock/config'
 import { JobsBlock } from '../../blocks/JobsBlock/config'
 import { TabsBlock } from '../../blocks/TabsBlock/config'
@@ -103,6 +105,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ProjectsOverview,
                 ProjectTabs,
                 ProjectsList,
+                PostsList,
                 TeamMembersBlock,
                 JobsBlock,
                 TabsBlock,

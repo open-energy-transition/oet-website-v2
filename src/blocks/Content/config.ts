@@ -29,6 +29,7 @@ import { CallToAction } from '../CallToAction/config'
 import { Button } from '../Button/config'
 import { ProjectTabs } from '../ProjectTabsBlock/config'
 import { ProjectsList } from '../ProjectsListBlock/config'
+import { PostsList } from '../PostsListBlock/config'
 
 const columnFields: Field[] = [
   {
@@ -135,7 +136,7 @@ const columnFields: Field[] = [
           BlockquoteFeature(),
           HorizontalRuleFeature(),
           BlocksFeature({
-            blocks: [CallToAction, Button, ProjectTabs, ProjectsList],
+            blocks: [CallToAction, Button, ProjectTabs, ProjectsList, PostsList],
             inlineBlocks: [
               {
                 slug: 'mention',

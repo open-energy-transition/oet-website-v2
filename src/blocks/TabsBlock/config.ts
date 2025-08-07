@@ -5,6 +5,7 @@ import { Content } from '../Content/config'
 import { Archive } from '../ArchiveBlock/config'
 import { ProjectTabs } from '../ProjectTabsBlock/config'
 import { ProjectsList } from '../ProjectsListBlock/config'
+import { PostsList } from '../PostsListBlock/config'
 import { TeamMembersBlock } from '../TeamMembersBlock/config'
 import { JobsBlock } from '../JobsBlock/config'
 
@@ -20,7 +21,7 @@ const tabFields: Field[] = [
   {
     name: 'content',
     type: 'blocks',
-    blocks: [Content, Archive, ProjectTabs, TeamMembersBlock, JobsBlock, ProjectsList],
+    blocks: [Content, Archive, ProjectTabs, TeamMembersBlock, JobsBlock, ProjectsList, PostsList],
     admin: {
       description: 'Add content blocks to this tab',
     },

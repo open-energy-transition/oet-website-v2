@@ -9,6 +9,7 @@ import { ContentBlock } from '../Content/Component'
 import { TeamMembersClient } from '../TeamMembersBlock/ClientComponent'
 import { JobsClient } from '../JobsBlock/ClientComponent'
 import { ProjectsListBlock } from '../ProjectsListBlock'
+import { PostsListBlock } from '../PostsListBlock'
 
 // Simple block renderer that doesn't import payload config
 const renderTabContent = (content: any[]) => {
@@ -55,6 +56,12 @@ const renderTabContent = (content: any[]) => {
         return (
           <div key={index} className="my-8">
             <ProjectsListBlock {...block} />
+          </div>
+        )
+      case 'postsList':
+        return (
+          <div key={index} className="my-8">
+            <PostsListBlock {...block} />
           </div>
         )
       case 'callToAction':

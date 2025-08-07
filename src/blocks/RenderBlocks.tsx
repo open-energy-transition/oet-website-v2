@@ -21,6 +21,7 @@ import { QuoteBlock } from '@/blocks/QuoteBlock/Component'
 import { PartnersBlock } from './PartnersBlock/Component'
 import { ProjectsOverviewBlock } from './ProjectsOverviewBlock/Component'
 import { ProjectsListBlock } from './ProjectsListBlock/Component'
+import { PostsListBlock } from './PostsListBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -38,6 +39,7 @@ const blockComponents = {
   projectsOverview: ProjectsOverviewBlock,
   projectTabs: ProjectTabsBlock,
   projectsList: ProjectsListBlock,
+  postsList: PostsListBlock,
   partners: PartnersBlock,
   teamMembers: TeamMembersBlock,
   jobs: JobsBlock,

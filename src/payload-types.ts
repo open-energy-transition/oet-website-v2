@@ -247,6 +247,7 @@ export interface Page {
     | ProjectsOverviewBlock
     | ProjectTabsBlock
     | ProjectsListBlock
+    | PostsListBlock
     | TeamMembersBlock
     | JobsBlock
     | TabsBlock
@@ -1248,6 +1249,19 @@ export interface ProjectsListBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PostsListBlock".
+ */
+export interface PostsListBlock {
+  /**
+   * Select one or more posts to display in this block
+   */
+  posts?: (number | Post)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'postsList';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TeamMembersBlock".
  */
 export interface TeamMembersBlock {
@@ -1324,7 +1338,15 @@ export interface TabsBlock {
          * Add content blocks to this tab
          */
         content?:
-          | (ContentBlock | ArchiveBlock | ProjectTabsBlock | TeamMembersBlock | JobsBlock | ProjectsListBlock)[]
+          | (
+              | ContentBlock
+              | ArchiveBlock
+              | ProjectTabsBlock
+              | TeamMembersBlock
+              | JobsBlock
+              | ProjectsListBlock
+              | PostsListBlock
+            )[]
           | null;
         id?: string | null;
       }[]
@@ -1782,6 +1804,7 @@ export interface PagesSelect<T extends boolean = true> {
         projectsOverview?: T | ProjectsOverviewBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
         projectsList?: T | ProjectsListBlockSelect<T>;
+        postsList?: T | PostsListBlockSelect<T>;
         teamMembers?: T | TeamMembersBlockSelect<T>;
         jobs?: T | JobsBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
@@ -2092,6 +2115,15 @@ export interface ProjectsListBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PostsListBlock_select".
+ */
+export interface PostsListBlockSelect<T extends boolean = true> {
+  posts?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TeamMembersBlock_select".
  */
 export interface TeamMembersBlockSelect<T extends boolean = true> {
@@ -2132,6 +2164,7 @@ export interface TabsBlockSelect<T extends boolean = true> {
               teamMembers?: T | TeamMembersBlockSelect<T>;
               jobs?: T | JobsBlockSelect<T>;
               projectsList?: T | ProjectsListBlockSelect<T>;
+              postsList?: T | PostsListBlockSelect<T>;
             };
         id?: T;
       };
