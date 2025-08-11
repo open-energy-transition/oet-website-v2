@@ -9,16 +9,14 @@ import configPromise from '@payload-config'
 export const ProjectCard: React.FC<{
   project: Project
 }> = async ({ project }) => {
-  const payload = await getPayload({ config: configPromise })
-
-  const media = await payload.findByID({
-    collection: 'media',
-    id: project.imageUrl as number,
-  })
+  // const media = await payload.findByID({
+  //   collection: 'media',
+  //   id: project.imageUrl as number,
+  // })
 
   return (
     <div className="p-6 bg-card rounded-lg shadow flex flex-col items-start gap-3">
-      {media && <Media resource={media} className="object-cover w-full h-full" />}
+      {/* {media && <Media resource={media} className="object-cover w-full h-full" />} */}
       <h3 className="font-semibold text-lg mb-1">{project.title}</h3>
 
       <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">

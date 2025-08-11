@@ -40,6 +40,7 @@ export const Posts: CollectionConfig<'posts'> = {
   // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'posts'>
   defaultPopulate: {
     title: true,
+    shortDescription: true,
     slug: true,
     categories: true,
     meta: {
@@ -79,19 +80,6 @@ export const Posts: CollectionConfig<'posts'> = {
       type: 'text',
       required: true,
       maxLength: 300,
-    },
-    {
-      name: 'tags',
-      type: 'array',
-      label: 'Tags',
-      minRows: 0,
-      fields: [
-        {
-          name: 'tag',
-          type: 'text',
-          required: true,
-        },
-      ],
     },
     {
       type: 'tabs',

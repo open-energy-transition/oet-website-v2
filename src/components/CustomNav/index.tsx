@@ -38,6 +38,7 @@ const CustomNav: React.FC = () => {
 
   // Check if current path matches nav item
   const isActive = (href: string) => {
+    if (!pathname) return false
     return pathname === href || pathname.startsWith(href)
   }
 

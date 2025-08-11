@@ -122,7 +122,10 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
           {Array.isArray(columns) && columns.length === 3 && (
             <div className="flex flex-col md:flex-row gap-8 mt-8">
               {columns.map((col, idx) => (
-                <div key={idx} className="flex-1 flex flex-col gap-6">
+                <div
+                  key={idx}
+                  className={`${idx !== 2 ? 'flex-col' : 'flex-col-reverse'} flex-1 flex gap-6`}
+                >
                   {/* Media Row */}
                   {media && col.media && (
                     <div className="min-h-[9rem]">

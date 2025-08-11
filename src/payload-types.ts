@@ -276,12 +276,6 @@ export interface Post {
   id: number;
   title: string;
   shortDescription: string;
-  tags?:
-    | {
-        tag: string;
-        id?: string | null;
-      }[]
-    | null;
   heroImage?: (number | null) | Media;
   content: {
     root: {
@@ -2197,12 +2191,6 @@ export interface PartnersBlockSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   shortDescription?: T;
-  tags?:
-    | T
-    | {
-        tag?: T;
-        id?: T;
-      };
   heroImage?: T;
   content?: T;
   relatedPosts?: T;

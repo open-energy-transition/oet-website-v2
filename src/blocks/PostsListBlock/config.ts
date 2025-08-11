@@ -17,7 +17,7 @@ export const PostsList: Block = {
     },
   ],
   labels: {
-    plural: 'Post Lists',
-    singular: 'Post List',
+    plural: 'Posts List',
+    singular: 'Posts List',
   },
 }

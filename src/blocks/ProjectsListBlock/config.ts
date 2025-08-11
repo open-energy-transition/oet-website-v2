@@ -17,7 +17,7 @@ export const ProjectsList: Block = {
     },
   ],
   labels: {
-    plural: 'Project Lists',
-    singular: 'Project List',
+    plural: 'Projects Lists',
+    singular: 'Projects List',
   },
 }
