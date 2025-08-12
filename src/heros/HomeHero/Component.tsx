@@ -16,6 +16,7 @@ loadSlim(tsParticles)
 
 export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, columns }) => {
   const { setHeaderTheme } = useHeaderTheme()
+  console.log(richText)
 
   useEffect(() => {
     setHeaderTheme('dark')
@@ -102,8 +103,10 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
         }}
       />
       <div className="container mb-8 z-10 relative flex items-center justify-center">
-        <div className="max-w-4xl text-center">
-          {richText && <RichText className="mb-8" data={richText} enableGutter={false} />}
+        <div className="max-w-4xl">
+          {richText && (
+            <RichText enableProse={false} className="mb-8" data={richText} enableGutter={false} />
+          )}
           {Array.isArray(links) && links.length > 0 && (
             <ul className="flex justify-center gap-6 mt-8">
               {links.map(({ link }, i) => {

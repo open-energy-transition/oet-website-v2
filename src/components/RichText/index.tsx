@@ -10,6 +10,8 @@ import {
   LinkJSXConverter,
   RichText as ConvertRichText,
 } from '@payloadcms/richtext-lexical/react'
+import React from 'react'
+import './styles.css'
 
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 
@@ -39,26 +41,62 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   return relationTo === 'posts' ? `/posts/${slug}` : `/${slug}`
 }
 
-const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
-  ...defaultConverters,
-  ...LinkJSXConverter({ internalDocToHref }),
-  blocks: {
-    banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
-    mediaBlock: ({ node }) => (
-      <MediaBlock
-        className="col-start-1 col-span-3"
-        imgClassName="m-0"
-        {...node.fields}
-        captionClassName="mx-auto max-w-[48rem]"
-        enableGutter={false}
-        disableInnerContainer={true}
-      />
-    ),
-    code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
-    cta: ({ node }) => <CallToActionBlock {...node.fields} />,
-    button: ({ node }) => <ButtonBlock {...node.fields} />,
-  },
-})
+const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => {
+  // Customize the default converters
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const customTextConverter = (args: any) => {
+    const { node, nodesToJSX } = args;
+    const textState = node.$;
+    
+    // Default handling for text nodes
+    const children = node.children ? nodesToJSX({ nodes: node.children }) : null;
+    
+    // Only apply styling if there's actual content and text state
+    if (textState && (textState.color || textState.size || textState.background) && node.text) {
+      let className = '';
+      
+      if (textState.color) {
+        className += ` customTextState-color-${textState.color}`;
+      }
+      if (textState.size) {
+        className += ` customTextState-size-${textState.size}`;
+      }
+      if (textState.background) {
+        className += ` customTextState-background-${textState.background}`;
+      }
+      
+      return <span className={className.trim()}>{node.text || children}</span>;
+    }
+    
+    return node.text || children;
+  };
+
+  const customDefaultConverters = {
+    ...defaultConverters,
+    ...LinkJSXConverter({ internalDocToHref }),
+    text: customTextConverter
+  }
+
+  return {
+    ...customDefaultConverters,
+    blocks: {
+      banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
+      mediaBlock: ({ node }) => (
+        <MediaBlock
+          className="col-start-1 col-span-3"
+          imgClassName="m-0"
+          {...node.fields}
+          captionClassName="mx-auto max-w-[48rem]"
+          enableGutter={false}
+          disableInnerContainer={true}
+        />
+      ),
+      code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
+      cta: ({ node }) => <CallToActionBlock {...node.fields} />,
+      button: ({ node }) => <ButtonBlock {...node.fields} />,
+    },
+  }
+}
 
 type Props = {
   data: DefaultTypedEditorState

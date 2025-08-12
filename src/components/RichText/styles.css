@@ -1,0 +1,34 @@
+/* Custom text styles for Lexical editor */
+.customTextState-color-customGrey1 {
+  color: rgba(11, 12, 11, 0.5);
+}
+
+/* Additional custom colors */
+.customTextState-color-customRed {
+  color: #ff0000;
+}
+
+.customTextState-color-text-red {
+  color: #ff0000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+}
+
+/* Size styles */
+.customTextState-size-small {
+  font-size: 0.875rem;
+}
+
+.customTextState-size-normal {
+  font-size: 1rem;
+}
+
+.customTextState-size-large {
+  font-size: 1.5rem;
+}
+
+.customTextState-size-huge {
+  font-size: 2rem;
+}
