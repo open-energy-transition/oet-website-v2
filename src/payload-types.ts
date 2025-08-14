@@ -180,6 +180,18 @@ export interface Page {
           link: {
             type?: ('reference' | 'custom') | null;
             newTab?: boolean | null;
+            /**
+             * Select an icon to display on the button
+             */
+            icon?: (number | null) | Icon;
+            /**
+             * Choose a background color for the button
+             */
+            btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+            /**
+             * Choose a text color for the button
+             */
+            btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
             reference?:
               | ({
                   relationTo: 'pages';
@@ -267,6 +279,20 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
+export interface Icon {
+  id: number;
+  name: string;
+  /**
+   * Paste the raw SVG markup here.
+   */
+  svg: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -479,6 +505,18 @@ export interface CallToActionBlock {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          /**
+           * Select an icon to display on the button
+           */
+          icon?: (number | null) | Icon;
+          /**
+           * Choose a background color for the button
+           */
+          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          /**
+           * Choose a text color for the button
+           */
+          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
           reference?:
             | ({
                 relationTo: 'pages';
@@ -510,6 +548,18 @@ export interface ButtonBlock {
   link: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
+    /**
+     * Select an icon to display on the button
+     */
+    icon?: (number | null) | Icon;
+    /**
+     * Choose a background color for the button
+     */
+    btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+    /**
+     * Choose a text color for the button
+     */
+    btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
     reference?:
       | ({
           relationTo: 'pages';
@@ -552,20 +602,6 @@ export interface ButtonBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "icons".
- */
-export interface Icon {
-  id: number;
-  name: string;
-  /**
-   * Paste the raw SVG markup here.
-   */
-  svg: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
@@ -596,6 +632,18 @@ export interface ContentBlock {
         link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          /**
+           * Select an icon to display on the button
+           */
+          icon?: (number | null) | Icon;
+          /**
+           * Choose a background color for the button
+           */
+          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          /**
+           * Choose a text color for the button
+           */
+          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
           reference?:
             | ({
                 relationTo: 'pages';
@@ -671,6 +719,18 @@ export interface Model {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          /**
+           * Select an icon to display on the button
+           */
+          icon?: (number | null) | Icon;
+          /**
+           * Choose a background color for the button
+           */
+          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          /**
+           * Choose a text color for the button
+           */
+          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
           reference?:
             | ({
                 relationTo: 'pages';
@@ -1127,6 +1187,18 @@ export interface ProjectsOverviewBlock {
     link: {
       type?: ('reference' | 'custom') | null;
       newTab?: boolean | null;
+      /**
+       * Select an icon to display on the button
+       */
+      icon?: (number | null) | Icon;
+      /**
+       * Choose a background color for the button
+       */
+      btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+      /**
+       * Choose a text color for the button
+       */
+      btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
       reference?:
         | ({
             relationTo: 'pages';
@@ -1757,6 +1829,9 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     type?: T;
                     newTab?: T;
+                    icon?: T;
+                    btnBgColor?: T;
+                    btnTextColor?: T;
                     reference?: T;
                     url?: T;
                     label?: T;
@@ -1832,6 +1907,9 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
           | {
               type?: T;
               newTab?: T;
+              icon?: T;
+              btnBgColor?: T;
+              btnTextColor?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -1852,6 +1930,9 @@ export interface ButtonBlockSelect<T extends boolean = true> {
     | {
         type?: T;
         newTab?: T;
+        icon?: T;
+        btnBgColor?: T;
+        btnTextColor?: T;
         reference?: T;
         url?: T;
         label?: T;
@@ -1883,6 +1964,9 @@ export interface ContentBlockSelect<T extends boolean = true> {
           | {
               type?: T;
               newTab?: T;
+              icon?: T;
+              btnBgColor?: T;
+              btnTextColor?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -2060,6 +2144,9 @@ export interface ProjectsOverviewBlockSelect<T extends boolean = true> {
           | {
               type?: T;
               newTab?: T;
+              icon?: T;
+              btnBgColor?: T;
+              btnTextColor?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -2324,6 +2411,9 @@ export interface ModelsSelect<T extends boolean = true> {
           | {
               type?: T;
               newTab?: T;
+              icon?: T;
+              btnBgColor?: T;
+              btnTextColor?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -2714,6 +2804,18 @@ export interface Header {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          /**
+           * Select an icon to display on the button
+           */
+          icon?: (number | null) | Icon;
+          /**
+           * Choose a background color for the button
+           */
+          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          /**
+           * Choose a text color for the button
+           */
+          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
           reference?:
             | ({
                 relationTo: 'pages';
@@ -2743,6 +2845,18 @@ export interface Footer {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          /**
+           * Select an icon to display on the button
+           */
+          icon?: (number | null) | Icon;
+          /**
+           * Choose a background color for the button
+           */
+          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          /**
+           * Choose a text color for the button
+           */
+          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
           reference?:
             | ({
                 relationTo: 'pages';
@@ -2797,6 +2911,18 @@ export interface Footer {
           link: {
             type?: ('reference' | 'custom') | null;
             newTab?: boolean | null;
+            /**
+             * Select an icon to display on the button
+             */
+            icon?: (number | null) | Icon;
+            /**
+             * Choose a background color for the button
+             */
+            btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+            /**
+             * Choose a text color for the button
+             */
+            btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
             reference?:
               | ({
                   relationTo: 'pages';
@@ -2830,6 +2956,18 @@ export interface Footer {
           link: {
             type?: ('reference' | 'custom') | null;
             newTab?: boolean | null;
+            /**
+             * Select an icon to display on the button
+             */
+            icon?: (number | null) | Icon;
+            /**
+             * Choose a background color for the button
+             */
+            btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+            /**
+             * Choose a text color for the button
+             */
+            btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
             reference?:
               | ({
                   relationTo: 'pages';
@@ -2934,6 +3072,9 @@ export interface HeaderSelect<T extends boolean = true> {
           | {
               type?: T;
               newTab?: T;
+              icon?: T;
+              btnBgColor?: T;
+              btnTextColor?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -2957,6 +3098,9 @@ export interface FooterSelect<T extends boolean = true> {
           | {
               type?: T;
               newTab?: T;
+              icon?: T;
+              btnBgColor?: T;
+              btnTextColor?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -2978,6 +3122,9 @@ export interface FooterSelect<T extends boolean = true> {
                 | {
                     type?: T;
                     newTab?: T;
+                    icon?: T;
+                    btnBgColor?: T;
+                    btnTextColor?: T;
                     reference?: T;
                     url?: T;
                     label?: T;
@@ -2998,6 +3145,9 @@ export interface FooterSelect<T extends boolean = true> {
                 | {
                     type?: T;
                     newTab?: T;
+                    icon?: T;
+                    btnBgColor?: T;
+                    btnTextColor?: T;
                     reference?: T;
                     url?: T;
                     label?: T;

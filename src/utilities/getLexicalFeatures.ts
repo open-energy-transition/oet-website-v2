@@ -82,10 +82,24 @@ export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
           normal: { label: 'Normal', css: { 'font-size': '1rem' } },
           large: { label: 'Large', css: { 'font-size': '1.5rem' } },
           huge: { label: 'Huge', css: { 'font-size': '2rem' } },
+          heading1: {
+            label: 'Heading 1',
+            css: {
+              'font-size': '72px',
+              'font-weight': '600',
+              'line-height': '120%',
+              'letter-spacing': '-1%',
+            },
+          },
+          h9: {
+            label: 'H9',
+            css: { 'font-size': '16px', 'line-height': '24px', 'letter-spacing': '0%' },
+          },
         },
         color: {
           ...defaultColors.text,
           customGrey1: { label: '#0B0C0B80-50%', css: { color: 'rgba(11, 12, 11, 0.5)' } },
+          customGrey2: { label: '#0B0C0BB2-70%', css: { color: 'rgba(11, 12, 11, 0.7)' } },
         },
         background: { ...defaultColors.background },
       },

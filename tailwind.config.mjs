@@ -97,6 +97,10 @@ const config = {
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
+        oxanium: ['var(--font-oxanium)'],
+        poppins: ['var(--font-poppins)'],
+        oxygen: ['var(--font-oxygen)'],
+        roboto: ['var(--font-roboto)'],
       },
       keyframes: {
         'accordion-down': {

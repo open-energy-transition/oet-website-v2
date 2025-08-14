@@ -3,7 +3,7 @@ import { cn } from '@/utilities/ui'
 import Link from 'next/link'
 import React from 'react'
 
-import type { Page, Post } from '@/payload-types'
+import type { Icon, Page, Post } from '@/payload-types'
 
 type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']
@@ -18,6 +18,9 @@ type CMSLinkType = {
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
+  btnTextColor?: string
+  btnBgColor?: string
+  icon?: Icon | null | number
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
@@ -31,6 +34,9 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     reference,
     size: sizeFromProps,
     url,
+    btnTextColor,
+    btnBgColor,
+    icon,
   } = props
 
   const href =
@@ -48,18 +54,52 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     return (
-      <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
+      <Link
+        className={cn(className)}
+        href={href || url || ''}
+        {...newTabProps}
+        style={{
+          ...(btnBgColor
+            ? {
+                color: btnTextColor,
+              }
+            : {}),
+          ...(btnBgColor ? { backgroundColor: btnBgColor } : {}),
+        }}
+      >
         {label && label}
         {children && children}
+        {icon && typeof icon === 'object' && 'svg' in icon && (
+          <span className="inline-block ml-2" dangerouslySetInnerHTML={{ __html: icon.svg }} />
+        )}
       </Link>
     )
   }
 
   return (
-    <Button asChild className={className} size={size} variant={appearance}>
+    <Button
+      asChild
+      className={className}
+      style={{
+        ...(btnBgColor
+          ? {
+              color: btnTextColor,
+            }
+          : {}),
+        ...(btnBgColor ? { backgroundColor: btnBgColor } : {}),
+      }}
+      size={size}
+      variant={appearance}
+    >
       <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
         {label && label}
         {children && children}
+        {icon && typeof icon === 'object' && 'svg' in icon && (
+          <span
+            className="inline-block ml-2"
+            dangerouslySetInnerHTML={{ __html: (icon as Icon).svg }}
+          ></span>
+        )}
       </Link>
     </Button>
   )

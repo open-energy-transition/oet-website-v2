@@ -2,9 +2,8 @@ import React from 'react'
 import type { PostsListBlock as PostsListBlockProps, Post } from '@/payload-types'
 import Link from 'next/link'
 
-export const PostsListBlock: React.FC<PostsListBlockProps & { id?: string }> = async (props) => {
+export const PostsListBlock: React.FC<PostsListBlockProps & { id?: string }> = (props) => {
   const { posts } = props
-
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Posts</h2>

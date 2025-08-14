@@ -16,7 +16,6 @@ loadSlim(tsParticles)
 
 export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, columns }) => {
   const { setHeaderTheme } = useHeaderTheme()
-  console.log(richText)
 
   useEffect(() => {
     setHeaderTheme('dark')
@@ -34,7 +33,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
         options={{
           background: {
             color: {
-              value: '#1E2F97',
+              value: '#ffffff',
             },
           },
           fullScreen: {
@@ -64,10 +63,10 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
           },
           particles: {
             color: {
-              value: '#FFFFFF',
+              value: '#000000',
             },
             links: {
-              color: '#FFFFFF',
+              color: '#000000',
               distance: 150,
               enable: true,
               opacity: 0.3,
@@ -102,19 +101,19 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
           detectRetina: true,
         }}
       />
-      <div className="container mb-8 z-10 relative flex items-center justify-center">
+      <div className="container mb-8 mt-48 z-10 relative flex items-center justify-center">
         <div className="max-w-4xl">
           {richText && (
             <RichText enableProse={false} className="mb-8" data={richText} enableGutter={false} />
           )}
           {Array.isArray(links) && links.length > 0 && (
-            <ul className="flex justify-center gap-6 mt-8">
+            <ul className="flex justify-start gap-6 mt-8">
               {links.map(({ link }, i) => {
                 return (
                   <li key={i}>
                     <CMSLink
                       {...link}
-                      className="px-8 py-4 text-lg font-semibold rounded-lg bg-white text-black hover:bg-gray-100 transition-colors"
+                      className="px-6 py-3 font-oxygen font-normal text-sm rounded-3xl"
                     />
                   </li>
                 )
@@ -130,21 +129,28 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
                   className={`${idx !== 2 ? 'flex-col' : 'flex-col-reverse'} flex-1 flex gap-6`}
                 >
                   {/* Media Row */}
-                  {media && col.media && (
-                    <div className="min-h-[9rem]">
+                  {col.media && (
+                    <div className="h-1/2">
                       {col.media && (
-                        <Media resource={col.media} imgClassName="object-cover w-full h-32" />
+                        <Media
+                          className="h-full"
+                          resource={col.media}
+                          imgClassName="object-cover w-full h-full rounded-3xl"
+                        />
                       )}
                     </div>
                   )}
-
                   {/* Title/Description Row */}
-                  <div className="bg-white/10 h-full rounded-lg p-6 flex flex-col items-center justify-center text-center text-white min-h-[9rem]">
+                  <div
+                    className={`${idx === 0 ? 'h-full' : 'h-1/2'} rounded-3xl bg-[#E8EFDC4D] border p-8 border-[#0B0C0B26] flex flex-col items-center justify-center text-center min-h-[9rem]`}
+                  >
                     {col.title && (
-                      <h4 className="text-xl font-bold mb-2 text-center">{col.title}</h4>
+                      <h4 className="font-roboto text-[80px] leading-[120%] tracking-normal font-bold mb-2 text-center">
+                        {col.title}
+                      </h4>
                     )}
                     {col.description && (
-                      <p className="text-base opacity-80 text-center">{col.description}</p>
+                      <p className="text-base text-black text-center">{col.description}</p>
                     )}
                   </div>
                 </div>
@@ -159,7 +165,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
         )}
       </div>
       {/* Gradient overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/20" />
+      <div className="absolute inset-0" />
     </div>
   )
 }

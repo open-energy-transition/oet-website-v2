@@ -74,6 +74,82 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
             },
             label: 'Open in new tab',
           },
+          {
+            name: 'icon',
+            label: 'Button Icon',
+            relationTo: 'icons',
+            type: 'relationship',
+            required: false,
+            admin: {
+              description: 'Select an icon to display on the button',
+              width: '100%',
+            },
+          },
+          {
+            name: 'btnBgColor',
+            dbName: 'b_bg',
+            label: 'Button Background Color',
+            type: 'select',
+            required: true,
+            defaultValue: '#ffffff',
+            admin: {
+              description: 'Choose a background color for the button',
+              width: '50%',
+            },
+            options: [
+              {
+                label: 'White',
+                value: '#ffffff',
+              },
+              {
+                label: 'Black',
+                value: '#000000',
+              },
+
+              {
+                label: '#E41E3C',
+                value: '#E41E3C',
+              },
+              {
+                label: '#D7E4BF-50%',
+                value: '#D7E4BF80',
+              },
+            ],
+          },
+          {
+            name: 'btnTextColor',
+            label: 'Button Text Color',
+            dbName: 'text_color',
+            type: 'select',
+            required: true,
+            defaultValue: '#000000',
+            admin: {
+              description: 'Choose a text color for the button',
+              width: '50%',
+            },
+            options: [
+              {
+                label: 'Black',
+                value: '#000000',
+              },
+              {
+                label: 'White',
+                value: '#ffffff',
+              },
+              {
+                label: '#3C432F',
+                value: '#3C432F',
+              },
+              {
+                label: '#D7E4BF-50%',
+                value: '#D7E4BF80',
+              },
+              {
+                label: '#E41E3C',
+                value: '#E41E3C',
+              },
+            ],
+          },
         ],
       },
     ],
