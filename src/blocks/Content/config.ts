@@ -1,35 +1,14 @@
-import { RowLabel } from './../../Header/RowLabel'
 import type { Block, Field } from 'payload'
 
 import {
-  AlignFeature,
-  BlockquoteFeature,
-  BlocksFeature,
-  ChecklistFeature,
-  defaultColors,
   FixedToolbarFeature,
   HeadingFeature,
-  HorizontalRuleFeature,
-  IndentFeature,
   InlineToolbarFeature,
   lexicalEditor,
-  LinkFeature,
-  OrderedListFeature,
-  ParagraphFeature,
-  RelationshipFeature,
-  SubscriptFeature,
-  TextStateFeature,
-  // TreeViewFeature,
-  UnorderedListFeature,
-  UploadFeature,
 } from '@payloadcms/richtext-lexical'
 
 import { link } from '@/fields/link'
-import { CallToAction } from '../CallToAction/config'
-import { Button } from '../Button/config'
-import { ProjectTabs } from '../ProjectTabsBlock/config'
-import { ProjectsList } from '../ProjectsListBlock/config'
-import { PostsList } from '../PostsListBlock/config'
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
 const columnFields: Field[] = [
   {
@@ -86,85 +65,7 @@ const columnFields: Field[] = [
     name: 'richText',
     type: 'richText',
     editor: lexicalEditor({
-      features: ({ rootFeatures }) => {
-        return [
-          ...rootFeatures,
-          HeadingFeature(),
-          FixedToolbarFeature(),
-          InlineToolbarFeature(),
-          SubscriptFeature(),
-          ParagraphFeature(),
-          AlignFeature(),
-          IndentFeature(),
-          UnorderedListFeature(),
-          OrderedListFeature(),
-          ChecklistFeature(),
-          LinkFeature({
-            fields: ({ defaultFields }) => [
-              ...defaultFields,
-              {
-                name: 'rel',
-                type: 'select',
-                options: ['noopener', 'noreferrer', 'nofollow'],
-              },
-            ],
-            enabledCollections: ['pages', 'posts'], // Collections for internal links
-            maxDepth: 2, // Population depth for internal links
-          }),
-          RelationshipFeature({
-            maxDepth: 2, // Population depth for relationships
-          }),
-          UploadFeature({
-            collections: {
-              uploads: {
-                fields: [
-                  {
-                    name: 'caption',
-                    type: 'text',
-                    label: 'Caption',
-                  },
-                  {
-                    name: 'alt',
-                    type: 'text',
-                    label: 'Alt Text',
-                  },
-                ],
-              },
-            },
-            maxDepth: 1, // Population depth for uploads
-          }),
-          BlockquoteFeature(),
-          HorizontalRuleFeature(),
-          BlocksFeature({
-            blocks: [CallToAction, Button, ProjectTabs, ProjectsList, PostsList],
-            inlineBlocks: [
-              {
-                slug: 'mention',
-                fields: [
-                  {
-                    name: 'name',
-                    type: 'text',
-                    required: true,
-                  },
-                ],
-              },
-            ],
-          }),
-          // TreeViewFeatures(),
-          TextStateFeature({
-            state: {
-              size: {
-                small: { label: 'Small', css: { 'font-size': '0.875rem' } },
-                normal: { label: 'Normal', css: { 'font-size': '1rem' } },
-                large: { label: 'Large', css: { 'font-size': '1.5rem' } },
-                huge: { label: 'Huge', css: { 'font-size': '2rem' } },
-              },
-              color: { ...defaultColors.text },
-              background: { ...defaultColors.background },
-            },
-          }),
-        ]
-      },
+      features: getLexicalFeatures,
     }),
     label: false,
   },
@@ -346,6 +247,15 @@ export const Content: Block = {
   slug: 'content',
   interfaceName: 'ContentBlock',
   fields: [
+    {
+      name: 'backgroundColor',
+      type: 'text',
+      required: false,
+      defaultValue: '',
+      admin: {
+        width: '50%',
+      },
+    },
     {
       name: 'columns',
       type: 'array',

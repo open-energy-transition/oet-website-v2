@@ -22,10 +22,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
   }, [setHeaderTheme])
 
   return (
-    <div
-      className="relative z-10 flex items-center justify-center text-white min-h-screen"
-      data-theme="dark"
-    >
+    <div className="relative z-10 min-h-screen" data-theme="dark">
       {/* Particles Background */}
       <Particles
         id="tsparticles"
@@ -101,10 +98,15 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
           detectRetina: true,
         }}
       />
-      <div className="container mb-8 mt-48 z-10 relative flex items-center justify-center">
-        <div className="max-w-4xl">
+      <div className="container mb-8 pt-48 z-10 relative flex items-center">
+        <div className="w-full">
           {richText && (
-            <RichText enableProse={false} className="mb-8" data={richText} enableGutter={false} />
+            <RichText
+              enableProse={false}
+              className="mb-8 max-w-[788px]"
+              data={richText}
+              enableGutter={false}
+            />
           )}
           {Array.isArray(links) && links.length > 0 && (
             <ul className="flex justify-start gap-6 mt-8">
@@ -120,43 +122,45 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
               })}
             </ul>
           )}
-          {/* Render columns if present */}
-          {Array.isArray(columns) && columns.length === 3 && (
-            <div className="flex flex-col md:flex-row gap-8 mt-8">
-              {columns.map((col, idx) => (
-                <div
-                  key={idx}
-                  className={`${idx !== 2 ? 'flex-col' : 'flex-col-reverse'} flex-1 flex gap-6`}
-                >
-                  {/* Media Row */}
-                  {col.media && (
-                    <div className="h-1/2">
-                      {col.media && (
-                        <Media
-                          className="h-full"
-                          resource={col.media}
-                          imgClassName="object-cover w-full h-full rounded-3xl"
-                        />
+          <div>
+            {/* Render columns if present */}
+            {Array.isArray(columns) && columns.length === 3 && (
+              <div className="flex flex-col md:flex-row gap-8 mt-64">
+                {columns.map((col, idx) => (
+                  <div
+                    key={idx}
+                    className={`${idx === 1 ? 'justify-between' : ''} flex-col flex-1 flex gap-6`}
+                  >
+                    {/* Media Row */}
+                    {col.media && (
+                      <div className={`${idx === 1 ? 'h-[232px]' : 'h-[269px]'} order-${idx}`}>
+                        {col.media && (
+                          <Media
+                            className="h-full"
+                            resource={col.media}
+                            imgClassName="object-cover w-full h-full rounded-3xl"
+                          />
+                        )}
+                      </div>
+                    )}
+                    {/* Title/Description Row */}
+                    <div
+                      className={`${idx === 0 ? 'h-[502px]' : ''} ${idx === 1 ? 'py-[36.5px] min-h-[241px]' : 'py-[30px]'} px-8  rounded-3xl bg-[#E8EFDC4D] border border-[#0B0C0B26] flex flex-col items-center justify-center text-center min-h-[9rem]`}
+                    >
+                      {col.title && (
+                        <h4 className="font-roboto text-[80px] leading-[120%] tracking-normal font-bold mb-2 text-center">
+                          {col.title}
+                        </h4>
+                      )}
+                      {col.description && (
+                        <p className="text-base text-black text-center">{col.description}</p>
                       )}
                     </div>
-                  )}
-                  {/* Title/Description Row */}
-                  <div
-                    className={`${idx === 0 ? 'h-full' : 'h-1/2'} rounded-3xl bg-[#E8EFDC4D] border p-8 border-[#0B0C0B26] flex flex-col items-center justify-center text-center min-h-[9rem]`}
-                  >
-                    {col.title && (
-                      <h4 className="font-roboto text-[80px] leading-[120%] tracking-normal font-bold mb-2 text-center">
-                        {col.title}
-                      </h4>
-                    )}
-                    {col.description && (
-                      <p className="text-base text-black text-center">{col.description}</p>
-                    )}
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="absolute inset-0 select-none">

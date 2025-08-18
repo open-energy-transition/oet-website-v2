@@ -26,11 +26,27 @@ export const Models: CollectionConfig = {
       name: 'description',
       type: 'textarea',
     },
-    linkGroup({
-      appearances: ['default', 'github', 'internal', 'outline'],
-      overrides: {
-        maxRows: 2,
-      },
-    }),
+    {
+      name: 'icon',
+      type: 'relationship',
+      relationTo: 'icons',
+      required: false,
+      admin: { width: '50%' },
+    },
+    {
+      name: 'website',
+      label: 'Website Link',
+      type: 'text',
+    },
+    {
+      name: 'github',
+      label: 'Github Link',
+      type: 'text',
+    },
+    {
+      name: 'sourceCode',
+      label: 'Source Code Link',
+      type: 'text',
+    },
   ],
 }

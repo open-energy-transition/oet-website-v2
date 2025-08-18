@@ -8,6 +8,7 @@ import {
   lexicalEditor,
   LinkFeature,
 } from '@payloadcms/richtext-lexical'
+import { link } from '@/fields/link'
 
 export const OurService: Block = {
   slug: 'ourService',
@@ -33,15 +34,7 @@ export const OurService: Block = {
         ],
       }),
     },
-    {
-      name: 'unitsButton',
-      type: 'group',
-      fields: [
-        { name: 'label', type: 'text', required: true },
-        { name: 'url', type: 'text', required: true },
-      ],
-      required: true,
-    },
+    link(),
     {
       name: 'services',
       type: 'array',
@@ -67,7 +60,13 @@ export const OurService: Block = {
           }),
           required: false,
         },
-        { name: 'icon', type: 'text', required: false },
+        {
+          name: 'icon',
+          label: 'Icon',
+          relationTo: 'icons',
+          type: 'relationship',
+          required: false,
+        },
       ],
       labels: { singular: 'Service', plural: 'Services' },
     },
@@ -78,7 +77,7 @@ export const OurService: Block = {
       maxRows: 3,
       fields: [
         { name: 'image', type: 'upload', required: true, relationTo: 'media' },
-        { name: 'alt', type: 'text', required: true },
+        { name: 'alt', type: 'text', required: false },
       ],
       labels: { singular: 'Bottom Image', plural: 'Bottom Images' },
     },

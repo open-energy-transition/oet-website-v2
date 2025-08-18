@@ -12,6 +12,7 @@ import { DonateBlock } from '@/blocks/Donate/Component'
 import { AboutBlock } from '@/blocks/About/Component'
 import { OurServiceBlock } from '@/blocks/OurServiceBlock/Component'
 import { ToolsWeSupportBlock } from '@/blocks/ToolsWeSupportBlock/Component'
+import { WhoWeAreBlock } from '@/blocks/WhoWeAreBlock/Component'
 import { ProjectTabsBlock } from '@/blocks/ProjectTabsBlock/Component'
 import { TeamMembersBlock } from '@/blocks/TeamMembersBlock/Component'
 import { JobsBlock } from '@/blocks/JobsBlock/Component'
@@ -36,6 +37,7 @@ const blockComponents = {
   about: AboutBlock,
   ourService: OurServiceBlock,
   toolsWeSupport: ToolsWeSupportBlock,
+  whoWeAre: WhoWeAreBlock,
   projectsOverview: ProjectsOverviewBlock,
   projectTabs: ProjectTabsBlock,
   projectsList: ProjectsListBlock,

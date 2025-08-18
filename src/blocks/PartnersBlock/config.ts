@@ -18,21 +18,25 @@ export const PartnersBlock: Block = {
       type: 'text',
     },
     {
-      name: 'description',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ rootFeatures }) => [
-          ...rootFeatures,
-          HeadingFeature({
-            enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-          }),
-          FixedToolbarFeature(),
-          InlineToolbarFeature(),
-          AlignFeature(),
-          LinkFeature(),
-        ],
-      }),
+      name: 'subTitle',
+      type: 'text',
     },
+    // {
+    //   name: 'description',
+    //   type: 'richText',
+    //   editor: lexicalEditor({
+    //     features: ({ rootFeatures }) => [
+    //       ...rootFeatures,
+    //       HeadingFeature({
+    //         enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    //       }),
+    //       FixedToolbarFeature(),
+    //       InlineToolbarFeature(),
+    //       AlignFeature(),
+    //       LinkFeature(),
+    //     ],
+    //   }),
+    // },
     {
       name: 'partnerImages',
       type: 'array',

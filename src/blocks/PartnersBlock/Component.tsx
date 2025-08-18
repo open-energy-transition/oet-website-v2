@@ -1,42 +1,33 @@
 import React from 'react'
-import RichText from '@/components/RichText'
-import { Media } from '@/components/Media'
-import { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
+import { PartnersCarousel } from './PartnersCarousel'
 
 interface PartnersBlockProps {
   title: string
-  description?: DefaultTypedEditorState
+  subTitle?: string
   partnerImages: {
     image: string
     alt: string
   }[]
 }
 
-export const PartnersBlock: React.FC<PartnersBlockProps> = ({
-  title,
-  description,
-  partnerImages,
-}) => {
+export const PartnersBlock: React.FC<PartnersBlockProps> = ({ title, subTitle, partnerImages }) => {
+  // Skip rendering if no partner images
+  if (!partnerImages || partnerImages.length === 0) return null
+
   return (
-    <div className="container py-8">
-      <div className="mb-6 text-center">
-        <h2 className="text-3xl font-bold mb-2">{title}</h2>
-        {description && (
-          <RichText className="text-lg text-muted-foreground mb-4" data={description} />
-        )}
+    <section className="bg-[#F6F7F3] py-16">
+      <div className="container px-4">
+        <div className="flex">
+          <div className="mb-12 text-start">
+            <h2 className="text-oxanium-3xl font-bold mb-6">{title}</h2>
+            {subTitle && <p className="customTextState-size-h8">{subTitle}</p>}
+          </div>
+
+          <div className="mt-10">
+            <PartnersCarousel images={partnerImages} />
+          </div>
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
-        {partnerImages &&
-          partnerImages.length > 0 &&
-          partnerImages.map((img, i) => (
-            <div
-              key={i}
-              className="w-full h-32 overflow-hidden rounded-lg shadow flex items-center justify-center"
-            >
-              <Media resource={img.image} className="object-cover w-full h-full" alt={img.alt} />
-            </div>
-          ))}
-      </div>
-    </div>
+    </section>
   )
 }

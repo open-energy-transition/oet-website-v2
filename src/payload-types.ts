@@ -185,13 +185,13 @@ export interface Page {
              */
             icon?: (number | null) | Icon;
             /**
-             * Choose a background color for the button
+             * Choose a background color for the button, Leave empty for transparent
              */
-            btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+            btnBgColor?: string | null;
             /**
              * Choose a text color for the button
              */
-            btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
+            btnTextColor?: string | null;
             reference?:
               | ({
                   relationTo: 'pages';
@@ -256,6 +256,7 @@ export interface Page {
     | AboutBlock
     | OurServiceBlock
     | ToolsWeSupportBlock
+    | WhoWeAreBlock
     | ProjectsOverviewBlock
     | ProjectTabsBlock
     | ProjectsListBlock
@@ -510,13 +511,13 @@ export interface CallToActionBlock {
            */
           icon?: (number | null) | Icon;
           /**
-           * Choose a background color for the button
+           * Choose a background color for the button, Leave empty for transparent
            */
-          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          btnBgColor?: string | null;
           /**
            * Choose a text color for the button
            */
-          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
+          btnTextColor?: string | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -553,13 +554,13 @@ export interface ButtonBlock {
      */
     icon?: (number | null) | Icon;
     /**
-     * Choose a background color for the button
+     * Choose a background color for the button, Leave empty for transparent
      */
-    btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+    btnBgColor?: string | null;
     /**
      * Choose a text color for the button
      */
-    btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
+    btnTextColor?: string | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -605,6 +606,7 @@ export interface ButtonBlock {
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
+  backgroundColor?: string | null;
   columns?:
     | {
         size?: ('oneThird' | 'oneFourth' | 'half' | 'twoThirds' | 'full') | null;
@@ -637,13 +639,13 @@ export interface ContentBlock {
            */
           icon?: (number | null) | Icon;
           /**
-           * Choose a background color for the button
+           * Choose a background color for the button, Leave empty for transparent
            */
-          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          btnBgColor?: string | null;
           /**
            * Choose a text color for the button
            */
-          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
+          btnTextColor?: string | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -714,42 +716,10 @@ export interface Model {
   id: number;
   title: string;
   description?: string | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          /**
-           * Select an icon to display on the button
-           */
-          icon?: (number | null) | Icon;
-          /**
-           * Choose a background color for the button
-           */
-          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
-          /**
-           * Choose a text color for the button
-           */
-          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'github' | 'internal' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
+  icon?: (number | null) | Icon;
+  website?: string | null;
+  github?: string | null;
+  sourceCode?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1092,9 +1062,36 @@ export interface OurServiceBlock {
     };
     [k: string]: unknown;
   } | null;
-  unitsButton: {
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    /**
+     * Select an icon to display on the button
+     */
+    icon?: (number | null) | Icon;
+    /**
+     * Choose a background color for the button, Leave empty for transparent
+     */
+    btnBgColor?: string | null;
+    /**
+     * Choose a text color for the button
+     */
+    btnTextColor?: string | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
     label: string;
-    url: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
   };
   services?:
     | {
@@ -1115,14 +1112,14 @@ export interface OurServiceBlock {
           };
           [k: string]: unknown;
         } | null;
-        icon?: string | null;
+        icon?: (number | null) | Icon;
         id?: string | null;
       }[]
     | null;
   bottomImages?:
     | {
         image: number | Media;
-        alt: string;
+        alt?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1151,6 +1148,40 @@ export interface ToolsWeSupportBlock {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Link to a page with more information about the tools we support
+   */
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    /**
+     * Select an icon to display on the button
+     */
+    icon?: (number | null) | Icon;
+    /**
+     * Choose a background color for the button, Leave empty for transparent
+     */
+    btnBgColor?: string | null;
+    /**
+     * Choose a text color for the button
+     */
+    btnTextColor?: string | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
   services?:
     | {
         icon?: (number | null) | Icon;
@@ -1161,6 +1192,66 @@ export interface ToolsWeSupportBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'toolsWeSupport';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhoWeAreBlock".
+ */
+export interface WhoWeAreBlock {
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Link to a page with more information about the who we are section
+   */
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    /**
+     * Select an icon to display on the button
+     */
+    icon?: (number | null) | Icon;
+    /**
+     * Choose a background color for the button, Leave empty for transparent
+     */
+    btnBgColor?: string | null;
+    /**
+     * Choose a text color for the button
+     */
+    btnTextColor?: string | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  media: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whoWeAre';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1192,13 +1283,13 @@ export interface ProjectsOverviewBlock {
        */
       icon?: (number | null) | Icon;
       /**
-       * Choose a background color for the button
+       * Choose a background color for the button, Leave empty for transparent
        */
-      btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+      btnBgColor?: string | null;
       /**
        * Choose a text color for the button
        */
-      btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
+      btnTextColor?: string | null;
       reference?:
         | ({
             relationTo: 'pages';
@@ -1435,21 +1526,7 @@ export interface TabsBlock {
  */
 export interface PartnersBlock {
   title?: string | null;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  subTitle?: string | null;
   partnerImages?:
     | {
         image: number | Media;
@@ -1870,6 +1947,7 @@ export interface PagesSelect<T extends boolean = true> {
         about?: T | AboutBlockSelect<T>;
         ourService?: T | OurServiceBlockSelect<T>;
         toolsWeSupport?: T | ToolsWeSupportBlockSelect<T>;
+        whoWeAre?: T | WhoWeAreBlockSelect<T>;
         projectsOverview?: T | ProjectsOverviewBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
         projectsList?: T | ProjectsListBlockSelect<T>;
@@ -1951,6 +2029,7 @@ export interface ButtonBlockSelect<T extends boolean = true> {
  * via the `definition` "ContentBlock_select".
  */
 export interface ContentBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   columns?:
     | T
     | {
@@ -2087,11 +2166,18 @@ export interface AboutBlockSelect<T extends boolean = true> {
 export interface OurServiceBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  unitsButton?:
+  link?:
     | T
     | {
-        label?: T;
+        type?: T;
+        newTab?: T;
+        icon?: T;
+        btnBgColor?: T;
+        btnTextColor?: T;
+        reference?: T;
         url?: T;
+        label?: T;
+        appearance?: T;
       };
   services?:
     | T
@@ -2119,6 +2205,19 @@ export interface OurServiceBlockSelect<T extends boolean = true> {
 export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        icon?: T;
+        btnBgColor?: T;
+        btnTextColor?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
   services?:
     | T
     | {
@@ -2126,6 +2225,30 @@ export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
         model?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhoWeAreBlock_select".
+ */
+export interface WhoWeAreBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        icon?: T;
+        btnBgColor?: T;
+        btnTextColor?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  media?: T;
   id?: T;
   blockName?: T;
 }
@@ -2260,7 +2383,7 @@ export interface TabsBlockSelect<T extends boolean = true> {
  */
 export interface PartnersBlockSelect<T extends boolean = true> {
   title?: T;
-  description?: T;
+  subTitle?: T;
   partnerImages?:
     | T
     | {
@@ -2403,24 +2526,10 @@ export interface MediaSelect<T extends boolean = true> {
 export interface ModelsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  links?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              icon?: T;
-              btnBgColor?: T;
-              btnTextColor?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
-      };
+  icon?: T;
+  website?: T;
+  github?: T;
+  sourceCode?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2809,13 +2918,13 @@ export interface Header {
            */
           icon?: (number | null) | Icon;
           /**
-           * Choose a background color for the button
+           * Choose a background color for the button, Leave empty for transparent
            */
-          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          btnBgColor?: string | null;
           /**
            * Choose a text color for the button
            */
-          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
+          btnTextColor?: string | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -2850,13 +2959,13 @@ export interface Footer {
            */
           icon?: (number | null) | Icon;
           /**
-           * Choose a background color for the button
+           * Choose a background color for the button, Leave empty for transparent
            */
-          btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+          btnBgColor?: string | null;
           /**
            * Choose a text color for the button
            */
-          btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
+          btnTextColor?: string | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -2891,6 +3000,19 @@ export interface Footer {
     [k: string]: unknown;
   } | null;
   /**
+   * Contact Us section with contact information
+   */
+  contactUs?: {
+    /**
+     * Title for the Contact Us section
+     */
+    title?: string | null;
+    /**
+     * Description for the Contact Us section
+     */
+    description?: string | null;
+  };
+  /**
    * Follow Us section with social links
    */
   followUs?: {
@@ -2904,37 +3026,11 @@ export interface Footer {
     description?: string | null;
     linkActions?:
       | {
+          icon: number | Icon;
           /**
-           * Icon for the social link
+           * Link of the social platform
            */
-          icon: number | Media;
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            /**
-             * Select an icon to display on the button
-             */
-            icon?: (number | null) | Icon;
-            /**
-             * Choose a background color for the button
-             */
-            btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
-            /**
-             * Choose a text color for the button
-             */
-            btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
-            reference?:
-              | ({
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null)
-              | ({
-                  relationTo: 'posts';
-                  value: number | Post;
-                } | null);
-            url?: string | null;
-            label: string;
-          };
+          link: string;
           /**
            * Name of the social platform
            */
@@ -2961,13 +3057,13 @@ export interface Footer {
              */
             icon?: (number | null) | Icon;
             /**
-             * Choose a background color for the button
+             * Choose a background color for the button, Leave empty for transparent
              */
-            btnBgColor: '#ffffff' | '#000000' | '#E41E3C' | '#D7E4BF80';
+            btnBgColor?: string | null;
             /**
              * Choose a text color for the button
              */
-            btnTextColor: '#000000' | '#ffffff' | '#3C432F' | '#D7E4BF80' | '#E41E3C';
+            btnTextColor?: string | null;
             reference?:
               | ({
                   relationTo: 'pages';
@@ -3108,6 +3204,12 @@ export interface FooterSelect<T extends boolean = true> {
         id?: T;
       };
   description?: T;
+  contactUs?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   followUs?:
     | T
     | {
@@ -3117,18 +3219,7 @@ export interface FooterSelect<T extends boolean = true> {
           | T
           | {
               icon?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    icon?: T;
-                    btnBgColor?: T;
-                    btnTextColor?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                  };
+              link?: T;
               name?: T;
               id?: T;
             };

@@ -1,13 +1,8 @@
 import type { Block } from 'payload'
+import { link } from '@/fields/link'
 
-import {
-  AlignFeature,
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-  LinkFeature,
-} from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
 export const ToolsWeSupport: Block = {
   slug: 'toolsWeSupport',
@@ -21,18 +16,16 @@ export const ToolsWeSupport: Block = {
       name: 'description',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => [
-          ...rootFeatures,
-          HeadingFeature({
-            enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-          }),
-          FixedToolbarFeature(),
-          InlineToolbarFeature(),
-          AlignFeature(),
-          LinkFeature(),
-        ],
+        features: getLexicalFeatures,
       }),
     },
+    link({
+      overrides: {
+        admin: {
+          description: 'Link to a page with more information about the tools we support',
+        },
+      },
+    }),
     {
       name: 'services',
       type: 'array',

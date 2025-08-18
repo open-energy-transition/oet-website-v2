@@ -44,6 +44,31 @@ export const Footer: GlobalConfig = {
       },
     },
     {
+      name: 'contactUs',
+      type: 'group',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: false,
+          admin: {
+            description: 'Title for the Contact Us section',
+          },
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: false,
+          admin: {
+            description: 'Description for the Contact Us section',
+          },
+        },
+      ],
+      admin: {
+        description: 'Contact Us section with contact information',
+      },
+    },
+    {
       name: 'followUs',
       type: 'group',
       fields: [
@@ -69,16 +94,19 @@ export const Footer: GlobalConfig = {
           fields: [
             {
               name: 'icon',
-              type: 'upload',
-              relationTo: 'media',
+              type: 'relationship',
+              relationTo: 'icons',
+              required: true,
+              admin: { width: '50%' },
+            },
+            {
+              name: 'link',
+              type: 'text',
               required: true,
               admin: {
-                description: 'Icon for the social link',
+                description: 'Link of the social platform',
               },
             },
-            link({
-              appearances: false,
-            }),
             {
               name: 'name',
               type: 'text',
@@ -88,9 +116,6 @@ export const Footer: GlobalConfig = {
               },
             },
           ],
-          admin: {
-            initCollapsed: true,
-          },
         },
       ],
       admin: {

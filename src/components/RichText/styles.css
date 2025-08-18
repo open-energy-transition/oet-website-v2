@@ -56,10 +56,4 @@ h8 {
   letter-spacing: 1%;
 }
 
-.customTextState-size-h9 {
-  font-family: var(--font-poppins), sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0%;
-}
+

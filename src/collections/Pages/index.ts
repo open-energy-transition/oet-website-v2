@@ -1,4 +1,3 @@
-import { PostsListBlock } from './../../blocks/PostsListBlock/Component'
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
@@ -6,6 +5,7 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { About } from '@/blocks/About/config'
 import { OurService } from '@/blocks/OurServiceBlock/config'
 import { ToolsWeSupport } from '@/blocks/ToolsWeSupportBlock/config'
+import { WhoWeAre } from '@/blocks/WhoWeAreBlock/config'
 import { ProjectsOverview } from '@/blocks/ProjectsOverviewBlock/config'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
@@ -102,6 +102,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 About,
                 OurService,
                 ToolsWeSupport,
+                WhoWeAre,
                 ProjectsOverview,
                 ProjectTabs,
                 ProjectsList,

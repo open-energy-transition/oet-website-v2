@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+
   h1,
   h2,
   h3,
@@ -88,6 +89,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground min-h-[100vh] flex flex-col;
   }
@@ -100,4 +102,67 @@ html {
 html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
+}
+
+@layer components {
+
+  /* oxanium */
+  .text-oxanium-3xl {
+    @apply font-oxanium text-[40px] font-bold text-black leading-[120%] tracking-[-1%];
+  }
+
+  /* poppins */
+  .text-poppins-xxs {
+    @apply font-poppins font-medium text-[10px] leading-[120%] tracking-[-1%];
+  }
+
+  .text-poppins-c-xs {
+    @apply font-poppins text-[12.48px] leading-[24.96px] tracking-[0%];
+  }
+
+  .text-poppins-sm {
+    @apply font-poppins font-normal text-[14px] leading-[100%] tracking-[0%];
+  }
+
+  .text-poppins-base {
+    @apply font-poppins font-normal text-[16px] leading-[24px] tracking-[0%];
+  }
+
+
+  .text-poppins-regular {
+    @apply font-poppins font-normal text-[15.6px] leading-[100%] tracking-[0%];
+  }
+
+  .text-poppins-regular {
+    @apply font-poppins font-normal text-[15.6px] leading-[100%] tracking-[0%];
+  }
+
+  .text-poppins-x-small {
+    @apply font-poppins font-normal text-[14px] leading-[16px] tracking-[0%];
+  }
+
+  .customTextState-size-h7 {
+    @apply font-poppins font-bold text-[32px] leading-[40px] tracking-[0%];
+  }
+
+  .customTextState-size-h8 {
+    @apply font-poppins font-bold text-[24px] leading-[32px] tracking-[0%];
+  }
+
+  .customTextState-size-h9 {
+    @apply font-poppins font-normal text-[16px] leading-[24px] tracking-[0%];
+  }
+
+  /* Heebo */
+  .text-heebo-small-normal {
+    @apply font-heebo text-[14px] font-normal leading-[150%] tracking-[0%];
+  }
+
+  .text-heebo-small-link {
+    @apply font-heebo text-[14px] font-normal underline leading-[150%] tracking-[0%];
+  }
+
+  .text-heebo-medium-normal {
+    @apply font-heebo text-[18px] font-normal leading-[150%] tracking-[0%];
+  }
 }

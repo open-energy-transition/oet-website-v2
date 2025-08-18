@@ -18,8 +18,8 @@ type CMSLinkType = {
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
-  btnTextColor?: string
-  btnBgColor?: string
+  btnTextColor?: string | null
+  btnBgColor?: string | null
   icon?: Icon | null | number
 }
 
@@ -59,7 +59,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
         href={href || url || ''}
         {...newTabProps}
         style={{
-          ...(btnBgColor
+          ...(btnTextColor
             ? {
                 color: btnTextColor,
               }
@@ -81,12 +81,14 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
       asChild
       className={className}
       style={{
-        ...(btnBgColor
+        ...(btnTextColor
           ? {
-              color: btnTextColor,
+              color: btnTextColor || 'inherit',
             }
           : {}),
-        ...(btnBgColor ? { backgroundColor: btnBgColor } : {}),
+        ...(appearance === 'outline'
+          ? { borderColor: btnTextColor || 'inherit' }
+          : { backgroundColor: btnBgColor || 'transparent' }),
       }}
       size={size}
       variant={appearance}

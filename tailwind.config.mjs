@@ -63,6 +63,7 @@ const config = {
         },
         background: 'hsl(var(--background))',
         border: 'hsla(var(--border))',
+        colorScheme1Border: '#0B0C0B26',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -101,6 +102,7 @@ const config = {
         poppins: ['var(--font-poppins)'],
         oxygen: ['var(--font-oxygen)'],
         roboto: ['var(--font-roboto)'],
+        heebo: ['var(--font-heebo)'],
       },
       keyframes: {
         'accordion-down': {

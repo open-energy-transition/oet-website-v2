@@ -16,7 +16,7 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
-import { Oxanium, Oxygen, Poppins, Roboto } from 'next/font/google'
+import { Oxanium, Oxygen, Poppins, Roboto, Heebo } from 'next/font/google'
 
 // Define Poppins with desired weights
 export const poppins = Poppins({
@@ -48,6 +48,14 @@ export const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   display: 'swap',
   variable: '--font-roboto',
+})
+
+// Define Heebo with desired weights
+export const heebo = Heebo({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-heebo',
 })
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
