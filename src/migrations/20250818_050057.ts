@@ -205,7 +205,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "models" ADD COLUMN "website" varchar;
   ALTER TABLE "models" ADD COLUMN "github" varchar;
   ALTER TABLE "models" ADD COLUMN "source_code" varchar;
-  ALTER TABLE "footer_follow_us_link_actions" ADD COLUMN "link" varchar NOT NULL;
+  ALTER TABLE "footer_follow_us_link_actions" ADD COLUMN "link" varchar DEFAULT '' NOT NULL;
   ALTER TABLE "footer" ADD COLUMN "contact_us_title" varchar;
   ALTER TABLE "footer" ADD COLUMN "contact_us_description" varchar;
   ALTER TABLE "pages_blocks_who_we_are" ADD CONSTRAINT "pages_blocks_who_we_are_link_icon_id_icons_id_fk" FOREIGN KEY ("link_icon_id") REFERENCES "public"."icons"("id") ON DELETE set null ON UPDATE no action;
