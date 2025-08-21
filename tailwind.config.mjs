@@ -103,6 +103,7 @@ const config = {
         oxygen: ['var(--font-oxygen)'],
         roboto: ['var(--font-roboto)'],
         heebo: ['var(--font-heebo)'],
+        kode_mono: ['var(--font-kode-mono)'],
       },
       keyframes: {
         'accordion-down': {

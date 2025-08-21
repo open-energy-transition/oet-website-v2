@@ -10,7 +10,7 @@ export const ProjectTabsBlock: React.FC<
     id?: string
   }
 > = async (props) => {
-  const { id, categories, introContent, showTabs, tabLabels, displayOptions } = props
+  const { id, categories, introContent, showTabs, tabLabels, displayOptions, title } = props
 
   const limit = 999999
 
@@ -56,13 +56,14 @@ export const ProjectTabsBlock: React.FC<
   })
 
   const projects = {
-    inProgress: inProgressQuery.docs,
     completed: completedQuery.docs,
+    inProgress: inProgressQuery.docs,
   }
 
   return (
     <div className={id ? `block-${id}` : ''}>
       <ProjectTabsClient
+        title={title}
         introContent={introContent}
         showTabs={showTabs}
         tabLabels={tabLabels}

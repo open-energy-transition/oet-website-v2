@@ -19,20 +19,13 @@ export type ProjectTabsClientProps = {
   tabLabels: ProjectTabsBlockProps['tabLabels']
   displayOptions: ProjectTabsBlockProps['displayOptions']
   categories: ProjectTabsBlockProps['categories']
+  title: ProjectTabsBlockProps['title']
 }
 
 const ProjectCard: React.FC<{
   project: Project
   displayOptions: ProjectTabsBlockProps['displayOptions']
 }> = ({ project, displayOptions }) => {
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  }
-
   const getImageUrl = (imageUrl: Project['imageUrl']): string | null => {
     if (!imageUrl) return null
     if (typeof imageUrl === 'number') return null
@@ -42,7 +35,7 @@ const ProjectCard: React.FC<{
   const imageUrl = getImageUrl(project.imageUrl)
 
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+    <div className="">
       {imageUrl && (
         <div className="aspect-video overflow-hidden">
           <Image
@@ -57,11 +50,9 @@ const ProjectCard: React.FC<{
       <div className="p-6">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600">
-              {project.title}
-            </h3>
+            <h3 className="text-kode_mono_h5">{project.title}</h3>
             {displayOptions?.showSubtitle && project.subTitle && (
-              <p className="mt-1 text-sm text-gray-600">{project.subTitle}</p>
+              <p className="mt-4 text-heebo-regular-normal">{project.subTitle}</p>
             )}
           </div>
           {/* <div className="ml-4 flex flex-col items-end space-y-2">
@@ -75,19 +66,13 @@ const ProjectCard: React.FC<{
             )}
           </div> */}
         </div>
-        {project.content && (
-          <div className="mt-3 text-sm text-gray-600 line-clamp-2">
-            {/* Render rich text content if needed */}
-            <p>Project content available</p>
-          </div>
-        )}
 
         {/* Learn More Button */}
         {project.slug && (
           <div className="mt-4">
             <Link
               href={`/projects/${project.slug}`}
-              className="group/button inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              className="inline-flex items-center text-heebo-regular-normal font-medium"
             >
               Learn more
               <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover/button:translate-x-1" />
@@ -112,7 +97,7 @@ const ProjectGrid: React.FC<{
   }
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((project) => (
         <ProjectCard key={project.id} project={project} displayOptions={displayOptions} />
       ))}
@@ -126,24 +111,25 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
   tabLabels,
   displayOptions,
   projects,
+  title,
 }) => {
-  const [activeTab, setActiveTab] = useState<'in-progress' | 'completed'>('in-progress')
+  const [activeTab, setActiveTab] = useState<'in-progress' | 'completed'>('completed')
 
   const inProgressProjects = projects?.inProgress || []
   const completedProjects = projects?.completed || []
 
   const tabs = [
     {
-      key: 'in-progress' as const,
-      label: tabLabels?.inProgressLabel || 'In Progress',
-      projects: inProgressProjects,
-      count: inProgressProjects.length,
-    },
-    {
       key: 'completed' as const,
       label: tabLabels?.completedLabel || 'Completed',
       projects: completedProjects,
       count: completedProjects.length,
+    },
+    {
+      key: 'in-progress' as const,
+      label: tabLabels?.inProgressLabel || 'In Progress',
+      projects: inProgressProjects,
+      count: inProgressProjects.length,
     },
   ]
 
@@ -164,29 +150,30 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
 
   return (
     <div className="container mx-auto px-4 py-12">
+      {title && <div className="customTextState-poppins-h5">{title}</div>}
       {introContent && (
-        <div className="mb-8">
-          <RichText data={introContent} />
+        <div className="text-heebo-medium-normal mt-6">
+          <RichText enableGutter={false} enableProse={false} data={introContent} />
         </div>
       )}
 
       {/* Tab Navigation */}
-      <div className="mb-8">
-        <nav className="flex space-x-8" aria-label="Tabs">
+      <div className="mb-8 mt-14">
+        <nav className="flex space-x-8 h-[80px]" aria-label="Tabs">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className={cn(
-                'whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium transition-colors',
+                'whitespace-nowrap w-1/2 border-r border-[#0B0C0B26] py-2 px-1 customTextState-size-h8 font-medium transition-colors',
                 activeTab === tab.key
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                  ? 'bg-[#F4F6F0] text-[#26372C]'
+                  : 'border-transparent text-[#26372C] font-normal',
               )}
               aria-current={activeTab === tab.key ? 'page' : undefined}
             >
               {tab.label}
-              {tab.count > 0 && (
+              {/* {tab.count > 0 && (
                 <span
                   className={cn(
                     'ml-2 inline-flex items-center justify-center rounded-full px-2 py-1 text-xs',
@@ -198,13 +185,14 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
                   {tab.count}
                 </span>
               )}
+              */}
             </button>
           ))}
         </nav>
       </div>
 
       {/* Tab Content */}
-      <div className="mt-8">
+      <div className="mt-16">
         {tabs.map((tab) => (
           <div
             key={tab.key}

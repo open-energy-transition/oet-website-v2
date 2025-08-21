@@ -95,6 +95,10 @@ export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
             label: 'H9',
             css: { 'font-size': '16px', 'line-height': '24px', 'letter-spacing': '0%' },
           },
+          poppins: {
+            label: 'poppins-h5',
+            css: { 'font-size': '56px', 'line-height': '100%', 'letter-spacing': '0%' },
+          },
         },
         color: {
           ...defaultColors.text,

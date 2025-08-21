@@ -57,10 +57,8 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
           </div>
 
           <h1 className="text-4xl font-bold text-gray-900 mb-4">{project.title}</h1>
-          
-          {project.subTitle && (
-            <p className="text-xl text-gray-600 mb-6">{project.subTitle}</p>
-          )}
+
+          {project.subTitle && <p className="text-xl text-gray-600 mb-6">{project.subTitle}</p>}
         </header>
 
         {/* Main Image */}
@@ -87,64 +85,65 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
         )}
 
         {/* Categories */}
-        {project.categories && Array.isArray(project.categories) && project.categories.length > 0 && (
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Categories</h3>
-            <div className="flex flex-wrap gap-2">
-              {project.categories.map((category) => {
-                const categoryName = typeof category === 'object' ? category.title : category
-                return (
-                  <span
-                    key={typeof category === 'object' ? category.id : category}
-                    className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700"
-                  >
-                    {categoryName}
-                  </span>
-                )
-              })}
+        {project.categories &&
+          Array.isArray(project.categories) &&
+          project.categories.length > 0 && (
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Categories</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.categories.map((category) => {
+                  const categoryName = typeof category === 'object' ? category.title : category
+                  return (
+                    <span
+                      key={typeof category === 'object' ? category.id : category}
+                      className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700"
+                    >
+                      {categoryName}
+                    </span>
+                  )
+                })}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {/* Related Projects */}
-        {project.relatedProjects && Array.isArray(project.relatedProjects) && project.relatedProjects.length > 0 && (
-          <div className="mt-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Projects</h3>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {project.relatedProjects.map((relatedProject) => {
-                if (typeof relatedProject === 'number') return null
-                const relatedImageUrl = getImageUrl(relatedProject.imageUrl)
-                
-                return (
-                  <div
-                    key={relatedProject.id}
-                    className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
-                  >
-                    {relatedImageUrl && (
-                      <div className="aspect-video overflow-hidden">
-                        <Image
-                          src={relatedImageUrl}
-                          alt={relatedProject.title}
-                          width={300}
-                          height={169}
-                          className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                        />
-                      </div>
-                    )}
-                    <div className="p-4">
-                      <h4 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600">
-                        {relatedProject.title}
-                      </h4>
-                      {relatedProject.subTitle && (
-                        <p className="mt-1 text-sm text-gray-600">{relatedProject.subTitle}</p>
+        {project.relatedProjects &&
+          Array.isArray(project.relatedProjects) &&
+          project.relatedProjects.length > 0 && (
+            <div className="mt-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Projects</h3>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {project.relatedProjects.map((relatedProject) => {
+                  if (typeof relatedProject === 'number') return null
+                  const relatedImageUrl = getImageUrl(relatedProject.imageUrl)
+
+                  return (
+                    <div key={relatedProject.id} className="">
+                      {relatedImageUrl && (
+                        <div className="aspect-video overflow-hidden">
+                          <Image
+                            src={relatedImageUrl}
+                            alt={relatedProject.title}
+                            width={300}
+                            height={169}
+                            className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                          />
+                        </div>
                       )}
+                      <div className="p-4">
+                        <h4 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600">
+                          {relatedProject.title}
+                        </h4>
+                        {relatedProject.subTitle && (
+                          <p className="mt-1 text-sm text-gray-600">{relatedProject.subTitle}</p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )
-              })}
+                  )
+                })}
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </div>
   )

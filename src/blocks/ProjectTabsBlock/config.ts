@@ -12,6 +12,15 @@ export const ProjectTabs: Block = {
   interfaceName: 'ProjectTabsBlock',
   fields: [
     {
+      name: 'title',
+      type: 'text',
+      required: false,
+      label: 'Title',
+      admin: {
+        description: 'Title for the project tabs block',
+      },
+    },
+    {
       name: 'introContent',
       type: 'richText',
       editor: lexicalEditor({

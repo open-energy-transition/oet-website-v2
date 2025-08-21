@@ -17,7 +17,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
   const [imagesLoaded, setImagesLoaded] = useState(false)
   const carouselRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
-  const [slidesToShow, setSlidesToShow] = useState(3)
+  const [slidesToShow, setSlidesToShow] = useState(4)
 
   // Preload all images to prevent flashing during slides
   useEffect(() => {
@@ -67,7 +67,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
       } else if (window.innerWidth < 1024) {
         setSlidesToShow(2)
       } else {
-        setSlidesToShow(3)
+        setSlidesToShow(4)
       }
     }
 

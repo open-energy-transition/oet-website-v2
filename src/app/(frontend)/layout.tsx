@@ -16,7 +16,7 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
-import { Oxanium, Oxygen, Poppins, Roboto, Heebo } from 'next/font/google'
+import { Oxanium, Oxygen, Poppins, Roboto, Heebo, Kode_Mono } from 'next/font/google'
 
 // Define Poppins with desired weights
 export const poppins = Poppins({
@@ -58,6 +58,14 @@ export const heebo = Heebo({
   variable: '--font-heebo',
 })
 
+// Define Kode_Mono with desired weights
+export const kode_mono = Kode_Mono({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+  variable: '--font-kode-mono',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
@@ -70,6 +78,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         oxanium.variable,
         oxygen.variable,
         roboto.variable,
+        heebo.variable,
+        kode_mono.variable,
       )}
       lang="en"
       suppressHydrationWarning

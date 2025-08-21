@@ -1358,6 +1358,10 @@ export interface Project {
  * via the `definition` "ProjectTabsBlock".
  */
 export interface ProjectTabsBlock {
+  /**
+   * Title for the project tabs block
+   */
+  title?: string | null;
   introContent?: {
     root: {
       type: string;
@@ -2289,6 +2293,7 @@ export interface ProjectsOverviewBlockSelect<T extends boolean = true> {
  * via the `definition` "ProjectTabsBlock_select".
  */
 export interface ProjectTabsBlockSelect<T extends boolean = true> {
+  title?: T;
   introContent?: T;
   showTabs?: T;
   tabLabels?:
