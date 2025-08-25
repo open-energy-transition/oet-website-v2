@@ -8,6 +8,7 @@ import { ListBlockComponent } from '../List/Component' // <-- import ListBlockCo
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
 import { CMSLink } from '../../components/Link'
+import { CardModel } from '@/components/Card/CardModal'
 
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   const { columns, backgroundColor } = props
@@ -65,24 +66,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                         </div>
                       )}
                       {/* Modal trigger */}
-                      {modal && typeof modal === 'object' && (
-                        <CardBlock
-                          tag={'Model'}
-                          title={modal.title ?? ''}
-                          subtitle={modal.description ?? ''}
-                          description={undefined}
-                          iconClass={icon as any}
-                          actions={
-                            action
-                              ? action.map(({ label, url }) => ({
-                                  label: label ?? null,
-                                  url: url ?? null,
-                                }))
-                              : undefined
-                          }
-                          cardSize={'small'}
-                        />
-                      )}
+                      {modal && typeof modal === 'object' && <CardModel data={modal} />}
                     </div>
                   ) : type === 'card' ? (
                     // Card Type

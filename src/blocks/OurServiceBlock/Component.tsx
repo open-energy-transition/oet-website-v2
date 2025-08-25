@@ -56,9 +56,9 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
                     )}
                   </div>
                   <div>
-                    <span className="text-primary font-bold text-xl">{service.number}</span>
+                    <span className="text-poppins-h5">{service.number}</span>
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-lg">{service.title}</h3>
+                      <h3 className="text-poppins-h7">{service.title}</h3>
                     </div>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
             bottomImages.map((img, i) => (
               <div
                 key={i}
-                className="w-full max-w-[95%] h-[128px] overflow-hidden shadow flex items-center justify-center"
+                className="w-full max-w-[95%] h-[128px] overflow-hidden flex items-center justify-center"
               >
                 <Media
                   resource={img.image}

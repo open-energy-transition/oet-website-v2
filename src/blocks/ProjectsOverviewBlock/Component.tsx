@@ -28,7 +28,7 @@ export const ProjectsOverviewBlock: React.FC<ProjectsOverviewBlockProps> = ({
           {unitsButton?.link && (
             <CMSLink
               {...unitsButton.link}
-              btnTextColor="26372CB2"
+              btnTextColor="#26372CB2"
               className="inline-block px-6 py-2 text-poppins-sm"
             />
           )}

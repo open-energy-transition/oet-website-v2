@@ -136,6 +136,18 @@ html[data-theme='light'] {
     @apply font-poppins font-normal text-[15.6px] leading-[100%] tracking-[0%];
   }
 
+  .text-poppins-2xl {
+    @apply font-poppins font-medium text-2xl leading-[32px] tracking-[0%];
+  }
+
+  .text-poppins-h5 {
+    @apply font-poppins font-normal text-[48px] leading-[100%] tracking-[0%];
+  }
+
+  .text-poppins-h7 {
+    @apply font-poppins font-bold text-[32px] leading-[42px] tracking-[0%];
+  }
+
   .customTextState-size-h7 {
     @apply font-poppins font-bold text-[32px] leading-[40px] tracking-[0%];
   }
@@ -143,7 +155,7 @@ html[data-theme='light'] {
   .customTextState-size-h8 {
     @apply font-poppins font-bold text-[24px] leading-[32px] tracking-[0%];
   }
-
+  .text-poppins-h9,
   .customTextState-size-h9 {
     @apply font-poppins font-normal text-[16px] leading-[24px] tracking-[0%];
   }

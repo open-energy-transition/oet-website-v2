@@ -26,7 +26,7 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
           <div className="mt-7 gap-2 flex flex-wrap">
             <CMSLink
               {...link}
-              className="rounded-3xl text-poppins-x-small font-medium leading-[100%] !text-[#26372CCC] !border-[#BABFBB] bg-[#F6F7F3]"
+              className="rounded-3xl text-poppins-x-small font-medium leading-[100%] !text-[#26372CCC] border !border-[#BABFBB] bg-[#F6F7F3]"
             />
           </div>
         </div>

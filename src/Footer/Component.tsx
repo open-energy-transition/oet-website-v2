@@ -44,7 +44,7 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-8">
           {/* About Us */}
           {aboutUs && (
             <div className="flex-1">
@@ -52,7 +52,7 @@ export async function Footer() {
                 <div className="text-poppins-base font-semibold">{aboutUs.title}</div>
               )}
               {Array.isArray(aboutUs.linkActions) && (
-                <div>
+                <div className='flex flex-col'>
                   {aboutUs.linkActions.map((action, i) => (
                     <CMSLink
                       key={i}

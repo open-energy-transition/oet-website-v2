@@ -80,7 +80,7 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
         {/* Content */}
         {project.content && (
           <div className="prose prose-lg max-w-none mb-8">
-            <RichText data={project.content} />
+            <RichText data={project.content} enableGutter={false} enableProse={false} />
           </div>
         )}
 

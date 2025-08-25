@@ -14,6 +14,10 @@ import RichText from '@/components/RichText'
 // Initialize particles engine
 loadSlim(tsParticles)
 
+const polygonSvg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+  <polygon points='80,0 100,0 100,100 10,100'/>
+</svg>`
+
 export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, columns }) => {
   const { setHeaderTheme } = useHeaderTheme()
 
@@ -26,7 +30,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
       {/* Particles Background */}
       <Particles
         id="tsparticles"
-        className="absolute inset-0 z-max"
+        className="absolute inset-y-0 right-0 w-full h-full z-max [clip-path:polygon(80%_0,100%_0,80%_0,100%_0,80%_0,100%_0,80%_0,100%_0,100%_100%,5%_100%)]"
         options={{
           background: {
             color: {
@@ -60,11 +64,11 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
           },
           particles: {
             color: {
-              value: '#000000',
+              value: ['#000000', '#888888'],
             },
             links: {
               color: '#000000',
-              distance: 150,
+              distance: 200,
               enable: true,
               opacity: 0.3,
               width: 1,
@@ -81,9 +85,9 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
             },
             number: {
               density: {
-                enable: true,
+                enable: false,
               },
-              value: 150,
+              value: 180,
             },
             opacity: {
               value: 1.0,
@@ -92,7 +96,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
               type: 'circle',
             },
             size: {
-              value: { min: 1, max: 3 },
+              value: { min: 1, max: 8 },
             },
           },
           detectRetina: true,

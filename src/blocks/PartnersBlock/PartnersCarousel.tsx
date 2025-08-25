@@ -210,8 +210,9 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
             >
               <Media
                 resource={img.image}
-                className="object-contain scale-75 p-2"
+                className="object-contain p-2 scale-75"
                 alt={img.alt}
+                imgClassName='max-w-[140%]'
                 loading="eager" // Ensure images load immediately
               />
             </div>
