@@ -100,6 +100,24 @@ export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
             css: { 'font-size': '56px', 'line-height': '100%', 'letter-spacing': '0%' },
           },
         },
+        fontWeight: {
+          300: {
+            label: '300',
+            css: { 'font-weight': '300' },
+          },
+          400: {
+            label: '400',
+            css: { 'font-weight': '400' },
+          },
+          500: {
+            label: '500',
+            css: { 'font-weight': '500' },
+          },
+          600: {
+            label: '600',
+            css: { 'font-weight': '600' },
+          },
+        },
         color: {
           ...defaultColors.text,
           customGrey1: { label: '#0B0C0B80-50%', css: { color: 'rgba(11, 12, 11, 0.5)' } },

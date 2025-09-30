@@ -132,12 +132,7 @@ const columnFields: Field[] = [
     name: 'description',
     type: 'richText',
     editor: lexicalEditor({
-      features: ({ rootFeatures }) => [
-        ...rootFeatures,
-        HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-        FixedToolbarFeature(),
-        InlineToolbarFeature(),
-      ],
+      features: getLexicalFeatures,
     }),
     admin: {
       condition: (_, siblingData) => siblingData?.type === 'card',

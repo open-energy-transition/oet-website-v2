@@ -45,36 +45,40 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   // Customize the default converters
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const customTextConverter = (args: any) => {
-    const { node, nodesToJSX } = args;
-    const textState = node.$;
-    
+    const { node, nodesToJSX } = args
+    const textState = node.$
+    const fontWeight = textState.fontWeight
     // Default handling for text nodes
-    const children = node.children ? nodesToJSX({ nodes: node.children }) : null;
-    
+    const children = node.children ? nodesToJSX({ nodes: node.children }) : null
+
     // Only apply styling if there's actual content and text state
     if (textState && (textState.color || textState.size || textState.background) && node.text) {
-      let className = '';
-      
+      let className = ''
+
       if (textState.color) {
-        className += ` customTextState-color-${textState.color}`;
+        className += ` customTextState-color-${textState.color}`
       }
       if (textState.size) {
-        className += ` customTextState-size-${textState.size}`;
+        className += ` customTextState-size-${textState.size}`
       }
       if (textState.background) {
-        className += ` customTextState-background-${textState.background}`;
+        className += ` customTextState-background-${textState.background}`
       }
-      
-      return <span className={className.trim()}>{node.text || children}</span>;
+
+      return (
+        <span style={{ fontWeight }} className={className.trim()}>
+          {node.text || children}
+        </span>
+      )
     }
-    
-    return node.text || children;
-  };
+
+    return node.text || children
+  }
 
   const customDefaultConverters = {
     ...defaultConverters,
     ...LinkJSXConverter({ internalDocToHref }),
-    text: customTextConverter
+    text: customTextConverter,
   }
 
   return {

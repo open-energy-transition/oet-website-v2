@@ -7,6 +7,7 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
@@ -34,9 +35,7 @@ export const Footer: GlobalConfig = {
       name: 'description',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-        },
+        features: getLexicalFeatures,
       }),
       required: false,
       admin: {
@@ -155,9 +154,7 @@ export const Footer: GlobalConfig = {
       name: 'copyright',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-        },
+        features: getLexicalFeatures,
       }),
       required: false,
       admin: {
@@ -168,9 +165,7 @@ export const Footer: GlobalConfig = {
       name: 'privacyPolicy',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-        },
+        features: getLexicalFeatures,
       }),
       required: false,
       admin: {
@@ -181,9 +176,7 @@ export const Footer: GlobalConfig = {
       name: 'termsOfUse',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-        },
+        features: getLexicalFeatures,
       }),
       required: false,
       admin: {
@@ -194,9 +187,7 @@ export const Footer: GlobalConfig = {
       name: 'cookiePolicy',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-        },
+        features: getLexicalFeatures,
       }),
       required: false,
       admin: {

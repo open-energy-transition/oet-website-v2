@@ -6,6 +6,7 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
 export const TeamMembersBlock: Block = {
   slug: 'teamMembers',
@@ -25,12 +26,7 @@ export const TeamMembersBlock: Block = {
       name: 'description',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => [
-          ...rootFeatures,
-          HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-          FixedToolbarFeature(),
-          InlineToolbarFeature(),
-        ],
+        features: getLexicalFeatures,
       }),
       label: 'Description',
     },

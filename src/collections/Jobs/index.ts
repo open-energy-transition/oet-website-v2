@@ -7,6 +7,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublishedWithoutDrafts } from '../../access/authenticatedOrPublished'
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
 export const Jobs: CollectionConfig = {
   slug: 'jobs',
@@ -36,14 +37,7 @@ export const Jobs: CollectionConfig = {
       name: 'description',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [
-            ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            FixedToolbarFeature(),
-            InlineToolbarFeature(),
-          ]
-        },
+        features: getLexicalFeatures,
       }),
       required: true,
     },

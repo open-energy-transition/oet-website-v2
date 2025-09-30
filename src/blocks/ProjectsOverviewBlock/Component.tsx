@@ -10,6 +10,7 @@ export const ProjectsOverviewBlock: React.FC<ProjectsOverviewBlockProps> = ({
   unitsButton,
   projects,
 }) => {
+  console.log(description)
   return (
     <div className="container py-8">
       <div className="flex justify-between">
