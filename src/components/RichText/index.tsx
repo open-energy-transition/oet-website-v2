@@ -47,7 +47,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   const customTextConverter = (args: any) => {
     const { node, nodesToJSX } = args
     const textState = node.$
-    const fontWeight = textState.fontWeight
+    const fontWeight = textState?.fontWeight ?? {}
     // Default handling for text nodes
     const children = node.children ? nodesToJSX({ nodes: node.children }) : null
 
