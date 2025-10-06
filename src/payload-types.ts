@@ -72,6 +72,8 @@ export interface Config {
     media: Media;
     models: Model;
     categories: Category;
+    departments: Department;
+    testimonials: Testimonial;
     users: User;
     projects: Project;
     'team-members': TeamMember;
@@ -93,6 +95,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     models: ModelsSelect<false> | ModelsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
@@ -223,6 +227,8 @@ export interface Page {
   };
   layout: (
     | CallToActionBlock
+    | DepartmentsListBlock
+    | CustomerTestimonialsListBlock
     | ButtonBlock
     | ContentBlock
     | DonateBlock
@@ -543,6 +549,125 @@ export interface CallToActionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DepartmentsListBlock".
+ */
+export interface DepartmentsListBlock {
+  /**
+   * Select one or more departments to display in this block
+   */
+  departments?: (number | Department)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'departmentsList';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments".
+ */
+export interface Department {
+  id: number;
+  department: string;
+  shortDescription: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  icon?: (number | null) | Icon;
+  status: 'open' | 'closed' | 'draft';
+  projects?: (number | Project)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  subTitle: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  service: string;
+  projectStatus: 'in-progress' | 'completed';
+  date: string;
+  imageUrl?: (number | null) | Media;
+  categories?: (number | Category)[] | null;
+  relatedProjects?: (number | Project)[] | null;
+  slug?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CustomerTestimonialsListBlock".
+ */
+export interface CustomerTestimonialsListBlock {
+  /**
+   * Title for the testimonials block
+   */
+  title?: string | null;
+  /**
+   * Subtitle for the testimonials block
+   */
+  subtitle?: string | null;
+  /**
+   * Select one or more customerTestimonials to display in this block
+   */
+  customerTestimonials?: (number | Testimonial)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'customerTestimonialsList';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  description: string;
+  score: number;
+  name: string;
+  position: string;
+  company: string;
+  avatar?: (number | null) | Media;
+  companyLogo?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ButtonBlock".
  */
 export interface ButtonBlock {
@@ -607,6 +732,29 @@ export interface ButtonBlock {
  */
 export interface ContentBlock {
   backgroundColor?: string | null;
+  tag?: string | null;
+  title?: string | null;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  padding?: {
+    top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+    bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+    left?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+    right?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  };
   columns?:
     | {
         size?: ('oneThird' | 'oneFourth' | 'half' | 'twoThirds' | 'full') | null;
@@ -698,6 +846,10 @@ export interface ContentBlock {
           | {
               title: string;
               description?: string | null;
+              /**
+               * Select an icon to display
+               */
+              icon?: (number | null) | Icon;
               id?: string | null;
             }[]
           | null;
@@ -1315,46 +1467,6 @@ export interface ProjectsOverviewBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects".
- */
-export interface Project {
-  id: number;
-  title: string;
-  subTitle: string;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  service: string;
-  projectStatus: 'in-progress' | 'completed';
-  date: string;
-  imageUrl?: (number | null) | Media;
-  categories?: (number | Category)[] | null;
-  relatedProjects?: (number | Project)[] | null;
-  slug?: string | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: (number | null) | Media;
-  };
-  publishedAt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ProjectTabsBlock".
  */
 export interface ProjectTabsBlock {
@@ -1810,6 +1922,14 @@ export interface PayloadLockedDocument {
         value: number | Category;
       } | null)
     | ({
+        relationTo: 'departments';
+        value: number | Department;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
@@ -1934,6 +2054,8 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         cta?: T | CallToActionBlockSelect<T>;
+        departmentsList?: T | DepartmentsListBlockSelect<T>;
+        customerTestimonialsList?: T | CustomerTestimonialsListBlockSelect<T>;
         button?: T | ButtonBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         donate?: T | DonateBlockSelect<T>;
@@ -2004,6 +2126,26 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DepartmentsListBlock_select".
+ */
+export interface DepartmentsListBlockSelect<T extends boolean = true> {
+  departments?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CustomerTestimonialsListBlock_select".
+ */
+export interface CustomerTestimonialsListBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  customerTestimonials?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ButtonBlock_select".
  */
 export interface ButtonBlockSelect<T extends boolean = true> {
@@ -2034,6 +2176,17 @@ export interface ButtonBlockSelect<T extends boolean = true> {
  */
 export interface ContentBlockSelect<T extends boolean = true> {
   backgroundColor?: T;
+  tag?: T;
+  title?: T;
+  richText?: T;
+  padding?:
+    | T
+    | {
+        top?: T;
+        bottom?: T;
+        left?: T;
+        right?: T;
+      };
   columns?:
     | T
     | {
@@ -2078,6 +2231,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              icon?: T;
               id?: T;
             };
         id?: T;
@@ -2555,6 +2709,35 @@ export interface CategoriesSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments_select".
+ */
+export interface DepartmentsSelect<T extends boolean = true> {
+  department?: T;
+  shortDescription?: T;
+  description?: T;
+  icon?: T;
+  status?: T;
+  projects?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  description?: T;
+  score?: T;
+  name?: T;
+  position?: T;
+  company?: T;
+  avatar?: T;
+  companyLogo?: T;
   updatedAt?: T;
   createdAt?: T;
 }

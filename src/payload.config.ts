@@ -7,6 +7,8 @@ import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
+import { Departments } from './collections/Departments'
+import { Testimonials } from './collections/Testimonials'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
@@ -80,7 +82,20 @@ export default buildConfig({
       connectionString: process.env.POSTGRES_URL || '',
     },
   }),
-  collections: [Pages, Posts, Media, Models, Categories, Users, Projects, TeamMembers, Jobs, Icons],
+  collections: [
+    Pages,
+    Posts,
+    Media,
+    Models,
+    Categories,
+    Departments,
+    Testimonials,
+    Users,
+    Projects,
+    TeamMembers,
+    Jobs,
+    Icons,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

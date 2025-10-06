@@ -9,6 +9,8 @@ import { WhoWeAre } from '@/blocks/WhoWeAreBlock/config'
 import { ProjectsOverview } from '@/blocks/ProjectsOverviewBlock/config'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
+import { CustomerTestimonialsList } from '../../blocks/CustomerTestimonialsListBlock/config'
+import { DepartmentsList } from '../../blocks/DepartmentsListBlock/config'
 import { Button } from '../../blocks/Button/config'
 import { Content } from '../../blocks/Content/config'
 import { Donate } from '../../blocks/Donate/config'
@@ -92,6 +94,8 @@ export const Pages: CollectionConfig<'pages'> = {
               type: 'blocks',
               blocks: [
                 CallToAction,
+                DepartmentsList,
+                CustomerTestimonialsList,
                 Button,
                 Content,
                 Donate,

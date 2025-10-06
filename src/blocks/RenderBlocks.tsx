@@ -4,6 +4,8 @@ import type { Page } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
+import { CustomerTestimonialsListBlock } from '@/blocks/CustomerTestimonialsListBlock/Component'
+import { DepartmentsListBlock } from '@/blocks/DepartmentsListBlock/Component'
 import { ButtonBlock } from '@/blocks/Button/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
@@ -38,6 +40,8 @@ const blockComponents = {
   ourService: OurServiceBlock,
   toolsWeSupport: ToolsWeSupportBlock,
   whoWeAre: WhoWeAreBlock,
+  customerTestimonialsList: CustomerTestimonialsListBlock,
+  departmentsList: DepartmentsListBlock,
   projectsOverview: ProjectsOverviewBlock,
   projectTabs: ProjectTabsBlock,
   projectsList: ProjectsListBlock,

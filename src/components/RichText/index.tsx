@@ -16,7 +16,7 @@ import './styles.css'
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 
 import type {
-  BannerBlock as BannerBlockProps,
+  // BannerBlock as BannerBlockProps,
   ButtonBlock as ButtonBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
@@ -28,9 +28,7 @@ import { ButtonBlock } from '@/blocks/Button/Component'
 
 type NodeTypes =
   | DefaultNodeTypes
-  | SerializedBlockNode<
-      CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps | ButtonBlockProps
-    >
+  | SerializedBlockNode<CTABlockProps | MediaBlockProps | CodeBlockProps | ButtonBlockProps>
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const { value, relationTo } = linkNode.fields.doc!
@@ -84,7 +82,9 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   return {
     ...customDefaultConverters,
     blocks: {
-      banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
+      banner: ({ node }: { node: any }) => (
+        <BannerBlock className="col-start-2 mb-4" {...node.fields} />
+      ),
       mediaBlock: ({ node }) => (
         <MediaBlock
           className="col-start-1 col-span-3"

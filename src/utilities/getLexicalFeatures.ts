@@ -85,7 +85,7 @@ export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
           heading1: {
             label: 'Heading 1',
             css: {
-              'font-size': '72px',
+              'font-size': '60px',
               'font-weight': '600',
               'line-height': '120%',
               'letter-spacing': '-1%',

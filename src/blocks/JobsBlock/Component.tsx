@@ -11,44 +11,6 @@ type JobsBlockProps = {
   jobId?: string // Optional ID to fetch a specific job detail
 }
 
-// Fetch specific job details from Greenhouse API
-async function fetchJobDetails(jobId: string): Promise<Job | null> {
-  try {
-    const response = await fetch(
-      `https://boards-api.greenhouse.io/v1/boards/openenergytransition/jobs/${jobId}`,
-      { next: { revalidate: 3600 } }, // Cache for 1 hour
-    )
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch job details: ${response.status}`)
-    }
-
-    const jobData = await response.json()
-    return {
-      id: jobData.id,
-      title: jobData.title,
-      location: jobData.location.name,
-      department: jobData.departments?.[0]?.name || '',
-      description: jobData.content,
-      slug: jobData.absolute_url,
-      publishedAt: jobData.updated_at,
-      status: 'published',
-      // Additional detailed fields
-      applicationUrl: jobData.absolute_url,
-      content: jobData.content, // Full HTML content
-      questions: jobData.questions || [],
-      metadata: {
-        employment_type: jobData.metadata?.employment_type || null,
-        minimum_experience: jobData.metadata?.minimum_experience || null,
-        required_education: jobData.metadata?.required_education || null,
-      },
-    }
-  } catch (error) {
-    console.error(`Error fetching job detail for ID ${jobId}:`, error)
-    return null
-  }
-}
-
 export const JobsBlock: React.FC<JobsBlockProps> = async (props) => {
   const { id, tag, title, description } = props
 
@@ -85,7 +47,6 @@ export const JobsBlock: React.FC<JobsBlockProps> = async (props) => {
           `https://boards-api.greenhouse.io/v1/boards/openenergytransition/jobs/${job.id}`,
           { next: { revalidate: 3600 } },
         )
-        console.log(detailResponse)
         if (!detailResponse.ok) {
           throw new Error(`Failed to fetch job details for ID ${job.id}: ${detailResponse.status}`)
         }
@@ -129,7 +90,6 @@ export const JobsBlock: React.FC<JobsBlockProps> = async (props) => {
 
     // Wait for all job detail requests to complete
     jobs = await Promise.all(jobDetailsPromises)
-    console.log(jobs)
   } catch (error) {
     console.error('Error fetching Greenhouse jobs:', error)
     jobs = []

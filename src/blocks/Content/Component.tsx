@@ -11,7 +11,7 @@ import { CMSLink } from '../../components/Link'
 import { CardModel } from '@/components/Card/CardModal'
 
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
-  const { columns, backgroundColor } = props
+  const { columns, backgroundColor, title, tag, richText } = props
 
   const colsSpanClasses = {
     full: '12',
@@ -24,6 +24,15 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   return (
     <div className={cn('content-block', backgroundColor ? `bg-${backgroundColor}` : '')}>
       <div className="container my-16">
+        {tag && (
+          <div className="mb-2 font-heebo text-sm font-semibold uppercase text-primary">{tag}</div>
+        )}
+        {title && <h2 className="mb-6 font-poppins text-4xl font-semibold">{title}</h2>}
+        {richText && (
+          <div className="mb-8">
+            <RichText data={richText} enableGutter={false} />
+          </div>
+        )}
         <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">
           {columns &&
             columns.length > 0 &&
@@ -86,9 +95,13 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                   ) : type === 'list' ? (
                     // List Block Type
                     <div>
-                      {listTitle && <h3>{listTitle}</h3>}
+                      {listTitle && (
+                        <div className="font-heebo font-semibold text-base leading-normal">
+                          {listTitle}
+                        </div>
+                      )}
                       <ListBlockComponent
-                        items={listItems ?? []}
+                        items={(listItems as any) ?? []}
                         direction={listDirection ?? 'vertical'}
                         type={listType ?? 'normal'}
                       />

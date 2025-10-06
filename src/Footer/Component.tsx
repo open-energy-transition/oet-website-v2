@@ -33,7 +33,7 @@ export async function Footer() {
           <div className="mt-4 pb-8 flex flex-col md:flex-row gap-8 text-sm justify-between">
             {/* Description */}
             {description && (
-              <div className="mb-8 md:mb-0 max-w-96">
+              <div className="mb-8 md:mb-0 max-w-[503px]">
                 <RichText
                   data={description}
                   className="text-poppins-x-small"
@@ -44,7 +44,7 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="flex gap-8">
+        <div className="flex gap-8 w-[525px]">
           {/* About Us */}
           {aboutUs && (
             <div className="flex-1">
@@ -52,11 +52,11 @@ export async function Footer() {
                 <div className="text-poppins-base font-semibold">{aboutUs.title}</div>
               )}
               {Array.isArray(aboutUs.linkActions) && (
-                <div className='flex flex-col'>
+                <div className="flex flex-col">
                   {aboutUs.linkActions.map((action, i) => (
                     <CMSLink
                       key={i}
-                      className="text-poppins-xxs"
+                      className="text-poppins-xxs leading-normal"
                       {...action.link}
                       btnTextColor="#ffffff"
                       btnBgColor="transparent"
@@ -70,7 +70,7 @@ export async function Footer() {
           {contactUs && (
             <div className="flex-1">
               {contactUs.title && (
-                <div className="text-poppins-base font-semibold mb-2">{contactUs.title}</div>
+                <div className="text-poppins-base font-semibold">{contactUs.title}</div>
               )}
               {contactUs.description && (
                 <div className="text-poppins-xxs mb-2">{contactUs.description}</div>
@@ -81,13 +81,13 @@ export async function Footer() {
           {followUs && (
             <div className="flex-1">
               {followUs.title && (
-                <div className="text-poppins-base font-semibold mb-2">{followUs.title}</div>
+                <div className="text-poppins-base font-semibold">{followUs.title}</div>
               )}
               {followUs.description && (
                 <div className="text-poppins-xxs mb-2">{followUs.description}</div>
               )}
               {Array.isArray(followUs.linkActions) && (
-                <div className="flex gap-2 mt-6">
+                <div className="flex gap-2 mt-6 items-center">
                   {followUs.linkActions.map((action, i) => (
                     <a href={action.link} key={i}>
                       {action.icon && typeof action.icon === 'object' && 'svg' in action.icon && (
@@ -105,7 +105,7 @@ export async function Footer() {
         </div>
       </div>
       <div className="container pb-4 text-xs pt-4">
-        <div className="border-t border-[#0B0C0B26] border-opacity-15 pt-8 pb-4 justify-center flex flex-col md:flex-row gap-4">
+        <div className="border-t border-[#0B0C0B26] border-opacity-15 pt-8 pb-4 justify-center flex flex-col md:flex-row gap-6">
           {/* Copyright */}
           {copyright && (
             <RichText
