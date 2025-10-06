@@ -5,6 +5,7 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
 export const Banner: Block = {
   slug: 'banner',
@@ -25,9 +26,7 @@ export const Banner: Block = {
       name: 'content',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-        },
+        features: getLexicalFeatures,
       }),
       label: false,
       required: true,

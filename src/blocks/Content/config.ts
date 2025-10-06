@@ -132,12 +132,7 @@ const columnFields: Field[] = [
     name: 'description',
     type: 'richText',
     editor: lexicalEditor({
-      features: ({ rootFeatures }) => [
-        ...rootFeatures,
-        HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-        FixedToolbarFeature(),
-        InlineToolbarFeature(),
-      ],
+      features: getLexicalFeatures,
     }),
     admin: {
       condition: (_, siblingData) => siblingData?.type === 'card',
@@ -239,6 +234,17 @@ const columnFields: Field[] = [
         name: 'description',
         type: 'text',
       },
+      {
+        name: 'icon',
+        label: 'Icon',
+        relationTo: 'icons',
+        type: 'relationship',
+        required: false,
+        admin: {
+          description: 'Select an icon to display',
+          width: '50%',
+        },
+      },
     ],
   },
 ]
@@ -255,6 +261,95 @@ export const Content: Block = {
       admin: {
         width: '50%',
       },
+    },
+    {
+      name: 'tag',
+      type: 'text',
+      required: false,
+      defaultValue: '',
+      admin: {
+        width: '50%',
+      },
+    },
+    {
+      name: 'title',
+      type: 'text',
+      required: false,
+      defaultValue: '',
+      admin: {
+        width: '50%',
+      },
+    },
+    {
+      name: 'richText',
+      type: 'richText',
+      editor: lexicalEditor({
+        features: getLexicalFeatures,
+      }),
+      label: false,
+    },
+    {
+      name: 'padding',
+      label: 'Section Padding',
+      type: 'group',
+      fields: [
+        {
+          name: 'top',
+          label: 'Top',
+          type: 'select',
+          defaultValue: 'md',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'Small', value: 'sm' },
+            { label: 'Medium', value: 'md' },
+            { label: 'Large', value: 'lg' },
+            { label: 'Extra Large', value: 'xl' },
+          ],
+          admin: { width: '25%' },
+        },
+        {
+          name: 'bottom',
+          label: 'Bottom',
+          type: 'select',
+          defaultValue: 'md',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'Small', value: 'sm' },
+            { label: 'Medium', value: 'md' },
+            { label: 'Large', value: 'lg' },
+            { label: 'Extra Large', value: 'xl' },
+          ],
+          admin: { width: '25%' },
+        },
+        {
+          name: 'left',
+          label: 'Left',
+          type: 'select',
+          defaultValue: 'none',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'Small', value: 'sm' },
+            { label: 'Medium', value: 'md' },
+            { label: 'Large', value: 'lg' },
+            { label: 'Extra Large', value: 'xl' },
+          ],
+          admin: { width: '25%' },
+        },
+        {
+          name: 'right',
+          label: 'Right',
+          type: 'select',
+          defaultValue: 'none',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'Small', value: 'sm' },
+            { label: 'Medium', value: 'md' },
+            { label: 'Large', value: 'lg' },
+            { label: 'Extra Large', value: 'xl' },
+          ],
+          admin: { width: '25%' },
+        },
+      ],
     },
     {
       name: 'columns',

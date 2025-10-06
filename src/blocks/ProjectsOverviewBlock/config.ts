@@ -9,6 +9,7 @@ import {
   LinkFeature,
 } from '@payloadcms/richtext-lexical'
 import { link } from '@/fields/link'
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
 export const ProjectsOverview: Block = {
   slug: 'projectsOverview',
@@ -22,16 +23,7 @@ export const ProjectsOverview: Block = {
       name: 'description',
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => [
-          ...rootFeatures,
-          HeadingFeature({
-            enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-          }),
-          FixedToolbarFeature(),
-          InlineToolbarFeature(),
-          AlignFeature(),
-          LinkFeature(),
-        ],
+        features: getLexicalFeatures,
       }),
     },
     {

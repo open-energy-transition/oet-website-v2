@@ -9,11 +9,11 @@ import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublishedWithoutDrafts } from '../../access/authenticatedOrPublished'
 import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
-export const Jobs: CollectionConfig = {
-  slug: 'jobs',
+export const Departments: CollectionConfig = {
+  slug: 'departments',
   admin: {
-    useAsTitle: 'jobTitle',
-    defaultColumns: ['jobTitle', 'department', 'status', 'location'],
+    useAsTitle: 'department',
+    defaultColumns: ['department', 'shortDescription', 'description', 'status', 'projects'],
   },
   access: {
     create: authenticated,
@@ -28,10 +28,9 @@ export const Jobs: CollectionConfig = {
       required: true,
     },
     {
-      name: 'jobTitle',
+      name: 'shortDescription',
       type: 'text',
       required: true,
-      label: 'Job Title',
     },
     {
       name: 'description',
@@ -42,51 +41,30 @@ export const Jobs: CollectionConfig = {
       required: true,
     },
     {
-      name: 'location',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'contactType',
-      type: 'text',
-      required: true,
-      label: 'Contact Type',
+      name: 'icon',
+      type: 'relationship',
+      relationTo: 'icons',
+      required: false,
+      admin: { width: '50%' },
     },
     {
       name: 'status',
       type: 'select',
       required: true,
+      defaultValue: 'open',
       options: [
         { label: 'Open', value: 'open' },
         { label: 'Closed', value: 'closed' },
-        { label: 'Paused', value: 'paused' },
-        { label: 'Filled', value: 'filled' },
         { label: 'Draft', value: 'draft' },
-        { label: 'Expired', value: 'expired' },
-        { label: 'Cancelled', value: 'cancelled' },
-        { label: 'Interviewing', value: 'interviewing' },
-        { label: 'Offer Extended', value: 'offer_extended' },
-        { label: 'On Hold', value: 'on_hold' },
       ],
     },
     {
-      name: 'startDate',
-      type: 'date',
+      name: 'projects',
+      label: 'Projects',
+      type: 'relationship',
+      relationTo: 'projects',
+      hasMany: true,
       required: false,
-    },
-    {
-      name: 'endDate',
-      type: 'date',
-      required: false,
-    },
-    {
-      name: 'externalLink',
-      type: 'text',
-      required: false,
-      label: 'External Link',
-      admin: {
-        placeholder: 'https://example.com/job-details',
-      },
     },
   ],
 }

@@ -1,3 +1,5 @@
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import type { Block } from 'payload'
 
 export const CardBlock: Block = {
@@ -34,9 +36,10 @@ export const CardBlock: Block = {
     },
     {
       name: 'description',
-      type: 'textarea',
-      required: false,
-      admin: { width: '100%' },
+      type: 'richText',
+      editor: lexicalEditor({
+        features: getLexicalFeatures,
+      }),
     },
     {
       name: 'useBorder',

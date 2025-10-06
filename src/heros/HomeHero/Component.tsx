@@ -14,10 +14,6 @@ import RichText from '@/components/RichText'
 // Initialize particles engine
 loadSlim(tsParticles)
 
-const polygonSvg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-  <polygon points='80,0 100,0 100,100 10,100'/>
-</svg>`
-
 export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, columns }) => {
   const { setHeaderTheme } = useHeaderTheme()
 
