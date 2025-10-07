@@ -103,10 +103,26 @@ const JobCard: React.FC<{ job: Job; isSingleView?: boolean }> = ({ job, isSingle
 
       {/* Job content for single view */}
       {isSingleView && job.content && (
-        <div
-          className="mt-6 mb-8 job-description prose max-w-none"
-          dangerouslySetInnerHTML={{ __html: job.content }}
-        />
+        <div className="mt-6 mb-8 job-description prose max-w-none">
+          {(() => {
+            try {
+              // Create a safe version of the content by removing scripts
+              const safeContent = job.content.replace(
+                /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+                '',
+              )
+              return <div dangerouslySetInnerHTML={{ __html: safeContent }} />
+            } catch (err) {
+              console.error('Error rendering job content:', err)
+              return (
+                <p>
+                  Unable to display full job details. Please check the application link for more
+                  information.
+                </p>
+              )
+            }
+          })()}
+        </div>
       )}
       {/* <div>
         {job.content && (
@@ -165,12 +181,7 @@ export const JobsClient: React.FC<JobsClientProps> = ({
           )}
           {description && (
             <div className="max-w-2xl text-black">
-              {typeof description === 'string' ? (
-                <div dangerouslySetInnerHTML={{ __html: description }} />
-              ) : (
-                // @ts-expect-error - RichText expects a specific format
-                <RichText data={description} enableGutter={false} enableProse={false} />
-              )}
+              <RichText data={description as any} enableGutter={false} enableProse={false} />
             </div>
           )}
         </div>
