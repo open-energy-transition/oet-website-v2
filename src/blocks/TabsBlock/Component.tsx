@@ -7,9 +7,9 @@ import { CardBlock } from '../CardBlock/Component'
 import type { TabsBlock as TabsBlockProps } from '@/payload-types'
 import { ContentBlock } from '../Content/Component'
 import { TeamMembersClient } from '../TeamMembersBlock/ClientComponent'
-import { JobsClient } from '../JobsBlock/ClientComponent'
 import { ProjectsListBlock } from '../ProjectsListBlock'
 import { PostsListBlock } from '../PostsListBlock'
+import { JobsBlock } from '../JobsBlock/Component'
 
 // Simple block renderer that doesn't import payload config
 const renderTabContent = (content: any[]) => {
@@ -37,12 +37,11 @@ const renderTabContent = (content: any[]) => {
         )
       case 'jobs':
         return (
-          <JobsClient
+          <JobsBlock
             key={index}
             tag={block.tag}
             title={block.title}
             description={block.description}
-            jobs={block.jobs}
           />
         )
       case 'mediaBlock':

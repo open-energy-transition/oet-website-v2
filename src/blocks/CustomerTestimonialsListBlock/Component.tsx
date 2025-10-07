@@ -14,7 +14,6 @@ export const CustomerTestimonialsListBlock: React.FC<
   CustomerTestimonialsListBlockProps & { id?: string }
 > = (props) => {
   const { customerTestimonials, title, subtitle } = props
-  console.log(customerTestimonials)
   return (
     <div className="content-block">
       <div className="container my-16">
