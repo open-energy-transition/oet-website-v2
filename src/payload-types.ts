@@ -77,6 +77,7 @@ export interface Config {
     users: User;
     projects: Project;
     'team-members': TeamMember;
+    staff: Staff;
     jobs: Job;
     icons: Icon;
     redirects: Redirect;
@@ -100,6 +101,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
+    staff: StaffSelect<false> | StaffSelect<true>;
     jobs: JobsSelect<false> | JobsSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -1662,6 +1664,10 @@ export interface TeamMember {
   id: number;
   firstName: string;
   lastName: string;
+  /**
+   * The team member's categories for user navigation
+   */
+  categories: (number | Staff)[];
   jobTitle: string;
   description?: {
     root: {
@@ -1683,6 +1689,31 @@ export interface TeamMember {
   x?: string | null;
   github?: string | null;
   externalLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff".
+ */
+export interface Staff {
+  id: number;
+  /**
+   * The name of the staff category (e.g., "Energy System Modeler")
+   */
+  name: string;
+  /**
+   * Optional description of this category
+   */
+  description?: string | null;
+  /**
+   * URL-friendly version of the name (e.g., "energy-system-modeler")
+   */
+  slug: string;
+  /**
+   * Optional numeric value to control the display order (lower numbers appear first)
+   */
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1940,6 +1971,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'team-members';
         value: number | TeamMember;
+      } | null)
+    | ({
+        relationTo: 'staff';
+        value: number | Staff;
       } | null)
     | ({
         relationTo: 'jobs';
@@ -2798,6 +2833,7 @@ export interface ProjectsSelect<T extends boolean = true> {
 export interface TeamMembersSelect<T extends boolean = true> {
   firstName?: T;
   lastName?: T;
+  categories?: T;
   jobTitle?: T;
   description?: T;
   image?: T;
@@ -2805,6 +2841,18 @@ export interface TeamMembersSelect<T extends boolean = true> {
   x?: T;
   github?: T;
   externalLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff_select".
+ */
+export interface StaffSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  slug?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

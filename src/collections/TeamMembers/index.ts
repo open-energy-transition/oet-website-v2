@@ -13,7 +13,7 @@ export const TeamMembers: CollectionConfig = {
   slug: 'team-members',
   admin: {
     useAsTitle: 'firstName',
-    defaultColumns: ['firstName', 'lastName', 'jobTitle'],
+    defaultColumns: ['firstName', 'lastName', 'category', 'jobTitle'],
   },
   access: {
     create: authenticated,
@@ -31,6 +31,17 @@ export const TeamMembers: CollectionConfig = {
       name: 'lastName',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'categories',
+      type: 'relationship',
+      relationTo: 'staff',
+      hasMany: true,
+      required: true,
+      label: 'Staff Categories',
+      admin: {
+        description: "The team member's categories for user navigation",
+      },
     },
     {
       name: 'jobTitle',

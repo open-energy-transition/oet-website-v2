@@ -24,9 +24,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   return (
     <div className={cn('content-block', backgroundColor ? `bg-${backgroundColor}` : '')}>
       <div className="container my-16">
-        {tag && (
-          <div className="mb-2 font-heebo text-sm font-semibold uppercase text-primary">{tag}</div>
-        )}
+        {tag && <div className="mb-2 font-heebo text-sm font-semibold text-primary">{tag}</div>}
         {title && <h2 className="mb-6 font-poppins text-4xl font-semibold">{title}</h2>}
         {richText && (
           <div className="mb-8">

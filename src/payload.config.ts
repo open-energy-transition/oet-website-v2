@@ -15,6 +15,7 @@ import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
 import { Jobs } from './collections/Jobs'
 import { TeamMembers } from './collections/TeamMembers'
+import { StaffCategories } from './collections/StaffCategories'
 import { Icons } from './collections/Icons'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
@@ -93,6 +94,7 @@ export default buildConfig({
     Users,
     Projects,
     TeamMembers,
+    StaffCategories,
     Jobs,
     Icons,
   ],
