@@ -1688,6 +1688,7 @@ export interface TeamMember {
   linkedIn?: string | null;
   x?: string | null;
   github?: string | null;
+  email?: string | null;
   externalLink?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -2838,6 +2839,7 @@ export interface TeamMembersSelect<T extends boolean = true> {
   linkedIn?: T;
   x?: T;
   github?: T;
+  email?: T;
   externalLink?: T;
   updatedAt?: T;
   createdAt?: T;

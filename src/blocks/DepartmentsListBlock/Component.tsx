@@ -23,6 +23,7 @@ export const DepartmentsListBlock: React.FC<DepartmentsListBlockProps & { id?: s
               </div>
               {department.shortDescription && (
                 <ReadMoreSection
+                  department={department}
                   text={department.shortDescription}
                   project={
                     department.projects && department.projects.length > 0

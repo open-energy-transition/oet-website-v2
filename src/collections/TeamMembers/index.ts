@@ -91,6 +91,15 @@ export const TeamMembers: CollectionConfig = {
       },
     },
     {
+      name: 'email',
+      type: 'text',
+      required: false,
+      label: 'Email',
+      admin: {
+        placeholder: 'Enter email address',
+      },
+    },
+    {
       name: 'externalLink',
       type: 'text',
       required: false,
