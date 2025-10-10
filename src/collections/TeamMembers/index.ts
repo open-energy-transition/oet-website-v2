@@ -41,6 +41,7 @@ export const TeamMembers: CollectionConfig = {
       label: 'Staff Categories',
       admin: {
         description: "The team member's categories for user navigation",
+        position: 'sidebar',
       },
     },
     {

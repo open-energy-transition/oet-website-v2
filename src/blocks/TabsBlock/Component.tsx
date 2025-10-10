@@ -1,17 +1,17 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { cn } from '@/utilities/ui'
 import { CardBlock } from '../CardBlock/Component'
 
 import type { TabsBlock as TabsBlockProps } from '@/payload-types'
 import { ContentBlock } from '../Content/Component'
-import { TeamMembersClient } from '../TeamMembersBlock/ClientComponent'
+import { ClientTeamMembersBlock } from '../TeamMembersBlock/ClientWrapper'
 import { ProjectsListBlock } from '../ProjectsListBlock'
 import { PostsListBlock } from '../PostsListBlock'
-import { JobsBlock } from '../JobsBlock/Component'
+import { ClientJobsBlock } from '../JobsBlock/ClientWrapper'
 
-// Simple block renderer that doesn't import payload config
 const renderTabContent = (content: any[]) => {
   if (!content || content.length === 0) return null
 
@@ -27,17 +27,17 @@ const renderTabContent = (content: any[]) => {
         return <CardBlock key={index} {...block} />
       case 'teamMembers':
         return (
-          <TeamMembersClient
+          <ClientTeamMembersBlock
             key={index}
-            tag={block.tag}
-            title={block.title}
-            description={block.description}
-            teamMembers={block.teamMembers}
+            tag={block.tag || undefined}
+            title={block.title || undefined}
+            description={block.description || undefined}
+            teamMembers={block.teamMembers || []}
           />
         )
       case 'jobs':
         return (
-          <JobsBlock
+          <ClientJobsBlock
             key={index}
             tag={block.tag}
             title={block.title}
@@ -48,7 +48,15 @@ const renderTabContent = (content: any[]) => {
         return (
           <div key={index} className="my-8">
             {/* Simple media rendering */}
-            <img src={block.media?.url} alt={block.media?.alt} className="w-full h-auto" />
+            {block.media?.url && (
+              <Image
+                src={block.media.url}
+                alt={block.media.alt || ''}
+                width={800}
+                height={600}
+                className="w-full h-auto"
+              />
+            )}
           </div>
         )
       case 'projectsList':

@@ -1,6 +1,7 @@
 import React from 'react'
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+// Remove unused imports that may cause issues during prerendering
+// import configPromise from '@payload-config'
+// import { getPayload } from 'payload'
 import { JobsClient, Job } from './ClientComponent'
 
 type JobsBlockProps = {
@@ -17,11 +18,51 @@ export const JobsBlock: React.FC<JobsBlockProps> = async (props) => {
   // Otherwise fetch all jobs
   let jobs: Job[] = []
 
+  // Add error handling for server-side rendering and prerendering
+  try {
+    // Check if we're in a prerendering environment where auth might be missing
+    if (
+      process.env.NEXT_PHASE === 'phase-production-build' ||
+      process.env.PAYLOAD_PUBLIC_SITE_URL === 'undefined'
+    ) {
+      console.warn('JobsBlock: Running in prerendering or build context, using empty jobs list')
+      return (
+        <div className={id ? `block-${id}` : ''}>
+          <JobsClient
+            tag={tag || ''}
+            title={title || ''}
+            description={description || ''}
+            jobs={[]}
+            isSingleJob={false}
+          />
+        </div>
+      )
+    }
+  } catch (error) {
+    console.error('Error in JobsBlock prerendering check:', error)
+    // Return fallback component to prevent build failures
+    return (
+      <div className={id ? `block-${id}` : ''}>
+        <JobsClient
+          tag={tag || ''}
+          title={title || ''}
+          description={description || ''}
+          jobs={[]}
+          isSingleJob={false}
+        />
+      </div>
+    )
+  }
+
   // Fetch jobs from Greenhouse API
   try {
+    // Handle potential fetch errors, especially during build/prerender
     const greenhouseResponse = await fetch(
       'https://boards-api.greenhouse.io/v1/boards/openenergytransition/jobs',
-      { next: { revalidate: 3600 } }, // Cache for 1 hour
+      {
+        next: { revalidate: 3600 }, // Cache for 1 hour
+        cache: 'force-cache', // Use cache aggressively during builds
+      },
     )
 
     if (!greenhouseResponse.ok) {

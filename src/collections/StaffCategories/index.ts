@@ -1,12 +1,14 @@
 import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublishedWithoutDrafts } from '../../access/authenticatedOrPublished'
+import { slugField } from '@/fields/slug'
 
 export const StaffCategories: CollectionConfig = {
   slug: 'staff',
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'description', 'slug'],
+    group: 'Content',
   },
   access: {
     create: authenticated,
@@ -33,22 +35,7 @@ export const StaffCategories: CollectionConfig = {
         description: 'Optional description of this category',
       },
     },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      label: 'Slug',
-      admin: {
-        description: 'URL-friendly version of the name (e.g., "energy-system-modeler")',
-      },
-      validate: (value: any) => {
-        const val = String(value || '')
-        if (!val.match(/^[a-z0-9-]+$/)) {
-          return 'Slug must contain only lowercase letters, numbers, and hyphens'
-        }
-        return true
-      },
-    },
+    ...slugField(),
     {
       name: 'order',
       type: 'number',

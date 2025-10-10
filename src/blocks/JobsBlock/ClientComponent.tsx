@@ -30,6 +30,8 @@ export type JobsClientProps = {
   description?: string | Record<string, unknown>
   jobs: Job[]
   isSingleJob?: boolean
+  isLoading?: boolean
+  error?: string | null
 }
 
 function decodeHtml(html: string) {
@@ -166,6 +168,8 @@ export const JobsClient: React.FC<JobsClientProps> = ({
   description,
   jobs,
   isSingleJob = false,
+  isLoading = false,
+  error = null,
 }) => {
   return (
     <div className="container mx-auto px-4 py-12">
@@ -187,7 +191,22 @@ export const JobsClient: React.FC<JobsClientProps> = ({
         </div>
       )}
 
-      {isSingleJob && jobs.length === 1 ? (
+      {isLoading ? (
+        // Loading state
+        <div className="flex justify-center items-center py-12">
+          <div className="animate-pulse flex flex-col items-center">
+            <div className="h-12 w-12 rounded-full bg-blue-200 mb-4"></div>
+            <div className="h-4 w-32 bg-gray-200 mb-2 rounded"></div>
+            <div className="h-3 w-24 bg-gray-100 rounded"></div>
+          </div>
+        </div>
+      ) : error ? (
+        // Error state
+        <div className="bg-red-50 border border-red-100 rounded-lg p-6 text-center">
+          <div className="text-red-600 mb-2 text-lg font-medium">Unable to load job listings</div>
+          <p className="text-red-500">{error}</p>
+        </div>
+      ) : isSingleJob && jobs.length === 1 ? (
         // Single job detail view
         <div className="max-w-4xl mx-auto">
           <JobCard job={jobs[0]} isSingleView={true} />

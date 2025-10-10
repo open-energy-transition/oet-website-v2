@@ -1,22 +1,24 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import RichText from '@/components/RichText'
 
-import type { TeamMember } from '@/payload-types'
+import type { TeamMember, Staff } from '@/payload-types'
 
 export type TeamMembersClientProps = {
   tag?: string
   title?: string
   description?: any
   teamMembers: TeamMember[]
+  staffCategories?: Staff[]
 }
 
 const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   const imageUrl =
     typeof member.image === 'object' && member.image?.url ? member.image.url : undefined
-  const { firstName, lastName, jobTitle, linkedIn, externalLink, x, description } = member
+  const { firstName, lastName, jobTitle, linkedIn, externalLink, x, description, categories } =
+    member
   return (
     <div className="group relative overflow-hidden rounded-lg bg-white hover:shadow-md flex flex-col items-center p-6">
       {imageUrl && (
@@ -37,6 +39,27 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
         <p className="mt-1 text-lg font-heebo font-normal text-gray-600 text-left w-full">
           {jobTitle}
         </p>
+      )}
+
+      {/* Display categories */}
+      {categories && categories.length > 0 && (
+        <div className="flex flex-wrap gap-1 mt-2 mb-3 w-full">
+          {categories.map((category, index) => {
+            // Handle both ID and object
+            const categoryName = typeof category === 'object' ? category.name : null
+            if (!categoryName) return null
+
+            return (
+              <span
+                key={index}
+                className="inline-block px-2.5 py-1 bg-blue-50 text-xs font-medium text-blue-600 rounded-md"
+                title={`Expertise: ${categoryName}`}
+              >
+                {categoryName}
+              </span>
+            )
+          })}
+        </div>
       )}
       {description && (
         <div className="mb-2 w-full">
@@ -121,7 +144,28 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
   title,
   description,
   teamMembers,
+  staffCategories = [],
 }) => {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>(teamMembers)
+
+  // Filter team members when selected category changes
+  useEffect(() => {
+    if (selectedCategory === null) {
+      setFilteredMembers(teamMembers)
+    } else {
+      setFilteredMembers(
+        teamMembers.filter((member) => {
+          return member.categories.some((category) => {
+            // Handle both ID and object
+            const categoryId = typeof category === 'object' ? category.id : category
+            return String(categoryId) === selectedCategory
+          })
+        }),
+      )
+    }
+  }, [selectedCategory, teamMembers])
+
   return (
     <div className="container mx-auto px-4 py-12">
       {(tag || title || description) && (
@@ -139,12 +183,44 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
           )}
         </div>
       )}
+
+      {/* Staff Categories Filter */}
+      {staffCategories && staffCategories.length > 0 && (
+        <div className="mb-8">
+          <div className="flex flex-wrap justify-center gap-2">
+            {staffCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => {
+                  // Toggle: if already selected, deselect it, otherwise select it
+                  setSelectedCategory(
+                    selectedCategory === String(category.id) ? null : String(category.id),
+                  )
+                }}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  selectedCategory === String(category.id)
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                }`}
+                aria-pressed={selectedCategory === String(category.id)}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {teamMembers && teamMembers.length > 0 ? (
-          teamMembers.map((member) => <TeamMemberCard key={member.id} member={member} />)
+        {filteredMembers && filteredMembers.length > 0 ? (
+          filteredMembers.map((member) => (
+            <div key={member.id} className="animate-fadeIn">
+              <TeamMemberCard member={member} />
+            </div>
+          ))
         ) : (
           <div className="col-span-full text-gray-500 text-center py-12">
-            No team members found.
+            No team members found in this category.
           </div>
         )}
       </div>

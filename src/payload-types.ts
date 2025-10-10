@@ -1706,10 +1706,8 @@ export interface Staff {
    * Optional description of this category
    */
   description?: string | null;
-  /**
-   * URL-friendly version of the name (e.g., "energy-system-modeler")
-   */
-  slug: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
   /**
    * Optional numeric value to control the display order (lower numbers appear first)
    */
@@ -2852,6 +2850,7 @@ export interface StaffSelect<T extends boolean = true> {
   name?: T;
   description?: T;
   slug?: T;
+  slugLock?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -22,8 +22,9 @@ const CustomNav: React.FC = () => {
     { label: '🖼️ Media', href: '/admin/collections/media' },
     { label: '👤 User', href: '/admin/collections/users' },
     { label: '👥 Team Members', href: '/admin/collections/team-members' },
+    { label: '🗂️ Staff Categories', href: '/admin/collections/staff' },
     { label: '📊 Departments', href: '/admin/collections/departments' },
-    { label: '💬 CustomerTestimonials', href: '/admin/collections/testimonials' },
+    { label: '💬 Customer Testimonials', href: '/admin/collections/testimonials' },
     { label: '🖌️ Icons', href: '/admin/collections/icons' },
   ]
 
