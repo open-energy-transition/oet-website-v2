@@ -149,9 +149,9 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
       activeTab: 'text-blue-600 border-blue-600',
     },
     bordered: {
-      nav: 'border border-gray-200 rounded-lg p-1 bg-gray-50',
-      tab: 'px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 rounded-md hover:bg-white',
-      activeTab: 'bg-white text-gray-900 shadow-sm',
+      nav: 'border border-b-0 border-[#0B0C0B26] rounded-t-3xl overflow-hidden w-full',
+      tab: 'text-center px-8 py-6 font-poppins text-2xl font-normal leading w-full',
+      activeTab: 'bg-gray-100 shadow-sm',
     },
   } as const
 
@@ -181,21 +181,23 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
             'flex-col space-y-1 mr-6 min-w-48': tabPosition === 'left',
             'flex-col space-y-1 ml-6 min-w-48 order-2': tabPosition === 'right',
             'flex-row space-x-1': tabPosition === 'top',
+            grid: tabStyle === 'bordered' && !isVertical,
           })}
+          style={
+            tabStyle === 'bordered' && !isVertical
+              ? { gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }
+              : undefined
+          }
         >
           {tabs.map((tab, index) => (
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={cn(
-                'transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
-                currentStyle.tab,
-                {
-                  [currentStyle.activeTab]: activeTab === index,
-                  'text-left': isVertical,
-                  'text-center': !isVertical,
-                },
-              )}
+              className={cn('transition-colors duration-200', currentStyle.tab, {
+                [currentStyle.activeTab]: activeTab === index,
+                'text-left': isVertical,
+                'text-center': !isVertical,
+              })}
             >
               {tab.title}
             </button>
@@ -207,6 +209,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
           className={cn('mt-6', {
             'flex-1': isVertical,
             'mt-6': !isVertical,
+            'border border-[#0B0C0B26] mt-0 rounded-b-3xl': tabStyle === 'bordered',
           })}
         >
           {tabs.map((tab, index) => (

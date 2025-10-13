@@ -64,8 +64,10 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setSlidesToShow(1)
-      } else if (window.innerWidth < 1024) {
+      } else if (window.innerWidth < 768) {
         setSlidesToShow(2)
+      } else if (window.innerWidth < 1024) {
+        setSlidesToShow(3)
       } else {
         setSlidesToShow(4)
       }
@@ -74,14 +76,23 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
     // Set initial value
     handleResize()
 
-    // Add event listener
-    window.addEventListener('resize', handleResize)
+    // Add event listener with debounce for performance
+    let resizeTimer: NodeJS.Timeout
+    const debouncedResize = () => {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(handleResize, 100)
+    }
+
+    window.addEventListener('resize', debouncedResize)
 
     // Cleanup
-    return () => window.removeEventListener('resize', handleResize)
+    return () => {
+      clearTimeout(resizeTimer)
+      window.removeEventListener('resize', debouncedResize)
+    }
   }, [])
 
-  // Function to go to the next slide
+  // Function to go to the next slide, moving only one item at a time
   const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => {
       const maxIndex = Math.max(0, images.length - slidesToShow)
@@ -89,7 +100,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
     })
   }, [images.length, slidesToShow])
 
-  // Function to go to the previous slide
+  // Function to go to the previous slide, moving only one item at a time
   const prevSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => {
       const maxIndex = Math.max(0, images.length - slidesToShow)
@@ -166,13 +177,14 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
   }, [prevSlide, nextSlide])
 
   // Calculate total pages for pagination dots
-  const totalPages = Math.ceil(images.length / slidesToShow)
-  const currentPage = Math.floor(currentIndex / slidesToShow)
+
+  // Calculate the percentage to move for each individual item
+  const slideWidth = 100 / images.length
 
   return (
     <div
-      className={`partners-carousel-container relative w-full px-10 overflow-hidden ${!imagesLoaded ? 'opacity-0' : 'opacity-100'}`}
-      style={{ transition: 'opacity 0.3s ease-in-out' }}
+      className={`partners-carousel-container relative w-full px-12 py-4 overflow-hidden ${!imagesLoaded ? 'opacity-0' : 'opacity-100'}`}
+      style={{ transition: 'opacity 0.5s ease-in-out' }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
@@ -184,24 +196,23 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
       aria-label="Partner logos carousel"
       aria-roledescription="carousel"
     >
-      <div className="overflow-hidden">
+      <div className="overflow-hidden rounded-lg">
         <div
-          className="flex gap-8 transition-all duration-500 ease-in-out"
+          className="flex transition-all duration-500 ease-in-out"
           style={{
-            transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)`,
+            transform: `translateX(-${currentIndex * slideWidth}%)`,
             width: `${(images.length / slidesToShow) * 100}%`,
-            gap: '2rem',
           }}
         >
           {images.map((img, i) => (
             <div
               key={i} // Use stable index as key
-              className={`partner-slide flex-1 min-w-0 h-32 overflow-hidden rounded-lg flex items-center justify-center ${
-                i >= currentIndex && i < currentIndex + slidesToShow ? 'visible' : 'invisible'
-              }`}
+              className="partner-slide h-32 overflow-hidden rounded-lg flex items-center justify-center"
               style={{
-                flex: `0 0 calc(${100 / images.length}%)`,
-                transition: 'transform 0.3s ease-in-out',
+                width: `${100 / images.length}%`,
+                padding: '0 1rem',
+                opacity: i >= currentIndex && i < currentIndex + slidesToShow ? 1 : 0.3,
+                transition: 'all 0.3s ease-in-out',
               }}
               role="group"
               aria-roledescription="slide"
@@ -210,9 +221,9 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
             >
               <Media
                 resource={img.image}
-                className="object-contain p-2 scale-75"
+                className="object-contain p-2 w-full h-full"
                 alt={img.alt}
-                imgClassName='max-w-[140%]'
+                imgClassName="max-h-24 mx-auto hover:scale-105 transition-transform duration-300"
                 loading="eager" // Ensure images load immediately
               />
             </div>
@@ -222,7 +233,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
 
       {/* Navigation buttons */}
       <button
-        className="carousel-nav-btn carousel-prev absolute left-0 top-1/2 rounded-full p-2 z-10"
+        className="carousel-nav-btn carousel-prev absolute left-0 top-1/2 transform -translate-y-1/2 p-2 z-10 text-gray-600 hover:text-gray-900"
         onClick={prevSlide}
         aria-label="Previous slide"
       >
@@ -242,7 +253,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
       </button>
 
       <button
-        className="carousel-nav-btn carousel-next absolute right-0 top-1/2 hover:bg-gray-100 rounded-full p-2 z-10"
+        className="carousel-nav-btn carousel-next absolute right-0 top-1/2 transform -translate-y-1/2 p-2 z-10 text-gray-600 hover:text-gray-900"
         onClick={nextSlide}
         aria-label="Next slide"
       >

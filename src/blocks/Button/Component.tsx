@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { ButtonBlock as CTABlockProps } from '@/payload-types'
+import type { ButtonBlock as CTABlockProps, Icon } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 
@@ -14,14 +14,29 @@ const colorClassMap: Record<string, string> = {
   gray: 'bg-gray-400 text-black',
 }
 
-export const ButtonBlock: React.FC<CTABlockProps> = ({ link, color = 'default' }) => {
+export const ButtonBlock: React.FC<CTABlockProps> = ({ link, color = 'default', icon, size }) => {
   const colorClass = colorClassMap[color || 'default'] || colorClassMap.default
+  const iconSvg = (icon as Icon)?.svg || null
+  const sizeClass =
+    size === 'sm'
+      ? 'px-0'
+      : size === 'lg'
+        ? 'px-6 py-3'
+        : size === '2xl'
+          ? 'px-8 py-4'
+          : 'px-4 py-2'
   return (
     <div>
       <div>
         <div>
           {link && (
-            <CMSLink className={`button px-4 py-2 rounded ${colorClass}`} size="lg" {...link} />
+            <CMSLink className={`button ${sizeClass} rounded ${colorClass}`} size="lg" {...link} />
+          )}
+          {iconSvg && (
+            <span
+              className="inline-block ml-2 align-middle"
+              dangerouslySetInnerHTML={{ __html: iconSvg }}
+            />
           )}
         </div>
       </div>
