@@ -45,14 +45,145 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   const customTextConverter = (args: any) => {
     const { node, nodesToJSX } = args
     const textState = node.$
-    const fontWeight = textState?.fontWeight ?? {}
     // Default handling for text nodes
     const children = node.children ? nodesToJSX({ nodes: node.children }) : null
 
-    // Only apply styling if there's actual content and text state
-    if (textState && (textState.color || textState.size || textState.background) && node.text) {
-      let className = ''
+    // Check if this node has HTML element data that indicates formatting
+    if (node.type === 'element') {
+      if (node.tag === 'strong' || node.tag === 'b') {
+        return <strong>{node.text || children}</strong>
+      }
+      if (node.tag === 'em' || node.tag === 'i') {
+        return <em>{node.text || children}</em>
+      }
+    }
 
+    // Prepare to handle all formatting together
+    let result = node.text || children
+
+    // Lexical format constants:
+    // BOLD: 1 << 1 (2)
+    // ITALIC: 1 << 0 (1)
+    // UNDERLINE: 1 << 3 (8)
+    // STRIKETHROUGH: 1 << 4 (16)
+    // CODE: 1 << 5 (32)
+    // SUBSCRIPT: 1 << 6 (64)
+    // SUPERSCRIPT: 1 << 7 (128)
+    // HIGHLIGHT: 1 << 8 (256)
+
+    // Handle className-based styling first
+    if (node.className) {
+      // Direct class name mapping from Lexical editor
+      if (node.className.includes('LexicalEditorTheme__textBold')) {
+        result = <strong>{result}</strong>
+      }
+      if (node.className.includes('LexicalEditorTheme__textItalic')) {
+        result = <em>{result}</em>
+      }
+      if (node.className.includes('LexicalEditorTheme__textUnderline')) {
+        result = <u>{result}</u>
+      }
+      if (node.className.includes('LexicalEditorTheme__textStrikethrough')) {
+        result = <s>{result}</s>
+      }
+    }
+
+    // Handle format values
+    // IMPORTANT: There appears to be a mismatch between the Lexical editor format values
+    // and what gets sent to the API. From console logs:
+    // format 1 = italic (should be bold according to Lexical docs)
+    // format 2 = bold (should be italic according to Lexical docs)
+    if (node.format > 0) {
+      // Apply formats in the CORRECT order based on observed behavior
+      // These format values appear to be flipped from what the Lexical docs suggest
+      if (node.format & 1) {
+        result = <strong>{result}</strong> // Format 1 is actually BOLD in our data
+      }
+      if (node.format & 2) {
+        result = <em>{result}</em> // Format 2 is actually ITALIC in our data
+      }
+      if (node.format & 8) {
+        result = <u>{result}</u> // Underline
+      }
+      if (node.format & 16) {
+        result = <s>{result}</s> // Strikethrough
+      }
+      if (node.format & 32) {
+        result = <code>{result}</code> // Code
+      }
+      if (node.format & 64) {
+        result = <sub>{result}</sub> // Subscript
+      }
+      if (node.format & 128) {
+        result = <sup>{result}</sup> // Superscript
+      }
+      if (node.format & 256) {
+        result = <mark>{result}</mark> // Highlight
+      }
+    }
+
+    // Handle custom styles (colors, sizes, etc.)
+    if (textState) {
+      // Use inline styles to directly apply the formatting from TextStateFeature
+      const style: React.CSSProperties = {}
+
+      // Handle font size
+      if (textState.size) {
+        switch (textState.size) {
+          case 'small':
+            style.fontSize = '0.875rem'
+            break
+          case 'normal':
+            style.fontSize = '1rem'
+            break
+          case 'large':
+            style.fontSize = '1.5rem'
+            break
+          case 'huge':
+            style.fontSize = '2rem'
+            break
+          case 'heading1':
+            style.fontSize = '60px'
+            style.fontWeight = '600'
+            style.lineHeight = '120%'
+            style.letterSpacing = '-1%'
+            break
+          case 'h9':
+            style.fontSize = '16px'
+            style.lineHeight = '24px'
+            style.letterSpacing = '0%'
+            break
+          case 'poppins':
+            style.fontSize = '56px'
+            style.lineHeight = '100%'
+            style.letterSpacing = '0%'
+            break
+        }
+      }
+
+      // Handle font weight
+      if (textState.fontWeight) {
+        style.fontWeight = textState.fontWeight
+      }
+
+      // Handle text color
+      if (textState.color) {
+        if (textState.color === 'customGrey1') {
+          style.color = 'rgba(11, 12, 11, 0.5)'
+        } else if (textState.color === 'customGrey2') {
+          style.color = 'rgba(11, 12, 11, 0.7)'
+        } else {
+          style.color = textState.color
+        }
+      }
+
+      // Handle background color
+      if (textState.background) {
+        style.backgroundColor = textState.background
+      }
+
+      // Apply both style and class name for better compatibility
+      let className = ''
       if (textState.color) {
         className += ` customTextState-color-${textState.color}`
       }
@@ -63,14 +194,18 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
         className += ` customTextState-background-${textState.background}`
       }
 
-      return (
-        <span style={{ fontWeight }} className={className.trim()}>
-          {node.text || children}
-        </span>
-      )
+      // Apply text state styling to the result, preserving any formatting already applied
+      if (Object.keys(style).length > 0 || className) {
+        result = (
+          <span style={style} className={className.trim() || undefined}>
+            {result}
+          </span>
+        )
+      }
     }
 
-    return node.text || children
+    // Return the final formatted result
+    return result
   }
 
   const customDefaultConverters = {
