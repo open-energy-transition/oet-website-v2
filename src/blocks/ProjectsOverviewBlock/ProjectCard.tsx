@@ -21,7 +21,9 @@ export const ProjectCard: React.FC<{
           {project.title}
         </h3>
         {project.subTitle && (
-          <div className="customTextState-size-h9 text-[#26372CB2]">{project.subTitle}</div>
+          <div className="customTextState-size-h9 text-[#26372CB2] min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis">
+            {project.subTitle}
+          </div>
         )}
         <div className="flex items-center gap-2 text-xs text-gray-500 my-6">
           {project.categories && project.categories.length > 0 && (

@@ -199,21 +199,38 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>(teamMembers)
 
-  // Filter team members when selected category changes
+  // Sort staffCategories by order field in ascending order (lower numbers first = higher priority)
+  const sortedStaffCategories = [...staffCategories].sort((a, b) => {
+    // Default to 999 if order is not defined (to put items without order at the end)
+    const orderA = typeof a.order === 'number' ? a.order : 999
+    const orderB = typeof b.order === 'number' ? b.order : 999
+    
+    // Ascending order (lower numbers first)
+    return orderA - orderB
+  })
+  // Filter and sort team members by last name when selected category changes
   useEffect(() => {
-    if (selectedCategory === null) {
-      setFilteredMembers(teamMembers)
-    } else {
-      setFilteredMembers(
-        teamMembers.filter((member) => {
-          return member.categories.some((category) => {
-            // Handle both ID and object
-            const categoryId = typeof category === 'object' ? category.id : category
-            return String(categoryId) === selectedCategory
+    // First filter by selected category
+    const filtered =
+      selectedCategory === null
+        ? [...teamMembers] // Create a copy of teamMembers
+        : teamMembers.filter((member) => {
+            return member.categories.some((category) => {
+              // Handle both ID and object
+              const categoryId = typeof category === 'object' ? category.id : category
+              return String(categoryId) === selectedCategory
+            })
           })
-        }),
-      )
-    }
+
+    // Then sort by lastName
+    filtered.sort((a, b) => {
+      // Safely handle missing lastName
+      const lastNameA = a.lastName || ''
+      const lastNameB = b.lastName || ''
+      return lastNameA.localeCompare(lastNameB)
+    })
+
+    setFilteredMembers(filtered)
   }, [selectedCategory, teamMembers])
 
   return (
@@ -235,10 +252,10 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
       )}
 
       {/* Staff Categories Filter */}
-      {staffCategories && staffCategories.length > 0 && (
+      {sortedStaffCategories && sortedStaffCategories.length > 0 && (
         <div className="mb-8">
           <div className="flex flex-wrap justify-center gap-2">
-            {staffCategories.map((category) => (
+            {sortedStaffCategories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => {
