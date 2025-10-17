@@ -198,6 +198,10 @@ export interface Page {
              * Choose a text color for the button
              */
             btnTextColor?: string | null;
+            /**
+             * Choose the size of the button text
+             */
+            btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
             reference?:
               | ({
                   relationTo: 'pages';
@@ -526,6 +530,10 @@ export interface CallToActionBlock {
            * Choose a text color for the button
            */
           btnTextColor?: string | null;
+          /**
+           * Choose the size of the button text
+           */
+          btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -688,6 +696,10 @@ export interface ButtonBlock {
      * Choose a text color for the button
      */
     btnTextColor?: string | null;
+    /**
+     * Choose the size of the button text
+     */
+    btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -796,6 +808,10 @@ export interface ContentBlock {
            * Choose a text color for the button
            */
           btnTextColor?: string | null;
+          /**
+           * Choose the size of the button text
+           */
+          btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -1231,6 +1247,10 @@ export interface OurServiceBlock {
      * Choose a text color for the button
      */
     btnTextColor?: string | null;
+    /**
+     * Choose the size of the button text
+     */
+    btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -1320,6 +1340,10 @@ export interface ToolsWeSupportBlock {
      * Choose a text color for the button
      */
     btnTextColor?: string | null;
+    /**
+     * Choose the size of the button text
+     */
+    btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -1386,6 +1410,10 @@ export interface WhoWeAreBlock {
      * Choose a text color for the button
      */
     btnTextColor?: string | null;
+    /**
+     * Choose the size of the button text
+     */
+    btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -1444,6 +1472,10 @@ export interface ProjectsOverviewBlock {
        * Choose a text color for the button
        */
       btnTextColor?: string | null;
+      /**
+       * Choose the size of the button text
+       */
+      btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
       reference?:
         | ({
             relationTo: 'pages';
@@ -2067,6 +2099,7 @@ export interface PagesSelect<T extends boolean = true> {
                     icon?: T;
                     btnBgColor?: T;
                     btnTextColor?: T;
+                    btnSize?: T;
                     reference?: T;
                     url?: T;
                     label?: T;
@@ -2148,6 +2181,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               icon?: T;
               btnBgColor?: T;
               btnTextColor?: T;
+              btnSize?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -2191,6 +2225,7 @@ export interface ButtonBlockSelect<T extends boolean = true> {
         icon?: T;
         btnBgColor?: T;
         btnTextColor?: T;
+        btnSize?: T;
         reference?: T;
         url?: T;
         label?: T;
@@ -2237,6 +2272,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               icon?: T;
               btnBgColor?: T;
               btnTextColor?: T;
+              btnSize?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -2366,6 +2402,7 @@ export interface OurServiceBlockSelect<T extends boolean = true> {
         icon?: T;
         btnBgColor?: T;
         btnTextColor?: T;
+        btnSize?: T;
         reference?: T;
         url?: T;
         label?: T;
@@ -2405,6 +2442,7 @@ export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
         icon?: T;
         btnBgColor?: T;
         btnTextColor?: T;
+        btnSize?: T;
         reference?: T;
         url?: T;
         label?: T;
@@ -2435,6 +2473,7 @@ export interface WhoWeAreBlockSelect<T extends boolean = true> {
         icon?: T;
         btnBgColor?: T;
         btnTextColor?: T;
+        btnSize?: T;
         reference?: T;
         url?: T;
         label?: T;
@@ -2462,6 +2501,7 @@ export interface ProjectsOverviewBlockSelect<T extends boolean = true> {
               icon?: T;
               btnBgColor?: T;
               btnTextColor?: T;
+              btnSize?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -3162,6 +3202,10 @@ export interface Header {
            * Choose a text color for the button
            */
           btnTextColor?: string | null;
+          /**
+           * Choose the size of the button text
+           */
+          btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -3203,6 +3247,10 @@ export interface Footer {
            * Choose a text color for the button
            */
           btnTextColor?: string | null;
+          /**
+           * Choose the size of the button text
+           */
+          btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -3301,6 +3349,10 @@ export interface Footer {
              * Choose a text color for the button
              */
             btnTextColor?: string | null;
+            /**
+             * Choose the size of the button text
+             */
+            btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
             reference?:
               | ({
                   relationTo: 'pages';
@@ -3408,6 +3460,7 @@ export interface HeaderSelect<T extends boolean = true> {
               icon?: T;
               btnBgColor?: T;
               btnTextColor?: T;
+              btnSize?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -3434,6 +3487,7 @@ export interface FooterSelect<T extends boolean = true> {
               icon?: T;
               btnBgColor?: T;
               btnTextColor?: T;
+              btnSize?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -3476,6 +3530,7 @@ export interface FooterSelect<T extends boolean = true> {
                     icon?: T;
                     btnBgColor?: T;
                     btnTextColor?: T;
+                    btnSize?: T;
                     reference?: T;
                     url?: T;
                     label?: T;

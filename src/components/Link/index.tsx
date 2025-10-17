@@ -20,6 +20,7 @@ type CMSLinkType = {
   url?: string | null
   btnTextColor?: string | null
   btnBgColor?: string | null
+  btnSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'small' | 'regular' | 'large' | null
   icon?: Icon | null | number
 }
 
@@ -36,6 +37,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     url,
     btnTextColor,
     btnBgColor,
+    btnSize = 'regular',
     icon,
   } = props
 
@@ -48,14 +50,63 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
   if (!href) return null
 
-  const size = appearance === 'link' ? 'clear' : sizeFromProps
-  const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
+  // Map btnSize to the size format expected by Button component
+  const getMappedSize = () => {
+    if (appearance === 'link') return 'clear'
+    if (sizeFromProps) return sizeFromProps
 
+    // Map our custom button sizes to the Button component's size prop
+    switch (btnSize) {
+      case 'xs':
+        return 'text-xs'
+      case 'sm':
+        return 'text-sm'
+      case 'md':
+        return 'text-md'
+      case 'lg':
+        return 'text-lg'
+      case 'xl':
+        return 'text-xl'
+      case '2xl':
+        return 'text-2xl'
+      default:
+        return 'text-base'
+    }
+  }
+
+  const size = getMappedSize()
+  const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
+    // Get size-specific classes for inline links
+    const sizeClasses = () => {
+      switch (btnSize) {
+        case 'xs':
+          return 'text-xs'
+        case 'sm':
+          return 'text-sm'
+        case 'md':
+          return 'text-base'
+        case 'lg':
+          return 'text-lg'
+        case 'xl':
+          return 'text-xl'
+        case '2xl':
+          return 'text-2xl'
+        case 'small':
+          return 'text-sm'
+        case 'regular':
+          return 'text-base'
+        case 'large':
+          return 'text-lg'
+        default:
+          return 'text-base'
+      }
+    }
+
     return (
       <Link
-        className={cn(className)}
+        className={cn(className, sizeClasses())}
         href={href || url || ''}
         {...newTabProps}
         style={{
@@ -67,7 +118,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
           ...(btnBgColor ? { backgroundColor: btnBgColor } : {}),
         }}
       >
-        {label && label}
+        {label && <span className={`${sizeClasses()} leading-none`}>{label}</span>}
         {children && children}
         {icon && typeof icon === 'object' && 'svg' in icon && (
           <span className="inline-block ml-2" dangerouslySetInnerHTML={{ __html: icon.svg }} />
@@ -90,11 +141,10 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
           ? { borderColor: btnTextColor || 'inherit' }
           : { backgroundColor: btnBgColor || 'transparent' }),
       }}
-      size={size}
       variant={appearance}
     >
-      <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
-        {label && label}
+      <Link className={cn(size, className)} href={href || url || ''} {...newTabProps}>
+        {label && <span className={`${size} leading-none`}>{label}</span>}
         {children && children}
         {icon && typeof icon === 'object' && 'svg' in icon && (
           <span
