@@ -16,8 +16,8 @@ export const ProjectCard: React.FC<{
           className="object-cover w-full rounded-tl-3xl rounded-tr-3xl h-[217px] overflow-hidden"
         />
       )}
-      <div className="p-6 border border-[#D9DCDA] rounded-bl-3xl rounded-br-3xl">
-        <h3 className="font-semibold text-lg mb-1 customTextState-size-h8 text-[#26372C]">
+      <div className="p-6 border border-[#D9DCDA] rounded-bl-3xl rounded-br-3xl w-full">
+        <h3 className="font-semibold text-lg mb-1 customTextState-size-h8 text-[#26372C] min-h-[60px] max-h-[60px] overflow-hidden line-clamp-3 text-ellipsis">
           {project.title}
         </h3>
         {project.subTitle && (

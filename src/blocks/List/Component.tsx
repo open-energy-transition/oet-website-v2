@@ -1,8 +1,12 @@
+import RichText from '@/components/RichText'
+import { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
+import Link from 'next/link'
 import React from 'react'
 
 type ListItem = {
   title: string
-  description?: string | null
+  link: string
+  content?: DefaultTypedEditorState
   icon?: {
     svg: string
   } | null
@@ -28,9 +32,17 @@ export const ListBlockComponent: React.FC<ListBlockProps> = ({ items }) => {
             />
           )}
           <div>
-            <div className="font-heebo font-semibold text-base leading-normal ">{item.title}</div>
-            {item.description && (
-              <div className="font-heebo text-sm leading-normal ">{item.description}</div>
+            <div className="font-heebo font-semibold text-base leading-normal ">
+              {item.link ? (
+                <Link href={item.link} className="hover:underline">
+                  {item.title}
+                </Link>
+              ) : (
+                item.title
+              )}
+            </div>
+            {item.content && (
+              <RichText data={item.content} enableGutter={false} enableProse={false} />
             )}
           </div>
         </li>

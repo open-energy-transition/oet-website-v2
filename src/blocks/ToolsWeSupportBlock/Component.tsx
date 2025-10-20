@@ -3,12 +3,14 @@ import type { Model, ToolsWeSupportBlock as ToolsWeSupportBlockProps } from '@/p
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 import Link from 'next/link'
+import { Media } from '@/components/Media'
 
 export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
   title,
   description,
   services,
   link,
+  media,
 }) => {
   return (
     <div className="container">
@@ -16,12 +18,7 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
         <div className="mb-6 w-1/2">
           <h2 className="text-oxanium-3xl mb-2">{title}</h2>
           {description && (
-            <RichText
-              enableGutter={false}
-              enableProse={false}
-              className="text-heebo-medium-normal"
-              data={description}
-            />
+            <RichText enableGutter={false} enableProse={false} className="" data={description} />
           )}
           <div className="mt-7 gap-2 flex flex-wrap">
             <CMSLink
@@ -30,6 +27,10 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
             />
           </div>
         </div>
+        {media && <Media resource={media} />}
+      </div>
+      <div className="flex justify-center mt-16 mb-20">
+        {/* Render services if present */}
         <div className="w-[40%] grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           {Array.isArray(services) &&
             services.length > 0 &&

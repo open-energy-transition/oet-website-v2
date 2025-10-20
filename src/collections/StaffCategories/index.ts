@@ -7,9 +7,11 @@ export const StaffCategories: CollectionConfig = {
   slug: 'staff',
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'description', 'slug'],
+    defaultColumns: ['name', 'description', 'order'],
     group: 'Content',
   },
+  // Add default sorting by order field (ascending)
+  defaultSort: 'order',
   access: {
     create: authenticated,
     delete: authenticated,

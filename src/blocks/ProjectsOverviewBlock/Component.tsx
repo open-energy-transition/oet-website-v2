@@ -19,7 +19,7 @@ export const ProjectsOverviewBlock: React.FC<ProjectsOverviewBlockProps> = ({
             <RichText
               enableGutter={false}
               enableProse={false}
-              className="text-heebo-medium-normal mt-4"
+              className="mt-4"
               data={description}
             />
           )}

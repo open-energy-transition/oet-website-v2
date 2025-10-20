@@ -131,22 +131,21 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
   if (!tabs || tabs.length === 0) {
     return null
   }
-
   const tabStyleClasses = {
     default: {
-      nav: 'border-b border-gray-200',
-      tab: 'px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 border-transparent',
-      activeTab: 'text-blue-600 border-blue-600',
+      nav: 'space-x-2',
+      tab: 'text-black border-b-2 font-normal border-transparent',
+      activeTab: 'border-red-600 font-bold',
     },
     pills: {
       nav: 'space-x-2',
       tab: 'px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100',
-      activeTab: 'bg-blue-100 text-blue-700',
+      activeTab: 'bg-red-100 text-red-700',
     },
     underline: {
       nav: '',
       tab: 'px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300',
-      activeTab: 'text-blue-600 border-blue-600',
+      activeTab: 'text-red-600 border-red-600',
     },
     bordered: {
       nav: 'border border-b-0 border-[#0B0C0B26] rounded-t-3xl overflow-hidden w-full',
@@ -158,6 +157,24 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
   const currentStyle = tabStyleClasses[tabStyle as keyof typeof tabStyleClasses]
   const isVertical = tabPosition === 'left' || tabPosition === 'right'
 
+  const mapTitleSizes = (size: string | null) => {
+    switch (size) {
+      case 'xs':
+        return 'text-xs'
+      case 'sm':
+        return 'text-sm'
+      case 'md':
+        return 'text-base'
+      case 'lg':
+        return 'text-lg'
+      case 'xl':
+        return 'text-xl'
+      case '2xl':
+        return 'text-2xl'
+      default:
+        return 'text-base'
+    }
+  }
   return (
     <div className="container my-16">
       {/* Title and Description */}
@@ -180,7 +197,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
           className={cn('flex', currentStyle.nav, {
             'flex-col space-y-1 mr-6 min-w-48': tabPosition === 'left',
             'flex-col space-y-1 ml-6 min-w-48 order-2': tabPosition === 'right',
-            'flex-row space-x-1': tabPosition === 'top',
+            'flex-row space-x-2': tabPosition === 'top',
             grid: tabStyle === 'bordered' && !isVertical,
           })}
           style={
@@ -193,11 +210,16 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={cn('transition-colors duration-200', currentStyle.tab, {
-                [currentStyle.activeTab]: activeTab === index,
-                'text-left': isVertical,
-                'text-center': !isVertical,
-              })}
+              className={cn(
+                'transition-colors duration-200 leading-none font-heebo',
+                mapTitleSizes(tab.titleSize as string),
+                currentStyle.tab,
+                {
+                  [currentStyle.activeTab]: activeTab === index,
+                  'text-left': isVertical,
+                  'text-center': !isVertical,
+                },
+              )}
             >
               {tab.title}
             </button>

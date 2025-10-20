@@ -331,6 +331,28 @@ export interface Post {
     };
     [k: string]: unknown;
   };
+  journal?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Digital Object Identifier for the post. Example: 10.1038/nphys1170 (Link: https://doi.org/10.1038/nphys1170)
+   */
+  doi?: string | null;
+  academic_publications_count?: number | null;
+  reports_count?: number | null;
+  policy_briefs_count?: number | null;
   relatedPosts?: (number | Post)[] | null;
   categories?: (number | Category)[] | null;
   meta?: {
@@ -863,7 +885,22 @@ export interface ContentBlock {
         listItems?:
           | {
               title: string;
-              description?: string | null;
+              link?: string | null;
+              content?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
               /**
                * Select an icon to display
                */
@@ -1360,6 +1397,7 @@ export interface ToolsWeSupportBlock {
      */
     appearance?: ('default' | 'outline') | null;
   };
+  media?: (number | null) | Media;
   services?:
     | {
         icon?: (number | null) | Icon;
@@ -1641,6 +1679,10 @@ export interface TabsBlock {
          * The title that will appear on the tab button
          */
         title: string;
+        /**
+         * Choose the size of the text
+         */
+        titleSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
         /**
          * Add content blocks to this tab
          */
@@ -2300,7 +2342,8 @@ export interface ContentBlockSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
-              description?: T;
+              link?: T;
+              content?: T;
               icon?: T;
               id?: T;
             };
@@ -2448,6 +2491,7 @@ export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
         label?: T;
         appearance?: T;
       };
+  media?: T;
   services?:
     | T
     | {
@@ -2592,6 +2636,7 @@ export interface TabsBlockSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        titleSize?: T;
         content?:
           | T
           | {
@@ -2636,6 +2681,11 @@ export interface PostsSelect<T extends boolean = true> {
   shortDescription?: T;
   heroImage?: T;
   content?: T;
+  journal?: T;
+  doi?: T;
+  academic_publications_count?: T;
+  reports_count?: T;
+  policy_briefs_count?: T;
   relatedPosts?: T;
   categories?: T;
   meta?:

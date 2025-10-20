@@ -44,6 +44,11 @@ export const Posts: CollectionConfig<'posts'> = {
     shortDescription: true,
     slug: true,
     categories: true,
+    journal: true,
+    doi: true,
+    content: true,
+    publishedAt: true,
+    populatedAuthors: true,
     meta: {
       image: true,
       description: true,
@@ -98,8 +103,43 @@ export const Posts: CollectionConfig<'posts'> = {
               editor: lexicalEditor({
                 features: getLexicalFeatures,
               }),
-              label: false,
+              label: 'Content',
               required: true,
+            },
+            {
+              name: 'journal',
+              type: 'richText',
+              editor: lexicalEditor({
+                features: getLexicalFeatures,
+              }),
+              required: false,
+            },
+            {
+              name: 'doi',
+              type: 'text',
+              admin: {
+                description:
+                  'Digital Object Identifier for the post. Example: 10.1038/nphys1170 (Link: https://doi.org/10.1038/nphys1170)',
+              },
+              required: false,
+            },
+            {
+              name: 'academic_publications_count',
+              label: 'Academic Publications Count',
+              type: 'number',
+              required: false,
+            },
+            {
+              name: 'reports_count',
+              label: 'Reports Count',
+              type: 'number',
+              required: false,
+            },
+            {
+              name: 'policy_briefs_count',
+              label: 'Policy Briefs Count',
+              type: 'number',
+              required: false,
             },
           ],
           label: 'Content',

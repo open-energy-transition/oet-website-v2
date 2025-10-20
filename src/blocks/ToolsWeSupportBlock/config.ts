@@ -27,9 +27,14 @@ export const ToolsWeSupport: Block = {
       },
     }),
     {
+      name: 'media',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
+    {
       name: 'services',
       type: 'array',
-      minRows: 1,
       maxRows: 2,
       fields: [
         {

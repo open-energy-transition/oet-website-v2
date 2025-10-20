@@ -19,6 +19,25 @@ const tabFields: Field[] = [
     },
   },
   {
+    name: 'titleSize',
+    label: 'Text Size',
+    type: 'select',
+    required: false,
+    defaultValue: 'md',
+    options: [
+      { label: 'Extra Small', value: 'xs' },
+      { label: 'Small', value: 'sm' },
+      { label: 'Medium', value: 'md' },
+      { label: 'Large', value: 'lg' },
+      { label: 'Extra Large', value: 'xl' },
+      { label: '2X Large', value: '2xl' },
+    ],
+    admin: {
+      description: 'Choose the size of the text',
+      width: '50%',
+    },
+  },
+  {
     name: 'content',
     type: 'blocks',
     blocks: [Content, Archive, ProjectTabs, TeamMembersBlock, JobsBlock, ProjectsList, PostsList],

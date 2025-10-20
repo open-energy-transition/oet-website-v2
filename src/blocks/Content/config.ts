@@ -231,8 +231,12 @@ const columnFields: Field[] = [
         required: true,
       },
       {
-        name: 'description',
+        name: 'link',
         type: 'text',
+      },
+      {
+        name: 'content',
+        type: 'richText',
       },
       {
         name: 'icon',

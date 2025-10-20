@@ -115,7 +115,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
                   <li key={i}>
                     <CMSLink
                       {...link}
-                      className="px-6 py-3 font-oxygen font-normal text-sm rounded-3xl"
+                      className="px-6 py-3 font-poppins font-normal text-sm rounded-3xl"
                     />
                   </li>
                 )
@@ -148,12 +148,14 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
                       className={`${idx === 0 ? 'h-[502px]' : ''} ${idx === 1 ? 'py-[36.5px] min-h-[241px]' : 'py-[30px]'} px-8  rounded-3xl bg-[#E8EFDC4D] border border-[#0B0C0B26] flex flex-col items-center justify-center text-center min-h-[9rem]`}
                     >
                       {col.title && (
-                        <h4 className="font-roboto text-[80px] leading-[120%] tracking-normal font-bold mb-2 text-center">
+                        <h4 className="font-poppins text-[80px] leading-[120%] tracking-normal font-bold mb-2 text-center">
                           {col.title}
                         </h4>
                       )}
                       {col.description && (
-                        <p className="text-base text-black text-center">{col.description}</p>
+                        <p className="font-poppins text-base text-black text-center">
+                          {col.description}
+                        </p>
                       )}
                     </div>
                   </div>

@@ -103,8 +103,8 @@ const config = {
         warning: 'hsl(var(--warning))',
       },
       fontFamily: {
-        mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-poppins)'],
+        sans: ['var(--font-poppins)'],
         oxanium: ['var(--font-oxanium)'],
         poppins: ['var(--font-poppins)'],
         oxygen: ['var(--font-oxygen)'],
