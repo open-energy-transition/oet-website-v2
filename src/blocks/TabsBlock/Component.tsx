@@ -197,7 +197,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
           className={cn('flex', currentStyle.nav, {
             'flex-col space-y-1 mr-6 min-w-48': tabPosition === 'left',
             'flex-col space-y-1 ml-6 min-w-48 order-2': tabPosition === 'right',
-            'flex-row space-x-2': tabPosition === 'top',
+            'flex-row gap-6': tabPosition === 'top',
             grid: tabStyle === 'bordered' && !isVertical,
           })}
           style={

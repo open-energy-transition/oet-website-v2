@@ -114,7 +114,7 @@ export const PostsListBlock: React.FC<PostsListBlockProps & { id?: string }> = (
           // Cast to PostData
           const postData = post as unknown as PostData
           return (
-            <div key={postData.id} className="border rounded-lg p-4 shadow bg-white">
+            <div key={postData.id} className="border rounded-xl p-4 shadow bg-white">
               <h3 className="text-xl font-semibold mb-2">{postData.title}</h3>
               {postData.subTitle && <div className="text-gray-500 mb-2">{postData.subTitle}</div>}
               {postData.publishedAt && (
