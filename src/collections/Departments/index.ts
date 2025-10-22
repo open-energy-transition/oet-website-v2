@@ -13,7 +13,10 @@ export const Departments: CollectionConfig = {
   slug: 'departments',
   admin: {
     useAsTitle: 'department',
-    defaultColumns: ['department', 'shortDescription', 'description', 'status', 'projects'],
+    defaultColumns: ['department', 'status', 'representativeMember'],
+    preview: (doc) => {
+      return `${process.env.NEXT_PUBLIC_SERVER_URL}/departments/${doc.id}`
+    },
   },
   access: {
     create: authenticated,
@@ -65,6 +68,17 @@ export const Departments: CollectionConfig = {
       relationTo: 'projects',
       hasMany: true,
       required: false,
+    },
+    {
+      name: 'representativeMember',
+      label: 'Representative Member',
+      type: 'relationship',
+      relationTo: 'team-members',
+      hasMany: false,
+      required: false,
+      admin: {
+        description: 'Select a representative team member for this department',
+      },
     },
   ],
 }

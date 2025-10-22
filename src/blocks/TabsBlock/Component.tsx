@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { cn } from '@/utilities/ui'
 import { CardBlock } from '../CardBlock/Component'
@@ -11,12 +11,22 @@ import { ClientTeamMembersBlock } from '../TeamMembersBlock/ClientWrapper'
 import { ProjectsListBlock } from '../ProjectsListBlock'
 import { PostsListBlock } from '../PostsListBlock'
 import { ClientJobsBlock } from '../JobsBlock/ClientWrapper'
+import { ClientDepartmentsListBlock } from '../DepartmentsListBlock/ClientWrapper'
 
 const renderTabContent = (content: any[]) => {
   if (!content || content.length === 0) return null
 
   return content.map((block, index) => {
     switch (block.blockType) {
+      case 'departmentsList':
+        return (
+          <ClientDepartmentsListBlock
+            key={index}
+            id={block.id}
+            departments={block.departments || []}
+            blockType={'departmentsList'}
+          />
+        )
       case 'content':
         return (
           <div key={index} className="prose max-w-none">
@@ -124,9 +134,71 @@ const renderTabContent = (content: any[]) => {
   })
 }
 
+// Helper function to slugify text for hash URLs
+const slugify = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/--+/g, '-') // Replace multiple hyphens with single hyphen
+    .trim() // Trim whitespace
+}
+
 export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
   const { title, description, tabs, tabStyle = 'default', tabPosition = 'top' } = props
+
+  // Get initial tab index based on URL hash
   const [activeTab, setActiveTab] = useState(0)
+
+  // Set active tab based on URL hash when component mounts
+  useEffect(() => {
+    if (typeof window !== 'undefined' && tabs && tabs.length > 0) {
+      const hash = window.location.hash.replace('#', '')
+      if (!hash) return // No hash in URL, use default tab
+
+      // Find tab index by matching hash with slugified tab titles
+      const tabIndex = tabs.findIndex((tab) => slugify(tab.title || '') === hash)
+
+      if (tabIndex !== -1) {
+        setActiveTab(tabIndex)
+      }
+    }
+  }, [tabs])
+
+  // Listen for hash changes in the URL
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (!tabs || tabs.length === 0) return
+
+      const hash = window.location.hash.replace('#', '')
+      if (!hash) return // No hash in URL, keep current tab
+
+      // Find tab index by matching hash with slugified tab titles
+      for (let i = 0; i < tabs.length; i++) {
+        const tabSlug = slugify(tabs[i].title || '')
+
+        if (tabSlug === hash) {
+          setActiveTab(i)
+          return
+        }
+      }
+    }
+
+    // Add event listener
+    if (typeof window !== 'undefined') {
+      window.addEventListener('hashchange', handleHashChange)
+
+      // Also run once on mount to handle initial hash
+      handleHashChange()
+    }
+
+    // Clean up
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('hashchange', handleHashChange)
+      }
+    }
+  }, [tabs])
 
   if (!tabs || tabs.length === 0) {
     return null
@@ -209,7 +281,14 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
           {tabs.map((tab, index) => (
             <button
               key={index}
-              onClick={() => setActiveTab(index)}
+              onClick={() => {
+                setActiveTab(index)
+                // Update URL hash when clicking on a tab
+                if (typeof window !== 'undefined') {
+                  const hash = slugify(tab.title || '')
+                  window.history.pushState(null, '', `#${hash}`)
+                }
+              }}
               className={cn(
                 'transition-colors duration-200 leading-none font-heebo',
                 mapTitleSizes(tab.titleSize as string),

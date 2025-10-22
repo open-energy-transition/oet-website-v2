@@ -34,9 +34,7 @@ type ReadMoreSectionProps = {
 
 const ReadMoreSection: React.FC<ReadMoreSectionProps> = ({ text, department }) => {
   const [showModal, setShowModal] = useState(false)
-  const maxLength = 145
-  const isLong = text.length > maxLength
-  const displayText = !isLong ? text : text.slice(0, maxLength) + '...'
+  const displayText = text
 
   const openModal = () => setShowModal(true)
   const closeModal = () => setShowModal(false)

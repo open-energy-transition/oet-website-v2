@@ -126,8 +126,32 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
             ],
             admin: {
               description: 'Choose the size of the button text',
-              width: '50%',
+              width: '100%',
             },
+          },
+          {
+            name: 'sublinks',
+            type: 'array',
+            admin: {
+              description: 'Add links to specific sections within the page',
+            },
+            fields: [
+              {
+                name: 'label',
+                type: 'text',
+                required: true,
+                label: 'Section Label',
+              },
+              {
+                name: 'hash',
+                type: 'text',
+                required: true,
+                label: 'Hash Fragment',
+                admin: {
+                  description: 'Enter without # (e.g., "overview" will link to "#overview")',
+                },
+              },
+            ],
           },
         ],
       },

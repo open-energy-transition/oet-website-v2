@@ -202,6 +202,19 @@ export interface Page {
              * Choose the size of the button text
              */
             btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+            /**
+             * Add links to specific sections within the page
+             */
+            sublinks?:
+              | {
+                  label: string;
+                  /**
+                   * Enter without # (e.g., "overview" will link to "#overview")
+                   */
+                  hash: string;
+                  id?: string | null;
+                }[]
+              | null;
             reference?:
               | ({
                   relationTo: 'pages';
@@ -556,6 +569,19 @@ export interface CallToActionBlock {
            * Choose the size of the button text
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+          /**
+           * Add links to specific sections within the page
+           */
+          sublinks?:
+            | {
+                label: string;
+                /**
+                 * Enter without # (e.g., "overview" will link to "#overview")
+                 */
+                hash: string;
+                id?: string | null;
+              }[]
+            | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -618,6 +644,10 @@ export interface Department {
   icon?: (number | null) | Icon;
   status: 'open' | 'closed' | 'draft';
   projects?: (number | Project)[] | null;
+  /**
+   * Select a representative team member for this department
+   */
+  representativeMember?: (number | null) | TeamMember;
   updatedAt: string;
   createdAt: string;
 }
@@ -660,6 +690,66 @@ export interface Project {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-members".
+ */
+export interface TeamMember {
+  id: number;
+  firstName: string;
+  lastName: string;
+  /**
+   * The team member's categories for user navigation
+   */
+  categories: (number | Staff)[];
+  jobTitle: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  linkedIn?: string | null;
+  x?: string | null;
+  github?: string | null;
+  email?: string | null;
+  externalLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff".
+ */
+export interface Staff {
+  id: number;
+  /**
+   * The name of the staff category (e.g., "Energy System Modeler")
+   */
+  name: string;
+  /**
+   * Optional description of this category
+   */
+  description?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  /**
+   * Optional numeric value to control the display order (lower numbers appear first)
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -722,6 +812,19 @@ export interface ButtonBlock {
      * Choose the size of the button text
      */
     btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+    /**
+     * Add links to specific sections within the page
+     */
+    sublinks?:
+      | {
+          label: string;
+          /**
+           * Enter without # (e.g., "overview" will link to "#overview")
+           */
+          hash: string;
+          id?: string | null;
+        }[]
+      | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -834,6 +937,19 @@ export interface ContentBlock {
            * Choose the size of the button text
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+          /**
+           * Add links to specific sections within the page
+           */
+          sublinks?:
+            | {
+                label: string;
+                /**
+                 * Enter without # (e.g., "overview" will link to "#overview")
+                 */
+                hash: string;
+                id?: string | null;
+              }[]
+            | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -1288,6 +1404,19 @@ export interface OurServiceBlock {
      * Choose the size of the button text
      */
     btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+    /**
+     * Add links to specific sections within the page
+     */
+    sublinks?:
+      | {
+          label: string;
+          /**
+           * Enter without # (e.g., "overview" will link to "#overview")
+           */
+          hash: string;
+          id?: string | null;
+        }[]
+      | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -1381,6 +1510,19 @@ export interface ToolsWeSupportBlock {
      * Choose the size of the button text
      */
     btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+    /**
+     * Add links to specific sections within the page
+     */
+    sublinks?:
+      | {
+          label: string;
+          /**
+           * Enter without # (e.g., "overview" will link to "#overview")
+           */
+          hash: string;
+          id?: string | null;
+        }[]
+      | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -1452,6 +1594,19 @@ export interface WhoWeAreBlock {
      * Choose the size of the button text
      */
     btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+    /**
+     * Add links to specific sections within the page
+     */
+    sublinks?:
+      | {
+          label: string;
+          /**
+           * Enter without # (e.g., "overview" will link to "#overview")
+           */
+          hash: string;
+          id?: string | null;
+        }[]
+      | null;
     reference?:
       | ({
           relationTo: 'pages';
@@ -1514,6 +1669,19 @@ export interface ProjectsOverviewBlock {
        * Choose the size of the button text
        */
       btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+      /**
+       * Add links to specific sections within the page
+       */
+      sublinks?:
+        | {
+            label: string;
+            /**
+             * Enter without # (e.g., "overview" will link to "#overview")
+             */
+            hash: string;
+            id?: string | null;
+          }[]
+        | null;
       reference?:
         | ({
             relationTo: 'pages';
@@ -1695,6 +1863,7 @@ export interface TabsBlock {
               | JobsBlock
               | ProjectsListBlock
               | PostsListBlock
+              | DepartmentsListBlock
             )[]
           | null;
         id?: string | null;
@@ -1729,66 +1898,6 @@ export interface PartnersBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'partners';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team-members".
- */
-export interface TeamMember {
-  id: number;
-  firstName: string;
-  lastName: string;
-  /**
-   * The team member's categories for user navigation
-   */
-  categories: (number | Staff)[];
-  jobTitle: string;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  image?: (number | null) | Media;
-  linkedIn?: string | null;
-  x?: string | null;
-  github?: string | null;
-  email?: string | null;
-  externalLink?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "staff".
- */
-export interface Staff {
-  id: number;
-  /**
-   * The name of the staff category (e.g., "Energy System Modeler")
-   */
-  name: string;
-  /**
-   * Optional description of this category
-   */
-  description?: string | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  /**
-   * Optional numeric value to control the display order (lower numbers appear first)
-   */
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2142,6 +2251,13 @@ export interface PagesSelect<T extends boolean = true> {
                     btnBgColor?: T;
                     btnTextColor?: T;
                     btnSize?: T;
+                    sublinks?:
+                      | T
+                      | {
+                          label?: T;
+                          hash?: T;
+                          id?: T;
+                        };
                     reference?: T;
                     url?: T;
                     label?: T;
@@ -2224,6 +2340,13 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              sublinks?:
+                | T
+                | {
+                    label?: T;
+                    hash?: T;
+                    id?: T;
+                  };
               reference?: T;
               url?: T;
               label?: T;
@@ -2268,6 +2391,13 @@ export interface ButtonBlockSelect<T extends boolean = true> {
         btnBgColor?: T;
         btnTextColor?: T;
         btnSize?: T;
+        sublinks?:
+          | T
+          | {
+              label?: T;
+              hash?: T;
+              id?: T;
+            };
         reference?: T;
         url?: T;
         label?: T;
@@ -2315,6 +2445,13 @@ export interface ContentBlockSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              sublinks?:
+                | T
+                | {
+                    label?: T;
+                    hash?: T;
+                    id?: T;
+                  };
               reference?: T;
               url?: T;
               label?: T;
@@ -2446,6 +2583,13 @@ export interface OurServiceBlockSelect<T extends boolean = true> {
         btnBgColor?: T;
         btnTextColor?: T;
         btnSize?: T;
+        sublinks?:
+          | T
+          | {
+              label?: T;
+              hash?: T;
+              id?: T;
+            };
         reference?: T;
         url?: T;
         label?: T;
@@ -2486,6 +2630,13 @@ export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
         btnBgColor?: T;
         btnTextColor?: T;
         btnSize?: T;
+        sublinks?:
+          | T
+          | {
+              label?: T;
+              hash?: T;
+              id?: T;
+            };
         reference?: T;
         url?: T;
         label?: T;
@@ -2518,6 +2669,13 @@ export interface WhoWeAreBlockSelect<T extends boolean = true> {
         btnBgColor?: T;
         btnTextColor?: T;
         btnSize?: T;
+        sublinks?:
+          | T
+          | {
+              label?: T;
+              hash?: T;
+              id?: T;
+            };
         reference?: T;
         url?: T;
         label?: T;
@@ -2546,6 +2704,13 @@ export interface ProjectsOverviewBlockSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              sublinks?:
+                | T
+                | {
+                    label?: T;
+                    hash?: T;
+                    id?: T;
+                  };
               reference?: T;
               url?: T;
               label?: T;
@@ -2647,6 +2812,7 @@ export interface TabsBlockSelect<T extends boolean = true> {
               jobs?: T | JobsBlockSelect<T>;
               projectsList?: T | ProjectsListBlockSelect<T>;
               postsList?: T | PostsListBlockSelect<T>;
+              departmentsList?: T | DepartmentsListBlockSelect<T>;
             };
         id?: T;
       };
@@ -2847,6 +3013,7 @@ export interface DepartmentsSelect<T extends boolean = true> {
   icon?: T;
   status?: T;
   projects?: T;
+  representativeMember?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -3256,6 +3423,19 @@ export interface Header {
            * Choose the size of the button text
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+          /**
+           * Add links to specific sections within the page
+           */
+          sublinks?:
+            | {
+                label: string;
+                /**
+                 * Enter without # (e.g., "overview" will link to "#overview")
+                 */
+                hash: string;
+                id?: string | null;
+              }[]
+            | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -3301,6 +3481,19 @@ export interface Footer {
            * Choose the size of the button text
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+          /**
+           * Add links to specific sections within the page
+           */
+          sublinks?:
+            | {
+                label: string;
+                /**
+                 * Enter without # (e.g., "overview" will link to "#overview")
+                 */
+                hash: string;
+                id?: string | null;
+              }[]
+            | null;
           reference?:
             | ({
                 relationTo: 'pages';
@@ -3403,6 +3596,19 @@ export interface Footer {
              * Choose the size of the button text
              */
             btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+            /**
+             * Add links to specific sections within the page
+             */
+            sublinks?:
+              | {
+                  label: string;
+                  /**
+                   * Enter without # (e.g., "overview" will link to "#overview")
+                   */
+                  hash: string;
+                  id?: string | null;
+                }[]
+              | null;
             reference?:
               | ({
                   relationTo: 'pages';
@@ -3511,6 +3717,13 @@ export interface HeaderSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              sublinks?:
+                | T
+                | {
+                    label?: T;
+                    hash?: T;
+                    id?: T;
+                  };
               reference?: T;
               url?: T;
               label?: T;
@@ -3538,6 +3751,13 @@ export interface FooterSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              sublinks?:
+                | T
+                | {
+                    label?: T;
+                    hash?: T;
+                    id?: T;
+                  };
               reference?: T;
               url?: T;
               label?: T;
@@ -3581,6 +3801,13 @@ export interface FooterSelect<T extends boolean = true> {
                     btnBgColor?: T;
                     btnTextColor?: T;
                     btnSize?: T;
+                    sublinks?:
+                      | T
+                      | {
+                          label?: T;
+                          hash?: T;
+                          id?: T;
+                        };
                     reference?: T;
                     url?: T;
                     label?: T;

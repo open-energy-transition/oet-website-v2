@@ -107,8 +107,6 @@ export const PostsListBlock: React.FC<PostsListBlockProps & { id?: string }> = (
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Posts</h2>
-
       <div className="grid gap-6 md:grid-cols-3">
         {(posts ?? []).map((post) => {
           // Cast to PostData

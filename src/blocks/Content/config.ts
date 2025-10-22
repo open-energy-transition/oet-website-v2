@@ -107,7 +107,7 @@ const columnFields: Field[] = [
     name: 'tag',
     type: 'text',
     admin: {
-      condition: (_, siblingData) => siblingData?.type === 'card',
+      condition: (_, siblingData) => ['card', 'cardModal'].includes(siblingData?.type),
       width: '50%',
     },
   },

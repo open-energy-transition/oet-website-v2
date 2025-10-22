@@ -8,14 +8,15 @@ export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
 
 export const CardModel: React.FC<{
   data: Model
+  tag?: string | undefined | null
 }> = (props) => {
-  const { data } = props
+  const { data, tag } = props
   const { title, description, sourceCode, github, website } = data
 
   return (
     <div className="border border-[#77857C] rounded-2xl text-[#0B0C0B] p-4 min-h-[336px] flex flex-col justify-between">
       <div>
-        <div className="text-poppins-base text-sm">Model</div>
+        {tag && <div className="text-poppins-base text-sm">{tag}</div>}
         <div className="text-poppins-2xl underline mt-2">{title}</div>
         <div className="text-poppins-h9 mt-2">{description}</div>
       </div>

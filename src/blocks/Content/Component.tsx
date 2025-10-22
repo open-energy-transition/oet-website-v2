@@ -55,7 +55,6 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 listType,
                 listItems,
               } = col
-
               return (
                 <div
                   className={cn(`col-span-4 lg:col-span-${colsSpanClasses[size!]}`, {
@@ -73,7 +72,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                         </div>
                       )}
                       {/* Modal trigger */}
-                      {modal && typeof modal === 'object' && <CardModel data={modal} />}
+                      {modal && typeof modal === 'object' && <CardModel tag={tag} data={modal} />}
                     </div>
                   ) : type === 'card' ? (
                     // Card Type
