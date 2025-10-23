@@ -697,6 +697,7 @@ export interface Project {
  */
 export interface TeamMember {
   id: number;
+  _order?: string | null;
   firstName: string;
   lastName: string;
   /**
@@ -734,6 +735,7 @@ export interface TeamMember {
  */
 export interface Staff {
   id: number;
+  _order?: string | null;
   /**
    * The name of the staff category (e.g., "Energy System Modeler")
    */
@@ -744,10 +746,6 @@ export interface Staff {
   description?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
-  /**
-   * Optional numeric value to control the display order (lower numbers appear first)
-   */
-  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -3087,6 +3085,7 @@ export interface ProjectsSelect<T extends boolean = true> {
  * via the `definition` "team-members_select".
  */
 export interface TeamMembersSelect<T extends boolean = true> {
+  _order?: T;
   firstName?: T;
   lastName?: T;
   categories?: T;
@@ -3106,11 +3105,11 @@ export interface TeamMembersSelect<T extends boolean = true> {
  * via the `definition` "staff_select".
  */
 export interface StaffSelect<T extends boolean = true> {
+  _order?: T;
   name?: T;
   description?: T;
   slug?: T;
   slugLock?: T;
-  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

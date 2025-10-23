@@ -1,6 +1,8 @@
 /* Custom text styles for Lexical editor */
 .customTextState-color-customGrey1 {
   color: rgba(11, 12, 11, 0.5);
+  padding: 1px;
+  background-color: white;
 }
 
 .customTextState-color-customGrey2 {

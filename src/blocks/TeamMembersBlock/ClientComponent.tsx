@@ -199,14 +199,15 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>(teamMembers)
 
-  // Sort staffCategories by order field in ascending order (lower numbers first = higher priority)
+  // Sort staffCategories by _order field (PayloadCMS orderable field)
   const sortedStaffCategories = [...staffCategories].sort((a, b) => {
-    // Default to 999 if order is not defined (to put items without order at the end)
-    const orderA = typeof a.order === 'number' ? a.order : 999
-    const orderB = typeof b.order === 'number' ? b.order : 999
-    
-    // Ascending order (lower numbers first)
-    return orderA - orderB
+    // If _order is available, use it for sorting (PayloadCMS orderable uses lexicographic order)
+    if (a._order && b._order) {
+      return a._order.localeCompare(b._order)
+    }
+
+    // If _order not available, fall back to sorting by name
+    return (a.name || '').localeCompare(b.name || '')
   })
   // Filter and sort team members by last name when selected category changes
   useEffect(() => {
@@ -221,10 +222,14 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
               return String(categoryId) === selectedCategory
             })
           })
-
-    // Then sort by lastName
+    console.log(filtered)
+    // Sort by _order field (PayloadCMS orderable uses lexicographic order)
     filtered.sort((a, b) => {
-      // Safely handle missing lastName
+      // If _order is available, use it for sorting
+      if (a._order && b._order) {
+        return a._order.localeCompare(b._order)
+      }
+      // Fall back to lastName if _order not available
       const lastNameA = a.lastName || ''
       const lastNameB = b.lastName || ''
       return lastNameA.localeCompare(lastNameB)

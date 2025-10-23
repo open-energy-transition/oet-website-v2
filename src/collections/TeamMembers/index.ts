@@ -13,8 +13,13 @@ export const TeamMembers: CollectionConfig = {
   slug: 'team-members',
   admin: {
     useAsTitle: 'firstName',
-    defaultColumns: ['firstName', 'lastName', 'category', 'jobTitle'],
+    defaultColumns: ['firstName', 'lastName', 'category', 'jobTitle', '_order'],
+    listSearchableFields: ['firstName', 'lastName', 'jobTitle'],
   },
+  // Enable drag and drop ordering
+  orderable: true,
+  // Add default sorting by _order field (PayloadCMS's orderable field)
+  defaultSort: '_order',
   access: {
     create: authenticated,
     delete: authenticated,

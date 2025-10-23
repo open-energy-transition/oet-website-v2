@@ -7,11 +7,14 @@ export const StaffCategories: CollectionConfig = {
   slug: 'staff',
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'description', 'order'],
+    defaultColumns: ['name', 'description', '_order'],
     group: 'Content',
+    listSearchableFields: ['name', 'description'], // Fields to search
   },
-  // Add default sorting by order field (ascending)
-  defaultSort: 'order',
+  // Enable drag and drop ordering
+  orderable: true,
+  // Add default sorting by _order field (PayloadCMS's orderable field)
+  defaultSort: '_order',
   access: {
     create: authenticated,
     delete: authenticated,
@@ -38,15 +41,5 @@ export const StaffCategories: CollectionConfig = {
       },
     },
     ...slugField(),
-    {
-      name: 'order',
-      type: 'number',
-      required: false,
-      label: 'Display Order',
-      admin: {
-        description:
-          'Optional numeric value to control the display order (lower numbers appear first)',
-      },
-    },
   ],
 }
