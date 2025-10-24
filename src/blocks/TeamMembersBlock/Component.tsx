@@ -17,6 +17,7 @@ export const TeamMembersBlock: React.FC<
   const teamMembersQuery = await payload.find({
     collection: 'team-members',
     depth: 2, // Increased depth to get category details
+    sort: '_order', // Sort by order field if available
     limit: 999999,
   })
 
@@ -24,7 +25,7 @@ export const TeamMembersBlock: React.FC<
   const staffCategoriesQuery = await payload.find({
     collection: 'staff',
     depth: 0,
-    sort: 'order', // Sort by order field if available
+    sort: '_order', // Sort by order field if available
     limit: 999999,
   })
 

@@ -200,15 +200,7 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
   const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>(teamMembers)
 
   // Sort staffCategories by _order field (PayloadCMS orderable field)
-  const sortedStaffCategories = [...staffCategories].sort((a, b) => {
-    // If _order is available, use it for sorting (PayloadCMS orderable uses lexicographic order)
-    if (a._order && b._order) {
-      return a._order.localeCompare(b._order)
-    }
-
-    // If _order not available, fall back to sorting by name
-    return (a.name || '').localeCompare(b.name || '')
-  })
+  const sortedStaffCategories = [...staffCategories]
   // Filter and sort team members by last name when selected category changes
   useEffect(() => {
     // First filter by selected category
@@ -222,19 +214,6 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
               return String(categoryId) === selectedCategory
             })
           })
-    console.log(filtered)
-    // Sort by _order field (PayloadCMS orderable uses lexicographic order)
-    filtered.sort((a, b) => {
-      // If _order is available, use it for sorting
-      if (a._order && b._order) {
-        return a._order.localeCompare(b._order)
-      }
-      // Fall back to lastName if _order not available
-      const lastNameA = a.lastName || ''
-      const lastNameB = b.lastName || ''
-      return lastNameA.localeCompare(lastNameB)
-    })
-
     setFilteredMembers(filtered)
   }, [selectedCategory, teamMembers])
 
