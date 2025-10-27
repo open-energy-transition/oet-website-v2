@@ -4,15 +4,21 @@ import { getPayload } from 'payload'
 
 export const dynamic = 'force-dynamic' // Ensures the route is not statically optimized
 
-export async function GET() {
+import type { NextRequest } from 'next/server'
+
+export async function GET(request: NextRequest) {
   try {
     const payload = await getPayload({ config: configPromise })
+
+    // Get sort param from query string, default to '_order'
+    const { searchParams } = new URL(request.url)
+    const sort = searchParams.get('sort') || '_order'
 
     // Fetch all staff categories
     const staffCategoriesQuery = await payload.find({
       collection: 'staff',
       depth: 0,
-      sort: 'order', // Sort by order field if available
+      sort,
       limit: 999999,
     })
 

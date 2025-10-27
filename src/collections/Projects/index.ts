@@ -162,7 +162,7 @@ export const Projects: CollectionConfig = {
   versions: {
     drafts: {
       autosave: {
-        interval: 100,
+        interval: 2000,
       },
     },
     maxPerDoc: 50,

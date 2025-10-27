@@ -198,7 +198,7 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>(teamMembers)
-
+  console.log(staffCategories)
   // Sort staffCategories by _order field (PayloadCMS orderable field)
   const sortedStaffCategories = [...staffCategories]
   // Filter and sort team members by last name when selected category changes
