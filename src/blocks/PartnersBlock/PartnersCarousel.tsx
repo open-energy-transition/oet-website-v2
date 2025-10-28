@@ -182,95 +182,149 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
   const slideWidth = 100 / images.length
 
   return (
-    <div
-      className={`partners-carousel-container relative w-full px-12 py-4 overflow-hidden ${!imagesLoaded ? 'opacity-0' : 'opacity-100'}`}
-      style={{ transition: 'opacity 0.5s ease-in-out' }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      ref={carouselRef}
-      tabIndex={0} // Make it focusable for keyboard navigation
-      role="region"
-      aria-label="Partner logos carousel"
-      aria-roledescription="carousel"
-    >
-      <div className="overflow-hidden rounded-lg">
-        <div
-          className="flex transition-all duration-500 ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * slideWidth}%)`,
-            width: `${(images.length / slidesToShow) * 100}%`,
-          }}
+    <>
+      <div
+        className={`partners-carousel-container relative w-full px-4 md:px-8 lg:px-12 py-4 overflow-hidden ${!imagesLoaded ? 'opacity-0' : 'opacity-100'}`}
+        style={{ transition: 'opacity 0.5s ease-in-out' }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        ref={carouselRef}
+        tabIndex={0}
+        role="region"
+        aria-label="Partner logos carousel"
+        aria-roledescription="carousel"
+      >
+        <div className="overflow-hidden rounded-lg">
+          <div
+            className="flex transition-all duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${currentIndex * slideWidth}%)`,
+              width: `${(images.length / slidesToShow) * 100}%`,
+            }}
+          >
+            {images.map((img, i) => (
+              <div
+                key={i} // Use stable index as key
+                className="partner-slide h-52 md:h-56 lg:h-60 overflow-hidden rounded-lg flex items-center justify-center"
+                style={{
+                  width: `${100 / images.length}%`,
+                  padding: '0 0.5rem md:0 1rem',
+                  opacity: i >= currentIndex && i < currentIndex + slidesToShow ? 1 : 0.3,
+                  transition: 'all 0.3s ease-in-out',
+                }}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`Partner: ${img.alt}`}
+                aria-hidden={!(i >= currentIndex && i < currentIndex + slidesToShow)}
+              >
+                <Media
+                  resource={img.image}
+                  className="object-contain p-1 md:p-2"
+                  alt={img.alt}
+                  imgClassName="max-h-44 md:max-h-48 lg:max-h-52 max-w-full mx-auto hover:scale-105 transition-transform duration-300"
+                  loading="eager" // Ensure images load immediately
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop navigation buttons (inside carousel) */}
+        <button
+          className="carousel-nav-btn carousel-prev absolute left-0 md:left-2 top-1/2 transform -translate-y-1/2 p-1 md:p-2 z-10 text-gray-600 hover:text-gray-900 bg-white/80 rounded-full shadow-md hidden md:block"
+          onClick={prevSlide}
+          aria-label="Previous slide"
         >
-          {images.map((img, i) => (
-            <div
-              key={i} // Use stable index as key
-              className="partner-slide h-32 overflow-hidden rounded-lg flex items-center justify-center"
-              style={{
-                width: `${100 / images.length}%`,
-                padding: '0 1rem',
-                opacity: i >= currentIndex && i < currentIndex + slidesToShow ? 1 : 0.3,
-                transition: 'all 0.3s ease-in-out',
-              }}
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`Partner: ${img.alt}`}
-              aria-hidden={!(i >= currentIndex && i < currentIndex + slidesToShow)}
-            >
-              <Media
-                resource={img.image}
-                className="object-contain p-2 w-full h-full"
-                alt={img.alt}
-                imgClassName="max-h-24 mx-auto hover:scale-105 transition-transform duration-300"
-                loading="eager" // Ensure images load immediately
-              />
-            </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            className="md:w-6 md:h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <button
+          className="carousel-nav-btn carousel-next absolute right-0 md:right-2 top-1/2 transform -translate-y-1/2 p-1 md:p-2 z-10 text-gray-600 hover:text-gray-900 bg-white/80 rounded-full shadow-md hidden md:block"
+          onClick={nextSlide}
+          aria-label="Next slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            className="md:w-6 md:h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+      {/* Mobile navigation with dots and arrows */}
+      <div className="flex justify-between items-center mt-4 md:hidden px-4">
+        <button
+          className="carousel-nav-btn p-2 text-gray-600 hover:text-gray-900 bg-white rounded-full shadow-sm border border-gray-200"
+          onClick={prevSlide}
+          aria-label="Previous slide"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        {/* Pagination dots */}
+        <div className="flex gap-1">
+          {Array.from({ length: Math.ceil(images.length / slidesToShow) }, (_, i) => (
+            <button
+              key={i}
+              className={`w-2 h-2 rounded-full transition-all ${
+                Math.floor(currentIndex / slidesToShow) === i ? 'bg-gray-700 w-4' : 'bg-gray-300'
+              }`}
+              onClick={() => setCurrentIndex(i * slidesToShow)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
           ))}
         </div>
+
+        <button
+          className="carousel-nav-btn p-2 text-gray-600 hover:text-gray-900 bg-white rounded-full shadow-sm border border-gray-200"
+          onClick={nextSlide}
+          aria-label="Next slide"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
       </div>
-
-      {/* Navigation buttons */}
-      <button
-        className="carousel-nav-btn carousel-prev absolute left-0 top-1/2 transform -translate-y-1/2 p-2 z-10 text-gray-600 hover:text-gray-900"
-        onClick={prevSlide}
-        aria-label="Previous slide"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M15 18l-6-6 6-6" />
-        </svg>
-      </button>
-
-      <button
-        className="carousel-nav-btn carousel-next absolute right-0 top-1/2 transform -translate-y-1/2 p-2 z-10 text-gray-600 hover:text-gray-900"
-        onClick={nextSlide}
-        aria-label="Next slide"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M9 18l6-6-6-6" />
-        </svg>
-      </button>
-    </div>
+    </>
   )
 }

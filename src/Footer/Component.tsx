@@ -44,7 +44,7 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="flex gap-8 w-[525px]">
+        <div className="flex gap-8 lg:w-[525px]">
           {/* About Us */}
           {aboutUs && (
             <div className="flex-1">
