@@ -12,8 +12,8 @@ export const WhoWeAreBlock: React.FC<WhoWeAreBlockProps> = ({
 }) => {
   return (
     <div className="container py-16 text-[#26372C]">
-      <div className="flex justify-between">
-        <div className="mb-6 w-1/2 pt-[112px]">
+      <div className="lg:flex justify-between">
+        <div className="mb-6 lg:w-1/2 pt-[112px]">
           <h2 className="text-oxanium-3xl mb-2">{title}</h2>
           {description && (
             <RichText
@@ -30,7 +30,7 @@ export const WhoWeAreBlock: React.FC<WhoWeAreBlockProps> = ({
             />
           </div>
         </div>
-        <div className="w-[40%] flex items-start justify-end">
+        <div className="lg:w-[40%] flex items-start justify-end">
           {media && typeof media === 'object' && <Media resource={media} />}
         </div>
       </div>

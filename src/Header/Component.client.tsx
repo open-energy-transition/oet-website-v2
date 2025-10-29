@@ -16,7 +16,8 @@ interface HeaderClientProps {
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   /* Storing the value in a useState to avoid hydration errors */
   const [theme, setTheme] = useState<string | null>(null)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  // Set mobile menu open by default
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
@@ -80,10 +81,37 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-50">
-            <div className="container py-4">
+          <div className="lg:hidden fixed inset-0 bg-white z-50 overflow-y-auto">
+            {/* Header area with logo and close button */}
+            <div className="flex justify-between items-center h-[84px] px-4 border-b border-gray-200">
+              <Link href="/">
+                <Logo type="red" loading="eager" priority="high" className="invert dark:invert-0" />
+              </Link>
+              <button
+                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            {/* Menu content */}
+            <div className="px-4 py-6">
               <HeaderNav data={data} isMobile={true} />
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="mt-6 pt-6 border-t border-gray-200">
                 <button className="w-full bg-[#E31937] rounded-[12px] text-white px-8 py-3">
                   Contact Us
                 </button>

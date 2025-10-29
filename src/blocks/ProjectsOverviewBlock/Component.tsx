@@ -12,8 +12,8 @@ export const ProjectsOverviewBlock: React.FC<ProjectsOverviewBlockProps> = ({
 }) => {
   return (
     <div className="container py-8">
-      <div className="flex justify-between">
-        <div className="mb-6 w-1/2">
+      <div className="lg:flex justify-between">
+        <div className="mb-6 lg:w-1/2">
           <h2 className="text-oxanium-3xl">{title}</h2>
           {description && (
             <RichText

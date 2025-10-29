@@ -14,8 +14,8 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
 }) => {
   return (
     <div className="container">
-      <div className="flex justify-between">
-        <div className="mb-6 w-1/2">
+      <div className="flex flex-col lg:flex-row justify-between">
+        <div className="mb-6 lg:w-1/2">
           <h2 className="text-oxanium-3xl mb-2">{title}</h2>
           {description && (
             <RichText enableGutter={false} enableProse={false} className="" data={description} />

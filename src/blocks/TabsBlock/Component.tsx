@@ -269,14 +269,8 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
           className={cn('flex', currentStyle.nav, {
             'flex-col space-y-1 mr-6 min-w-48': tabPosition === 'left',
             'flex-col space-y-1 ml-6 min-w-48 order-2': tabPosition === 'right',
-            'flex-row gap-6': tabPosition === 'top',
-            grid: tabStyle === 'bordered' && !isVertical,
+            'flex-col lg:flex-row gap-6': tabPosition === 'top',
           })}
-          style={
-            tabStyle === 'bordered' && !isVertical
-              ? { gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }
-              : undefined
-          }
         >
           {tabs.map((tab, index) => (
             <button
@@ -297,6 +291,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
                   [currentStyle.activeTab]: activeTab === index,
                   'text-left': isVertical,
                   'text-center': !isVertical,
+                  'flex-1': tabStyle === 'bordered' && !isVertical,
                 },
               )}
             >

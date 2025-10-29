@@ -98,7 +98,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText, colum
           detectRetina: true,
         }}
       />
-      <div className="container mb-8 pt-48 z-10 relative flex items-center">
+      <div className="container mb-8 pt-8 lg:pt-48 z-10 relative flex items-center">
         <div className="w-full">
           {richText && (
             <RichText

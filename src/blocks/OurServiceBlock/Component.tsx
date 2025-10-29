@@ -14,7 +14,7 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
   return (
     <div className="bg-[#F6F7F3]">
       <div className="container py-14">
-        <div className="flex justify-between">
+        <div className="lg:flex justify-between">
           <div className="mb-6 text-start">
             <h2 className="text-oxanium-3xl mb-2">{title}</h2>
             {description && (

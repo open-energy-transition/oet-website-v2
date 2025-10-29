@@ -11,7 +11,12 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
   isMobile = false,
 }) => {
   const navItems = data?.navItems || []
-  const [activeDropdown, setActiveDropdown] = useState<number | null>(null)
+  // Set all menu items to be expanded by default for mobile - using array of all indices
+  const [activeDropdownMobile, setActiveDropdownMobile] = useState<number[]>(
+    navItems.map((_, index) => index),
+  )
+  // Desktop uses single dropdown at a time (hover-based)
+  const [activeDropdownDesktop, setActiveDropdownDesktop] = useState<number | null>(null)
 
   if (isMobile) {
     return (
@@ -20,7 +25,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
           <div className="space-y-2 py-6">
             {navItems.map(({ link }, i) => {
               const hasSublinks = link?.sublinks && link.sublinks.length > 0
-              const isExpanded = activeDropdown === i
+              const isExpanded = activeDropdownMobile.includes(i)
 
               return (
                 <div key={i}>
@@ -28,7 +33,15 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
                   {hasSublinks ? (
                     // Expandable item with dropdown arrow
                     <button
-                      onClick={() => setActiveDropdown(isExpanded ? null : i)}
+                      onClick={() => {
+                        if (isExpanded) {
+                          setActiveDropdownMobile(
+                            activeDropdownMobile.filter((index) => index !== i),
+                          )
+                        } else {
+                          setActiveDropdownMobile([...activeDropdownMobile, i])
+                        }
+                      }}
                       className="-mx-3 flex items-center gap-2 rounded-lg px-3 py-2 text-base/7 font-semibold w-full text-left"
                     >
                       <span className="flex-1">{link.label}</span>
@@ -94,7 +107,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
     )
   }
 
-  // Desktop navigation (unchanged)
+  // Desktop navigation
   return (
     <nav className="flex items-center gap-8">
       {navItems.map(({ link }, i) => {
@@ -104,8 +117,8 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
           <div
             key={i}
             className="relative group"
-            onMouseEnter={() => hasSublinks && setActiveDropdown(i)}
-            onMouseLeave={() => setActiveDropdown(null)}
+            onMouseEnter={() => hasSublinks && setActiveDropdownDesktop(i)}
+            onMouseLeave={() => setActiveDropdownDesktop(null)}
           >
             <div className="flex items-center">
               <CMSLink
@@ -118,7 +131,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
             {hasSublinks && (
               <div
                 className={`absolute left-0 mt-0 w-48 bg-white shadow-lg rounded-md overflow-hidden transition-all duration-200 z-50 ${
-                  activeDropdown === i ? 'opacity-100 visible' : 'opacity-0 invisible'
+                  activeDropdownDesktop === i ? 'opacity-100 visible' : 'opacity-0 invisible'
                 }`}
               >
                 {link.sublinks?.map((sublink, j) => {
@@ -135,7 +148,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
                       href={href}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap"
                       {...(link.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      onClick={() => setActiveDropdown(null)}
+                      onClick={() => setActiveDropdownDesktop(null)}
                     >
                       {sublink.label}
                     </a>
