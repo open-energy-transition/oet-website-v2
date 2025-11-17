@@ -14,6 +14,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
 import './globals.css'
+import './dark-mode.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
 import { Oxanium, Oxygen, Poppins, Roboto, Heebo, Kode_Mono } from 'next/font/google'

@@ -63,7 +63,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setSlidesToShow(1)
+        setSlidesToShow(2.5) // Show 2.5 images on mobile
       } else if (window.innerWidth < 768) {
         setSlidesToShow(2)
       } else if (window.innerWidth < 1024) {
@@ -197,7 +197,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
         aria-label="Partner logos carousel"
         aria-roledescription="carousel"
       >
-        <div className="overflow-hidden rounded-lg">
+        <div className="overflow-visible rounded-lg">
           <div
             className="flex transition-all duration-500 ease-in-out"
             style={{
@@ -270,56 +270,6 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-          >
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
-      </div>
-      {/* Mobile navigation with dots and arrows */}
-      <div className="flex justify-between items-center mt-4 md:hidden px-4">
-        <button
-          className="carousel-nav-btn p-2 text-gray-600 hover:text-gray-900 bg-white rounded-full shadow-sm border border-gray-200"
-          onClick={prevSlide}
-          aria-label="Previous slide"
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-
-        {/* Pagination dots */}
-        <div className="flex gap-1">
-          {Array.from({ length: Math.ceil(images.length / slidesToShow) }, (_, i) => (
-            <button
-              key={i}
-              className={`w-2 h-2 rounded-full transition-all ${
-                Math.floor(currentIndex / slidesToShow) === i ? 'bg-gray-700 w-4' : 'bg-gray-300'
-              }`}
-              onClick={() => setCurrentIndex(i * slidesToShow)}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
-
-        <button
-          className="carousel-nav-btn p-2 text-gray-600 hover:text-gray-900 bg-white rounded-full shadow-sm border border-gray-200"
-          onClick={nextSlide}
-          aria-label="Next slide"
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
           >
             <path d="M9 18l6-6-6-6" />
           </svg>

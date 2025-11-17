@@ -120,8 +120,14 @@ export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
         // },
         color: {
           ...defaultColors.text,
-          customGrey1: { label: '#0B0C0B80-50%', css: { color: 'rgba(11, 12, 11, 0.5)' } },
-          customGrey2: { label: '#0B0C0BB2-70%', css: { color: 'rgba(11, 12, 11, 0.7)' } },
+          customGrey1: {
+            label: '#0B0C0B80-50%',
+            css: { color: 'var(--custom-grey1)' },
+          },
+          customGrey2: {
+            label: '#0B0C0BB2-70%',
+            css: { color: 'var(--custom-grey2)' },
+          },
         },
         background: { ...defaultColors.background },
       },

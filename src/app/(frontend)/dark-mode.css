@@ -1,0 +1,123 @@
+/* Dark Mode Styles */
+
+/* Base dark mode colors */
+[data-theme='dark'] {
+  /* Update body and main background */
+  background-color: #1a1f2e;
+  color: #e5e7eb;
+}
+
+/* Header dark mode */
+[data-theme='dark'] .bg-\[\#F9F9F9\],
+[data-theme='dark'] header {
+  background-color: #1a1f2e !important;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+/* Mobile menu dark mode */
+[data-theme='dark'] .lg\:hidden.fixed {
+  background-color: #1f2937 !important;
+}
+
+/* Text colors */
+[data-theme='dark'] .text-black {
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .text-gray-800 {
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+/* Background colors */
+/* [data-theme='dark'] .bg-white {
+  background-color: #1f2937 !important;
+} */
+
+[data-theme='dark'] .bg-gray-100 {
+  background-color: #374151 !important;
+}
+
+[data-theme='dark'] .bg-gray-50 {
+  background-color: #1f2937 !important;
+}
+
+/* Hover states */
+[data-theme='dark'] .hover\:bg-gray-100:hover {
+  background-color: #374151 !important;
+}
+
+[data-theme='dark'] .hover\:bg-gray-200:hover {
+  background-color: #4b5563 !important;
+}
+
+/* Border colors */
+[data-theme='dark'] .border-gray-200 {
+  border-color: #374151 !important;
+}
+
+[data-theme='dark'] .border-gray-300 {
+  border-color: #4b5563 !important;
+}
+
+/* Card and container styles */
+[data-theme='dark'] .bg-card {
+  background-color: #1f2937 !important;
+}
+
+/* Buttons keep their colors but with adjusted contrast */
+[data-theme='dark'] .bg-\[\#E31937\] {
+  background-color: #E31937 !important;
+}
+
+[data-theme='dark'] .hover\:bg-\[\#c31530\]:hover {
+  background-color: #c31530 !important;
+}
+
+/* Input and form elements */
+[data-theme='dark'] input,
+[data-theme='dark'] textarea,
+[data-theme='dark'] select {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+[data-theme='dark'] input::placeholder,
+[data-theme='dark'] textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Links */
+[data-theme='dark'] a {
+  color: #93c5fd;
+}
+
+[data-theme='dark'] a:hover {
+  color: #bfdbfe;
+}
+
+/* Shadows - reduce intensity in dark mode */
+[data-theme='dark'] .shadow,
+[data-theme='dark'] .shadow-sm,
+[data-theme='dark'] .shadow-md,
+[data-theme='dark'] .shadow-lg,
+[data-theme='dark'] .shadow-xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth transitions for theme changes */
+body,
+body *,
+[data-theme] {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Disable transitions on theme toggle to prevent flashing */
+body.theme-transitioning,
+body.theme-transitioning * {
+  transition: none !important;
+}

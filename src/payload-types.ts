@@ -1383,58 +1383,56 @@ export interface OurServiceBlock {
     };
     [k: string]: unknown;
   } | null;
-  link: {
-    type?: ('reference' | 'custom') | null;
-    newTab?: boolean | null;
-    /**
-     * Select an icon to display on the button
-     */
-    icon?: (number | null) | Icon;
-    /**
-     * Choose a background color for the button, Leave empty for transparent
-     */
-    btnBgColor?: string | null;
-    /**
-     * Choose a text color for the button
-     */
-    btnTextColor?: string | null;
-    /**
-     * Choose the size of the button text
-     */
-    btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
-    /**
-     * Add links to specific sections within the page
-     */
-    sublinks?:
-      | {
-          label: string;
-          /**
-           * Enter without # (e.g., "overview" will link to "#overview")
-           */
-          hash: string;
-          id?: string | null;
-        }[]
-      | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: number | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: number | Post;
-        } | null);
-    url?: string | null;
-    label: string;
-    /**
-     * Choose how the link should be rendered.
-     */
-    appearance?: ('default' | 'outline') | null;
-  };
   services?:
     | {
-        number?: string | null;
-        title?: string | null;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          /**
+           * Select an icon to display on the button
+           */
+          icon?: (number | null) | Icon;
+          /**
+           * Choose a background color for the button, Leave empty for transparent
+           */
+          btnBgColor?: string | null;
+          /**
+           * Choose a text color for the button
+           */
+          btnTextColor?: string | null;
+          /**
+           * Choose the size of the button text
+           */
+          btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+          /**
+           * Add links to specific sections within the page
+           */
+          sublinks?:
+            | {
+                label: string;
+                /**
+                 * Enter without # (e.g., "overview" will link to "#overview")
+                 */
+                hash: string;
+                id?: string | null;
+              }[]
+            | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
         description?: {
           root: {
             type: string;
@@ -1451,13 +1449,7 @@ export interface OurServiceBlock {
           [k: string]: unknown;
         } | null;
         icon?: (number | null) | Icon;
-        id?: string | null;
-      }[]
-    | null;
-  bottomImages?:
-    | {
-        image: number | Media;
-        alt?: string | null;
+        image?: (number | null) | Media;
         id?: string | null;
       }[]
     | null;
@@ -1554,74 +1546,104 @@ export interface ToolsWeSupportBlock {
  * via the `definition` "WhoWeAreBlock".
  */
 export interface WhoWeAreBlock {
-  title?: string | null;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Link to a page with more information about the who we are section
-   */
-  link: {
-    type?: ('reference' | 'custom') | null;
-    newTab?: boolean | null;
-    /**
-     * Select an icon to display on the button
-     */
-    icon?: (number | null) | Icon;
-    /**
-     * Choose a background color for the button, Leave empty for transparent
-     */
-    btnBgColor?: string | null;
-    /**
-     * Choose a text color for the button
-     */
-    btnTextColor?: string | null;
-    /**
-     * Choose the size of the button text
-     */
-    btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
-    /**
-     * Add links to specific sections within the page
-     */
-    sublinks?:
-      | {
+  items?:
+    | {
+        'title-tem': string;
+        'description-item'?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Link to a page with more information
+         */
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          /**
+           * Select an icon to display on the button
+           */
+          icon?: (number | null) | Icon;
+          /**
+           * Choose a background color for the button, Leave empty for transparent
+           */
+          btnBgColor?: string | null;
+          /**
+           * Choose a text color for the button
+           */
+          btnTextColor?: string | null;
+          /**
+           * Choose the size of the button text
+           */
+          btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+          /**
+           * Add links to specific sections within the page
+           */
+          sublinks?:
+            | {
+                label: string;
+                /**
+                 * Enter without # (e.g., "overview" will link to "#overview")
+                 */
+                hash: string;
+                id?: string | null;
+              }[]
+            | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
           label: string;
           /**
-           * Enter without # (e.g., "overview" will link to "#overview")
+           * Choose how the link should be rendered.
            */
-          hash: string;
-          id?: string | null;
-        }[]
-      | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: number | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: number | Post;
-        } | null);
-    url?: string | null;
-    label: string;
-    /**
-     * Choose how the link should be rendered.
-     */
-    appearance?: ('default' | 'outline') | null;
-  };
-  media: number | Media;
+          appearance?: ('default' | 'outline') | null;
+        };
+        media: number | Media;
+        /**
+         * Toggle to swap the position of media and content
+         */
+        reverse?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  bottomItems?:
+    | {
+        title: string;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'whoWeAre';
@@ -2572,41 +2594,33 @@ export interface AboutBlockSelect<T extends boolean = true> {
 export interface OurServiceBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  link?:
-    | T
-    | {
-        type?: T;
-        newTab?: T;
-        icon?: T;
-        btnBgColor?: T;
-        btnTextColor?: T;
-        btnSize?: T;
-        sublinks?:
-          | T
-          | {
-              label?: T;
-              hash?: T;
-              id?: T;
-            };
-        reference?: T;
-        url?: T;
-        label?: T;
-        appearance?: T;
-      };
   services?:
     | T
     | {
-        number?: T;
-        title?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              icon?: T;
+              btnBgColor?: T;
+              btnTextColor?: T;
+              btnSize?: T;
+              sublinks?:
+                | T
+                | {
+                    label?: T;
+                    hash?: T;
+                    id?: T;
+                  };
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
         description?: T;
         icon?: T;
-        id?: T;
-      };
-  bottomImages?:
-    | T
-    | {
         image?: T;
-        alt?: T;
         id?: T;
       };
   id?: T;
@@ -2656,30 +2670,43 @@ export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
  * via the `definition` "WhoWeAreBlock_select".
  */
 export interface WhoWeAreBlockSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  link?:
+  items?:
     | T
     | {
-        type?: T;
-        newTab?: T;
-        icon?: T;
-        btnBgColor?: T;
-        btnTextColor?: T;
-        btnSize?: T;
-        sublinks?:
+        'title-tem'?: T;
+        'description-item'?: T;
+        link?:
           | T
           | {
+              type?: T;
+              newTab?: T;
+              icon?: T;
+              btnBgColor?: T;
+              btnTextColor?: T;
+              btnSize?: T;
+              sublinks?:
+                | T
+                | {
+                    label?: T;
+                    hash?: T;
+                    id?: T;
+                  };
+              reference?: T;
+              url?: T;
               label?: T;
-              hash?: T;
-              id?: T;
+              appearance?: T;
             };
-        reference?: T;
-        url?: T;
-        label?: T;
-        appearance?: T;
+        media?: T;
+        reverse?: T;
+        id?: T;
       };
-  media?: T;
+  bottomItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

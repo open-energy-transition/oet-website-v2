@@ -15,8 +15,8 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
   return (
     <div className="container">
       <div className="flex flex-col lg:flex-row justify-between">
-        <div className="mb-6 lg:w-1/2">
-          <h2 className="text-oxanium-3xl mb-2">{title}</h2>
+        <div className="mb-6 lg:w-3/5">
+          <h2 className="text-oxanium-3xl mb-2 font-semibold">{title}</h2>
           {description && (
             <RichText enableGutter={false} enableProse={false} className="" data={description} />
           )}
@@ -27,11 +27,19 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
             />
           </div>
         </div>
-        {media && <Media resource={media} />}
+        <div className="flex lg:w-2/5 lgjustify-end">
+          {media && (
+            <Media
+              resource={media}
+              className="w-full"
+              imgClassName="w-full h-auto lg:h-full lg:w-auto"
+            />
+          )}
+        </div>
       </div>
-      <div className="flex justify-center mt-16 mb-20">
+      <div className="flex justify-center">
         {/* Render services if present */}
-        <div className="w-[40%] grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div className="w-[40%] grid grid-cols-1 md:grid-cols-2 gap-8">
           {Array.isArray(services) &&
             services.length > 0 &&
             services

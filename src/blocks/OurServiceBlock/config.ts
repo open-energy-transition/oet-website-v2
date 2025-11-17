@@ -26,15 +26,13 @@ export const OurService: Block = {
         features: getLexicalFeatures,
       }),
     },
-    link(),
     {
       name: 'services',
       type: 'array',
       minRows: 1,
       maxRows: 3,
       fields: [
-        { name: 'number', type: 'text', required: false },
-        { name: 'title', type: 'text', required: false },
+        link(),
         {
           name: 'description',
           type: 'richText',
@@ -50,19 +48,9 @@ export const OurService: Block = {
           type: 'relationship',
           required: false,
         },
+        { name: 'image', type: 'upload', required: false, relationTo: 'media' },
       ],
       labels: { singular: 'Service', plural: 'Services' },
-    },
-    {
-      name: 'bottomImages',
-      type: 'array',
-      minRows: 1,
-      maxRows: 3,
-      fields: [
-        { name: 'image', type: 'upload', required: true, relationTo: 'media' },
-        { name: 'alt', type: 'text', required: false },
-      ],
-      labels: { singular: 'Bottom Image', plural: 'Bottom Images' },
     },
   ],
   labels: {

@@ -42,7 +42,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
                           setActiveDropdownMobile([...activeDropdownMobile, i])
                         }
                       }}
-                      className="-mx-3 flex items-center gap-2 rounded-lg px-3 py-2 text-base/7 font-semibold w-full text-left"
+                      className="-mx-3 flex items-center gap-2 rounded-lg px-3 py-2 text-xl/7 lg:text-base/7 font-semibold w-full text-left"
                     >
                       <span className="flex-1">{link.label}</span>
                       <svg
@@ -87,7 +87,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
                           <a
                             key={j}
                             href={href}
-                            className="-mx-3 flex items-center gap-2 rounded-lg px-3 py-2 text-base/7 font-semibold ml-4"
+                            className="-mx-3 flex items-center gap-2 rounded-lg px-3 py-2 text-xl/7 lg:text-base/7 font-semibold ml-4"
                             {...(link.newTab
                               ? { target: '_blank', rel: 'noopener noreferrer' }
                               : {})}

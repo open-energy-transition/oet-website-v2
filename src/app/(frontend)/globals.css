@@ -51,37 +51,80 @@
   }
 
   [data-theme='dark'] {
-    --background: 0 0% 0%;
+    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
 
-    --card: 0 0% 4%;
+    --card: 222 47% 15%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 217 33% 20%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 217 33% 17%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0, 0%, 15%, 0.8;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 217 33% 25%;
+    --input: 217 33% 17%;
+    --ring: 213 27% 84%;
 
     --success: 196 100% 14%;
     --warning: 34 51% 25%;
     --error: 10 39% 43%;
+  }
+
+  /* Dark mode specific element styles */
+  [data-theme='dark'] {
+    color-scheme: dark;
+  }
+
+  [data-theme='dark'] body {
+    @apply bg-[#1a1f2e] text-gray-100;
+  }
+
+  [data-theme='dark'] .bg-\[\#F9F9F9\] {
+    @apply bg-[#1a1f2e];
+  }
+
+  [data-theme='dark'] .text-black {
+    @apply text-gray-100;
+  }
+
+  :root {
+  --custom-grey1: rgba(11, 12, 11, 0.5);   /* Light mode */
+  --custom-grey2: rgba(11, 12, 11, 0.7);
+}
+
+[data-theme="dark"] {
+  --custom-grey1: rgba(229, 231, 235, 0.5); /* Light gray for dark mode */
+  --custom-grey2: rgba(229, 231, 235, 0.7);
+}
+
+  /* [data-theme='dark'] .bg-white {
+    @apply bg-[#1f2937];
+  } */
+
+  [data-theme='dark'] .border-gray-200 {
+    @apply border-gray-700;
+  }
+
+  [data-theme='dark'] .bg-gray-100 {
+    @apply bg-gray-800;
+  }
+
+  [data-theme='dark'] .hover\:bg-gray-200:hover {
+    @apply bg-gray-700;
   }
 }
 
@@ -184,4 +227,8 @@ html[data-theme='light'] {
   .text-kode_mono_h5 {
     @apply font-kode_mono text-[24px] font-normal leading-[140%%] tracking-[-1%];
   }
+}
+
+.footer-icon svg path {
+  fill: white
 }

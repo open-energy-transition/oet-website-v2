@@ -15,10 +15,10 @@ export const PostHero: React.FC<{
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
 
   return (
-    <div className="relative -mt-[10.4rem] flex items-end">
+    <div className="relative -mt-[10.4rem] flex items-end bg-white dark:bg-[#1a1f2e] transition-colors duration-300">
       <div className="container z-10 relative lg:grid lg:grid-cols-[1fr_48rem_1fr] text-white pb-8">
         <div className="col-start-1 col-span-1 md:col-start-2 md:col-span-2">
-          <div className="uppercase text-sm mb-6">
+          <div className="uppercase text-sm mb-6 text-gray-200 dark:text-gray-300 transition-colors duration-300">
             {categories?.map((category, index) => {
               if (typeof category === 'object' && category !== null) {
                 const { title: categoryTitle } = category
@@ -46,17 +46,28 @@ export const PostHero: React.FC<{
             {hasAuthors && (
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-1">
-                  <p className="text-sm">Author</p>
+                  <p className="text-sm text-gray-200 dark:text-gray-300 transition-colors duration-300">
+                    Author
+                  </p>
 
-                  <p>{formatAuthors(populatedAuthors)}</p>
+                  <p className="text-white dark:text-gray-100 transition-colors duration-300">
+                    {formatAuthors(populatedAuthors)}
+                  </p>
                 </div>
               </div>
             )}
             {publishedAt && (
               <div className="flex flex-col gap-1">
-                <p className="text-sm">Date Published</p>
+                <p className="text-sm text-gray-200 dark:text-gray-300 transition-colors duration-300">
+                  Date Published
+                </p>
 
-                <time dateTime={publishedAt}>{formatDateTime(publishedAt)}</time>
+                <time
+                  dateTime={publishedAt}
+                  className="text-white dark:text-gray-100 transition-colors duration-300"
+                >
+                  {formatDateTime(publishedAt)}
+                </time>
               </div>
             )}
           </div>
@@ -64,9 +75,14 @@ export const PostHero: React.FC<{
       </div>
       <div className="min-h-[80vh] select-none">
         {heroImage && typeof heroImage !== 'string' && (
-          <Media fill priority imgClassName="-z-10 object-cover" resource={heroImage} />
+          <Media
+            fill
+            priority
+            imgClassName="-z-10 object-cover opacity-100 dark:opacity-80 transition-opacity duration-300"
+            resource={heroImage}
+          />
         )}
-        <div className="absolute pointer-events-none left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent" />
+        <div className="absolute pointer-events-none left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent dark:from-black/80 transition-colors duration-300" />
       </div>
     </div>
   )

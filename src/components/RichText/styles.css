@@ -1,14 +1,22 @@
 /* Custom text styles for Lexical editor */
 .customTextState-color-customGrey1 {
-  color: rgba(11, 12, 11, 0.5);
-  padding: 1px;
-  background-color: white;
+  color: #E9E9EA;
+}
+
+/* Dark mode for customGrey1 */
+[data-theme='dark'] .customTextState-color-customGrey1 {
+  /* color: #e5e7eb;
+  background-color: #1a1f2e; */
 }
 
 .customTextState-color-customGrey2 {
-  color: rgba(11, 12, 11, 0.7);
+  transition: color 0.3s ease;
 }
 
+/* Dark mode for customGrey2 */
+[data-theme='dark'] .customTextState-color-customGrey2 {
+  color: rgba(229, 231, 235, 0.7);
+}
 
 /* Additional custom colors */
 .customTextState-color-customRed {
@@ -19,17 +27,29 @@
   color: #ff0000;
 }
 
+/* Dark mode for red colors - slightly brighter for better visibility */
+[data-theme='dark'] .customTextState-color-customRed,
+[data-theme='dark'] .customTextState-color-text-red {
+  color: #ff4444;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  color: black;
+  transition: color 0.3s ease;
 }
 
-h8 {
-
+/* Dark mode for headings */
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6 {
+  color: white;
 }
 
 /* Size styles */
@@ -52,10 +72,179 @@ h8 {
 .customTextState-size-heading1 {
   font-family: var(--font-oxanium), sans-serif;
   font-weight: 600;
-  color: black;
   font-size: 60px;
   line-height: 120%;
   letter-spacing: 1%;
+  transition: color 0.3s ease;
+  @media screen and (max-width: 768px) {
+    font-size: 32px;
+  }
+}
+
+/* Dark mode for heading1 */
+[data-theme='dark'] .customTextState-size-heading1 {
+}
+
+/* ========================================
+   DARK MODE SUPPORT FOR RICH TEXT CONTENT
+   ======================================== */
+
+/* Paragraphs and general text */
+[data-theme='dark'] p {
+  color: #e5e7eb;
+}
+
+/* Links */
+[data-theme='dark'] a {
+  color: #93c5fd;
+}
+
+[data-theme='dark'] a:hover {
+  color: #bfdbfe;
+}
+
+/* Lists */
+[data-theme='dark'] ul,
+[data-theme='dark'] ol {
+  color: #e5e7eb;
+}
+
+[data-theme='dark'] li {
+  color: #e5e7eb;
+}
+
+/* Blockquotes */
+[data-theme='dark'] blockquote {
+  color: #d1d5db;
+  border-left-color: #4b5563;
+}
+
+/* Code blocks */
+[data-theme='dark'] code {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+[data-theme='dark'] pre {
+  background-color: #1f2937;
+  color: #e5e7eb;
+}
+
+[data-theme='dark'] pre code {
+  background-color: transparent;
+}
+
+/* Tables */
+[data-theme='dark'] table {
+  border-color: #4b5563;
+}
+
+[data-theme='dark'] th,
+[data-theme='dark'] td {
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+[data-theme='dark'] th {
+  background-color: #374151;
+}
+
+[data-theme='dark'] tr:nth-child(even) {
+  background-color: #1f2937;
+}
+
+/* Horizontal rules */
+[data-theme='dark'] hr {
+  border-color: #4b5563;
+}
+
+/* Strong and emphasis */
+[data-theme='dark'] strong,
+[data-theme='dark'] b {
+  color: #f9fafb;
+}
+
+[data-theme='dark'] em,
+[data-theme='dark'] i {
+  color: #e5e7eb;
+}
+
+/* Mark/highlight */
+[data-theme='dark'] mark {
+  background-color: #fbbf24;
+  color: #000000;
+}
+
+/* Subscript and superscript */
+[data-theme='dark'] sub,
+[data-theme='dark'] sup {
+  color: #d1d5db;
+}
+
+/* Definition lists */
+[data-theme='dark'] dt {
+  color: #f9fafb;
+  font-weight: 600;
+}
+
+[data-theme='dark'] dd {
+  color: #e5e7eb;
+}
+
+/* Preformatted text */
+[data-theme='dark'] pre {
+  background-color: #1f2937;
+  border-color: #4b5563;
+}
+
+/* Abbreviations */
+[data-theme='dark'] abbr {
+  border-bottom-color: #9ca3af;
+}
+
+/* Small text */
+[data-theme='dark'] small {
+  color: #9ca3af;
+}
+
+/* Deleted and inserted text */
+[data-theme='dark'] del {
+  color: #ef4444;
+}
+
+[data-theme='dark'] ins {
+  color: #34d399;
+  background-color: #064e3b;
+}
+
+/* Keyboard input */
+[data-theme='dark'] kbd {
+  background-color: #374151;
+  color: #e5e7eb;
+  border-color: #4b5563;
+}
+
+/* Sample output */
+[data-theme='dark'] samp {
+  color: #e5e7eb;
+  background-color: #1f2937;
+}
+
+/* Variable */
+[data-theme='dark'] var {
+  color: #fbbf24;
+}
+
+/* Figure and figcaption */
+[data-theme='dark'] figcaption {
+  color: #9ca3af;
+}
+
+/* Transition for smooth theme changes */
+p, a, ul, ol, li, blockquote, code, pre, table, th, td, hr,
+strong, b, em, i, mark, sub, sup, dt, dd, abbr, small,
+del, ins, kbd, samp, var, figcaption {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 

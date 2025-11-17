@@ -9,19 +9,20 @@ export const ProjectCard: React.FC<{
   const imageUrl = project.imageUrl
 
   return (
-    <div className="flex flex-col items-start">
+    <div className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl">
       {imageUrl && (
         <Media
           resource={imageUrl}
-          className="border border-[#D9DCDA] border-b-0 object-cover w-full rounded-tl-3xl rounded-tr-3xl h-[217px] overflow-hidden"
+          className=" object-cover w-full h-[217px] rounded-xl overflow-hidden"
+          imgClassName="rounded-xl"
         />
       )}
-      <div className="p-6 border border-[#D9DCDA] rounded-bl-3xl rounded-br-3xl w-full">
-        <h3 className="font-semibold text-lg mb-1 customTextState-size-h8 text-[#26372C] min-h-[60px] max-h-[60px] overflow-hidden line-clamp-3 text-ellipsis">
+      <div className="p-6 w-full">
+        <h3 className="font-semibold text-lg mb-1 customTextState-size-h8 text-gray-black-400 min-h-[60px] max-h-[60px] overflow-hidden line-clamp-3 text-ellipsis">
           {project.title}
         </h3>
         {project.subTitle && (
-          <div className="customTextState-size-h9 text-[#26372CB2] min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis">
+          <div className="customTextState-size-h9 text-gray-black-300 min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis">
             {project.subTitle}
           </div>
         )}
@@ -37,7 +38,7 @@ export const ProjectCard: React.FC<{
                   <Link
                     key={i}
                     href={`/categories/${category.slug}`}
-                    className="inline-block px-4 py-2 text-[#26372C] border border-gray-300 rounded-xl transition-colors"
+                    className="inline-block px-4 py-2 text-[#26372C] transition-colors"
                   >
                     {category.title}
                   </Link>
@@ -47,7 +48,7 @@ export const ProjectCard: React.FC<{
         </div>
         <Link
           href={`/projects/${project.slug}`}
-          className="text-poppins-x-small text-[#26372C] flex items-center justify-between"
+          className="text-poppins-x-small text-base text-gray-black-500 flex items-center justify-between"
           aria-label={`View details for project: ${project.title}`}
         >
           <span className="underline">View Project</span>

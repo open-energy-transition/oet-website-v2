@@ -7,85 +7,73 @@ import { CMSLink } from '@/components/Link'
 export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
   title,
   description,
-  link,
   services,
-  bottomImages,
 }) => {
   return (
-    <div className="bg-[#F6F7F3]">
+    <div className="bg-[#F8FAFB] dark:bg-[#F8FAFB] transition-colors duration-300">
       <div className="container py-14">
-        <div className="lg:flex justify-between">
-          <div className="mb-6 text-start">
-            <h2 className="text-oxanium-3xl mb-2">{title}</h2>
-            {description && (
-              <RichText
-                enableProse={false}
-                enableGutter={false}
-                className="customTextState-size-h9 mb-4"
-                data={description}
-              />
-            )}
-          </div>
-          <div>
-            {link && (
-              <CMSLink
-                {...link}
-                btnBgColor="#F6F7F3"
-                className="text-poppins-sm !text-[#26372CB2]"
-              />
-            )}
-          </div>
+        <div className="mb-6 text-start flex lg:flex-row flex-col justify-between">
+          <h2 className="mb-2 text-5xl lg:text-3xl text-[#26372C] dark:text-white">{title}</h2>
+          {description && (
+            <RichText
+              enableProse={false}
+              enableGutter={false}
+              className="customTextState-size-h9 mb-4 text-[#777980] dark:text-gray-300 mx-w-[391px]"
+              data={description}
+            />
+          )}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 mt-14">
+
+        <div className="grid grid-cols-1 mt-14">
           {services &&
             services.length > 0 &&
             services.map((service, i) => (
               <div
                 key={i}
-                className="pb-10 pt-14 flex flex-col items-start gap-3 border-r-[2px] border-[#26372C1A]"
+                className="lg:py-6 flex flex-col lg:flex-row items-start border-t border-t-[#D2D2D5] transition-colors duration-300"
               >
-                <div className="flex items-end gap-8">
-                  <div>
-                    {service.icon && typeof service.icon === 'object' && 'svg' in service.icon && (
-                      <div className="mb-2">
-                        <span
-                          className="text-primary inline-block"
-                          dangerouslySetInnerHTML={{ __html: service.icon.svg }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <span className="text-poppins-h5">{service.number}</span>
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-poppins-h7">{service.title}</h3>
+                <div className="my-8 lg:my-10 lg:w-1/2">
+                  {/* Icon */}
+                  {service.icon && typeof service.icon === 'object' && 'svg' in service.icon && (
+                    <div className="mb-2">
+                      <span
+                        className="text-primary inline-block"
+                        dangerouslySetInnerHTML={{ __html: service.icon.svg }}
+                      />
                     </div>
-                  </div>
+                  )}
+
+                  {/* Link (Title) */}
+                  {service.link && (
+                    <div>
+                      <CMSLink
+                        {...service.link}
+                        btnBgColor="#F6F7F3"
+                        className="lg:text-3xl text-2xl p-0 font-medium mb-4 lg:mb-6 text-[#26372C] dark:text-white !bg-transparent"
+                      />
+                    </div>
+                  )}
+
+                  {/* Description */}
+                  {service.description && (
+                    <RichText
+                      enableProse={false}
+                      enableGutter={false}
+                      className="text-muted-foreground dark:text-gray-400 transition-colors duration-300"
+                      data={service.description}
+                    />
+                  )}
                 </div>
-                {service.description && (
-                  <RichText
-                    enableProse={false}
-                    enableGutter={false}
-                    className="text-muted-foreground"
-                    data={service.description}
-                  />
+                {/* Image */}
+                {service.image && typeof service.image === 'object' && (
+                  <div className="w-full h-auto lg:w-auto lgh-full overflow-hidden flex items-center lg:justify-end">
+                    <Media
+                      resource={service.image}
+                      className="object-cover mb-8 lg:mb-0 w-full h-auto lg:w-auto lg:h-full rounded-lg"
+                      imgClassName="h-auto w-full lg:h-full lg:w-auto"
+                    />
+                  </div>
                 )}
-              </div>
-            ))}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 justify-center">
-          {bottomImages &&
-            bottomImages.length > 0 &&
-            bottomImages.map((img, i) => (
-              <div
-                key={i}
-                className="w-full max-w-[95%] h-[128px] overflow-hidden flex items-center justify-center"
-              >
-                <Media
-                  resource={img.image}
-                  className="object-cover w-full h-full"
-                  alt={img.alt || 'Service Image'}
-                />
               </div>
             ))}
         </div>

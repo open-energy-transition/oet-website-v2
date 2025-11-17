@@ -8,29 +8,24 @@ interface Props {
   type?: 'white' | 'red'
 }
 
-export const Logo = (props: Props) => {
-  const {
-    loading: loadingFromProps,
-    priority: priorityFromProps,
-    className,
-    type = 'white',
-  } = props
+export const LogoMobile = (props: Props) => {
+  const { loading: loadingFromProps, priority: priorityFromProps, className } = props
 
   const loading = loadingFromProps || 'lazy'
   const priority = priorityFromProps || 'low'
-  const srcLink = type === 'white' ? '/oet-logo-white.png' : '/oet-logo-red.png'
+  const srcLink = '/oet-logo-mobile.png'
 
   return (
     /* eslint-disable @next/next/no-img-element */
     <img
       style={{ filter: 'none; !important' }}
       alt="Payload Logo"
-      width={193}
-      height={34}
+      width={82}
+      height={36}
       loading={loading}
       fetchPriority={priority}
       decoding="async"
-      className={clsx('max-w-[119px] w-full h-[54px]', className)}
+      className={clsx('max-w-[119px]', className)}
       src={srcLink}
     />
   )

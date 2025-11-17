@@ -13,6 +13,35 @@ const CustomNav: React.FC = () => {
   const { navOpen, setNavOpen } = useNav()
   const pathname = usePathname()
 
+  // Check for dark mode from document attribute
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  // Sync with global theme
+  useEffect(() => {
+    const updateTheme = () => {
+      const theme = document.documentElement.getAttribute('data-theme')
+      setIsDarkMode(theme === 'dark')
+    }
+
+    updateTheme()
+
+    // Watch for theme changes
+    const observer = new MutationObserver(updateTheme)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    const newTheme = isDarkMode ? 'light' : 'dark'
+    localStorage.setItem('theme', newTheme)
+    document.documentElement.setAttribute('data-theme', newTheme)
+  }
+
   // Prevent body scroll when nav is open on mobile
   useEffect(() => {
     const isMobile = window.innerWidth <= 1336 // PayloadCMS mobile breakpoint
@@ -111,10 +140,11 @@ const CustomNav: React.FC = () => {
         <div className="nav-logo">
           <Link href="/admin">
             <Image
-              src="/oet-logo-red-n-subtitle.png"
+              src={isDarkMode ? '/oet-logo-white.png' : '/oet-logo-red-n-subtitle.png'}
               width={isCollapsed ? 40 : 140}
               height={isCollapsed ? 40 : 140}
               alt="oet-logo"
+              className="nav-logo-img"
             />
           </Link>
         </div>
@@ -153,6 +183,58 @@ const CustomNav: React.FC = () => {
               </a>
             ))}
           </div>
+        </div>
+        {/* Dark Mode Toggle */}
+        <div className="nav-theme-toggle">
+          <button
+            className="theme-toggle-btn"
+            onClick={toggleDarkMode}
+            aria-label="Toggle Dark Mode"
+            title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {isDarkMode ? (
+              // Sun Icon for Light Mode
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            ) : (
+              // Moon Icon for Dark Mode
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            )}
+            {!isCollapsed && (
+              <span className="theme-toggle-text">{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+            )}
+          </button>
         </div>
       </div>
     </aside>
