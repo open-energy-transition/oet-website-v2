@@ -13,7 +13,7 @@ export const ProjectCard: React.FC<{
       {imageUrl && (
         <Media
           resource={imageUrl}
-          className=" object-cover w-full h-[217px] rounded-xl overflow-hidden"
+          className="dark:border-t dark:border-white object-cover w-full h-[217px] rounded-xl overflow-hidden"
           imgClassName="rounded-xl"
         />
       )}

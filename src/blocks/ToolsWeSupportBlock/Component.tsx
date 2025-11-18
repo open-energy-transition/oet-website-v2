@@ -14,7 +14,7 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
 }) => {
   return (
     <div className="container">
-      <div className="flex flex-col lg:flex-row justify-between">
+      <div className="flex flex-col lg:flex-row justify-between lg:gap-12">
         <div className="mb-6 lg:w-3/5">
           <h2 className="text-oxanium-3xl mb-2 font-semibold">{title}</h2>
           {description && (

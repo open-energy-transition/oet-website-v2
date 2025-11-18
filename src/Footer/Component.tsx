@@ -42,7 +42,7 @@ export async function Footer() {
               <div className="max-w-[503px]">
                 <RichText
                   data={description}
-                  className="text-poppins-x-small"
+                  className="text-poppins-x-small text-gray-black-200"
                   enableGutter={false}
                 />
               </div>
@@ -71,29 +71,38 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="flex gap-8 lg:w-[525px]">
+        <div className="flex gap-8 lg:w-[2/3]">
           {/* About Us */}
           {aboutUs && (
             <div className="flex-1">
               {aboutUs.title && (
-                <div className="text-poppins-base font-semibold hidden text-lg lg:block">
+                <div className="text-poppins-base font-semibold hidden text-lg lg:block lg:mb-5">
                   {aboutUs.title}
                 </div>
               )}
               {Array.isArray(aboutUs.linkActions) && (
                 <div className="flex justify-between w-full flex-col gap-6">
                   {aboutUs.title && (
-                    <div className="lg:hidden text-poppins-base text-base font-medium text-[#E9E9EA] lg:text-white">
+                    <div className="lg:hidden text-poppins-base text-base font-medium text-[#E9E9EA] lg:text-white lg:text-lg">
                       {aboutUs.title}
                     </div>
                   )}
                   {aboutUs.linkActions.map((action, i) => (
                     <CMSLink
                       key={i}
-                      className="text-poppins-xxs leading-normal text-sm lg:text-lg text-[#E9E9EA] lg:text-white"
+                      className="text-poppins-xxs lg:hidden leading-normal text-sm lg:text-base text-[#E9E9EA] lg:text-white"
                       {...action.link}
                       size="sm"
                       btnSize="sm"
+                      btnTextColor="#ffffff"
+                      btnBgColor="transparent"
+                    />
+                  ))}
+                  {aboutUs.linkActions.map((action, i) => (
+                    <CMSLink
+                      key={i}
+                      className="text-poppins-xxs hidden lg:block leading-normal text-sm lg:text-base text-[#E9E9EA] lg:!text-gray-black-200"
+                      {...action.link}
                       btnTextColor="#ffffff"
                       btnBgColor="transparent"
                     />
@@ -106,10 +115,10 @@ export async function Footer() {
           {contactUs && (
             <div className="flex-1 hidden lg:block">
               {contactUs.title && (
-                <div className="text-poppins-base font-semibold">{contactUs.title}</div>
+                <div className="text-poppins-base font-semibold lg:text-lg ">{contactUs.title}</div>
               )}
               {contactUs.description && (
-                <div className="text-poppins-xxs mb-2 text-smg lg:text-lg">
+                <div className="text-poppins-xxs mb-2 text-smg lg:text-base lg:mt-5 lg:text-gray-black-200">
                   {contactUs.description}
                 </div>
               )}
@@ -164,7 +173,7 @@ export async function Footer() {
           {/* Copyright */}
           {copyright && (
             <RichText
-              className="text-heebo-small-normal text-start lg:text-center lg:text-lg"
+              className="text-heebo-small-normal text-start lg:text-center lg:text-lg text-gray-black-200"
               data={copyright}
               enableProse={false}
               enableGutter={false}
@@ -174,7 +183,7 @@ export async function Footer() {
             {/* Policies */}
             {privacyPolicy && (
               <RichText
-                className="text-heebo-small-link lg:text-lg"
+                className="text-heebo-small-link lg:text-lg lg:!text-gray-black-200"
                 enableGutter={false}
                 enableProse={false}
                 data={privacyPolicy}
@@ -182,7 +191,7 @@ export async function Footer() {
             )}
             {termsOfUse && (
               <RichText
-                className="text-heebo-small-link lg:text-lg"
+                className="text-heebo-small-link lg:text-lg lg:!text-gray-black-200"
                 enableGutter={false}
                 enableProse={false}
                 data={termsOfUse}
@@ -190,7 +199,7 @@ export async function Footer() {
             )}
             {cookiePolicy && (
               <RichText
-                className="text-heebo-small-link lg:text-lg"
+                className="text-heebo-small-link lg:text-lg lg:!text-gray-black-200"
                 enableGutter={false}
                 enableProse={false}
                 data={cookiePolicy}

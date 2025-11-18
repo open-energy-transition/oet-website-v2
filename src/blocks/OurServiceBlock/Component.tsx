@@ -10,10 +10,12 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
   services,
 }) => {
   return (
-    <div className="bg-[#F8FAFB] dark:bg-[#F8FAFB] transition-colors duration-300">
+    <div className="bg-[#F8FAFB] dark:bg-[#1a1f2e] transition-colors duration-300">
       <div className="container py-14">
         <div className="mb-6 text-start flex lg:flex-row flex-col justify-between">
-          <h2 className="mb-2 text-5xl lg:text-3xl text-[#26372C] dark:text-white">{title}</h2>
+          <h2 className="mb-2 text-4xl font-semibold lg:text-5xl text-gray-black-500 dark:text-white">
+            {title}
+          </h2>
           {description && (
             <RichText
               enableProse={false}
@@ -49,7 +51,7 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
                       <CMSLink
                         {...service.link}
                         btnBgColor="#F6F7F3"
-                        className="lg:text-3xl text-2xl p-0 font-medium mb-4 lg:mb-6 text-[#26372C] dark:text-white !bg-transparent"
+                        className="lg:text-3xl text-2xl p-0 font-medium mb-4 lg:mb-6 text-[#26372C] dark:!text-white !bg-transparent"
                       />
                     </div>
                   )}
@@ -66,11 +68,11 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
                 </div>
                 {/* Image */}
                 {service.image && typeof service.image === 'object' && (
-                  <div className="w-full h-auto lg:w-auto lgh-full overflow-hidden flex items-center lg:justify-end">
+                  <div className="w-full h-auto lg:w-1/2 lg:h-full overflow-hidden flex items-center lg:justify-end">
                     <Media
                       resource={service.image}
-                      className="object-cover mb-8 lg:mb-0 w-full h-auto lg:w-auto lg:h-full rounded-lg"
-                      imgClassName="h-auto w-full lg:h-full lg:w-auto"
+                      className="object-cover mb-8 lg:mb-0 w-full h-auto lg:w-auto lg:h-full rounded-lg lg:max-h-[218px]"
+                      imgClassName="h-auto w-full lg:h-full lg:w-auto bg-transparent"
                     />
                   </div>
                 )}

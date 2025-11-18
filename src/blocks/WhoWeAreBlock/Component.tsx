@@ -8,7 +8,7 @@ export const WhoWeAreBlock: React.FC<WhoWeAreBlockProps> = ({ items, bottomItems
   if (!items || items.length === 0) return null
 
   return (
-    <div className="container py-16 gap-4 lg:gap-16">
+    <div className="container py-16 flex flex-col gap-4 lg:gap-8">
       {/* Main Content Items with Media */}
       {items.map((item, index) => {
         const isReversed = item.reverse

@@ -121,7 +121,12 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
         {label && <span className={`${sizeClasses()} leading-none`}>{label}</span>}
         {children && children}
         {icon && typeof icon === 'object' && 'svg' in icon && (
-          <span className="inline-block ml-2" dangerouslySetInnerHTML={{ __html: icon.svg }} />
+          <span
+            className="inline-block ml-2"
+            dangerouslySetInnerHTML={{
+              __html: (icon as Icon).svg.replace(/fill="[^"]*"/g, `fill="${btnTextColor}"`),
+            }}
+          />
         )}
       </Link>
     )
@@ -149,7 +154,9 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
         {icon && typeof icon === 'object' && 'svg' in icon && (
           <span
             className="inline-block ml-2"
-            dangerouslySetInnerHTML={{ __html: (icon as Icon).svg }}
+            dangerouslySetInnerHTML={{
+              __html: (icon as Icon).svg.replace(/fill="[^"]*"/g, `fill="${btnTextColor}"`),
+            }}
           ></span>
         )}
       </Link>

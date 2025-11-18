@@ -233,7 +233,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
         </div>
 
         {/* Desktop navigation buttons (inside carousel) */}
-        <button
+        {/* <button
           className="carousel-nav-btn carousel-prev absolute left-0 md:left-2 top-1/2 transform -translate-y-1/2 p-1 md:p-2 z-10 text-gray-600 hover:text-gray-900 bg-white/80 rounded-full shadow-md hidden md:block"
           onClick={prevSlide}
           aria-label="Previous slide"
@@ -252,9 +252,9 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
           >
             <path d="M15 18l-6-6 6-6" />
           </svg>
-        </button>
+        </button> */}
 
-        <button
+        {/* <button
           className="carousel-nav-btn carousel-next absolute right-0 md:right-2 top-1/2 transform -translate-y-1/2 p-1 md:p-2 z-10 text-gray-600 hover:text-gray-900 bg-white/80 rounded-full shadow-md hidden md:block"
           onClick={nextSlide}
           aria-label="Next slide"
@@ -273,7 +273,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
           >
             <path d="M9 18l6-6-6-6" />
           </svg>
-        </button>
+        </button> */}
       </div>
     </>
   )

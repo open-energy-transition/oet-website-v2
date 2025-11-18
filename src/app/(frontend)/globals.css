@@ -101,6 +101,8 @@
     @apply text-gray-100;
   }
 
+
+
   :root {
   --custom-grey1: rgba(11, 12, 11, 0.5);   /* Light mode */
   --custom-grey2: rgba(11, 12, 11, 0.7);
