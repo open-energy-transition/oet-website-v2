@@ -176,7 +176,7 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
                 'whitespace-nowrap w-1/2 rounded-xl py-2 px-1 customTextState-size-h8 text-base lg:text-2xl font-medium transition-colors',
                 activeTab === tab.key
                   ? 'bg-[#DFE1E7] text-[#26372C]'
-                  : 'border-transparent text-[#26372C] font-normal',
+                  : 'border-transparent text-[#26372C] font-normal dark:text-white',
               )}
               aria-current={activeTab === tab.key ? 'page' : undefined}
             >

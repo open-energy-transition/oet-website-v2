@@ -12,7 +12,10 @@ export const DepartmentsListBlock: React.FC<DepartmentsListBlockProps & { id?: s
       <div className="container my-16">
         <div className="grid gap-6 md:grid-cols-2">
           {(departments ?? []).map((department: any) => (
-            <div key={department.id} className="p-4 bg-white rounded-lg shadow-sm relative">
+            <div
+              key={department.id}
+              className="p-4 rounded-lg shadow-sm relative dark:border dark:border-white"
+            >
               {/* Representative member image with hover name tooltip */}
               {department.representativeMember && (
                 <div className="absolute top-4 right-4 group">
@@ -77,7 +80,7 @@ export const DepartmentsListBlock: React.FC<DepartmentsListBlockProps & { id?: s
               <div className="mt-6 flex justify-end">
                 <Link
                   href={`/departments/${department.id}`}
-                  className="inline-block px-4 py-2 border border-black text-black rounded transition-colors hover:bg-gray-100"
+                  className="inline-block px-4 py-2 border border-black text-black rounded transition-colors hover:bg-gray-100 dark:border dark:border-white"
                 >
                   View Details
                 </Link>

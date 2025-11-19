@@ -112,10 +112,10 @@ const config = {
         },
         success: 'hsl(var(--success))',
         error: 'hsl(var(--error))',
-        warning: 'hsl(var(--warning))',
         'gray-black-200': '#A5A5AB',
         'gray-black-300': '#777980',
         'gray-black-400': '#4A4C56',
+        'gray-black-500': '#1D1F2C',
         'gray-black-500': '#1D1F2C',
       },
       fontFamily: {

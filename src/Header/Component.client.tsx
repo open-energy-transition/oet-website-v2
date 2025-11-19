@@ -54,7 +54,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             {/* Dark Mode Toggle */}
             <button
               onClick={() => setGlobalTheme(globalTheme === 'dark' ? 'light' : 'dark')}
-              className="hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               aria-label="Toggle dark mode"
               title={globalTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >

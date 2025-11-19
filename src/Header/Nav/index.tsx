@@ -58,6 +58,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
                         <path
                           fillRule="evenodd"
                           clipRule="evenodd"
+                          className="dark:text-white"
                           d="M4.7842 5.5036C4.62722 5.66547 4.37276 5.66547 4.21578 5.5036L0.117729 1.27793C-0.0392429 1.11606 -0.0392429 0.853673 0.117729 0.691808L0.307216 0.496399C0.464187 0.334534 0.718689 0.334534 0.875666 0.496399L4.49999 4.23361L8.12434 0.496399C8.28132 0.334534 8.53578 0.334534 8.69276 0.496399L8.88227 0.691808C9.03924 0.853673 9.03924 1.11606 8.88227 1.27793L4.7842 5.5036Z"
                           fill="currentColor"
                         />
@@ -146,7 +147,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; isMobile?: boolean }> = ({
                     <a
                       key={j}
                       href={href}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap dark:bg-[#1a1f2e]"
                       {...(link.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       onClick={() => setActiveDropdownDesktop(null)}
                     >

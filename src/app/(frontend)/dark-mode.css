@@ -32,6 +32,12 @@
   color: #d1d5db !important;
 }
 
+[data-theme='dark'] .text-black path,
+[data-theme='dark'] .text-gray-800 path,
+[data-theme='dark'] .text-gray-700 path {
+  fill: white;
+}
+
 /* Background colors */
 /* [data-theme='dark'] .bg-white {
   background-color: #1f2937 !important;
