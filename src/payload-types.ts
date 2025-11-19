@@ -203,6 +203,10 @@ export interface Page {
              */
             btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
             /**
+             * Position of the button (default: start)
+             */
+            pos?: ('start' | 'center' | 'end') | null;
+            /**
              * Add links to specific sections within the page
              */
             sublinks?:
@@ -570,6 +574,10 @@ export interface CallToActionBlock {
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
           /**
+           * Position of the button (default: start)
+           */
+          pos?: ('start' | 'center' | 'end') | null;
+          /**
            * Add links to specific sections within the page
            */
           sublinks?:
@@ -811,6 +819,10 @@ export interface ButtonBlock {
      */
     btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
     /**
+     * Position of the button (default: start)
+     */
+    pos?: ('start' | 'center' | 'end') | null;
+    /**
      * Add links to specific sections within the page
      */
     sublinks?:
@@ -935,6 +947,10 @@ export interface ContentBlock {
            * Choose the size of the button text
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+          /**
+           * Position of the button (default: start)
+           */
+          pos?: ('start' | 'center' | 'end') | null;
           /**
            * Add links to specific sections within the page
            */
@@ -1405,6 +1421,10 @@ export interface OurServiceBlock {
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
           /**
+           * Position of the button (default: start)
+           */
+          pos?: ('start' | 'center' | 'end') | null;
+          /**
            * Add links to specific sections within the page
            */
           sublinks?:
@@ -1501,6 +1521,10 @@ export interface ToolsWeSupportBlock {
      */
     btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
     /**
+     * Position of the button (default: start)
+     */
+    pos?: ('start' | 'center' | 'end') | null;
+    /**
      * Add links to specific sections within the page
      */
     sublinks?:
@@ -1586,6 +1610,10 @@ export interface WhoWeAreBlock {
            * Choose the size of the button text
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+          /**
+           * Position of the button (default: start)
+           */
+          pos?: ('start' | 'center' | 'end') | null;
           /**
            * Add links to specific sections within the page
            */
@@ -1689,6 +1717,10 @@ export interface ProjectsOverviewBlock {
        * Choose the size of the button text
        */
       btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+      /**
+       * Position of the button (default: start)
+       */
+      pos?: ('start' | 'center' | 'end') | null;
       /**
        * Add links to specific sections within the page
        */
@@ -2271,6 +2303,7 @@ export interface PagesSelect<T extends boolean = true> {
                     btnBgColor?: T;
                     btnTextColor?: T;
                     btnSize?: T;
+                    pos?: T;
                     sublinks?:
                       | T
                       | {
@@ -2360,6 +2393,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              pos?: T;
               sublinks?:
                 | T
                 | {
@@ -2411,6 +2445,7 @@ export interface ButtonBlockSelect<T extends boolean = true> {
         btnBgColor?: T;
         btnTextColor?: T;
         btnSize?: T;
+        pos?: T;
         sublinks?:
           | T
           | {
@@ -2465,6 +2500,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              pos?: T;
               sublinks?:
                 | T
                 | {
@@ -2606,6 +2642,7 @@ export interface OurServiceBlockSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              pos?: T;
               sublinks?:
                 | T
                 | {
@@ -2642,6 +2679,7 @@ export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
         btnBgColor?: T;
         btnTextColor?: T;
         btnSize?: T;
+        pos?: T;
         sublinks?:
           | T
           | {
@@ -2684,6 +2722,7 @@ export interface WhoWeAreBlockSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              pos?: T;
               sublinks?:
                 | T
                 | {
@@ -2729,6 +2768,7 @@ export interface ProjectsOverviewBlockSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              pos?: T;
               sublinks?:
                 | T
                 | {
@@ -3450,6 +3490,10 @@ export interface Header {
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
           /**
+           * Position of the button (default: start)
+           */
+          pos?: ('start' | 'center' | 'end') | null;
+          /**
            * Add links to specific sections within the page
            */
           sublinks?:
@@ -3508,6 +3552,10 @@ export interface Footer {
            */
           btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
           /**
+           * Position of the button (default: start)
+           */
+          pos?: ('start' | 'center' | 'end') | null;
+          /**
            * Add links to specific sections within the page
            */
           sublinks?:
@@ -3554,47 +3602,7 @@ export interface Footer {
     [k: string]: unknown;
   } | null;
   /**
-   * Contact Us section with contact information
-   */
-  contactUs?: {
-    /**
-     * Title for the Contact Us section
-     */
-    title?: string | null;
-    /**
-     * Description for the Contact Us section
-     */
-    description?: string | null;
-  };
-  /**
-   * Follow Us section with social links
-   */
-  followUs?: {
-    /**
-     * Title for the Follow Us section
-     */
-    title?: string | null;
-    /**
-     * Description for the Follow Us section
-     */
-    description?: string | null;
-    linkActions?:
-      | {
-          icon: number | Icon;
-          /**
-           * Link of the social platform
-           */
-          link: string;
-          /**
-           * Name of the social platform
-           */
-          name: string;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  /**
-   * About Us section with links
+   * Second column in the footer
    */
   aboutUs?: {
     /**
@@ -3623,6 +3631,10 @@ export interface Footer {
              */
             btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
             /**
+             * Position of the button (default: start)
+             */
+            pos?: ('start' | 'center' | 'end') | null;
+            /**
              * Add links to specific sections within the page
              */
             sublinks?:
@@ -3647,6 +3659,91 @@ export interface Footer {
             url?: string | null;
             label: string;
           };
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Second column in the footer
+   */
+  contactUs?: {
+    linkActions?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            /**
+             * Select an icon to display on the button
+             */
+            icon?: (number | null) | Icon;
+            /**
+             * Choose a background color for the button, Leave empty for transparent
+             */
+            btnBgColor?: string | null;
+            /**
+             * Choose a text color for the button
+             */
+            btnTextColor?: string | null;
+            /**
+             * Choose the size of the button text
+             */
+            btnSize?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+            /**
+             * Position of the button (default: start)
+             */
+            pos?: ('start' | 'center' | 'end') | null;
+            /**
+             * Add links to specific sections within the page
+             */
+            sublinks?:
+              | {
+                  label: string;
+                  /**
+                   * Enter without # (e.g., "overview" will link to "#overview")
+                   */
+                  hash: string;
+                  id?: string | null;
+                }[]
+              | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Follow Us section with social links
+   */
+  followUs?: {
+    /**
+     * Title for the Follow Us section
+     */
+    title?: string | null;
+    /**
+     * Description for the Follow Us section
+     */
+    description?: string | null;
+    linkActions?:
+      | {
+          icon: number | Icon;
+          /**
+           * Link of the social platform
+           */
+          link: string;
+          /**
+           * Name of the social platform
+           */
+          name: string;
           id?: string | null;
         }[]
       | null;
@@ -3743,6 +3840,7 @@ export interface HeaderSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              pos?: T;
               sublinks?:
                 | T
                 | {
@@ -3777,6 +3875,7 @@ export interface FooterSelect<T extends boolean = true> {
               btnBgColor?: T;
               btnTextColor?: T;
               btnSize?: T;
+              pos?: T;
               sublinks?:
                 | T
                 | {
@@ -3791,26 +3890,6 @@ export interface FooterSelect<T extends boolean = true> {
         id?: T;
       };
   description?: T;
-  contactUs?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-      };
-  followUs?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        linkActions?:
-          | T
-          | {
-              icon?: T;
-              link?: T;
-              name?: T;
-              id?: T;
-            };
-      };
   aboutUs?:
     | T
     | {
@@ -3827,6 +3906,7 @@ export interface FooterSelect<T extends boolean = true> {
                     btnBgColor?: T;
                     btnTextColor?: T;
                     btnSize?: T;
+                    pos?: T;
                     sublinks?:
                       | T
                       | {
@@ -3838,6 +3918,50 @@ export interface FooterSelect<T extends boolean = true> {
                     url?: T;
                     label?: T;
                   };
+              id?: T;
+            };
+      };
+  contactUs?:
+    | T
+    | {
+        linkActions?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    icon?: T;
+                    btnBgColor?: T;
+                    btnTextColor?: T;
+                    btnSize?: T;
+                    pos?: T;
+                    sublinks?:
+                      | T
+                      | {
+                          label?: T;
+                          hash?: T;
+                          id?: T;
+                        };
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
+            };
+      };
+  followUs?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        linkActions?:
+          | T
+          | {
+              icon?: T;
+              link?: T;
+              name?: T;
               id?: T;
             };
       };

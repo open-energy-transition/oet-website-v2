@@ -71,17 +71,12 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="flex gap-8 lg:w-[2/3]">
+        <div className="flex gap-8 lg:w-1/2 lg:max-w-2/3">
           {/* About Us */}
           {aboutUs && (
             <div className="flex-1">
-              {aboutUs.title && (
-                <div className="text-poppins-base font-semibold hidden text-lg lg:block lg:mb-5">
-                  {aboutUs.title}
-                </div>
-              )}
               {Array.isArray(aboutUs.linkActions) && (
-                <div className="flex justify-between w-full flex-col gap-6">
+                <div className="flex justify-between w-full flex-col gap-6 w-max">
                   {aboutUs.title && (
                     <div className="lg:hidden text-poppins-base text-base font-medium text-[#E9E9EA] lg:text-white lg:text-lg">
                       {aboutUs.title}
@@ -101,7 +96,7 @@ export async function Footer() {
                   {aboutUs.linkActions.map((action, i) => (
                     <CMSLink
                       key={i}
-                      className="text-poppins-xxs hidden lg:block leading-normal text-sm lg:text-base text-[#E9E9EA] lg:!text-gray-black-200"
+                      className="text-poppins-xxs hidden lg:block leading-normal text-sm lg:text-base text-[#E9E9EA]"
                       {...action.link}
                       btnTextColor="#ffffff"
                       btnBgColor="transparent"
@@ -113,29 +108,34 @@ export async function Footer() {
           )}
           {/* Contact Us */}
           {contactUs && (
-            <div className="flex-1 hidden lg:block">
-              {contactUs.title && (
-                <div className="text-poppins-base font-semibold lg:text-lg ">{contactUs.title}</div>
-              )}
-              {contactUs.description && (
-                <div className="text-poppins-xxs mb-2 text-smg lg:text-base lg:mt-5 lg:text-gray-black-200">
-                  {contactUs.description}
+            <div className="flex-1">
+              {Array.isArray(contactUs.linkActions) && (
+                <div className="flex justify-between w-full flex-col gap-6 w-max">
+                  {contactUs.linkActions.map((action, i) => (
+                    <CMSLink
+                      key={i}
+                      className="text-poppins-xxs lg:hidden leading-normal text-sm lg:text-base text-[#E9E9EA] lg:text-white"
+                      {...action.link}
+                      size="sm"
+                      btnSize="sm"
+                      btnTextColor="#ffffff"
+                      btnBgColor="transparent"
+                    />
+                  ))}
+                  {contactUs.linkActions.map((action, i) => (
+                    <CMSLink
+                      key={i}
+                      className="text-poppins-xxs hidden lg:block leading-normal text-sm lg:text-base text-[#E9E9EA]"
+                      {...action.link}
+                      btnTextColor="#ffffff"
+                      btnBgColor="transparent"
+                    />
+                  ))}
                 </div>
               )}
             </div>
           )}
           <div className="lg:flex gap-8">
-            {/* Contact Us */}
-            {contactUs && (
-              <div className="flex-1 lg:hidden">
-                {contactUs.title && (
-                  <div className="text-poppins-base font-meidum">{contactUs.title}</div>
-                )}
-                {contactUs.description && (
-                  <div className="text-poppins-xxs text-sm mb-2 mt-6">{contactUs.description}</div>
-                )}
-              </div>
-            )}
             <div className="hidden lg:block">
               {/* Follow Us */}
               {followUs && (

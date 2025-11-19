@@ -25,10 +25,21 @@ export const ButtonBlock: React.FC<CTABlockProps> = ({ link, color = 'default', 
         : size === '2xl'
           ? 'px-8 py-4'
           : 'px-4 py-2'
+
+  const getPosClass = () => {
+    switch (link.pos) {
+      case 'center':
+        return 'text-center'
+      case 'end':
+        return 'text-end'
+      default:
+        return ''
+    }
+  }
   return (
     <div>
       <div>
-        <div>
+        <div className={getPosClass()}>
           {link && (
             <CMSLink className={`button ${sizeClass} rounded ${colorClass}`} size="lg" {...link} />
           )}

@@ -43,28 +43,55 @@ export const Footer: GlobalConfig = {
       },
     },
     {
-      name: 'contactUs',
+      name: 'aboutUs',
       type: 'group',
+      label: 'First Column',
       fields: [
         {
           name: 'title',
           type: 'text',
           required: false,
           admin: {
-            description: 'Title for the Contact Us section',
+            description: 'Title for the About Us section',
           },
         },
         {
-          name: 'description',
-          type: 'textarea',
-          required: false,
+          name: 'linkActions',
+          type: 'array',
+          fields: [
+            link({
+              appearances: false,
+            }),
+          ],
           admin: {
-            description: 'Description for the Contact Us section',
+            initCollapsed: true,
           },
         },
       ],
       admin: {
-        description: 'Contact Us section with contact information',
+        description: 'Second column in the footer',
+      },
+    },
+    {
+      name: 'contactUs',
+      type: 'group',
+      label: 'Second Column',
+      fields: [
+        {
+          name: 'linkActions',
+          type: 'array',
+          fields: [
+            link({
+              appearances: false,
+            }),
+          ],
+          admin: {
+            initCollapsed: true,
+          },
+        },
+      ],
+      admin: {
+        description: 'Second column in the footer',
       },
     },
     {
@@ -119,35 +146,6 @@ export const Footer: GlobalConfig = {
       ],
       admin: {
         description: 'Follow Us section with social links',
-      },
-    },
-    {
-      name: 'aboutUs',
-      type: 'group',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: false,
-          admin: {
-            description: 'Title for the About Us section',
-          },
-        },
-        {
-          name: 'linkActions',
-          type: 'array',
-          fields: [
-            link({
-              appearances: false,
-            }),
-          ],
-          admin: {
-            initCollapsed: true,
-          },
-        },
-      ],
-      admin: {
-        description: 'About Us section with links',
       },
     },
     {

@@ -130,6 +130,21 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
             },
           },
           {
+            name: 'pos',
+            type: 'select',
+            label: 'Button Position',
+            defaultValue: 'start',
+            options: [
+              { label: 'Start', value: 'start' },
+              { label: 'Center', value: 'center' },
+              { label: 'End', value: 'end' },
+            ],
+            admin: {
+              description: 'Position of the button (default: start)',
+              width: '50%',
+            },
+          },
+          {
             name: 'sublinks',
             type: 'array',
             admin: {

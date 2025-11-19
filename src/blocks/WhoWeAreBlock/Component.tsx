@@ -1,3 +1,13 @@
+// Returns the length of the first text value found in the JSON structure
+export function getFirstTextLength(data: any): number {
+  if (
+    data?.root?.children?.[0]?.children?.[0]?.text &&
+    typeof data.root.children[0].children[0].text === 'string'
+  ) {
+    return data.root.children[0].children[0].text.length
+  }
+  return 0
+}
 import React from 'react'
 import type { WhoWeAreBlock as WhoWeAreBlockProps } from '@/payload-types'
 import RichText from '@/components/RichText'
@@ -59,14 +69,16 @@ export const WhoWeAreBlock: React.FC<WhoWeAreBlockProps> = ({ items, bottomItems
               key={index}
               className="bg-[#F8FAFB] dark:bg-[#1f2937] p-6 rounded-xl transition-colors duration-300 text-center"
             >
-              <h3 className="text-oxanium-3xl text-[#26372C] dark:text-white text-3xl font-bold">
+              <h3
+                className={`text-oxanium-3xl text-[#26372C] dark:text-white ${getFirstTextLength(bottomItem.description) > 20 ? 'text-2xl' : 'text-3xl'} font-bold`}
+              >
                 {bottomItem.title}
               </h3>
               {bottomItem.description && (
                 <RichText
                   enableGutter={false}
                   enableProse={false}
-                  className="customTextState-size-h9 text-[#777980] dark:text-gray-300"
+                  className={`customTextState-size-h9 text-[#777980] dark:text-gray-300 ${getFirstTextLength(bottomItem.description) > 20 ? 'text-sm' : ''}`}
                   data={bottomItem.description}
                 />
               )}
