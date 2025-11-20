@@ -134,7 +134,9 @@ export const PostsListBlock: React.FC<PostsListBlockProps & { id?: string }> = (
                 </div>
               )}
               {postData.shortDescription && (
-                <div className="text-sm text-gray-600 mb-2">{postData.shortDescription}</div>
+                <div className="text-sm text-gray-600 mb-2 dark:text-gray-400">
+                  {postData.shortDescription}
+                </div>
               )}
               {/* View Details button that opens dialog */}
               <div className="mt-auto pt-4">

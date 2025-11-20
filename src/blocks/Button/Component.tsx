@@ -5,13 +5,13 @@ import type { ButtonBlock as CTABlockProps, Icon } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 
 const colorClassMap: Record<string, string> = {
-  default: 'bg-gray-200 text-black',
-  primary: 'bg-blue-600 text-white',
-  secondary: 'bg-gray-600 text-white',
-  success: 'bg-green-600 text-white',
-  warning: 'bg-yellow-500 text-black',
-  danger: 'bg-red-600 text-white',
-  gray: 'bg-gray-400 text-black',
+  default: 'bg-gray-200 text-black dark:bg-transparent dark:text-white',
+  primary: 'bg-blue-600 text-white dark:bg-transparent dark:text-white',
+  secondary: 'bg-gray-600 text-white dark:bg-transparent dark:text-white',
+  success: 'bg-green-600 text-white dark:bg-transparent dark:text-white',
+  warning: 'bg-yellow-500 text-black dark:bg-transparent dark:text-white',
+  danger: 'bg-red-600 text-white dark:bg-transparent dark:text-white',
+  gray: 'bg-gray-400 text-black dark:bg-transparent dark:text-white',
 }
 
 export const ButtonBlock: React.FC<CTABlockProps> = ({ link, color = 'default', icon, size }) => {

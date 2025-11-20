@@ -114,17 +114,17 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             aria-label="Toggle mobile menu"
           >
             <span
-              className={`w-6 h-0.5 bg-black transition-all duration-300 ${
+              className={`w-6 h-0.5 bg-black dark:bg-white transition-all duration-300 ${
                 isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
               }`}
             />
             <span
-              className={`w-6 h-0.5 bg-black transition-all duration-300 ${
+              className={`w-6 h-0.5 bg-black dark:bg-white transition-all duration-300 ${
                 isMobileMenuOpen ? 'opacity-0' : ''
               }`}
             />
             <span
-              className={`w-6 h-0.5 bg-black transition-all duration-300 ${
+              className={`w-6 h-0.5 bg-black dark:bg-white transition-all duration-300 ${
                 isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
               }`}
             />
@@ -135,7 +135,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-transparent fixed inset-0 z-50 overflow-y-auto flex">
             <div className="bg-[#1D1F2CCC] w-1/3 h-ull"></div>
-            <div className="w-2/3 bg-white">
+            <div className="w-2/3 bg-white dark:bg-transparent">
               {/* Header area with logo and close button */}
               <div className="flex justify-end items-center mt-4 px-4 ">
                 <button
