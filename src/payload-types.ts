@@ -80,6 +80,7 @@ export interface Config {
     staff: Staff;
     jobs: Job;
     icons: Icon;
+    outputs: Output;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -104,6 +105,7 @@ export interface Config {
     staff: StaffSelect<false> | StaffSelect<true>;
     jobs: JobsSelect<false> | JobsSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
+    outputs: OutputsSelect<false> | OutputsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -290,6 +292,8 @@ export interface Page {
     | ProjectTabsBlock
     | ProjectsListBlock
     | PostsListBlock
+    | OurBlogBlock
+    | OutputsListBlock
     | TeamMembersBlock
     | JobsBlock
     | TabsBlock
@@ -331,6 +335,8 @@ export interface Icon {
 export interface Post {
   id: number;
   title: string;
+  pDate?: string | null;
+  minRead?: string | null;
   shortDescription: string;
   heroImage?: (number | null) | Media;
   content: {
@@ -1827,6 +1833,44 @@ export interface PostsListBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurBlogBlock".
+ */
+export interface OurBlogBlock {
+  /**
+   * Title for the blog section
+   */
+  title?: string | null;
+  /**
+   * Description for the blog section
+   */
+  description?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ourBlog';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OutputsListBlock".
+ */
+export interface OutputsListBlock {
+  /**
+   * Title for the outputs section
+   */
+  title?: string | null;
+  /**
+   * Description for the outputs section
+   */
+  description?: string | null;
+  /**
+   * Tag/category label for the outputs section
+   */
+  tag?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'outputsList';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TeamMembersBlock".
  */
 export interface TeamMembersBlock {
@@ -1992,6 +2036,33 @@ export interface Job {
   externalLink?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "outputs".
+ */
+export interface Output {
+  id: number;
+  /**
+   * Title of the output
+   */
+  title: string;
+  /**
+   * URL link for the output
+   */
+  link?: string | null;
+  /**
+   * Tags associated with this output
+   */
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2219,6 +2290,10 @@ export interface PayloadLockedDocument {
         value: number | Icon;
       } | null)
     | ({
+        relationTo: 'outputs';
+        value: number | Output;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -2356,6 +2431,8 @@ export interface PagesSelect<T extends boolean = true> {
         projectTabs?: T | ProjectTabsBlockSelect<T>;
         projectsList?: T | ProjectsListBlockSelect<T>;
         postsList?: T | PostsListBlockSelect<T>;
+        ourBlog?: T | OurBlogBlockSelect<T>;
+        outputsList?: T | OutputsListBlockSelect<T>;
         teamMembers?: T | TeamMembersBlockSelect<T>;
         jobs?: T | JobsBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
@@ -2835,6 +2912,27 @@ export interface PostsListBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurBlogBlock_select".
+ */
+export interface OurBlogBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OutputsListBlock_select".
+ */
+export interface OutputsListBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  tag?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TeamMembersBlock_select".
  */
 export interface TeamMembersBlockSelect<T extends boolean = true> {
@@ -2909,6 +3007,8 @@ export interface PartnersBlockSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
+  pDate?: T;
+  minRead?: T;
   shortDescription?: T;
   heroImage?: T;
   content?: T;
@@ -3206,6 +3306,23 @@ export interface IconsSelect<T extends boolean = true> {
   svg?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "outputs_select".
+ */
+export interface OutputsSelect<T extends boolean = true> {
+  title?: T;
+  link?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

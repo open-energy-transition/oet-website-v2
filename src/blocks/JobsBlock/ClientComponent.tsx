@@ -157,7 +157,7 @@ const JobCard: React.FC<{ job: Job; isSingleView?: boolean }> = ({ job, isSingle
           href={job.slug}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center px-4 py-2 text-base font-medium text-black rounded-xl border border-[#0B0C0B26] hover:shadow-md transition-shadow"
+          className="inline-flex items-center px-4 py-2 text-base font-medium text-black rounded-xl border border-[#0B0C0B26] hover:shadow-md transition-shadow dark:border-gray-200"
         >
           <span className="mr-2">Apply Now</span>
         </Link>

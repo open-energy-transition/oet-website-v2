@@ -17,6 +17,7 @@ import { Jobs } from './collections/Jobs'
 import { TeamMembers } from './collections/TeamMembers'
 import { StaffCategories } from './collections/StaffCategories'
 import { Icons } from './collections/Icons'
+import { Outputs } from './collections/Outputs'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -97,6 +98,7 @@ export default buildConfig({
     StaffCategories,
     Jobs,
     Icons,
+    Outputs,
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],

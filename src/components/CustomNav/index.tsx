@@ -86,7 +86,7 @@ const CustomNav: React.FC = () => {
     { label: '📝 Posts', href: '/admin/collections/posts' },
     { label: '🚀 Projects', href: '/admin/collections/projects' },
     { label: '📱 Models', href: '/admin/collections/models' },
-    { label: '🏷️ Categorie', href: '/admin/collections/categories' },
+    { label: '🏷️ Categories', href: '/admin/collections/categories' },
     { label: '🖼️ Media', href: '/admin/collections/media' },
     { label: '👤 User', href: '/admin/collections/users' },
     { label: '👥 Team Members', href: '/admin/collections/team-members' },
@@ -94,6 +94,7 @@ const CustomNav: React.FC = () => {
     { label: '📊 Departments', href: '/admin/collections/departments' },
     { label: '💬 Customer Testimonials', href: '/admin/collections/testimonials' },
     { label: '🖌️ Icons', href: '/admin/collections/icons' },
+    { label: '📤 Outputs', href: '/admin/collections/outputs' },
   ]
 
   const globalItems = [

@@ -30,7 +30,7 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
     github,
   } = member
   return (
-    <div className="group relative overflow-hidden rounded-lg hover:shadow-md flex flex-col items-center p-6 dark:border">
+    <div className="group relative overflow-hidden rounded-lg hover:shadow-md flex flex-col items-center p-6">
       {imageUrl && (
         <div className="mb-4 rounded-3xl overflow-hidden w-96 h-96">
           <Image

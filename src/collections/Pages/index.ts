@@ -20,6 +20,8 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ProjectTabs } from '../../blocks/ProjectTabsBlock/config'
 import { ProjectsList } from '../../blocks/ProjectsListBlock/config'
 import { PostsList } from '../../blocks/PostsListBlock/config'
+import { OurBlog } from '../../blocks/OurBlogBlock/config'
+import { OutputsList } from '../../blocks/OutputsListBlock/config'
 import { TeamMembersBlock } from '../../blocks/TeamMembersBlock/config'
 import { JobsBlock } from '../../blocks/JobsBlock/config'
 import { TabsBlock } from '../../blocks/TabsBlock/config'
@@ -111,6 +113,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 ProjectTabs,
                 ProjectsList,
                 PostsList,
+                OurBlog,
+                OutputsList,
                 TeamMembersBlock,
                 JobsBlock,
                 TabsBlock,

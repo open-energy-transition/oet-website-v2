@@ -103,9 +103,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           </div>
 
           {/* Desktop Contact Button */}
-          <button className="hidden lg:block bg-[#E31937] rounded-[12px] text-white px-8 py-2 hover:bg-[#c31530] transition-colors">
+          <a
+            href="mailto:info@openenergytransition.org"
+            className="hidden lg:block bg-[#E31937] rounded-[12px] text-white px-8 py-2 hover:bg-[#c31530] transition-colors dark:!text-[#e5e7eb]"
+          >
             Contact Us
-          </button>
+          </a>
 
           {/* Mobile Menu Button */}
           <button

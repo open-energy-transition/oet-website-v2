@@ -14,6 +14,14 @@ export const PostsList: Block = {
         description: 'Select one or more posts to display in this block',
       },
       label: 'Posts',
+      hooks: {
+        afterRead: [
+          ({ value }) => {
+            // Ensure we always return full objects, not IDs
+            return value
+          },
+        ],
+      },
     },
   ],
   labels: {

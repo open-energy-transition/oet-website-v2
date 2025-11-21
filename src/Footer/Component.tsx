@@ -24,7 +24,7 @@ export async function Footer() {
   const cookiePolicy = footerData?.cookiePolicy
 
   return (
-    <footer className="mt-auto border-t border-border bg-[#070707] dark:bg-card text-white">
+    <footer className="mt-auto border-t border-border bg-[#070707] text-white">
       <div className="container py-5 lg:py-8 gap-10 lg:pt-16 flex flex-col md:flex-row md:justify-between">
         <div>
           <Link className="flex items-center " href="/">
