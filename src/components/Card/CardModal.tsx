@@ -14,7 +14,7 @@ export const CardModel: React.FC<{
   const { title, description, sourceCode, github, website } = data
 
   return (
-    <div className="border border-[#77857C] rounded-2xl text-[#0B0C0B] dark:text-white p-4 min-h-[336px] flex flex-col justify-between">
+    <div className="border border-[#77857C] rounded-2xl text-[#0B0C0B] dark:text-white p-4 min-h-[336px] flex flex-col justify-between dark:border-white">
       <div>
         {tag && <div className="text-poppins-base text-sm">{tag}</div>}
         <div className="text-poppins-2xl underline mt-2">{title}</div>

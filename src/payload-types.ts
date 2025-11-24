@@ -294,6 +294,10 @@ export interface Page {
     | PostsListBlock
     | OurBlogBlock
     | OutputsListBlock
+    | ContentItemsBlock
+    | ProjectAimsBlock
+    | ProjectTeamBlock
+    | BlogQuoteBlock
     | TeamMembersBlock
     | JobsBlock
     | TabsBlock
@@ -1871,6 +1875,84 @@ export interface OutputsListBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentItemsBlock".
+ */
+export interface ContentItemsBlock {
+  title?: string | null;
+  items?:
+    | {
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentItems';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectAimsBlock".
+ */
+export interface ProjectAimsBlock {
+  title: string;
+  items?:
+    | {
+        title: string;
+        id?: string | null;
+      }[]
+    | null;
+  media?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'projectAims';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectTeamBlock".
+ */
+export interface ProjectTeamBlock {
+  /**
+   * Title for the project team section
+   */
+  title?: string | null;
+  teamMembers?:
+    | {
+        /**
+         * Select a team member
+         */
+        member: number | TeamMember;
+        /**
+         * Custom description for this team member in this project
+         */
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'projectTeam';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogQuoteBlock".
+ */
+export interface BlogQuoteBlock {
+  /**
+   * The quote text
+   */
+  description: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'blogQuote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TeamMembersBlock".
  */
 export interface TeamMembersBlock {
@@ -2433,6 +2515,10 @@ export interface PagesSelect<T extends boolean = true> {
         postsList?: T | PostsListBlockSelect<T>;
         ourBlog?: T | OurBlogBlockSelect<T>;
         outputsList?: T | OutputsListBlockSelect<T>;
+        contentItems?: T | ContentItemsBlockSelect<T>;
+        projectAims?: T | ProjectAimsBlockSelect<T>;
+        projectTeam?: T | ProjectTeamBlockSelect<T>;
+        blogQuote?: T | BlogQuoteBlockSelect<T>;
         teamMembers?: T | TeamMembersBlockSelect<T>;
         jobs?: T | JobsBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
@@ -2928,6 +3014,68 @@ export interface OutputsListBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   tag?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentItemsBlock_select".
+ */
+export interface ContentItemsBlockSelect<T extends boolean = true> {
+  title?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectAimsBlock_select".
+ */
+export interface ProjectAimsBlockSelect<T extends boolean = true> {
+  title?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        id?: T;
+      };
+  media?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProjectTeamBlock_select".
+ */
+export interface ProjectTeamBlockSelect<T extends boolean = true> {
+  title?: T;
+  teamMembers?:
+    | T
+    | {
+        member?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogQuoteBlock_select".
+ */
+export interface BlogQuoteBlockSelect<T extends boolean = true> {
+  description?: T;
   id?: T;
   blockName?: T;
 }

@@ -4,6 +4,7 @@ import { CalendarIcon, TagIcon } from 'lucide-react'
 import RichText from '@/components/RichText'
 
 import type { Project } from '@/payload-types'
+import Link from 'next/link'
 
 export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
   const formatDate = (dateString: string) => {
@@ -24,7 +25,7 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="mx-auto">
         {/* Header Section */}
         <header className="mb-8">
           <div className="flex items-center gap-4 mb-4">
@@ -32,8 +33,8 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
             <span
               className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium ${
                 project.projectStatus === 'completed'
-                  ? 'bg-green-100 text-green-800'
-                  : 'bg-blue-100 text-blue-800'
+                  ? 'bg-blue-100 text-blue-800'
+                  : 'bg-[#E6FAEE] border border-[#B8F0CE] text-[#166A3F]'
               }`}
             >
               {project.projectStatus === 'completed' ? 'Completed' : 'In Progress'}
@@ -41,24 +42,36 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
 
             {/* Service Badge */}
             {project.service && (
-              <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-800">
+              <span className=" items-center hidden lg:inline-flex rounded-full bg-[#ECEFF3] px-3 py-1 text-sm font-medium text-gray-black-300">
                 <TagIcon className="mr-1 h-3 w-3" />
                 {project.service}
               </span>
             )}
-
-            {/* Date */}
-            {project.date && (
-              <span className="inline-flex items-center text-sm text-gray-600">
-                <CalendarIcon className="mr-1 h-4 w-4" />
-                {formatDate(project.date)}
-              </span>
-            )}
           </div>
 
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">{project.title}</h1>
-
-          {project.subTitle && <p className="text-xl text-gray-600 mb-6">{project.subTitle}</p>}
+          {/* Service Badge */}
+          <div className="lg:hidden flex flex-wrap items-center gap-2 mb-4">
+            {project.service &&
+              project.service.split(',').map((serviceItem, index) => (
+                <span
+                  key={index}
+                  className="overflow-ellipsis max-w-[90vw] items-center inline-flex rounded-xl bg-[#ECEFF3] px-2 text-sm font-medium text-gray-black-300"
+                >
+                  {serviceItem.trim()}
+                </span>
+              ))}
+          </div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">{project.title}</h1>
+          {/* Date */}
+          {project.date && (
+            <span className="inline-flex items-center text-sm text-gray-600 dark:text-white">
+              <CalendarIcon className="mr-1 h-4 w-4" />
+              {formatDate(project.date)}
+            </span>
+          )}
+          {project.subTitle && (
+            <p className="text-xl text-gray-600 mb-6 dark:text-white">{project.subTitle}</p>
+          )}
         </header>
 
         {/* Main Image */}
@@ -111,14 +124,19 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
           Array.isArray(project.relatedProjects) &&
           project.relatedProjects.length > 0 && (
             <div className="mt-12">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Projects</h3>
+              <h3 className="lg:text-5xl text-2xl dark:text-white font-semibold text-gray-black-500 mb-6">
+                Related Projects
+              </h3>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {project.relatedProjects.map((relatedProject) => {
                   if (typeof relatedProject === 'number') return null
                   const relatedImageUrl = getImageUrl(relatedProject.imageUrl)
 
                   return (
-                    <div key={relatedProject.id} className="">
+                    <div
+                      key={relatedProject.id}
+                      className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border"
+                    >
                       {relatedImageUrl && (
                         <div className="aspect-video overflow-hidden">
                           <Image
@@ -130,13 +148,35 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
                           />
                         </div>
                       )}
-                      <div className="p-4">
-                        <h4 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600">
+                      <div className="p-6 w-full">
+                        <h4 className="font-semibold text-lg mb-1 customTextState-size-h8 text-gray-black-400 min-h-[60px] max-h-[60px] overflow-hidden line-clamp-3 text-ellipsis">
                           {relatedProject.title}
                         </h4>
                         {relatedProject.subTitle && (
-                          <p className="mt-1 text-sm text-gray-600">{relatedProject.subTitle}</p>
+                          <p className="customTextState-size-h9 text-gray-black-300 min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis">
+                            {relatedProject.subTitle}
+                          </p>
                         )}
+                        <Link
+                          href={`/projects/${project.slug}`}
+                          className="text-poppins-x-small text-base text-gray-black-500 flex dark:!text-white items-center gap-2"
+                          aria-label={`View details for project: ${project.title}`}
+                        >
+                          <span className="underline">View Project</span>
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              className="dark:fill-white"
+                              d="M15.4 12L9.4 18L8 16.6L12.6 12L8 7.4L9.4 6L15.4 12Z"
+                              fill="#26372C"
+                            />
+                          </svg>
+                        </Link>
                       </div>
                     </div>
                   )

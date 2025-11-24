@@ -1,7 +1,6 @@
 import React from 'react'
 import type { Project, ProjectsOverviewBlock as ProjectsOverviewBlockProps } from '@/payload-types'
 import RichText from '@/components/RichText'
-import { CMSLink } from '@/components/Link'
 import { ProjectCard } from './ProjectCard'
 
 export const ProjectsOverviewBlock: React.FC<ProjectsOverviewBlockProps> = ({

@@ -48,10 +48,10 @@ export const ProjectCard: React.FC<{
         </div>
         <Link
           href={`/projects/${project.slug}`}
-          className="text-poppins-x-small text-base text-gray-black-500 flex items-center justify-between"
+          className="text-poppins-x-small text-base text-gray-black-500 dark:!text-white flex items-center"
           aria-label={`View details for project: ${project.title}`}
         >
-          <span className="underline">View Project</span>
+          <span className="">View Project</span>
           <svg
             width="24"
             height="24"
@@ -59,7 +59,11 @@ export const ProjectCard: React.FC<{
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path d="M15.4 12L9.4 18L8 16.6L12.6 12L8 7.4L9.4 6L15.4 12Z" fill="#26372C" />
+            <path
+              className="dark:fill-white"
+              d="M15.4 12L9.4 18L8 16.6L12.6 12L8 7.4L9.4 6L15.4 12Z"
+              fill="#26372C"
+            />
           </svg>
         </Link>
       </div>

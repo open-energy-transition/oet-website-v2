@@ -1,13 +1,6 @@
 import type { Block } from 'payload'
 
-import {
-  AlignFeature,
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-  LinkFeature,
-} from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 
 export const About: Block = {

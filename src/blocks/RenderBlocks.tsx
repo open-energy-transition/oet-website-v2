@@ -27,6 +27,10 @@ import { ProjectsListBlock } from './ProjectsListBlock/Component'
 import { PostsListBlock } from './PostsListBlock/Component'
 import { OurBlogBlock } from './OurBlogBlock'
 import { OutputsListBlock } from './OutputsListBlock'
+import { ContentItemsBlock } from './ContentItemsBlock'
+import { ProjectAimsBlock } from './ProjectAimsBlock'
+import { ProjectTeamBlock } from './ProjectTeamBlock'
+import { BlogQuoteBlock } from './BlogQuoteBlock'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -50,6 +54,10 @@ const blockComponents = {
   postsList: PostsListBlock,
   ourBlog: OurBlogBlock,
   outputsList: OutputsListBlock,
+  contentItems: ContentItemsBlock,
+  projectAims: ProjectAimsBlock,
+  projectTeam: ProjectTeamBlock,
+  blogQuote: BlogQuoteBlock,
   partners: PartnersBlock,
   teamMembers: TeamMembersBlock,
   jobs: JobsBlock,
@@ -71,10 +79,19 @@ export const RenderBlocks: React.FC<{
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType]
-
+            console.log(blockType)
+            let className = ''
+            switch (blockType) {
+              case 'ourService':
+              case 'projectsOverview':
+                className = 'dark:border-y dark:border-white'
+                break
+              default:
+                break
+            }
             if (Block) {
               return (
-                <div className="my-16" key={index}>
+                <div className={`py-16 ${className}`} key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>

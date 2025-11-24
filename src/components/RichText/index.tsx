@@ -20,15 +20,32 @@ import type {
   ButtonBlock as ButtonBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
+  ContentItemsBlock as ContentItemsBlockProps,
+  ProjectAimsBlock as ProjectAimsBlockProps,
+  ProjectTeamBlock as ProjectTeamBlockProps,
+  BlogQuoteBlock as BlogQuoteBlockProps,
 } from '@/payload-types'
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { cn } from '@/utilities/ui'
 import { ButtonBlock } from '@/blocks/Button/Component'
+import { ContentItemsBlock } from '@/blocks/ContentItemsBlock'
+import { ProjectAimsBlock } from '@/blocks/ProjectAimsBlock'
+import { ProjectTeamBlock } from '@/blocks/ProjectTeamBlock'
+import { BlogQuoteBlock } from '@/blocks/BlogQuoteBlock'
 
 type NodeTypes =
   | DefaultNodeTypes
-  | SerializedBlockNode<CTABlockProps | MediaBlockProps | CodeBlockProps | ButtonBlockProps>
+  | SerializedBlockNode<
+      | CTABlockProps
+      | MediaBlockProps
+      | CodeBlockProps
+      | ButtonBlockProps
+      | ContentItemsBlockProps
+      | ProjectAimsBlockProps
+      | ProjectTeamBlockProps
+      | BlogQuoteBlockProps
+    >
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const { value, relationTo } = linkNode.fields.doc!
@@ -233,6 +250,10 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
       code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
       cta: ({ node }) => <CallToActionBlock {...node.fields} />,
       button: ({ node }) => <ButtonBlock {...node.fields} />,
+      contentItems: ({ node }) => <ContentItemsBlock {...(node.fields as any)} />,
+      projectAims: ({ node }) => <ProjectAimsBlock {...(node.fields as any)} />,
+      projectTeam: ({ node }) => <ProjectTeamBlock {...(node.fields as any)} />,
+      blogQuote: ({ node }) => <BlogQuoteBlock {...node.fields} />,
     },
   }
 }

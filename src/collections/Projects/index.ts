@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
-
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -50,6 +51,9 @@ export const Projects: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      editor: lexicalEditor({
+        features: getLexicalFeatures,
+      }),
     },
     {
       name: 'service',

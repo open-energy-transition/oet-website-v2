@@ -112,6 +112,7 @@ const config = {
         },
         success: 'hsl(var(--success))',
         error: 'hsl(var(--error))',
+        'gray-black-50': '#E9E9EA',
         'gray-black-200': '#A5A5AB',
         'gray-black-300': '#777980',
         'gray-black-400': '#4A4C56',

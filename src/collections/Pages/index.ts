@@ -22,6 +22,10 @@ import { ProjectsList } from '../../blocks/ProjectsListBlock/config'
 import { PostsList } from '../../blocks/PostsListBlock/config'
 import { OurBlog } from '../../blocks/OurBlogBlock/config'
 import { OutputsList } from '../../blocks/OutputsListBlock/config'
+import { ContentItems } from '../../blocks/ContentItemsBlock/config'
+import { ProjectAims } from '../../blocks/ProjectAimsBlock/config'
+import { ProjectTeam } from '../../blocks/ProjectTeamBlock/config'
+import { BlogQuote } from '../../blocks/BlogQuoteBlock/config'
 import { TeamMembersBlock } from '../../blocks/TeamMembersBlock/config'
 import { JobsBlock } from '../../blocks/JobsBlock/config'
 import { TabsBlock } from '../../blocks/TabsBlock/config'
@@ -115,6 +119,10 @@ export const Pages: CollectionConfig<'pages'> = {
                 PostsList,
                 OurBlog,
                 OutputsList,
+                ContentItems,
+                ProjectAims,
+                ProjectTeam,
+                BlogQuote,
                 TeamMembersBlock,
                 JobsBlock,
                 TabsBlock,

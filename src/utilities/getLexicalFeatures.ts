@@ -24,6 +24,10 @@ import { Button } from '@/blocks/Button/config'
 import { ProjectTabs } from '@/blocks/ProjectTabsBlock/config'
 import { ProjectsList } from '@/blocks/ProjectsListBlock/config'
 import { PostsList } from '@/blocks/PostsListBlock/config'
+import { ContentItems } from '@/blocks/ContentItemsBlock/config'
+import { ProjectAims } from '@/blocks/ProjectAimsBlock/config'
+import { ProjectTeam } from '@/blocks/ProjectTeamBlock/config'
+import { BlogQuote } from '@/blocks/BlogQuoteBlock/config'
 
 export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
   return [
@@ -67,7 +71,17 @@ export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
     BlockquoteFeature(),
     HorizontalRuleFeature(),
     BlocksFeature({
-      blocks: [CallToAction, Button, ProjectTabs, ProjectsList, PostsList],
+      blocks: [
+        CallToAction,
+        Button,
+        ProjectTabs,
+        ProjectsList,
+        PostsList,
+        ContentItems,
+        ProjectAims,
+        ProjectTeam,
+        BlogQuote,
+      ],
       inlineBlocks: [
         {
           slug: 'mention',
