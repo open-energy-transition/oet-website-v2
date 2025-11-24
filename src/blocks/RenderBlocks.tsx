@@ -83,15 +83,18 @@ export const RenderBlocks: React.FC<{
             let className = ''
             switch (blockType) {
               case 'ourService':
+                className = 'py-16 dark:border-y dark:border-white'
+                break
               case 'projectsOverview':
                 className = 'dark:border-y dark:border-white'
                 break
               default:
+                className = 'py-16 '
                 break
             }
             if (Block) {
               return (
-                <div className={`py-16 ${className}`} key={index}>
+                <div className={`${className}`} key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>

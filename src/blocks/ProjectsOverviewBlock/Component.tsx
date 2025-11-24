@@ -11,7 +11,7 @@ export const ProjectsOverviewBlock: React.FC<ProjectsOverviewBlockProps> = ({
 }) => {
   return (
     <div className="bg-[#FAFAFA] dark:bg-[#1a1f2e] transition-colors duration-300">
-      <div className="container py-8">
+      <div className="container py-16">
         <div className="lg:flex justify-between">
           <div className="mb-6 lg:w-1/2">
             <h2 className="text-oxanium-3xl lg:text-5xl">{title}</h2>

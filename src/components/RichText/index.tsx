@@ -160,10 +160,6 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
             style.fontSize = '2rem'
             break
           case 'heading1':
-            style.fontSize = '60px'
-            style.fontWeight = '600'
-            style.lineHeight = '120%'
-            style.letterSpacing = '-1%'
             break
           case 'h9':
             style.fontSize = '16px'
