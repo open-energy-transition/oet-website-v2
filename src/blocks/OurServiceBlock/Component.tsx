@@ -10,8 +10,8 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
   services,
 }) => {
   return (
-    <div className="bg-[#F8FAFB] dark:bg-[#1a1f2e] transition-colors duration-300">
-      <div className="container py-14">
+    <div className="bg-[#F8FAFB] dark:bg-[#1a1f2e] transition-colors duration-300 dark:border-y dark:border-white">
+      <div className="container py-14 lg:pt-20">
         <div className="mb-6 text-start flex lg:flex-row flex-col justify-between">
           <h2 className="mb-2 text-4xl font-semibold lg:text-5xl text-gray-black-500 dark:text-white">
             {title}
@@ -20,13 +20,13 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
             <RichText
               enableProse={false}
               enableGutter={false}
-              className="customTextState-size-h9 mb-4 text-[#777980] dark:text-gray-300 mx-w-[391px]"
+              className="customTextState-size-h9 mb-4 text-[#777980] dark:text-gray-300 max-w-[391px]"
               data={description}
             />
           )}
         </div>
 
-        <div className="grid grid-cols-1 mt-14">
+        <div className="grid grid-cols-1 mt-12">
           {services &&
             services.length > 0 &&
             services.map((service, i) => (
@@ -72,7 +72,7 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
                     <Media
                       resource={service.image}
                       className="object-cover mb-8 lg:mb-0 w-full h-auto lg:w-auto lg:h-full rounded-lg lg:max-h-[218px]"
-                      imgClassName="h-auto w-full lg:h-full lg:w-auto bg-transparent"
+                      imgClassName="h-auto w-full lg:h-full lg:w-auto bg-transparent rounded-xl"
                     />
                   </div>
                 )}

@@ -27,7 +27,7 @@ export const ContentItemsBlockComponent: React.FC<{
           {items.map((item, index) => (
             <div
               key={item.id || index}
-              className="bg-[#F8FAFB] dark:bg-[#1f2937] p-6 rounded-xl transition-colors duration-300 text-center"
+              className="bg-[#F8FAFB] dark:bg-[#1f2937] p-6 rounded-xl transition-colors duration-300 text-center border border-gray-black-50 dark:border-white"
             >
               <h3
                 className={` my-0 text-[#26372C] mb-4 dark:text-white ${(item?.title?.length || 0) > 20 ? 'text-2xl' : 'text-3xl'} font-bold`}

@@ -62,7 +62,7 @@ const ProjectCard: React.FC<{
           <div className="mt-4">
             <Link
               href={`/projects/${project.slug}`}
-              className="inline-flex items-center gap-2 text-heebo-regular-normal font-medium text-gray-black-500"
+              className="inline-flex items-center gap-2 text-heebo-regular-normal font-medium text-gray-black-500 dark:!text-white"
             >
               View projects
               <svg
@@ -76,6 +76,7 @@ const ProjectCard: React.FC<{
                   d="M10.6667 0C10.6667 0.494667 11.1553 1.23333 11.65 1.85333C12.286 2.65333 13.046 3.35133 13.9173 3.884C14.5707 4.28333 15.3627 4.66667 16 4.66667M16 4.66667C15.3627 4.66667 14.57 5.05 13.9173 5.44933C13.046 5.98267 12.286 6.68067 11.65 7.47933C11.1553 8.1 10.6667 8.84 10.6667 9.33333M16 4.66667L-4.76837e-07 4.66667"
                   stroke="#1D1F2C"
                   stroke-width="1.2"
+                  className="dark:fill-white"
                 />
               </svg>
             </Link>

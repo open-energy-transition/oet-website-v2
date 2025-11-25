@@ -18,7 +18,7 @@ export const WhoWeAreBlock: React.FC<WhoWeAreBlockProps> = ({ items, bottomItems
   if (!items || items.length === 0) return null
 
   return (
-    <div className="container py-16 flex flex-col gap-4 lg:gap-8">
+    <div className="container flex flex-col gap-4 lg:gap-8">
       {/* Main Content Items with Media */}
       {items.map((item, index) => {
         const isReversed = item.reverse
@@ -63,14 +63,14 @@ export const WhoWeAreBlock: React.FC<WhoWeAreBlockProps> = ({ items, bottomItems
 
       {/* Bottom Items List */}
       {bottomItems && bottomItems.length > 0 && (
-        <div className={`grid grid-cols-2 gap-6 mt-16 lg:grid-cols-${bottomItems.length}`}>
+        <div className={`grid grid-cols-2 gap-6 mt-6 lg:grid-cols-${bottomItems.length}`}>
           {bottomItems.map((bottomItem, index) => (
             <div
               key={index}
-              className="bg-[#F8FAFB] dark:bg-[#1f2937] p-6 rounded-xl transition-colors duration-300 text-center"
+              className="bg-[#F8FAFB] dark:bg-[#1f2937] p-6 rounded-xl transition-colors duration-300 text-center border border-gray-black-50 dark:border-white"
             >
               <h3
-                className={`text-oxanium-3xl text-[#26372C] dark:text-white ${getFirstTextLength(bottomItem.description) > 20 ? 'text-2xl' : 'text-3xl'} font-bold`}
+                className={`text-[#26372C] dark:text-white mb-6 ${getFirstTextLength(bottomItem.description) > 20 ? 'text-2xl' : 'text-3xl'} font-bold`}
               >
                 {bottomItem.title}
               </h3>

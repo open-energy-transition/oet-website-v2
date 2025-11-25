@@ -83,7 +83,7 @@ export const RenderBlocks: React.FC<{
             let className = ''
             switch (blockType) {
               case 'ourService':
-                className = 'py-16 dark:border-y dark:border-white'
+                className = ''
                 break
               case 'projectsOverview':
                 className = 'dark:border-y dark:border-white'

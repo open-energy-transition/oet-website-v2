@@ -15,7 +15,7 @@ export const PartnersBlock: React.FC<PartnersBlockProps> = ({ title, subTitle, p
   if (!partnerImages || partnerImages.length === 0) return null
 
   return (
-    <section className="py-8 md:py-16">
+    <section className="-my-6">
       <div className="container px-4">
         <div className="text-center">
           <div className="mb-8 lg:mb-12">

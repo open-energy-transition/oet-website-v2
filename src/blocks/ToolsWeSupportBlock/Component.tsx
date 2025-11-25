@@ -13,7 +13,7 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
   media,
 }) => {
   return (
-    <div className="container">
+    <div className="container lg:py-4">
       <div className="flex flex-col lg:flex-row justify-between lg:gap-12">
         <div className="mb-6 lg:w-3/5">
           <h2 className="text-oxanium-3xl mb-2 font-semibold">{title}</h2>
@@ -32,7 +32,7 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
             <Media
               resource={media}
               className="w-full"
-              imgClassName="w-full h-auto lg:h-full lg:w-auto"
+              imgClassName="w-full h-auto lg:h-full rounded-xl"
             />
           )}
         </div>
