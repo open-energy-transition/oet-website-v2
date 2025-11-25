@@ -16,7 +16,7 @@ export const Projects: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'slug', 'updatedAt', 'categories'],
     livePreview: {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
@@ -24,17 +24,15 @@ export const Projects: CollectionConfig = {
           collection: 'projects',
           req,
         })
-        return `${process.env.NEXT_PUBLIC_SERVER_URL}/projects/${typeof data?.slug === 'string' ? data.slug : ''}`
+        return path
       },
     },
-    preview: (data, { req }) => {
-      const path = generatePreviewPath({
+    preview: (data, { req }) =>
+      generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
         collection: 'projects',
         req,
-      })
-      return `${process.env.NEXT_PUBLIC_SERVER_URL}/projects/${typeof data?.slug === 'string' ? data.slug : ''}`
-    },
+      }),
     useAsTitle: 'title',
   },
   fields: [

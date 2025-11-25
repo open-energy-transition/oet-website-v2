@@ -124,7 +124,7 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
           Array.isArray(project.relatedProjects) &&
           project.relatedProjects.length > 0 && (
             <div className="mt-12">
-              <h3 className="lg:text-5xl text-2xl dark:text-white font-semibold text-gray-black-500 mb-6">
+              <h3 className="lg:text-5xl text-2xl dark:text-white font-medium text-gray-black-500 mb-6 lg:mb-12">
                 Related Projects
               </h3>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -138,7 +138,7 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
                       className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border"
                     >
                       {relatedImageUrl && (
-                        <div className="aspect-video overflow-hidden">
+                        <div className="aspect-video overflow-hidden w-full rounded-xl">
                           <Image
                             src={relatedImageUrl}
                             alt={relatedProject.title}

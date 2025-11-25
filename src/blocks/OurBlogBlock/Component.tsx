@@ -26,6 +26,27 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
   const [showSortDropdown, setShowSortDropdown] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
+  // Set active tab from URL hash on mount and hash change
+  useEffect(() => {
+    const setTabFromHash = () => {
+      const hash = window.location.hash.slice(1) // Remove the # symbol
+      if (hash) {
+        // Find category by slug matching the hash
+        const matchingCategory = categories.find((cat) => cat.slug === hash)
+        if (matchingCategory) {
+          setActiveTab(matchingCategory.id.toString())
+        }
+      }
+    }
+
+    // Set initial tab from hash
+    setTabFromHash()
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', setTabFromHash)
+    return () => window.removeEventListener('hashchange', setTabFromHash)
+  }, [categories])
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -85,7 +106,7 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
   }, [activeTab, posts, sortBy])
 
   return (
-    <div className="container py-16">
+    <div className="container">
       {/* Title and Description */}
       {(title || description) && (
         <div className="mb-8 flex">
@@ -110,7 +131,10 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
       <div className="flex items-center justify-between mb-8">
         <nav className="flex space-x-8 overflow-x-auto flex-1">
           <button
-            onClick={() => setActiveTab('all')}
+            onClick={() => {
+              setActiveTab('all')
+              window.history.pushState(null, '', '#')
+            }}
             className={cn(
               'py-4 px-1 border-b-2 lg:font-normal lg:text-base whitespace-nowrap transition-colors min-w-12',
               activeTab === 'all'
@@ -123,7 +147,10 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
           {categories.map((category) => (
             <button
               key={category.id}
-              onClick={() => setActiveTab(category.id.toString())}
+              onClick={() => {
+                setActiveTab(category.id.toString())
+                window.history.pushState(null, '', `#${category.slug}`)
+              }}
               className={cn(
                 'py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors min-w-12',
                 activeTab === category.id.toString()

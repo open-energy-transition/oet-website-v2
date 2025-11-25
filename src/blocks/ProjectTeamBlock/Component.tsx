@@ -43,13 +43,13 @@ export const ProjectTeamBlockComponent: React.FC<{
             >
               {/* Photo */}
               {image && image.url && (
-                <div className="mb-4 rounded-full overflow-hidden w-20 h-20">
+                <div className="mb-4 w-20 h-20">
                   <Image
                     src={image.url}
                     alt={image.alt || fullName || 'Team member'}
                     width={384}
                     height={384}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full rounded-full overflow-hidden"
                   />
                 </div>
               )}

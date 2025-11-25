@@ -19,7 +19,7 @@ export const ContentItemsBlockComponent: React.FC<{
     <section className="py-16 px-4 md:px-8">
       <div className="">
         {title && (
-          <h2 className="text-oxanium-4xl text-2xl lg:text-5xl text-center my-12 text-gray-black-500 dark:text-white font-bold">
+          <h2 className="text-oxanium-4xl text-2xl lg:text-5xl text-center my-12 text-gray-black-500 dark:text-white font-medium">
             {title}
           </h2>
         )}
@@ -30,7 +30,7 @@ export const ContentItemsBlockComponent: React.FC<{
               className="bg-[#F8FAFB] dark:bg-[#1f2937] p-6 rounded-xl transition-colors duration-300 text-center"
             >
               <h3
-                className={`text-oxanium-3xl my-0 text-[#26372C] dark:text-white ${(item?.title?.length || 0) > 20 ? 'text-2xl' : 'text-3xl'} font-bold`}
+                className={` my-0 text-[#26372C] mb-4 dark:text-white ${(item?.title?.length || 0) > 20 ? 'text-2xl' : 'text-3xl'} font-bold`}
               >
                 {item.title}
               </h3>
