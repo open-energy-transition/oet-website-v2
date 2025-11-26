@@ -106,18 +106,18 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
   }, [activeTab, posts, sortBy])
 
   return (
-    <div className="container">
+    <div className="container -my-8 lg:my-0">
       {/* Title and Description */}
       {(title || description) && (
-        <div className="mb-8 flex">
-          <div className="w-1/2">
+        <div className="mb-8 lg:flex">
+          <div className="lg:w-1/2">
             {title && (
               <h2 className="text-5xl font-semibold text-gray-black-500 dark:text-white mb-4">
                 {title}
               </h2>
             )}
           </div>
-          <div className="w-1/2">
+          <div className="lg:w-1/2">
             {description && (
               <p className="text-base font-normal text-gray-black-300 dark:text-white">
                 {description}
@@ -128,7 +128,7 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
       )}
 
       {/* Category Tabs and Sort Button */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="lg:flex items-center justify-between mb-8">
         <nav className="flex space-x-8 overflow-x-auto flex-1">
           <button
             onClick={() => {
@@ -164,7 +164,7 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
         </nav>
 
         {/* Sort Dropdown */}
-        <div ref={dropdownRef} className="relative ml-4 ">
+        <div ref={dropdownRef} className="relative ml-4 flex lg:block justify-end">
           <button
             onClick={() => setShowSortDropdown(!showSortDropdown)}
             className="flex items-center gap-2 text-base font-medium text-gray-700 dark:text-gray-300 rounded-3xl py-4 px-6 border border-[#DFE1E7] transition-colors"
@@ -179,64 +179,64 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
               <path
                 d="M4.16817 16.6667L4.16797 11.6667"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
               <path
                 d="M4.16797 9.16662V3.33325"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
               <path
                 d="M7.5 6.66666H12.5"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
               <path
                 d="M1.66797 11.6667H6.66797"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
               <path
                 d="M13.332 10H18.332"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
               <path
                 d="M10 6.66668L10.0002 3.33334"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
               <path
                 d="M10.0003 16.6667L10 9.16666"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
               <path
                 d="M15.832 9.99995V3.33325"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
               <path
                 d="M15.8323 16.6667L15.832 12.5"
                 stroke="#4A4C56"
-                stroke-width="1.25"
-                stroke-linecap="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
                 className="dark:stroke-white"
               />
             </svg>
@@ -252,9 +252,9 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
               <path
                 d="M16.25 6.875L10 13.125L3.75 6.875"
                 stroke="#4A4C56"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>

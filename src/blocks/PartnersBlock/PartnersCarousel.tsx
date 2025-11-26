@@ -20,7 +20,7 @@ interface PartnersCarouselProps {
 
 export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) => {
   return (
-    <div className="partners-carousel-container w-full px-4 md:px-8 lg:px-12 py-4 relative">
+    <div className="partners-carousel-container w-full md:px-8 lg:px-12 py-4 relative">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         spaceBetween={16}
@@ -57,12 +57,12 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
       >
         {images.map((img, i) => (
           <SwiperSlide key={i} className="!flex !items-center !justify-center">
-            <div className="h-52 md:h-56 lg:h-60 w-full rounded-lg flex items-center justify-center bg-white transition-colors duration-300">
+            <div className="h-32 lg:h-40 w-full rounded-lg flex items-center justify-center bg-white transition-colors duration-300">
               <Media
                 resource={img.image}
                 className="w-full h-full flex items-center justify-center"
                 alt={img.alt}
-                imgClassName="object-contain max-h-44 md:max-h-48 lg:max-h-52 max-w-full mx-auto hover:scale-105 transition-transform duration-300 p-4"
+                imgClassName="object-contain w-full h-full mx-auto hover:scale-105 transition-transform duration-300 p-1 lg:p-6"
               />
             </div>
           </SwiperSlide>
@@ -73,7 +73,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
 
       {/* Navigation Arrows */}
       <button
-        className="swiper-button-prev absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all hover:scale-110 !-mt-1"
+        className="!hidden lg:!flex swiper-button-prev absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10  items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all hover:scale-110 !-mt-1"
         aria-label="Previous partner"
       >
         <svg
@@ -93,7 +93,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
       </button>
 
       <button
-        className="swiper-button-next absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all hover:scale-110 !-mt-1"
+        className="!hidden lg:!flex swiper-button-next absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all hover:scale-110 !-mt-1"
         aria-label="Next partner"
       >
         <svg

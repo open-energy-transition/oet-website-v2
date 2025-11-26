@@ -20,13 +20,13 @@ export const OutputsListBlockComponent: React.FC<{
   }
 
   return (
-    <section className="py-16 px-4 md:px-8 container">
+    <section className="lg:py-16 lg:my-0 -my-8 px-4 md:px-8 container">
       <div className="">
         {/* Header */}
         {(tag || title || description) && (
           <div className="mb-12">
             {tag && (
-              <span className="inline-block px-3 py-1 text-sm font-medium bg-gray-f9 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full mb-4">
+              <span className=" inline-block px-1 py-1 text-sm font-medium bg-gray-f9 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full mb-4">
                 {tag}
               </span>
             )}

@@ -67,7 +67,7 @@ export const CustomerTestimonialsListBlock: React.FC<
                     width={150}
                     height={40}
                     alt={customerTestimonial.company || 'Company Logo'}
-                    className="h-10 object-contain"
+                    className="h-10 object-contain w-auto"
                   />
                 </div>
               )}
