@@ -25,7 +25,7 @@ export const HeaderNav: React.FC<{
 
   if (isMobile) {
     return (
-      <div className="mt-6 flow-root">
+      <div className="mt-6 flow-root h-[70vh] overflow-y-auto">
         <div className="-my-6 divide-y divide-gray-500/10">
           <div className="space-y-2 py-6">
             {navItems.map(({ link }, i) => {
@@ -201,7 +201,7 @@ export const HeaderNav: React.FC<{
 
             {hasSublinks && (
               <div
-                className={`absolute left-0 mt-0 w-48 bg-white shadow-lg rounded-md dark:rounded-none dark:shadow-none overflow-hidden transition-all duration-200 z-50 ${
+                className={`absolute left-0 mt-0 w-48 bg-white dark:!bg-[#1a1f2e] shadow-lg rounded-md dark:rounded-none dark:shadow-none overflow-hidden transition-all duration-200 z-50 ${
                   activeDropdownDesktop === i ? 'opacity-100 visible' : 'opacity-0 invisible'
                 }`}
               >
@@ -217,7 +217,7 @@ export const HeaderNav: React.FC<{
                     <a
                       key={j}
                       href={href}
-                      className="block px-4 py-2 text-sm text-gray-black-300 hover:bg-gray-100 whitespace-nowrap dark:!text-white"
+                      className="block px-4 py-2 text-sm text-gray-black-500 hover:bg-gray-100 whitespace-nowrap dark:!text-white"
                       {...(link.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       onClick={() => setActiveDropdownDesktop(null)}
                     >

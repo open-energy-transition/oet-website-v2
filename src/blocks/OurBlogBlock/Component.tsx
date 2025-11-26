@@ -129,7 +129,7 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
 
       {/* Category Tabs and Sort Button */}
       <div className="lg:flex items-center justify-between mb-8">
-        <nav className="flex space-x-8 overflow-x-auto flex-1">
+        <nav className="grid mb-4 lg:mb-0 lg:flex lg:space-x-8 lg:overflow-x-auto flex-1">
           <button
             onClick={() => {
               setActiveTab('all')

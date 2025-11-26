@@ -162,7 +162,7 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
                           className="text-poppins-x-small text-base text-gray-black-500 flex dark:!text-white items-center gap-2"
                           aria-label={`View details for project: ${project.title}`}
                         >
-                          <span className="underline">View Project</span>
+                          <span className="hover:underline">View Project</span>
                           <svg
                             width="24"
                             height="24"

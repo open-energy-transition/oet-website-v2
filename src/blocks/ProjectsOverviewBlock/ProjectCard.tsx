@@ -48,7 +48,7 @@ export const ProjectCard: React.FC<{
         </div>
         <Link
           href={`/projects/${project.slug}`}
-          className="text-poppins-x-small text-base text-gray-black-500 dark:!text-white flex items-center"
+          className="text-poppins-x-small mt-2 lg:mt-0 text-base text-gray-black-500 dark:!text-white flex items-center"
           aria-label={`View details for project: ${project.title}`}
         >
           <span className="">View Project</span>
