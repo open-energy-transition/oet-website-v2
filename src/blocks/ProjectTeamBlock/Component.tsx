@@ -39,7 +39,7 @@ export const ProjectTeamBlockComponent: React.FC<{
           return (
             <div
               key={item.id || index}
-              className="group relative overflow-hidden rounded-xl border border-gray-black-50 dark:border-white flex flex-col items-center p-6"
+              className="group relative overflow-hidden rounded-xl border border-gray-black-50 dark:border-dark-blue-gray flex flex-col items-center p-6"
             >
               {/* Photo */}
               {image && image.url && (

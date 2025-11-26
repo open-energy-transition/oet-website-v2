@@ -96,7 +96,10 @@ export const HeaderNav: React.FC<{
                                 <path
                                   fillRule="evenodd"
                                   clipRule="evenodd"
-                                  className={cn('dark:text-white', isActive && 'text-white')}
+                                  className={cn(
+                                    'dark:text-white dark:fill-white',
+                                    isActive && 'text-white',
+                                  )}
                                   d="M4.7842 5.5036C4.62722 5.66547 4.37276 5.66547 4.21578 5.5036L0.117729 1.27793C-0.0392429 1.11606 -0.0392429 0.853673 0.117729 0.691808L0.307216 0.496399C0.464187 0.334534 0.718689 0.334534 0.875666 0.496399L4.49999 4.23361L8.12434 0.496399C8.28132 0.334534 8.53578 0.334534 8.69276 0.496399L8.88227 0.691808C9.03924 0.853673 9.03924 1.11606 8.88227 1.27793L4.7842 5.5036Z"
                                   fill="currentColor"
                                 />
@@ -180,7 +183,7 @@ export const HeaderNav: React.FC<{
 
   // Desktop navigation
   return (
-    <nav className="flex items-center gap-8">
+    <nav className="flex items-center lg:gap-8">
       {navItems.map(({ link }, i) => {
         const hasSublinks = link?.sublinks && link.sublinks.length > 0
 

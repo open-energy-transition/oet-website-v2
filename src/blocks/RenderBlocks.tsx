@@ -86,7 +86,7 @@ export const RenderBlocks: React.FC<{
                 className = ''
                 break
               case 'projectsOverview':
-                className = 'dark:border-y dark:border-white'
+                className = 'dark:border-y dark:border-dark-blue-gray'
                 break
               default:
                 className = 'py-16 '

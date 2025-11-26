@@ -14,14 +14,14 @@ export const CardModel: React.FC<{
   const { title, description, sourceCode, github, website } = data
 
   return (
-    <div className="border border-[#77857C] rounded-2xl text-[#0B0C0B] dark:text-white p-4 min-h-[336px] flex flex-col justify-between dark:border-white">
+    <div className="border border-[#77857C] rounded-2xl text-[#0B0C0B] dark:text-white p-4 min-h-[336px] flex flex-col justify-between dark:border-dark-blue-gray">
       <div>
         {tag && <div className="text-poppins-base text-sm">{tag}</div>}
         <div className="text-poppins-2xl underline mt-2">{title}</div>
         <div className="text-poppins-h9 mt-2">{description}</div>
       </div>
       <div className="flex justify-between items-center">
-        <div className="flex py-1.5 pl-2 pr-5 rounded-[8px] gap-1 shadow dark:shadow-none dark:border dark:border-white bg-[#F4F6F0] dark:bg-transparent font-roboto font-medium text-sm leading-[20px] tracking-[0.1%] text-center">
+        <div className="flex py-1.5 pl-2 pr-5 rounded-[8px] gap-1 shadow dark:shadow-none dark:border dark:border-dark-blue-gray bg-[#F4F6F0] dark:bg-transparent font-roboto font-medium text-sm leading-[20px] tracking-[0.1%] text-center">
           <span>
             <svg
               width="21"

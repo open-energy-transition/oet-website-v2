@@ -44,7 +44,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [pathname])
 
   return (
-    <div className="bg-[#F9F9F9] sticky top-0 z-40 lg:relative lg:z-20">
+    <div className="bg-[#F9F9F9] sticky top-0 z-40 lg:relative lg:z-20 dark:border-b dark:border-dark-blue-gray">
       <header className="container relative z-20">
         {/* Desktop Header */}
         <div className="flex justify-between items-center h-[84px]">

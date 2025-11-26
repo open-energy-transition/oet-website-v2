@@ -10,7 +10,7 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
   services,
 }) => {
   return (
-    <div className="bg-[#F8FAFB] dark:bg-[#1a1f2e] transition-colors duration-300 dark:border-y dark:border-white">
+    <div className="bg-[#F8FAFB] dark:bg-[#1a1f2e] transition-colors duration-300 dark:border-y dark:border-dark-blue-gray">
       <div className="container py-14 lg:pt-20">
         <div className="mb-6 text-start flex lg:flex-row flex-col justify-between">
           <h2 className="mb-2 text-4xl font-semibold lg:text-5xl text-gray-black-500 dark:text-white">
@@ -32,7 +32,7 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
             services.map((service, i) => (
               <div
                 key={i}
-                className="lg:py-6 flex flex-col lg:flex-row items-start border-t border-t-[#D2D2D5] transition-colors duration-300"
+                className="lg:py-6 flex flex-col lg:flex-row items-start border-t border-t-[#D2D2D5] dark:border-t-dark-blue-gray transition-colors duration-300"
               >
                 <div className="my-8 lg:my-10 lg:w-1/2">
                   {/* Icon */}

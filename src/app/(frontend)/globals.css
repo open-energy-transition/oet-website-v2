@@ -215,7 +215,7 @@ html[data-theme='light'] {
   }
 
   .text-heebo-small-link {
-    @apply font-heebo text-[14px] font-normal underline leading-[150%] tracking-[0%];
+    @apply font-heebo text-[14px] font-normal hover:underline leading-[150%] tracking-[0%];
   }
 
   .text-heebo-regular-normal {

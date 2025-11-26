@@ -169,7 +169,7 @@ export async function Footer() {
         </div>
       </div>
       <div className="container pb-4 text-xs pt-4">
-        <div className="border-t border-[#FFFFFF3D] border-opacity-15 pt-8 pb-4 justify-between flex flex-col md:flex-row gap-6">
+        <div className="border-t border-[#FFFFFF3D] border-opacity-15 pt-8 pb-4 justify-between flex flex-col md:flex-row gap-6 dark:border-dark-blue-gray">
           {/* Copyright */}
           {copyright && (
             <RichText

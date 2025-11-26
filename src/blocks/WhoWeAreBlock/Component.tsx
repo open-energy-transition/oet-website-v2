@@ -67,7 +67,7 @@ export const WhoWeAreBlock: React.FC<WhoWeAreBlockProps> = ({ items, bottomItems
           {bottomItems.map((bottomItem, index) => (
             <div
               key={index}
-              className="bg-[#F8FAFB] dark:bg-[#1f2937] p-6 rounded-xl transition-colors duration-300 text-center border border-gray-black-50 dark:border-white"
+              className="bg-[#F8FAFB] dark:bg-[#1f2937] p-6 rounded-xl transition-colors duration-300 text-center border border-gray-black-50 dark:border-dark-blue-gray"
             >
               <h3
                 className={`text-[#26372C] dark:text-white mb-6 ${getFirstTextLength(bottomItem.description) > 20 ? 'text-2xl' : 'text-3xl'} font-bold`}

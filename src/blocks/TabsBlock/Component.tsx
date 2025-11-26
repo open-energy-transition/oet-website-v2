@@ -220,7 +220,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
       activeTab: 'text-red-600 border-red-600',
     },
     bordered: {
-      nav: 'border border-b-0 border-[#0B0C0B26] dark:border-white rounded-t-3xl overflow-hidden w-full',
+      nav: 'border border-b-0 border-[#0B0C0B26] dark:border-dark-blue-gray rounded-t-3xl overflow-hidden w-full',
       tab: 'text-center px-8 py-6 font-poppins text-2xl font-normal leading w-full',
       activeTab: 'bg-gray-100 shadow-sm',
     },
@@ -305,7 +305,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
           className={cn('mt-6', {
             'flex-1': isVertical,
             'mt-6': !isVertical,
-            'border border-[#0B0C0B26] dark:border-white mt-0 rounded-b-3xl':
+            'border border-[#0B0C0B26] dark:border-dark-blue-gray mt-0 rounded-b-3xl':
               tabStyle === 'bordered',
           })}
         >

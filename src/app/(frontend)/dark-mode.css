@@ -8,10 +8,8 @@
 }
 
 /* Header dark mode */
-[data-theme='dark'] .bg-\[\#F9F9F9\],
 [data-theme='dark'] header {
   background-color: #1a1f2e !important;
-  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
 }
 
 /* Mobile menu dark mode */

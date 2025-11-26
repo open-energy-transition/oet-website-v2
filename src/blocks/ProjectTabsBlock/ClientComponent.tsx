@@ -35,7 +35,7 @@ const ProjectCard: React.FC<{
   const imageUrl = getImageUrl(project.imageUrl)
 
   return (
-    <div className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl">
+    <div className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border-dark-blue-gray">
       {imageUrl && (
         <div className="object-cover min-h-[232px] w-full lg:h-[217px] rounded-xl overflow-hidden">
           <Image

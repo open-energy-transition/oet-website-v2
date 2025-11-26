@@ -167,7 +167,7 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
         <div ref={dropdownRef} className="relative ml-4 flex lg:block justify-end">
           <button
             onClick={() => setShowSortDropdown(!showSortDropdown)}
-            className="flex items-center gap-2 text-base font-medium text-gray-700 dark:text-gray-300 rounded-3xl py-4 px-6 border border-[#DFE1E7] transition-colors"
+            className="flex items-center gap-2 text-base font-medium text-gray-700 dark:text-gray-300 rounded-3xl py-4 px-6 border border-[#DFE1E7] transition-colors dark:border-dark-blue-gray"
           >
             <svg
               width="20"
@@ -314,12 +314,12 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
           return (
             <div
               key={post.id}
-              className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl"
+              className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border-dark-blue-gray"
             >
               {post.heroImage && (
                 <Media
                   resource={post.heroImage}
-                  className="dark:border-t dark:border-white object-cover w-full h-[217px] rounded-xl overflow-hidden"
+                  className="dark:border-t dark:border-dark-blue-gray object-cover w-full h-[217px] rounded-xl overflow-hidden"
                   imgClassName="rounded-xl"
                 />
               )}
@@ -336,7 +336,7 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
                           <Link
                             key={i}
                             href={`/categories/${category.slug}`}
-                            className="inline-block px-3 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-white"
+                            className="inline-block px-3 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray"
                           >
                             {category.title}
                           </Link>

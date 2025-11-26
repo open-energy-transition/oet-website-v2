@@ -14,7 +14,7 @@ export const DepartmentsListBlock: React.FC<DepartmentsListBlockProps & { id?: s
           {(departments ?? []).map((department: any) => (
             <div
               key={department.id}
-              className="p-4 rounded-lg shadow-sm relative dark:border dark:border-white"
+              className="p-4 rounded-lg shadow-sm relative dark:border dark:border-dark-blue-gray"
             >
               {/* Representative member image with hover name tooltip */}
               {department.representativeMember && (
@@ -80,7 +80,7 @@ export const DepartmentsListBlock: React.FC<DepartmentsListBlockProps & { id?: s
               <div className="mt-6 flex justify-end">
                 <Link
                   href={`/departments/${department.id}`}
-                  className="inline-block px-4 py-2 border border-black text-black rounded transition-colors hover:bg-gray-100 dark:border dark:border-white"
+                  className="inline-block px-4 py-2 border border-black text-black rounded transition-colors hover:bg-gray-100 dark:border dark:border-dark-blue-gray"
                 >
                   View Details
                 </Link>

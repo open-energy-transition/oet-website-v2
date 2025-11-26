@@ -135,7 +135,7 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
                   return (
                     <div
                       key={relatedProject.id}
-                      className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border"
+                      className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border dark:border-dark-blue-gray"
                     >
                       {relatedImageUrl && (
                         <div className="aspect-video overflow-hidden w-full rounded-xl">
