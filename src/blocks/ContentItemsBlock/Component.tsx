@@ -16,7 +16,7 @@ export const ContentItemsBlockComponent: React.FC<{
   if (!items || items.length === 0) return null
 
   return (
-    <section className="py-16 px-4 md:px-8">
+    <section className="lg:py-16 px-4 md:px-8">
       <div className="">
         {title && (
           <h2 className="text-oxanium-4xl text-2xl lg:text-5xl text-center my-12 text-gray-black-500 dark:text-white font-medium">

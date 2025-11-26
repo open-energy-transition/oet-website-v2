@@ -248,7 +248,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
     }
   }
   return (
-    <div className="container my-16">
+    <div className="container -my-8 lg:my-16">
       {/* Title and Description */}
       {(title || description) && (
         <div className="mb-8">

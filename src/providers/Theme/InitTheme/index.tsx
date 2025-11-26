@@ -5,8 +5,7 @@ import { defaultTheme, themeLocalStorageKey } from '../ThemeSelector/types'
 
 export const InitTheme: React.FC = () => {
   return (
-    // eslint-disable-next-line @next/next/no-before-interactive-script-outside-document
-    <Script
+    <script
       dangerouslySetInnerHTML={{
         __html: `
   (function () {
@@ -43,8 +42,6 @@ export const InitTheme: React.FC = () => {
   })();
   `,
       }}
-      id="theme-script"
-      strategy="beforeInteractive"
     />
   )
 }
