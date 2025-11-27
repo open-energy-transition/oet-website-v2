@@ -153,13 +153,13 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
                           {relatedProject.title}
                         </h4>
                         {relatedProject.subTitle && (
-                          <p className="customTextState-size-h9 text-gray-black-300 min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis">
+                          <p className="customTextState-size-h9 text-gray-black-300 min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis dark:!text-white">
                             {relatedProject.subTitle}
                           </p>
                         )}
                         <Link
                           href={`/projects/${project.slug}`}
-                          className="text-poppins-x-small text-base text-gray-black-500 flex dark:!text-white items-center gap-2"
+                          className="text-poppins-x-small text-base text-gray-black-500 flex dark:!text-white items-center gap-2 mt-2"
                           aria-label={`View details for project: ${project.title}`}
                         >
                           <span className="hover:underline">View Project</span>

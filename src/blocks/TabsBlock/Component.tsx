@@ -222,7 +222,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
     bordered: {
       nav: 'border border-b-0 border-[#0B0C0B26] dark:border-dark-blue-gray rounded-t-3xl overflow-hidden w-full',
       tab: 'text-center px-8 py-6 font-poppins text-2xl font-normal leading w-full',
-      activeTab: 'bg-gray-100 shadow-sm',
+      activeTab: 'bg-gray-100',
     },
   } as const
 

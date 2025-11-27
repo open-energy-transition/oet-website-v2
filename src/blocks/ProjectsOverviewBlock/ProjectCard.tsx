@@ -22,7 +22,7 @@ export const ProjectCard: React.FC<{
           {project.title}
         </h3>
         {project.subTitle && (
-          <div className="customTextState-size-h9 text-gray-black-300 min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis">
+          <div className="customTextState-size-h9 text-gray-black-300 min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis dark:!text-white">
             {project.subTitle}
           </div>
         )}

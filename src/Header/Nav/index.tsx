@@ -204,7 +204,7 @@ export const HeaderNav: React.FC<{
 
             {hasSublinks && (
               <div
-                className={`absolute left-0 mt-0 w-48 bg-white dark:!bg-[#1a1f2e] shadow-lg rounded-md dark:rounded-none dark:shadow-none overflow-hidden transition-all duration-200 z-50 ${
+                className={`absolute left-0 mt-0 w-48 bg-white dark:!bg-[#1a1f2e] shadow-lg rounded-md dark:rounded-none dark:!shadow-none overflow-hidden transition-all duration-200 z-50 ${
                   activeDropdownDesktop === i ? 'opacity-100 visible' : 'opacity-0 invisible'
                 }`}
               >
