@@ -74,7 +74,7 @@ export const ProjectTeamBlockComponent: React.FC<{
               )}
 
               {/* Social Links */}
-              <div className="flex gap-3.5 mt-2 w-full justify-center">
+              <div className="flex gap-3.5 mt-2 w-full justify-center mt-auto">
                 {linkedIn && (
                   <a
                     href={linkedIn}
