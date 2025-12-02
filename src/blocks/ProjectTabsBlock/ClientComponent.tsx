@@ -155,7 +155,9 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
     <div className="container mx-auto px-4 -my-4 lg:py-12">
       <div className="flex flex-col lg:flex-row gap-4">
         {title && (
-          <div className="customTextState-poppins-h5 font-semibold text-2xl lg:w-1/2">{title}</div>
+          <div className="font-oxanium text-5xl font-semibold text-gray-black-500 dark:text-white mb-4 lg:w-1/2">
+            {title}
+          </div>
         )}
         {introContent && (
           <div className="text-heebo-medium-normal text-[#777980] dark:text-gray-300 lg:w-1/2">

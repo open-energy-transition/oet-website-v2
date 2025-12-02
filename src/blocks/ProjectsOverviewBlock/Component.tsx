@@ -14,7 +14,9 @@ export const ProjectsOverviewBlock: React.FC<ProjectsOverviewBlockProps> = ({
       <div className="container py-16">
         <div className="lg:flex justify-between">
           <div className="mb-6 lg:w-1/2">
-            <h2 className="text-oxanium-3xl lg:text-5xl">{title}</h2>
+            <h2 className="font-oxanium mb-2 text-4xl font-semibold lg:text-5xl text-gray-black-500 dark:text-white">
+              {title}
+            </h2>
           </div>
           <div className="lg:w-1/2">
             {description && (

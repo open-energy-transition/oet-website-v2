@@ -112,7 +112,7 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
         <div className="mb-8 lg:flex">
           <div className="lg:w-1/2">
             {title && (
-              <h2 className="text-5xl font-semibold text-gray-black-500 dark:text-white mb-4">
+              <h2 className="font-oxanium text-5xl font-semibold text-gray-black-500 dark:text-white mb-4">
                 {title}
               </h2>
             )}
@@ -302,16 +302,11 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
         </div>
       </div>
 
-      {/* Posts Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredPosts.map((post) => {
-          const postCategories = Array.isArray(post.categories)
-            ? post.categories.filter(
-                (cat): cat is Category => typeof cat === 'object' && cat !== null,
-              )
-            : []
-
-          return (
+      {/* Posts Grid - 2 rows layout */}
+      <div className="space-y-6">
+        {/* First row */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+          {filteredPosts.slice(0, 1).map((post) => (
             <div
               key={post.id}
               className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border-dark-blue-gray"
@@ -378,8 +373,79 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
                 </div>
               </div>
             </div>
-          )
-        })}
+          ))}
+        </div>{' '}
+        {/* Second row */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+          {filteredPosts.slice(1).map((post) => (
+            <div
+              key={post.id}
+              className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border-dark-blue-gray"
+            >
+              {post.heroImage && (
+                <Media
+                  resource={post.heroImage}
+                  className="dark:border-t dark:border-dark-blue-gray object-cover w-full h-[217px] rounded-xl overflow-hidden"
+                  imgClassName="rounded-xl"
+                />
+              )}
+              <div className="p-6 w-full">
+                <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                  {post.categories && post.categories.length > 0 && (
+                    <div className="mt-2 gap-2 flex flex-wrap">
+                      {post.categories
+                        .filter(
+                          (category): category is Category =>
+                            typeof category === 'object' && category !== null,
+                        )
+                        .map((category, i) => (
+                          <Link
+                            key={i}
+                            href={`/categories/${category.slug}`}
+                            className="inline-block px-3 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray"
+                          >
+                            {category.title}
+                          </Link>
+                        ))}
+                    </div>
+                  )}
+                </div>
+                <div className="flex text-gray-black-400 dark:text-white text-base mb-4">
+                  {post.pDate ? <div>{post.pDate}</div> : <></>}
+                  {post.pDate && post.minRead ? (
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="dark:text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 10C11.4696 10 10.9609 10.2107 10.5858 10.5858C10.2107 10.9609 10 11.4696 10 12C10 12.5304 10.2107 13.0391 10.5858 13.4142C10.9609 13.7893 11.4696 14 12 14C13.11 14 14 13.11 14 12C14 11.4696 13.7893 10.9609 13.4142 10.5858C13.0391 10.2107 12.5304 10 12 10Z"
+                        fill="#777980"
+                      />
+                    </svg>
+                  ) : (
+                    <></>
+                  )}
+                  {post.minRead ? <div>{post.minRead}</div> : <></>}
+                </div>
+
+                <Link
+                  href={`/posts/${post.slug}`}
+                  className="text-2xl font-medium mb-1 customTextState-size-h8 text-gray-black-500 min-h-[40px] overflow-hidden line-clamp-3 text-ellipsis dark:!text-white"
+                  aria-label={`View details for project: ${post.title}`}
+                >
+                  {post.title}
+                </Link>
+                <div className="text-gray-black-400 text-base dark:text-white">
+                  {post.shortDescription}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {filteredPosts.length === 0 && (

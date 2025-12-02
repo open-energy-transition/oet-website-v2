@@ -17,6 +17,12 @@ export const ProjectAims: Block = {
       minRows: 1,
       fields: [
         {
+          name: 'isPublish',
+          type: 'checkbox',
+          label: 'Is Publish',
+          defaultValue: true,
+        },
+        {
           name: 'title',
           type: 'text',
           required: true,

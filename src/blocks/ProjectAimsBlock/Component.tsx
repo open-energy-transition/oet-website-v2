@@ -18,6 +18,7 @@ interface MediaItem {
 interface ProjectAim {
   title: string
   link?: string
+  isPublish?: boolean
   iconColor?: 'red' | 'black'
   content?: ContentItem[]
   id?: string
@@ -40,40 +41,42 @@ export const ProjectAimsBlockComponent: React.FC<{
         )}
         <div className={`flex gap-6 lg:flex-row flex-col ${title ? 'lg:my-6 my-3' : ''}`}>
           <div className="flex flex-col lg:gap-6 gap-3 lg:w-3/5">
-            {items.map((item, index) => {
-              return (
-                <div key={item.id || index}>
-                  {/* Title */}
-                  <div className="text-gray-black-400 dark:text-white font-base flex gap-3">
-                    <div>
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          className="dark:!fill-white"
-                          d="M20.255 13.5421L15.144 17.5792C13.868 18.5872 12 17.6712 12 16.0372V12.0001C12 12.5751 11.752 13.1501 11.255 13.5421L6.14404 17.5792C4.86804 18.5872 3 17.6712 3 16.0372V7.96296C3 6.32896 4.86704 5.41297 6.14404 6.42097L11.255 10.4571C11.752 10.8491 12 11.4241 12 11.9991V7.96296C12 6.32896 13.867 5.41297 15.144 6.42097L20.255 10.4571C21.248 11.2421 21.248 12.7571 20.255 13.5421Z"
-                          fill={item.iconColor === 'black' ? '#000000' : '#E31937'}
-                        />
-                      </svg>
+            {items
+              .filter((item) => item.isPublish)
+              .map((item, index) => {
+                return (
+                  <div key={item.id || index}>
+                    {/* Title */}
+                    <div className="text-gray-black-400 dark:text-white font-base flex gap-3">
+                      <div>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            className="dark:!fill-white"
+                            d="M20.255 13.5421L15.144 17.5792C13.868 18.5872 12 17.6712 12 16.0372V12.0001C12 12.5751 11.752 13.1501 11.255 13.5421L6.14404 17.5792C4.86804 18.5872 3 17.6712 3 16.0372V7.96296C3 6.32896 4.86704 5.41297 6.14404 6.42097L11.255 10.4571C11.752 10.8491 12 11.4241 12 11.9991V7.96296C12 6.32896 13.867 5.41297 15.144 6.42097L20.255 10.4571C21.248 11.2421 21.248 12.7571 20.255 13.5421Z"
+                            fill={item.iconColor === 'black' ? '#000000' : '#E31937'}
+                          />
+                        </svg>
+                      </div>
+                      {item.link ? (
+                        <Link
+                          href={item.link || '#'}
+                          className="leading-tight hover:underline no-underline"
+                        >
+                          {item.title}
+                        </Link>
+                      ) : (
+                        <div className="leading-tight">{item.title}</div>
+                      )}
                     </div>
-                    {item.link ? (
-                      <Link
-                        href={item.link || '#'}
-                        className="leading-tight hover:underline no-underline"
-                      >
-                        {item.title}
-                      </Link>
-                    ) : (
-                      <div className="leading-tight">{item.title}</div>
-                    )}
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
           </div>
           <div className="lg:w-2/5">
             {/* Media Items Section */}

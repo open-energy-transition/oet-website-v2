@@ -1899,6 +1899,7 @@ export interface ProjectAimsBlock {
   title?: string | null;
   items?:
     | {
+        isPublish?: boolean | null;
         title: string;
         link?: string | null;
         iconColor?: ('red' | 'black') | null;
@@ -3046,6 +3047,7 @@ export interface ProjectAimsBlockSelect<T extends boolean = true> {
   items?:
     | T
     | {
+        isPublish?: T;
         title?: T;
         link?: T;
         iconColor?: T;
