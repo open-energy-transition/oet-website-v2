@@ -206,8 +206,8 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
   const tabStyleClasses = {
     default: {
       nav: 'space-x-2',
-      tab: 'text-black border-b-2 font-normal border-transparent',
-      activeTab: 'border-red-600 font-bold',
+      tab: 'text-gray-black-300 pb-2 hover:text-gray-black-500 border-b-2 font-normal border-transparent dark:!text-white',
+      activeTab: 'border-red-600 font-bold text-gray-black-500 dark:!text-white',
     },
     pills: {
       nav: 'space-x-2',

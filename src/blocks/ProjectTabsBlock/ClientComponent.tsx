@@ -165,8 +165,9 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
       </div>
       {/* Tab Navigation */}
       <div className="mb-8 mt-14">
-        <nav
-          className="flex space-x-8 h-[80px] border-[#DFE1E7] border rounded-2xl p-1.5"
+        <div
+          className="flex border border-[#0B0C0B26] dark:border-dark-blue-gray rounded-3xl overflow-hidden w-full flex-col lg:flex-row gap-6"
+          role="tablist"
           aria-label="Tabs"
         >
           {tabs.map((tab) => (
@@ -174,30 +175,17 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className={cn(
-                'whitespace-nowrap w-1/2 rounded-xl py-2 px-1 customTextState-size-h8 text-base lg:text-2xl font-medium transition-colors',
+                'transition-colors duration-200 px-8 py-6 font-poppins text-2xl font-normal leading-none w-full text-center flex-1',
                 activeTab === tab.key
-                  ? 'bg-[#DFE1E7] text-[#26372C]'
-                  : 'border-transparent text-[#26372C] font-normal dark:text-white',
+                  ? 'bg-gray-100 text-[#26372C] dark:bg-gray-800 dark:text-white'
+                  : 'bg-transparent text-[#26372C] dark:text-white',
               )}
               aria-current={activeTab === tab.key ? 'page' : undefined}
             >
               {tab.label}
-              {/* {tab.count > 0 && (
-                <span
-                  className={cn(
-                    'ml-2 inline-flex items-center justify-center rounded-full px-2 py-1 text-xs',
-                    activeTab === tab.key
-                      ? 'bg-blue-100 text-blue-600'
-                      : 'bg-gray-100 text-gray-500',
-                  )}
-                >
-                  {tab.count}
-                </span>
-              )}
-              */}
             </button>
           ))}
-        </nav>
+        </div>
       </div>
 
       {/* Tab Content */}

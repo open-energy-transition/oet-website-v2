@@ -70,7 +70,7 @@ export const PostHero: React.FC<{
       <div className="relative  w-full">
         {heroImage && typeof heroImage !== 'string' && typeof heroImage !== 'number' && (
           <Image
-            className="!h-auto max-h-[425px] !relative"
+            className="!h-auto !relative"
             src={heroImage.url || ''}
             alt={heroImage.alt || title || 'Hero image'}
             fill

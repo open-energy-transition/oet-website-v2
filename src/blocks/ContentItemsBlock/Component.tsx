@@ -12,8 +12,11 @@ interface ContentItem {
 export const ContentItemsBlockComponent: React.FC<{
   items?: ContentItem[]
   title: string
-}> = ({ items, title }) => {
+  isPublish?: boolean
+}> = ({ items, title, isPublish }) => {
   if (!items || items.length === 0) return null
+
+  if (!isPublish) return <></>
 
   return (
     <section className="lg:py-16 px-4 md:px-8">

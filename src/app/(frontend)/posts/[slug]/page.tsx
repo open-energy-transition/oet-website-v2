@@ -68,6 +68,54 @@ export default async function Post({ params: paramsPromise }: Args) {
             enableGutter={false}
             enableProse={false}
           />
+          
+          {/* Journal and DOI Section */}
+          {(post.journal || post.doi) && (
+            <div className="mt-8 p-6 bg-red-50 border-2 border-[#E31937] rounded-lg dark:bg-red-950/20 dark:border-red-800">
+              {post.journal && (
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    Journal
+                  </h3>
+                  <RichText
+                    data={post.journal}
+                    enableGutter={false}
+                    enableProse={false}
+                    className="text-gray-700 dark:text-gray-300"
+                  />
+                </div>
+              )}
+              {post.doi && (
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    DOI
+                  </h3>
+                  <a
+                    href={`https://doi.org/${post.doi}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[#E31937] hover:text-[#c0152e] font-medium transition-colors"
+                  >
+                    {post.doi}
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
+
           {post.relatedPosts && post.relatedPosts.length > 0 && (
             <RelatedPosts
               className="mt-12 max-w-[52rem] lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]"

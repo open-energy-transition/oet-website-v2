@@ -7,7 +7,7 @@ export const ProjectAims: Block = {
     {
       name: 'title',
       type: 'text',
-      required: true,
+      required: false,
       defaultValue: 'Project Aims',
     },
     {
@@ -20,6 +20,28 @@ export const ProjectAims: Block = {
           name: 'title',
           type: 'text',
           required: true,
+        },
+        {
+          name: 'link',
+          type: 'text',
+          required: false,
+        },
+        {
+          name: 'iconColor',
+          type: 'select',
+          label: 'Icon Color',
+          required: false,
+          defaultValue: 'red',
+          options: [
+            {
+              label: 'Red',
+              value: 'red',
+            },
+            {
+              label: 'Black',
+              value: 'black',
+            },
+          ],
         },
       ],
     },

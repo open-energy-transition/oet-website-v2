@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import RichText from '@/components/RichText'
+import { X } from 'lucide-react'
 
 import type { TeamMember, Staff } from '@/payload-types'
 
@@ -14,21 +15,78 @@ export type TeamMembersClientProps = {
   staffCategories?: Staff[]
 }
 
+const TeamMemberModal: React.FC<{
+  member: TeamMember
+  isOpen: boolean
+  onClose: () => void
+}> = ({ member, isOpen, onClose }) => {
+  const { firstName, lastName, description } = member
+
+  // Close on ESC key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape)
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden'
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Close modal"
+        >
+          <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+        </button>
+
+        {/* Modal content */}
+        <div className="p-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            About {firstName} {lastName}
+          </h2>
+          {description ? (
+            <div className="text-gray-700 dark:text-gray-300">
+              <RichText data={description} enableGutter={false} enableProse={false} />
+            </div>
+          ) : (
+            <p className="text-gray-500 dark:text-gray-400">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const imageUrl =
     typeof member.image === 'object' && member.image?.url ? member.image.url : undefined
-  const {
-    firstName,
-    lastName,
-    jobTitle,
-    linkedIn,
-    externalLink,
-    x,
-    email,
-    description,
-    categories,
-    github,
-  } = member
+  const { firstName, lastName, jobTitle, linkedIn, externalLink, x, email, categories, github } =
+    member
   return (
     <div className="group relative overflow-hidden rounded-lg hover:shadow-md flex flex-col items-center p-6">
       {imageUrl && (
@@ -71,11 +129,17 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
           })}
         </div>
       )}
-      {description && (
-        <div className="mb-2 w-full">
-          <RichText data={description} enableGutter={false} enableProse={false} />
-        </div>
-      )}
+      {/* About Me button - always visible */}
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="text-gray-600 dark:!text-white hover:underline text-base mb-2 w-full text-left"
+      >
+        About Me
+      </button>
+
+      {/* Team member modal */}
+      <TeamMemberModal member={member} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
       <div className="flex gap-3.5 mt-2 w-full">
         {linkedIn && (
           <a

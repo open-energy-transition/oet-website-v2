@@ -136,9 +136,9 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
               window.history.pushState(null, '', '#')
             }}
             className={cn(
-              'py-4 px-1 border-b-2 lg:font-normal lg:text-base whitespace-nowrap transition-colors min-w-12',
+              'py-2 px-1 border-b-2 font-heebo lg:text-lg whitespace-nowrap transition-colors min-w-12',
               activeTab === 'all'
-                ? 'border-red-600 dark:text-white text-gray-black-500'
+                ? 'border-red-600 dark:text-white text-gray-black-500 font-bold'
                 : 'border-transparent text-gray-black-300 hover:text-gray-black-500 hover:border-gray-300 dark:text-white dark:hover:text-gray-300',
             )}
           >
@@ -152,9 +152,9 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
                 window.history.pushState(null, '', `#${category.slug}`)
               }}
               className={cn(
-                'py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors min-w-12',
+                'py-2 px-1 border-b-2 font-heebo text-lg whitespace-nowrap transition-colors min-w-12',
                 activeTab === category.id.toString()
-                  ? 'border-red-600 dark:text-white text-gray-black-500'
+                  ? 'border-red-600 dark:text-white text-gray-black-500 font-bold'
                   : 'border-transparent text-gray-black-300 hover:text-gray-black-500 hover:border-gray-300 dark:text-white dark:hover:text-gray-300',
               )}
             >
@@ -260,7 +260,7 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
           </button>
 
           {showSortDropdown && (
-            <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg z-10">
+            <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl shadow-lg z-10">
               <button
                 onClick={() => {
                   setSortBy('category')

@@ -5,9 +5,16 @@ export const ContentItems: Block = {
   interfaceName: 'ContentItemsBlock',
   fields: [
     {
+      name: 'isPublish',
+      type: 'checkbox',
+      label: 'Is Publish',
+      defaultValue: true,
+    },
+    {
       name: 'title',
       type: 'text',
       required: false,
+      defaultValue: 'Project Overview',
     },
     {
       name: 'items',
@@ -28,7 +35,7 @@ export const ContentItems: Block = {
     },
   ],
   labels: {
-    plural: 'Content Items Blocks',
-    singular: 'Content Items Block',
+    plural: 'Project Overview Blocks',
+    singular: 'Project Overview Block',
   },
 }

@@ -1878,6 +1878,7 @@ export interface OutputsListBlock {
  * via the `definition` "ContentItemsBlock".
  */
 export interface ContentItemsBlock {
+  isPublish?: boolean | null;
   title?: string | null;
   items?:
     | {
@@ -1895,10 +1896,12 @@ export interface ContentItemsBlock {
  * via the `definition` "ProjectAimsBlock".
  */
 export interface ProjectAimsBlock {
-  title: string;
+  title?: string | null;
   items?:
     | {
         title: string;
+        link?: string | null;
+        iconColor?: ('red' | 'black') | null;
         id?: string | null;
       }[]
     | null;
@@ -3022,6 +3025,7 @@ export interface OutputsListBlockSelect<T extends boolean = true> {
  * via the `definition` "ContentItemsBlock_select".
  */
 export interface ContentItemsBlockSelect<T extends boolean = true> {
+  isPublish?: T;
   title?: T;
   items?:
     | T
@@ -3043,6 +3047,8 @@ export interface ProjectAimsBlockSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        link?: T;
+        iconColor?: T;
         id?: T;
       };
   media?:
