@@ -2,6 +2,12 @@
   display: none;
 }
 
+@media (min-width: 767px) and (max-width: 1335px) {
+    .app-header__mobile-nav-toggler {
+        display: block !important;
+    }
+}
+
 .custom-nav {
   border-right: 3px solid transparent;
   border-image: linear-gradient(to bottom, var(--theme-success-500), var(--theme-border), var(--theme-success-500)) 1;
@@ -66,6 +72,9 @@
   &:hover {
     background: var(--theme-elevation-100);
     color: var(--theme-success-500);
+    [data-theme='dark'] & {
+      background-color: transparent;
+    }
   }
 
   &:active {
@@ -76,6 +85,14 @@
     width: 20px;
     height: 20px;
   }
+
+}
+
+.nav-mobile-header {
+    [data-theme='dark'] & {
+      background-color: var(--theme-elevation-200);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
 }
 
 // Dark Mode Toggle

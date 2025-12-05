@@ -47,7 +47,7 @@ export const CardModel: React.FC<{
           </Link>
         </div>
         <div className="flex items-center justify-center w-max gap-2">
-          <div className="p-2 rounded-2xl hover:bg-[#F4F6F0]">
+          <div className="p-2 rounded-2xl hover:bg-[#F4F6F0] dark:hover:bg-transparent dark:hover:border-dark-blue-gray dark:hover:border">
             <Link href={sourceCode || ''} target="_blank" rel="noopener noreferrer">
               <svg
                 width="24"
@@ -64,7 +64,7 @@ export const CardModel: React.FC<{
               </svg>
             </Link>
           </div>
-          <div className="p-2 rounded-2xl hover:bg-[#F4F6F0]">
+          <div className="p-2 rounded-2xl hover:bg-[#F4F6F0] dark:hover:bg-transparent dark:hover:border-dark-blue-gray dark:hover:border">
             <Link href={github || ''}>
               <svg
                 width="24"
@@ -90,7 +90,7 @@ export const CardModel: React.FC<{
               </svg>
             </Link>
           </div>
-          <div className="p-3.5 rounded-2xl hover:bg-[#F4F6F0] dark:bg-transparent">
+          <div className="p-2 rounded-2xl hover:bg-[#F4F6F0] dark:hover:bg-transparent dark:hover:border-dark-blue-gray dark:hover:border">
             <Link href={website || ''}>
               <svg
                 width="22"

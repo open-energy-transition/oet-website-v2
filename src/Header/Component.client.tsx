@@ -48,7 +48,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       <header className="container relative z-20">
         {/* Desktop Header */}
         <div className="flex justify-between items-center h-[84px]">
-          <Link href="/">
+          <Link className="xl:block hidden" href="/">
             <Logo type="red" loading="eager" priority="high" />
           </Link>
 
@@ -112,7 +112,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           {/* Desktop Contact Button */}
           <a
             href="mailto:info@openenergytransition.org"
-            className="hidden lg:block bg-[#E31937] rounded-[12px] text-white px-2 lg:px-8 py-2 hover:bg-[#c31530] transition-colors dark:!text-[#e5e7eb]"
+            className="hidden lg:block bg-[#E31937] rounded-[12px] text-white px-2 xl:px-8 py-2 hover:bg-[#c31530] transition-colors dark:!text-[#e5e7eb]"
           >
             Contact Us
           </a>
