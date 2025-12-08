@@ -304,9 +304,9 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
 
       {/* Posts Grid - 2 rows layout */}
       <div className="space-y-6">
-        {/* First row */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
-          {filteredPosts.slice(0, 1).map((post) => (
+        {/* First row - 3 items */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {filteredPosts.slice(0, 3).map((post) => (
             <div
               key={post.id}
               className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border-dark-blue-gray"
@@ -374,10 +374,10 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
               </div>
             </div>
           ))}
-        </div>{' '}
-        {/* Second row */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
-          {filteredPosts.slice(1).map((post) => (
+        </div>
+        {/* Second row - remaining items, 3 per row */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {filteredPosts.slice(3).map((post) => (
             <div
               key={post.id}
               className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border-dark-blue-gray"
