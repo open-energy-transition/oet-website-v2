@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic' // Ensures the route is not statically optimized
+export const revalidate = 0 // Never cache this route
+export const fetchCache = 'force-no-store' // Disable fetch cache
 
 export async function GET() {
   try {
@@ -8,9 +10,11 @@ export async function GET() {
       'https://boards-api.greenhouse.io/v1/boards/openenergytransition/jobs',
       {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; Website/1.0)', // Set a proper User-Agent
+          'User-Agent': 'Mozilla/5.0 (compatible; Website/1.0)',
+          'Cache-Control': 'no-cache',
         },
-        cache: 'no-store', // Don't cache on the server
+        cache: 'no-store', // Disable all caching
+        next: { revalidate: 0 }, // Force revalidation every time
       },
     )
 
@@ -20,11 +24,13 @@ export async function GET() {
 
     const data = await greenhouseResponse.json()
 
-    // Return the data with CORS headers
+    // Return the data with aggressive no-cache headers
     return NextResponse.json(data, {
       status: 200,
       headers: {
-        'Cache-Control': 'max-age=3600', // Cache for an hour
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       },
     })
   } catch (error) {

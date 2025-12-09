@@ -20,6 +20,11 @@ export const JobsBlock: React.FC<JobsBlockProps> = async (props) => {
 
   // Add error handling for server-side rendering and prerendering
   try {
+    console.log(
+      'process.env',
+      process.env.NEXT_PHASE === 'phase-production-build' ||
+        process.env.PAYLOAD_PUBLIC_SITE_URL === 'undefined',
+    )
     // Check if we're in a prerendering environment where auth might be missing
     if (
       process.env.NEXT_PHASE === 'phase-production-build' ||
@@ -128,9 +133,9 @@ export const JobsBlock: React.FC<JobsBlockProps> = async (props) => {
         }
       }
     })
-
     // Wait for all job detail requests to complete
     jobs = await Promise.all(jobDetailsPromises)
+    console.log('jobDetailsPromises', jobs)
   } catch (error) {
     console.error('Error fetching Greenhouse jobs:', error)
     jobs = []
