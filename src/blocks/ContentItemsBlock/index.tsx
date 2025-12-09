@@ -9,8 +9,14 @@ export const ContentItemsBlock: React.FC<{
   }>
   id?: string
   title?: string
+  isPublish?: boolean
 }> = (props) => {
   const { items } = props
-
-  return <ContentItemsBlockComponent title={props.title || ''} items={items} />
+  return (
+    <ContentItemsBlockComponent
+      isPublish={props.isPublish}
+      title={props.title || ''}
+      items={items}
+    />
+  )
 }
