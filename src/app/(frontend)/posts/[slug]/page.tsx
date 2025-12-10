@@ -71,7 +71,7 @@ export default async function Post({ params: paramsPromise }: Args) {
 
           {/* Journal and DOI Section */}
           {(post.journal || post.doi) && (
-            <div className="mt-8 p-6 bg-red-50 border-2 border-[#E31937] rounded-lg dark:bg-red-950/20 dark:border-red-800">
+            <div className="mt-8 p-6 border-2 border-gray-500 rounded-lg dark:bg-gray-950/20 dark:border-gray-200">
               {post.journal && (
                 <div className="mb-4">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
@@ -81,7 +81,7 @@ export default async function Post({ params: paramsPromise }: Args) {
                     data={post.journal}
                     enableGutter={false}
                     enableProse={false}
-                    className="text-gray-700 dark:text-gray-300"
+                    className="text-gray-900 dark:text-white"
                   />
                 </div>
               )}
@@ -92,7 +92,7 @@ export default async function Post({ params: paramsPromise }: Args) {
                     href={`https://doi.org/${post.doi}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#E31937] hover:text-[#c0152e] font-medium transition-colors"
+                    className="inline-flex items-center gap-2 text-gray-900 font-medium transition-colors"
                   >
                     {post.doi}
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

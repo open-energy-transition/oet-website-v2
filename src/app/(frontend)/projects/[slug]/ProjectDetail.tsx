@@ -158,7 +158,7 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
                           </p>
                         )}
                         <Link
-                          href={`/projects/${project.slug}`}
+                          href={`/projects/${relatedProject.slug}`}
                           className="text-poppins-x-small text-base text-gray-black-500 flex dark:!text-white items-center gap-2 mt-2"
                           aria-label={`View details for project: ${project.title}`}
                         >
