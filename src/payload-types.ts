@@ -1065,6 +1065,7 @@ export interface Model {
   description?: string | null;
   icon?: (number | null) | Icon;
   website?: string | null;
+  documentation?: string | null;
   github?: string | null;
   sourceCode?: string | null;
   updatedAt: string;
@@ -3298,6 +3299,7 @@ export interface ModelsSelect<T extends boolean = true> {
   description?: T;
   icon?: T;
   website?: T;
+  documentation?: T;
   github?: T;
   sourceCode?: T;
   updatedAt?: T;

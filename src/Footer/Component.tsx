@@ -149,7 +149,7 @@ export async function Footer() {
                   {Array.isArray(followUs.linkActions) && (
                     <div className="flex gap-2 mt-6 items-center justify-end lg:justify-start">
                       {followUs.linkActions.map((action, i) => (
-                        <a href={action.link} key={i}>
+                        <a target="_blank" href={action.link} key={i}>
                           {action.icon &&
                             typeof action.icon === 'object' &&
                             'svg' in action.icon && (

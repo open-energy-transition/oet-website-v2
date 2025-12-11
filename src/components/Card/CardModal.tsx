@@ -11,7 +11,7 @@ export const CardModel: React.FC<{
   tag?: string | undefined | null
 }> = (props) => {
   const { data, tag } = props
-  const { title, description, sourceCode, github, website } = data
+  const { title, description, sourceCode, github, website, documentation } = data
 
   return (
     <div className="border border-[#77857C] rounded-2xl text-[#0B0C0B] dark:text-white p-4 min-h-[336px] flex flex-col justify-between dark:border-dark-blue-gray">
@@ -51,9 +51,9 @@ export const CardModel: React.FC<{
           <div className="size-8"></div>
         )}
         <div className="flex items-center justify-center w-max gap-2">
-          {sourceCode ? (
+          {documentation ? (
             <div className="p-2 rounded-2xl hover:bg-[#F4F6F0] dark:hover:bg-transparent dark:hover:border-dark-blue-gray dark:hover:border">
-              <Link href={sourceCode || ''} target="_blank" rel="noopener noreferrer">
+              <Link href={documentation || ''} target="_blank" rel="noopener noreferrer">
                 <svg
                   width="24"
                   height="24"

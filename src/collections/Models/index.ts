@@ -39,6 +39,11 @@ export const Models: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'documentation',
+      label: 'Documentation Link',
+      type: 'text',
+    },
+    {
       name: 'github',
       label: 'Github Link',
       type: 'text',
