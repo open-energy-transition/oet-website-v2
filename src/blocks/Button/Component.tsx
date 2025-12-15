@@ -36,6 +36,7 @@ export const ButtonBlock: React.FC<CTABlockProps> = ({ link, color = 'default', 
         return ''
     }
   }
+  console.log('ButtonBlock render with props:', { link })
   return (
     <div>
       <div>

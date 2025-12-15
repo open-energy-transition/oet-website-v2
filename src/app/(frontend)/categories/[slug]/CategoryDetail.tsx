@@ -12,17 +12,15 @@ export const CategoryDetail: React.FC<{ category: Category; posts: Post[] }> = (
 }) => {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="mx-auto">
         {/* Header Section */}
         <header className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">{category.title}</h1>
         </header>
         <div>
-          <h2 className="text-2xl font-bold mb-4">Posts</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {(posts ?? []).map((post: any) => (
-              <div key={post.id} className="border rounded-lg p-4 shadow bg-white">
-                {category.title}
+              <div key={post.id} className="border rounded-xl p-4 shadow">
                 <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
                 {post.subTitle && <div className="text-gray-500 mb-2">{post.subTitle}</div>}
                 {post.date && (
@@ -36,7 +34,7 @@ export const CategoryDetail: React.FC<{ category: Category; posts: Post[] }> = (
                       <Link
                         key={category.id}
                         href={`/posts/${category.slug}`}
-                        className="inline-block px-4 py-2 text-black border border-gray-300 rounded transition-colors"
+                        className="inline-block px-4 py-2 text-black border rounded transition-colors"
                       >
                         {category.title}
                       </Link>
@@ -44,13 +42,15 @@ export const CategoryDetail: React.FC<{ category: Category; posts: Post[] }> = (
                   </div>
                 )}
                 {post.shortDescription && (
-                  <div className="text-sm text-gray-600 mb-2">{post.shortDescription}</div>
+                  <div className="text-sm text-gray-600 my-2 dark:text-white">
+                    {post.shortDescription}
+                  </div>
                 )}
                 {/* Add Read More button */}
-                <div className="mt-auto pt-4">
+                <div className="mt-auto pt-4 text-end">
                   <Link
                     href={`/posts/${post.slug}`}
-                    className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                    className="inline-block px-4 py-2 rounded transition-colors"
                   >
                     Read More
                   </Link>

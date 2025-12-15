@@ -186,7 +186,7 @@ export interface Page {
     links?:
       | {
           link: {
-            type?: ('reference' | 'custom') | null;
+            type?: ('reference' | 'custom' | 'none') | null;
             newTab?: boolean | null;
             /**
              * Select an icon to display on the button
@@ -213,7 +213,7 @@ export interface Page {
              */
             sublinks?:
               | {
-                  label: string;
+                  label?: string | null;
                   /**
                    * Enter without # (e.g., "overview" will link to "#overview")
                    */
@@ -565,7 +565,7 @@ export interface CallToActionBlock {
   links?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'none') | null;
           newTab?: boolean | null;
           /**
            * Select an icon to display on the button
@@ -592,7 +592,7 @@ export interface CallToActionBlock {
            */
           sublinks?:
             | {
-                label: string;
+                label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
                  */
@@ -810,7 +810,7 @@ export interface Testimonial {
  */
 export interface ButtonBlock {
   link: {
-    type?: ('reference' | 'custom') | null;
+    type?: ('reference' | 'custom' | 'none') | null;
     newTab?: boolean | null;
     /**
      * Select an icon to display on the button
@@ -837,7 +837,7 @@ export interface ButtonBlock {
      */
     sublinks?:
       | {
-          label: string;
+          label?: string | null;
           /**
            * Enter without # (e.g., "overview" will link to "#overview")
            */
@@ -939,7 +939,7 @@ export interface ContentBlock {
         } | null;
         enableLink?: boolean | null;
         link?: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'none') | null;
           newTab?: boolean | null;
           /**
            * Select an icon to display on the button
@@ -966,7 +966,7 @@ export interface ContentBlock {
            */
           sublinks?:
             | {
-                label: string;
+                label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
                  */
@@ -1413,7 +1413,7 @@ export interface OurServiceBlock {
   services?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'none') | null;
           newTab?: boolean | null;
           /**
            * Select an icon to display on the button
@@ -1440,7 +1440,7 @@ export interface OurServiceBlock {
            */
           sublinks?:
             | {
-                label: string;
+                label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
                  */
@@ -1513,7 +1513,7 @@ export interface ToolsWeSupportBlock {
    * Link to a page with more information about the tools we support
    */
   link: {
-    type?: ('reference' | 'custom') | null;
+    type?: ('reference' | 'custom' | 'none') | null;
     newTab?: boolean | null;
     /**
      * Select an icon to display on the button
@@ -1540,7 +1540,7 @@ export interface ToolsWeSupportBlock {
      */
     sublinks?:
       | {
-          label: string;
+          label?: string | null;
           /**
            * Enter without # (e.g., "overview" will link to "#overview")
            */
@@ -1603,7 +1603,7 @@ export interface WhoWeAreBlock {
          * Link to a page with more information
          */
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'none') | null;
           newTab?: boolean | null;
           /**
            * Select an icon to display on the button
@@ -1630,7 +1630,7 @@ export interface WhoWeAreBlock {
            */
           sublinks?:
             | {
-                label: string;
+                label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
                  */
@@ -1710,7 +1710,7 @@ export interface ProjectsOverviewBlock {
   } | null;
   unitsButton: {
     link: {
-      type?: ('reference' | 'custom') | null;
+      type?: ('reference' | 'custom' | 'none') | null;
       newTab?: boolean | null;
       /**
        * Select an icon to display on the button
@@ -1737,7 +1737,7 @@ export interface ProjectsOverviewBlock {
        */
       sublinks?:
         | {
-            label: string;
+            label?: string | null;
             /**
              * Enter without # (e.g., "overview" will link to "#overview")
              */
@@ -3746,7 +3746,7 @@ export interface Header {
   navItems?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'none') | null;
           newTab?: boolean | null;
           /**
            * Select an icon to display on the button
@@ -3773,7 +3773,7 @@ export interface Header {
            */
           sublinks?:
             | {
-                label: string;
+                label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
                  */
@@ -3808,7 +3808,7 @@ export interface Footer {
   navItems?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'none') | null;
           newTab?: boolean | null;
           /**
            * Select an icon to display on the button
@@ -3835,7 +3835,7 @@ export interface Footer {
            */
           sublinks?:
             | {
-                label: string;
+                label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
                  */
@@ -3887,7 +3887,7 @@ export interface Footer {
     linkActions?:
       | {
           link: {
-            type?: ('reference' | 'custom') | null;
+            type?: ('reference' | 'custom' | 'none') | null;
             newTab?: boolean | null;
             /**
              * Select an icon to display on the button
@@ -3914,7 +3914,7 @@ export interface Footer {
              */
             sublinks?:
               | {
-                  label: string;
+                  label?: string | null;
                   /**
                    * Enter without # (e.g., "overview" will link to "#overview")
                    */
@@ -3945,7 +3945,7 @@ export interface Footer {
     linkActions?:
       | {
           link: {
-            type?: ('reference' | 'custom') | null;
+            type?: ('reference' | 'custom' | 'none') | null;
             newTab?: boolean | null;
             /**
              * Select an icon to display on the button
@@ -3972,7 +3972,7 @@ export interface Footer {
              */
             sublinks?:
               | {
-                  label: string;
+                  label?: string | null;
                   /**
                    * Enter without # (e.g., "overview" will link to "#overview")
                    */

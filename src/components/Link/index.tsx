@@ -16,7 +16,7 @@ type CMSLinkType = {
     value: Page | Post | string | number
   } | null
   size?: ButtonProps['size'] | null
-  type?: 'custom' | 'reference' | null
+  type?: 'custom' | 'reference' | 'none' | null
   url?: string | null
   btnTextColor?: string | null
   btnBgColor?: string | null
@@ -40,6 +40,21 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     btnSize = 'regular',
     icon,
   } = props
+
+  if (type === 'none') {
+    return (
+      <div>
+        {icon && typeof icon === 'object' && 'svg' in icon && (
+          <span
+            className="inline-block ml-2"
+            dangerouslySetInnerHTML={{
+              __html: (icon as Icon).svg.replace(/fill="[^"]*"/g, `fill="${btnTextColor}"`),
+            }}
+          />
+        )}
+      </div>
+    )
+  }
 
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug

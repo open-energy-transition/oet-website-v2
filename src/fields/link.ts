@@ -61,6 +61,10 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
                 label: 'Custom URL',
                 value: 'custom',
               },
+              {
+                label: 'No link',
+                value: 'none',
+              },
             ],
           },
           {
@@ -154,7 +158,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
               {
                 name: 'label',
                 type: 'text',
-                required: true,
+                required: false,
                 label: 'Section Label',
               },
               {
