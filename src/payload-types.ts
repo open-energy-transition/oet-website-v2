@@ -2147,6 +2147,17 @@ export interface Output {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Team members who authored this output
+   */
+  authors?: (number | TeamMember)[] | null;
+  publishedAt?: string | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -3478,6 +3489,14 @@ export interface OutputsSelect<T extends boolean = true> {
         tag?: T;
         id?: T;
       };
+  authors?: T;
+  publishedAt?: T;
+  populatedAuthors?:
+    | T
+    | {
+        id?: T;
+        name?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -4264,6 +4283,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'outputs';
+          value: number | Output;
         } | null);
     global?: string | null;
     user?: (number | null) | User;

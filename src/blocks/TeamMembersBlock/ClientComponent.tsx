@@ -279,7 +279,15 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
               return String(categoryId) === selectedCategory
             })
           })
-    setFilteredMembers(filtered)
+
+    // Sort by last name alphabetically
+    const sorted = filtered.sort((a, b) => {
+      const lastNameA = a.lastName?.toLowerCase() || ''
+      const lastNameB = b.lastName?.toLowerCase() || ''
+      return lastNameA.localeCompare(lastNameB)
+    })
+
+    setFilteredMembers(sorted)
   }, [selectedCategory, teamMembers])
 
   return (
