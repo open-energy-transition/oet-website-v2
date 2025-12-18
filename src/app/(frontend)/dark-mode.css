@@ -90,16 +90,6 @@
   color: #e5e7eb;
 }
 
-[data-theme='dark'] input::placeholder,
-[data-theme='dark'] textarea::placeholder {
-  color: #9ca3af;
-}
-
-/* Links */
-[data-theme='dark'] a {
-  color: #93c5fd;
-}
-
 [data-theme='dark'] a:hover {
   color: #bfdbfe;
 }

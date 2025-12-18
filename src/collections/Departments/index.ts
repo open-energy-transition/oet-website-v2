@@ -80,5 +80,16 @@ export const Departments: CollectionConfig = {
         description: 'Select a representative team member for this department',
       },
     },
+    {
+      name: 'teamMembers',
+      label: 'Team Members',
+      type: 'relationship',
+      relationTo: 'team-members',
+      hasMany: true,
+      required: false,
+      admin: {
+        description: 'Select all team members that belong to this department',
+      },
+    },
   ],
 }

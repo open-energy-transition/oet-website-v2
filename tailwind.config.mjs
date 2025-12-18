@@ -147,8 +147,24 @@ const config = {
               '--tw-prose-body': 'var(--text)',
               '--tw-prose-headings': 'var(--text)',
               h1: {
+                fontFamily: 'var(--font-oxanium)',
                 fontWeight: 'normal',
                 marginBottom: '0.25em',
+              },
+              h2: {
+                fontFamily: 'var(--font-oxanium)',
+              },
+              h3: {
+                fontFamily: 'var(--font-oxanium)',
+              },
+              h4: {
+                fontFamily: 'var(--font-oxanium)',
+              },
+              h5: {
+                fontFamily: 'var(--font-oxanium)',
+              },
+              h6: {
+                fontFamily: 'var(--font-oxanium)',
               },
             },
           ],

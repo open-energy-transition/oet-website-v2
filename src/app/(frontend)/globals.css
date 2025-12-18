@@ -186,19 +186,19 @@ html[data-theme='light'] {
   }
 
   .text-poppins-h5 {
-    @apply font-poppins font-normal text-[48px] leading-[100%] tracking-[0%];
+    @apply font-oxanium font-normal text-[48px] leading-[100%] tracking-[0%];
   }
 
   .text-poppins-h7 {
-    @apply font-poppins font-bold text-[32px] leading-[42px] tracking-[0%];
+    @apply font-oxanium font-bold text-[32px] leading-[42px] tracking-[0%];
   }
 
   .customTextState-size-h7 {
-    @apply font-poppins font-bold text-[32px] leading-[40px] tracking-[0%];
+    @apply font-oxanium font-bold text-[32px] leading-[40px] tracking-[0%];
   }
 
   .customTextState-size-h8 {
-    @apply font-poppins font-bold text-[24px] leading-[32px] tracking-[0%];
+    @apply font-oxanium font-bold text-[24px] leading-[32px] tracking-[0%];
   }
   .text-poppins-h9,
   .customTextState-size-h9 {
@@ -206,7 +206,7 @@ html[data-theme='light'] {
   }
 
   .customTextState-poppins-h5 {
-    @apply font-poppins font-semibold text-[56px] leading-[100%] tracking-[0%];
+    @apply font-oxanium font-semibold text-[56px] leading-[100%] tracking-[0%];
   }
 
   /* Heebo */
@@ -228,6 +228,75 @@ html[data-theme='light'] {
   /* Kode_Mono */
   .text-kode_mono_h5 {
     @apply font-kode_mono text-[24px] font-normal leading-[140%%] tracking-[-1%];
+  }
+}
+
+.payload-richtext h1,
+.payload-richtext h2,
+.payload-richtext h3,
+.payload-richtext h4,
+.payload-richtext h5,
+.payload-richtext h6 {
+  font-family: var(--font-oxanium), sans-serif;
+}
+
+.payload-richtext h1 {
+  font-size: 60px;
+  line-height: 120%;
+  letter-spacing: 1%;
+  font-weight: 600;
+  @media screen and (max-width: 768px) {
+    font-size: 32px;
+  }
+}
+
+.payload-richtext h2 {
+  font-size: 48px;
+  line-height: 120%;
+  letter-spacing: 0.5%;
+  font-weight: 600;
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+  }
+}
+
+.payload-richtext h3 {
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: 0.25%;
+  font-weight: 600;
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
+}
+
+.payload-richtext h4 {
+  font-size: 30px;
+  line-height: 120%;
+  letter-spacing: 0.15%;
+  font-weight: 600;
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.payload-richtext h5 {
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: 0.1%;
+  font-weight: 600;
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+.payload-richtext h6 {
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: 0.05%;
+  font-weight: 600;
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
   }
 }
 

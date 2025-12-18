@@ -666,6 +666,10 @@ export interface Department {
    * Select a representative team member for this department
    */
   representativeMember?: (number | null) | TeamMember;
+  /**
+   * Select all team members that belong to this department
+   */
+  teamMembers?: (number | TeamMember)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -3348,6 +3352,7 @@ export interface DepartmentsSelect<T extends boolean = true> {
   status?: T;
   projects?: T;
   representativeMember?: T;
+  teamMembers?: T;
   updatedAt?: T;
   createdAt?: T;
 }

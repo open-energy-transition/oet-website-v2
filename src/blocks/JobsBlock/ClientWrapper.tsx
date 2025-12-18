@@ -61,7 +61,6 @@ export const ClientJobsBlock: React.FC<ClientJobsBlockProps> = (props) => {
 
     fetchJobs()
   }, [])
-  console.log('jobs', jobs)
   return (
     <div className={id ? `block-${id}` : ''}>
       <JobsClient

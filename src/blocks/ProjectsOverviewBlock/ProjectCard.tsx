@@ -38,7 +38,7 @@ export const ProjectCard: React.FC<{
                   <Link
                     key={i}
                     href={`/categories/${category.slug}`}
-                    className="inline-block px-4 py-2 text-[#26372C] transition-colors"
+                    className="inline-block px-3 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray"
                   >
                     {category.title}
                   </Link>

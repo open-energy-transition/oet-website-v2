@@ -252,7 +252,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
       {/* Title and Description */}
       {(title || description) && (
         <div className="mb-8">
-          {title && <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>}
+          {title && <h2 className="text-3xl font-oxanium font-bold text-gray-900 mb-4">{title}</h2>}
           {description && <p className="text-lg text-gray-600 max-w-3xl">{description}</p>}
         </div>
       )}

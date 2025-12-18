@@ -76,7 +76,7 @@ const TeamMemberModal: React.FC<{
   )
 }
 
-const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
+export const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const imageUrl =
     typeof member.image === 'object' && member.image?.url ? member.image.url : undefined

@@ -51,7 +51,7 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
                       <CMSLink
                         {...service.link}
                         btnBgColor="#F6F7F3"
-                        className="lg:text-3xl text-2xl p-0 font-medium mb-4 lg:mb-6 text-[#26372C] dark:!text-white !bg-transparent"
+                        className="lg:text-3xl font-oxanium text-2xl p-0 font-medium mb-4 lg:mb-6 text-[#26372C] dark:!text-white !bg-transparent"
                       />
                     </div>
                   )}

@@ -8,12 +8,13 @@ import React, { cache } from 'react'
 import RichText from '@/components/RichText'
 import Image from 'next/image'
 
-import type { Department, Project } from '@/payload-types'
+import type { Department, Project, TeamMember } from '@/payload-types'
 
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { ProjectCard } from '@/blocks/ProjectsOverviewBlock/ProjectCard'
+import { TeamMemberCard } from '@/blocks/TeamMembersBlock/ClientComponent'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -121,6 +122,25 @@ export default async function Department({ params: paramsPromise }: Args) {
 
                   return <ProjectCard key={i} project={project as Project} />
                 })}
+            </div>
+          </div>
+        )}
+
+        {/* Department team members */}
+        {department.teamMembers && department.teamMembers.length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-3xl font-bold mb-8 text-center">Team Members</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {department.teamMembers
+                .filter((member) => typeof member === 'object' && member)
+                .sort((a, b) => {
+                  const lastNameA = (a as TeamMember).lastName?.toLowerCase() || ''
+                  const lastNameB = (b as TeamMember).lastName?.toLowerCase() || ''
+                  return lastNameA.localeCompare(lastNameB)
+                })
+                .map((member, i) => (
+                  <TeamMemberCard key={i} member={member as TeamMember} />
+                ))}
             </div>
           </div>
         )}
