@@ -12,11 +12,20 @@ export const OutputsListBlockComponent: React.FC<{
 }> = ({ title, description, tag, outputs }) => {
   const [visibleCount, setVisibleCount] = useState(9)
 
-  const visibleOutputs = outputs.slice(0, visibleCount)
-  const hasMore = visibleCount < outputs.length
+  // Sort outputs by updatedAt in reverse chronological order (newest first)
+  const sortedOutputs = [...outputs].sort((a, b) => {
+    const dateA = new Date(a.updatedAt || 0).getTime()
+    const dateB = new Date(b.updatedAt || 0).getTime()
+    return dateB - dateA
+  })
+
+  const visibleOutputs = sortedOutputs.slice(0, visibleCount)
+
+  console.log(' visibleOutputs', visibleOutputs)
+  const hasMore = visibleCount < sortedOutputs.length
 
   const showMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 9, outputs.length))
+    setVisibleCount((prev) => Math.min(prev + 9, sortedOutputs.length))
   }
 
   return (

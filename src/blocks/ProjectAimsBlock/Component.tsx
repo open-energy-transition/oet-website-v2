@@ -66,7 +66,7 @@ export const ProjectAimsBlockComponent: React.FC<{
                       {item.link ? (
                         <Link
                           href={item.link || '#'}
-                          className="leading-tight hover:underline no-underline"
+                          className="leading-tight hover:underline no-underline dark:text-white"
                         >
                           {item.title}
                         </Link>
