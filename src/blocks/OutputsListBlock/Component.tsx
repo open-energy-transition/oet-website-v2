@@ -21,7 +21,6 @@ export const OutputsListBlockComponent: React.FC<{
 
   const visibleOutputs = sortedOutputs.slice(0, visibleCount)
 
-  console.log(' visibleOutputs', visibleOutputs)
   const hasMore = visibleCount < sortedOutputs.length
 
   const showMore = () => {

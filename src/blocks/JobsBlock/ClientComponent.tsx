@@ -110,7 +110,7 @@ export const JobsClient: React.FC<JobsClientProps> = ({
   error = null,
 }) => {
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 -mt-8">
       {(tag || title || description) && (
         <div className="mb-8">
           {tag && (
@@ -146,12 +146,12 @@ export const JobsClient: React.FC<JobsClientProps> = ({
         </div>
       ) : isSingleJob && jobs.length === 1 ? (
         // Single job detail view
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl ml-4">
           <JobListItem job={jobs[0]} isSingleView={true} />
         </div>
       ) : (
         // Multiple jobs list view
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl ml-4">
           {jobs && jobs.length > 0 ? (
             jobs.map((job) => <JobListItem key={job.id} job={job} />)
           ) : (
