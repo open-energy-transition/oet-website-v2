@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '@/access/authenticated'
 import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 import { populateAuthors } from './hooks/populateAuthors'
+import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 
 export const Outputs: CollectionConfig = {
   slug: 'outputs',
@@ -16,7 +17,7 @@ export const Outputs: CollectionConfig = {
     useAsTitle: 'title',
   },
   hooks: {
-    beforeChange: [populateAuthors],
+    beforeChange: [populateAuthors, populatePublishedAt],
   },
   fields: [
     {
@@ -67,16 +68,6 @@ export const Outputs: CollectionConfig = {
           pickerAppearance: 'dayAndTime',
         },
         position: 'sidebar',
-      },
-      hooks: {
-        beforeChange: [
-          ({ siblingData, value }) => {
-            if (siblingData._status === 'published' && !value) {
-              return new Date()
-            }
-            return value
-          },
-        ],
       },
     },
     // This field is only used to populate the team member data via the `populateAuthors` hook

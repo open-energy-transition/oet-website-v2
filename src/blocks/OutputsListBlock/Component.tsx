@@ -14,10 +14,21 @@ export const OutputsListBlockComponent: React.FC<{
 
   // Sort outputs by updatedAt in reverse chronological order (newest first)
   const sortedOutputs = [...outputs].sort((a, b) => {
-    const dateA = new Date(a.updatedAt || 0).getTime()
-    const dateB = new Date(b.updatedAt || 0).getTime()
+    const dateA = new Date(a.publishedAt || a.updatedAt || 0).getTime()
+    const dateB = new Date(b.publishedAt || b.updatedAt || 0).getTime()
     return dateB - dateA
   })
+
+  // Format date for display
+  const formatDate = (dateString: string | null | undefined) => {
+    if (!dateString) return null
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  }
 
   const visibleOutputs = sortedOutputs.slice(0, visibleCount)
 
@@ -81,6 +92,12 @@ export const OutputsListBlockComponent: React.FC<{
                     output.title
                   )}
                 </div>
+                {/* Date */}
+                {(output.publishedAt || output.updatedAt) && (
+                  <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                    {formatDate(output.updatedAt)}
+                  </div>
+                )}
                 {/* Tags */}
                 {output.tags && output.tags.length > 0 && (
                   <div className="flex flex-wrap gap-2">

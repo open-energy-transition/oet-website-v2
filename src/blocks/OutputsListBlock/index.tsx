@@ -22,7 +22,7 @@ export const OutputsListBlock: React.FC<{
       },
     },
     limit: 1000,
-    sort: '-createdAt',
+    sort: '-publishedAt',
   })
 
   return (
