@@ -13,7 +13,7 @@ export const Outputs: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ['title', 'link', 'updatedAt', '_status'],
+    defaultColumns: ['title', 'link', 'outputDate', 'updatedAt', '_status'],
     useAsTitle: 'title',
   },
   hooks: {
@@ -61,6 +61,18 @@ export const Outputs: CollectionConfig = {
       },
     },
     {
+      name: 'outputDate',
+      type: 'date',
+      required: false,
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+        description: 'Date when the output was published/released',
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'publishedAt',
       type: 'date',
       admin: {
@@ -68,6 +80,8 @@ export const Outputs: CollectionConfig = {
           pickerAppearance: 'dayAndTime',
         },
         position: 'sidebar',
+        readOnly: true,
+        hidden: true,
       },
     },
     // This field is only used to populate the team member data via the `populateAuthors` hook

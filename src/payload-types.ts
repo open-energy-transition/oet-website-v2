@@ -2155,6 +2155,10 @@ export interface Output {
    * Team members who authored this output
    */
   authors?: (number | TeamMember)[] | null;
+  /**
+   * Date when the output was published/released
+   */
+  outputDate?: string | null;
   publishedAt?: string | null;
   populatedAuthors?:
     | {
@@ -3495,6 +3499,7 @@ export interface OutputsSelect<T extends boolean = true> {
         id?: T;
       };
   authors?: T;
+  outputDate?: T;
   publishedAt?: T;
   populatedAuthors?:
     | T
