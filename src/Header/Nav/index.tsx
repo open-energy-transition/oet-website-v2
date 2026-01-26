@@ -183,7 +183,7 @@ export const HeaderNav: React.FC<{
 
   // Desktop navigation
   return (
-    <nav className="flex items-center lg:gap-8">
+    <nav className="flex items-center gap-1 xl:gap-8">
       {navItems.map(({ link }, i) => {
         const hasSublinks = link?.sublinks && link.sublinks.length > 0
 

@@ -48,7 +48,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       <header className="container relative z-20">
         {/* Desktop Header */}
         <div className="flex justify-between items-center h-[84px]">
-          <Link className="xl:block hidden" href="/">
+          <Link href="/">
             <Logo type="red" loading="eager" priority="high" />
           </Link>
 
