@@ -20,15 +20,20 @@ export const OutputsListBlockComponent: React.FC<{
     return dateB - dateA
   })
 
-  // Format date for display
+  // Format date for display - using explicit locale and timezone for consistent SSR/client rendering
   const formatDate = (dateString: string | null | undefined) => {
     if (!dateString) return null
-    const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
+    try {
+      const date = new Date(dateString)
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC', // Ensures consistent rendering on server and client
+      })
+    } catch {
+      return null
+    }
   }
 
   const visibleOutputs = sortedOutputs.slice(0, visibleCount)
