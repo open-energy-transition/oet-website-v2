@@ -54,7 +54,7 @@ export const OutputsListBlockComponent: React.FC<{
   }
 
   return (
-    <section className="lg:py-16 lg:my-0 -my-8 px-4 md:px-8 container">
+    <section id="outputs" className="lg:py-16 lg:my-0 -my-8 px-4 md:px-8 container">
       <div className="">
         {/* Header */}
         {(tag || title || description) && (
