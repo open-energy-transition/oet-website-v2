@@ -10,10 +10,11 @@ type ClientTeamMembersBlockProps = {
   title?: string
   description?: string | Record<string, unknown>
   teamMembers: TeamMember[]
+  defaultStaffCategory?: string | Staff
 }
 
 export const ClientTeamMembersBlock: React.FC<ClientTeamMembersBlockProps> = (props) => {
-  const { id, tag, title, description, teamMembers } = props
+  const { id, tag, title, description, teamMembers, defaultStaffCategory } = props
   const [staffCategories, setStaffCategories] = useState<Staff[]>([])
   const [_loading, setLoading] = useState(true)
 
@@ -46,6 +47,7 @@ export const ClientTeamMembersBlock: React.FC<ClientTeamMembersBlockProps> = (pr
         description={description || ''}
         teamMembers={teamMembers || []}
         staffCategories={staffCategories}
+        defaultStaffCategory={defaultStaffCategory}
       />
     </div>
   )

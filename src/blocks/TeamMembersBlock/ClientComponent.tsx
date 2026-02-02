@@ -13,6 +13,7 @@ export type TeamMembersClientProps = {
   description?: any
   teamMembers: TeamMember[]
   staffCategories?: Staff[]
+  defaultStaffCategory?: string | Staff
 }
 
 const TeamMemberModal: React.FC<{
@@ -261,8 +262,17 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
   description,
   teamMembers,
   staffCategories = [],
+  defaultStaffCategory,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  console.log('defaultStaffCategory123', defaultStaffCategory)
+  // Extract the ID from defaultStaffCategory if it's an object
+  const defaultCategoryId = defaultStaffCategory
+    ? typeof defaultStaffCategory === 'object'
+      ? String(defaultStaffCategory.id)
+      : String(defaultStaffCategory)
+    : null
+
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(defaultCategoryId)
   const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>(teamMembers)
   // Sort staffCategories by _order field (PayloadCMS orderable field)
   const sortedStaffCategories = [...staffCategories]

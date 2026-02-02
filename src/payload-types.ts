@@ -1982,6 +1982,10 @@ export interface TeamMembersBlock {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Select a default staff category to filter team members on page load
+   */
+  defaultStaffCategory?: (number | null) | Staff;
   id?: string | null;
   blockName?: string | null;
   blockType: 'teamMembers';
@@ -3115,6 +3119,7 @@ export interface TeamMembersBlockSelect<T extends boolean = true> {
   tag?: T;
   title?: T;
   description?: T;
+  defaultStaffCategory?: T;
   id?: T;
   blockName?: T;
 }

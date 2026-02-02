@@ -30,6 +30,15 @@ export const TeamMembersBlock: Block = {
       }),
       label: 'Description',
     },
+    {
+      name: 'defaultStaffCategory',
+      type: 'relationship',
+      relationTo: 'staff',
+      label: 'Default Staff Category',
+      admin: {
+        description: 'Select a default staff category to filter team members on page load',
+      },
+    },
   ],
   labels: {
     plural: 'Team Members',

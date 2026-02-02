@@ -43,6 +43,7 @@ const renderTabContent = (content: any[]) => {
             title={block.title || undefined}
             description={block.description || undefined}
             teamMembers={block.teamMembers || []}
+            defaultStaffCategory={block.defaultStaffCategory}
           />
         )
       case 'jobs':

@@ -10,7 +10,7 @@ export const TeamMembersBlock: React.FC<
     id?: string
   }
 > = async (props) => {
-  const { id, tag, title, description } = props
+  const { id, tag, title, description, defaultStaffCategory } = props
   const payload = await getPayload({ config: configPromise })
 
   // Fetch all team members with categories populated
@@ -31,7 +31,7 @@ export const TeamMembersBlock: React.FC<
 
   const teamMembers = teamMembersQuery.docs
   const staffCategories = staffCategoriesQuery.docs
-
+  console.log('TeamMembersBlock - teamMembers:', defaultStaffCategory)
   return (
     <div className={id ? `block-${id}` : ''}>
       <TeamMembersClient
@@ -40,6 +40,7 @@ export const TeamMembersBlock: React.FC<
         description={description || ''}
         teamMembers={teamMembers}
         staffCategories={staffCategories}
+        defaultStaffCategory={defaultStaffCategory}
       />
     </div>
   )
