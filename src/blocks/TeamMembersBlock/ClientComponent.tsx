@@ -13,7 +13,7 @@ export type TeamMembersClientProps = {
   description?: any
   teamMembers: TeamMember[]
   staffCategories?: Staff[]
-  defaultStaffCategory?: string | Staff
+  defaultStaffCategory?: string | Staff | number
 }
 
 const TeamMemberModal: React.FC<{
@@ -21,7 +21,7 @@ const TeamMemberModal: React.FC<{
   isOpen: boolean
   onClose: () => void
 }> = ({ member, isOpen, onClose }) => {
-  const { firstName, lastName, description } = member
+  const { firstName, lastName, description, education } = member
 
   // Close on ESC key
   useEffect(() => {
@@ -64,6 +64,44 @@ const TeamMemberModal: React.FC<{
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             About {firstName} {lastName}
           </h2>
+
+          {/* Education section */}
+          {education && education.length > 0 && (
+            <div className="mb-6 space-y-2">
+              {education.map((edu, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <svg
+                    className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 14l9-5-9-5-9 5 9 5z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                    />
+                  </svg>
+                  <div className="flex-1 text-gray-700 dark:text-gray-300">{edu.degree}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
           {description ? (
             <div className="text-gray-700 dark:text-gray-300">
               <RichText data={description} enableGutter={false} enableProse={false} />
@@ -264,7 +302,6 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
   staffCategories = [],
   defaultStaffCategory,
 }) => {
-  console.log('defaultStaffCategory123', defaultStaffCategory)
   // Extract the ID from defaultStaffCategory if it's an object
   const defaultCategoryId = defaultStaffCategory
     ? typeof defaultStaffCategory === 'object'

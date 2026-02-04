@@ -40,7 +40,7 @@ export const TeamMembersBlock: React.FC<
         description={description || ''}
         teamMembers={teamMembers}
         staffCategories={staffCategories}
-        defaultStaffCategory={defaultStaffCategory}
+        defaultStaffCategory={defaultStaffCategory ?? undefined}
       />
     </div>
   )

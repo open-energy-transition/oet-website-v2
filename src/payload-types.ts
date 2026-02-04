@@ -727,6 +727,15 @@ export interface TeamMember {
    */
   categories: (number | Staff)[];
   jobTitle: string;
+  /**
+   * Add degrees, PhDs, and other educational qualifications
+   */
+  education?:
+    | {
+        degree: string;
+        id?: string | null;
+      }[]
+    | null;
   description?: {
     root: {
       type: string;
@@ -3440,6 +3449,12 @@ export interface TeamMembersSelect<T extends boolean = true> {
   lastName?: T;
   categories?: T;
   jobTitle?: T;
+  education?:
+    | T
+    | {
+        degree?: T;
+        id?: T;
+      };
   description?: T;
   image?: T;
   linkedIn?: T;

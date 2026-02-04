@@ -56,6 +56,26 @@ export const TeamMembers: CollectionConfig = {
       label: 'Job Title',
     },
     {
+      name: 'education',
+      type: 'array',
+      label: 'Education',
+      required: false,
+      admin: {
+        description: 'Add degrees, PhDs, and other educational qualifications',
+      },
+      fields: [
+        {
+          name: 'degree',
+          type: 'text',
+          required: true,
+          label: 'Degree/Qualification',
+          admin: {
+            placeholder: 'e.g., PhD in Computer Science, BSc Engineering',
+          },
+        },
+      ],
+    },
+    {
       name: 'description',
       type: 'richText',
       editor: lexicalEditor({
