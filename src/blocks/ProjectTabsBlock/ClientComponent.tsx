@@ -64,7 +64,7 @@ const ProjectCard: React.FC<{
               href={`/projects/${project.slug}`}
               className="inline-flex items-center gap-2 text-heebo-regular-normal font-medium text-gray-black-500 dark:!text-white"
             >
-              View projects
+              View project
               <svg
                 width="16"
                 height="10"
