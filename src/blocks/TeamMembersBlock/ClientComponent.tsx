@@ -313,6 +313,7 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
   const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>(teamMembers)
   // Sort staffCategories by _order field (PayloadCMS orderable field)
   const sortedStaffCategories = [...staffCategories]
+
   // Filter and sort team members by last name when selected category changes
   useEffect(() => {
     // First filter by selected category
@@ -327,15 +328,32 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
             })
           })
 
-    // Sort by last name alphabetically
+    // Find the selected staff category to get the head of department
+    const selectedStaffCategory = staffCategories.find((cat) => String(cat.id) === selectedCategory)
+    const hodId =
+      selectedStaffCategory?.headOfDepartment &&
+      typeof selectedStaffCategory.headOfDepartment === 'object'
+        ? selectedStaffCategory.headOfDepartment.id
+        : selectedStaffCategory?.headOfDepartment
+    console.log('hodId', hodId)
+    // Sort: Head of Department first, then alphabetically by last name
     const sorted = filtered.sort((a, b) => {
+      // Check if either member is the HOD
+      const aIsHOD = hodId && String(a.id) === String(hodId)
+      const bIsHOD = hodId && String(b.id) === String(hodId)
+
+      // If a is HOD, it comes first
+      if (aIsHOD && !bIsHOD) return -1
+      // If b is HOD, it comes first
+      if (!aIsHOD && bIsHOD) return 1
+      // Otherwise, sort alphabetically by last name
       const lastNameA = a.lastName?.toLowerCase() || ''
       const lastNameB = b.lastName?.toLowerCase() || ''
       return lastNameA.localeCompare(lastNameB)
     })
 
     setFilteredMembers(sorted)
-  }, [selectedCategory, teamMembers])
+  }, [selectedCategory, teamMembers, staffCategories])
 
   return (
     <div className="container mx-auto px-4 py-12">

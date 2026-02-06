@@ -24,14 +24,13 @@ export const TeamMembersBlock: React.FC<
   // Fetch all staff categories for filtering
   const staffCategoriesQuery = await payload.find({
     collection: 'staff',
-    depth: 0,
+    depth: 1, // Increased depth to get headOfDepartment details
     sort: '_order', // Sort by order field if available
     limit: 999999,
   })
-
+  console.log('staffCategoriesQuery', staffCategoriesQuery)
   const teamMembers = teamMembersQuery.docs
   const staffCategories = staffCategoriesQuery.docs
-  console.log('TeamMembersBlock - teamMembers:', defaultStaffCategory)
   return (
     <div className={id ? `block-${id}` : ''}>
       <TeamMembersClient

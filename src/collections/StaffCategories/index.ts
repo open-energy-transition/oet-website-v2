@@ -40,6 +40,19 @@ export const StaffCategories: CollectionConfig = {
         description: 'Optional description of this category',
       },
     },
+    {
+      name: 'headOfDepartment',
+      type: 'relationship',
+      relationTo: 'team-members',
+      hasMany: false,
+      required: false,
+      label: 'Head of Department',
+      admin: {
+        description:
+          'Select the team member who leads this department. They will be displayed first when this category is selected.',
+        position: 'sidebar',
+      },
+    },
     ...slugField(),
   ],
 }

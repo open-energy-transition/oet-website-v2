@@ -775,6 +775,10 @@ export interface Staff {
    * Optional description of this category
    */
   description?: string | null;
+  /**
+   * Select the team member who leads this department. They will be displayed first when this category is selected.
+   */
+  headOfDepartment?: (number | null) | TeamMember;
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
@@ -3473,6 +3477,7 @@ export interface StaffSelect<T extends boolean = true> {
   _order?: T;
   name?: T;
   description?: T;
+  headOfDepartment?: T;
   slug?: T;
   slugLock?: T;
   updatedAt?: T;

@@ -94,6 +94,11 @@ h6 {
   color: #e5e7eb;
 }
 
+/* Links */
+[data-theme='dark'] a {
+  color: #ffffff;
+}
+
 [data-theme='dark'] a:hover {
   color: #bfdbfe;
 }
