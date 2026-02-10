@@ -100,7 +100,7 @@ export default buildConfig({
     Icons,
     Outputs,
   ],
-  cors: [getServerSideURL()].filter(Boolean),
+  cors: [getServerSideURL(), 'https://www.openenergytransition.org'].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
     ...plugins,
