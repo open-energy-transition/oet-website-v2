@@ -31,6 +31,9 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
+    meta: {
+      titleSuffix: '- OET CMS',
+    },
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
@@ -40,6 +43,7 @@ export default buildConfig({
       // beforeDashboard: ['@/components/BeforeDashboard'],
       // afterDashboard: ['@/components/AfterDashboard'],
       Nav: '@/components/CustomNav',
+      actions: ['@/components/CustomHeader'],
       graphics: {
         Logo: '@/components/CustomLogo',
         Icon: '@/components/CustomIcon',

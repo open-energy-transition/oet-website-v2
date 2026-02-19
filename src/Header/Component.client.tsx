@@ -144,10 +144,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-transparent fixed inset-0 z-50 overflow-y-auto flex">
-            <div className="bg-[#1D1F2CCC] w-1/3 h-ull"></div>
-            <div className="w-2/3 bg-white dark:bg-transparent">
+            <div className="w-full bg-white dark:bg-transparent">
               {/* Header area with logo and close button */}
-              <div className="flex justify-end items-center mt-4 px-4 ">
+              <div className="flex justify-between items-center h-[84px] px-4 ">
+                <Logo className="ml-0" type="red" loading="eager" priority="high" />
                 <button
                   className="p-2 rounded-full bg-gray-100 hover:bg-gray-200"
                   onClick={() => setIsMobileMenuOpen(false)}

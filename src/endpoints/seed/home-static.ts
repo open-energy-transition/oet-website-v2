@@ -80,8 +80,8 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
     },
   },
   meta: {
-    description: 'OET Website v2',
-    title: 'OET Website v2',
+    description: 'Open Energy Transition',
+    title: 'Open Energy Transition',
   },
   title: 'Home',
   layout: [],

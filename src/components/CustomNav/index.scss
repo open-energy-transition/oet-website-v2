@@ -143,6 +143,61 @@
   }
 }
 
+// Logout Button
+.nav-logout {
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  background: var(--theme-elevation-100);
+  border: 2px solid var(--theme-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--theme-text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--theme-error-100);
+    border-color: var(--theme-error-500);
+    color: var(--theme-error-700);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+
+    [data-theme='dark'] & {
+      background: var(--theme-error-900);
+      color: var(--theme-error-300);
+    }
+
+    svg {
+      color: var(--theme-error-500);
+      transform: translateX(3px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  svg {
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .logout-text {
+    flex: 1;
+    text-align: left;
+  }
+}
+
 // Toggle Button Styles
 .nav-toggle {
   display: flex;

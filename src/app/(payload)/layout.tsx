@@ -23,9 +23,16 @@ const serverFunction: ServerFunctionClient = async function (args) {
 }
 
 const Layout = ({ children }: Args) => (
-  <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
-    {children}
-  </RootLayout>
+  <html>
+    <head>
+      <link href="/favicon.ico" rel="icon" sizes="32x32" />
+      <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+      <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    </head>
+    <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
+      {children}
+    </RootLayout>
+  </html>
 )
 
 export default Layout
