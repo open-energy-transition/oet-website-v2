@@ -372,14 +372,22 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
       {sortedStaffCategories && sortedStaffCategories.length > 0 && (
         <div className="mb-8">
           <div className="flex flex-wrap justify-center gap-2">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === null
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+              }`}
+              aria-pressed={selectedCategory === null}
+            >
+              All
+            </button>
             {sortedStaffCategories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => {
-                  // Toggle: if already selected, deselect it, otherwise select it
-                  setSelectedCategory(
-                    selectedCategory === String(category.id) ? null : String(category.id),
-                  )
+                  setSelectedCategory(String(category.id))
                 }}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === String(category.id)
