@@ -41,7 +41,11 @@ export const ButtonBlock: React.FC<CTABlockProps> = ({ link, color = 'default', 
       <div>
         <div className={getPosClass()}>
           {link && (
-            <CMSLink className={`button ${sizeClass} rounded ${colorClass}`} size="lg" {...link} />
+            <CMSLink
+              className={`button ${sizeClass} rounded-3xl ${colorClass}`}
+              size="lg"
+              {...link}
+            />
           )}
           {iconSvg && (
             <span

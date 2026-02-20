@@ -10,7 +10,10 @@ export const OurServiceBlock: React.FC<OurServiceBlockProps> = ({
   services,
 }) => {
   return (
-    <div className="bg-[#F8FAFB] dark:bg-[#1a1f2e] transition-colors duration-300 dark:border-y dark:border-dark-blue-gray">
+    <div
+      id="our-service"
+      className="bg-[#F8FAFB] dark:bg-[#1a1f2e] transition-colors duration-300 dark:border-y dark:border-dark-blue-gray"
+    >
       <div className="container py-14 lg:pt-20">
         <div className="mb-6 text-start flex lg:flex-row flex-col justify-between">
           <h2 className="font-oxanium mb-2 text-4xl font-semibold lg:text-5xl text-gray-black-500 dark:text-white">

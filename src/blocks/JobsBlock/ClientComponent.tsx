@@ -83,16 +83,32 @@ const JobListItem: React.FC<{ job: Job; isSingleView?: boolean }> = ({
       href={job.slug}
       target="_blank"
       rel="noopener noreferrer"
-      className="block py-4 border-b border-gray-200"
+      className="block py-4 px-5 border-l-4 border-l-slate-700 bg-gradient-to-r from-slate-100/50 to-transparent hover:from-slate-200/60 hover:border-l-slate-800 transition-all duration-200 rounded-r-lg mb-3"
     >
       <div className="flex flex-wrap items-center gap-2 text-base font-heebo">
-        <span className="font-medium text-gray-900 dark:text-white">{title}</span>
-        <span className="text-gray-400 dark:text-white">|</span>
-        <span className="text-gray-600 dark:text-white">{employmentType}</span>
+        <span className="font-semibold text-slate-800 dark:text-slate-300 text-lg">{title}</span>
+        <span className="text-gray-400 dark:text-gray-500">|</span>
+        <span className="text-gray-700 dark:text-gray-300 font-medium">{employmentType}</span>
         {location && (
           <>
-            <span className="text-gray-400 dark:text-white">|</span>
-            <span className="text-gray-600 dark:text-white">{location}</span>
+            <span className="text-gray-400 dark:text-gray-500">|</span>
+            <span className="text-gray-700 dark:text-gray-300 flex items-center gap-1">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              {location}
+            </span>
           </>
         )}
       </div>
@@ -110,7 +126,7 @@ export const JobsClient: React.FC<JobsClientProps> = ({
   error = null,
 }) => {
   return (
-    <div className="container mx-auto px-4 -mt-8">
+    <div className="container mx-auto px-4 -mt-8 -mb-[6rem]">
       {(tag || title || description) && (
         <div className="mb-8">
           {tag && (
@@ -133,7 +149,7 @@ export const JobsClient: React.FC<JobsClientProps> = ({
         // Loading state
         <div className="flex justify-center items-center py-12">
           <div className="animate-pulse flex flex-col items-center">
-            <div className="h-12 w-12 rounded-full bg-blue-200 mb-4"></div>
+            <div className="h-12 w-12 rounded-full bg-slate-300 mb-4"></div>
             <div className="h-4 w-32 bg-gray-200 mb-2 rounded"></div>
             <div className="h-3 w-24 bg-gray-100 rounded"></div>
           </div>
@@ -146,12 +162,12 @@ export const JobsClient: React.FC<JobsClientProps> = ({
         </div>
       ) : isSingleJob && jobs.length === 1 ? (
         // Single job detail view
-        <div className="max-w-4xl ml-4">
+        <div className="ml-4">
           <JobListItem job={jobs[0]} isSingleView={true} />
         </div>
       ) : (
         // Multiple jobs list view
-        <div className="max-w-4xl ml-4">
+        <div className="ml-4">
           {jobs && jobs.length > 0 ? (
             jobs.map((job) => <JobListItem key={job.id} job={job} />)
           ) : (

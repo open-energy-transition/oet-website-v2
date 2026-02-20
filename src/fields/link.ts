@@ -152,9 +152,20 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
             name: 'sublinks',
             type: 'array',
             admin: {
-              description: 'Add links to specific sections within the page',
+              description: 'Add links to specific sections within the current page or other pages',
             },
             fields: [
+              {
+                name: 'page',
+                type: 'relationship',
+                relationTo: ['pages'],
+                required: false,
+                label: 'Page',
+                admin: {
+                  description:
+                    'Optional: Select a page to link to. Leave empty to link to current page.',
+                },
+              },
               {
                 name: 'label',
                 type: 'text',
