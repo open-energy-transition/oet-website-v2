@@ -209,10 +209,17 @@ export interface Page {
              */
             pos?: ('start' | 'center' | 'end') | null;
             /**
-             * Add links to specific sections within the page
+             * Add links to specific sections within the current page or other pages
              */
             sublinks?:
               | {
+                  /**
+                   * Optional: Select a page to link to. Leave empty to link to current page.
+                   */
+                  page?: {
+                    relationTo: 'pages';
+                    value: number | Page;
+                  } | null;
                   label?: string | null;
                   /**
                    * Enter without # (e.g., "overview" will link to "#overview")
@@ -588,10 +595,17 @@ export interface CallToActionBlock {
            */
           pos?: ('start' | 'center' | 'end') | null;
           /**
-           * Add links to specific sections within the page
+           * Add links to specific sections within the current page or other pages
            */
           sublinks?:
             | {
+                /**
+                 * Optional: Select a page to link to. Leave empty to link to current page.
+                 */
+                page?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
                 label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
@@ -850,10 +864,17 @@ export interface ButtonBlock {
      */
     pos?: ('start' | 'center' | 'end') | null;
     /**
-     * Add links to specific sections within the page
+     * Add links to specific sections within the current page or other pages
      */
     sublinks?:
       | {
+          /**
+           * Optional: Select a page to link to. Leave empty to link to current page.
+           */
+          page?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
           label?: string | null;
           /**
            * Enter without # (e.g., "overview" will link to "#overview")
@@ -979,10 +1000,17 @@ export interface ContentBlock {
            */
           pos?: ('start' | 'center' | 'end') | null;
           /**
-           * Add links to specific sections within the page
+           * Add links to specific sections within the current page or other pages
            */
           sublinks?:
             | {
+                /**
+                 * Optional: Select a page to link to. Leave empty to link to current page.
+                 */
+                page?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
                 label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
@@ -1453,10 +1481,17 @@ export interface OurServiceBlock {
            */
           pos?: ('start' | 'center' | 'end') | null;
           /**
-           * Add links to specific sections within the page
+           * Add links to specific sections within the current page or other pages
            */
           sublinks?:
             | {
+                /**
+                 * Optional: Select a page to link to. Leave empty to link to current page.
+                 */
+                page?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
                 label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
@@ -1553,10 +1588,17 @@ export interface ToolsWeSupportBlock {
      */
     pos?: ('start' | 'center' | 'end') | null;
     /**
-     * Add links to specific sections within the page
+     * Add links to specific sections within the current page or other pages
      */
     sublinks?:
       | {
+          /**
+           * Optional: Select a page to link to. Leave empty to link to current page.
+           */
+          page?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
           label?: string | null;
           /**
            * Enter without # (e.g., "overview" will link to "#overview")
@@ -1643,10 +1685,17 @@ export interface WhoWeAreBlock {
            */
           pos?: ('start' | 'center' | 'end') | null;
           /**
-           * Add links to specific sections within the page
+           * Add links to specific sections within the current page or other pages
            */
           sublinks?:
             | {
+                /**
+                 * Optional: Select a page to link to. Leave empty to link to current page.
+                 */
+                page?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
                 label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
@@ -1750,10 +1799,17 @@ export interface ProjectsOverviewBlock {
        */
       pos?: ('start' | 'center' | 'end') | null;
       /**
-       * Add links to specific sections within the page
+       * Add links to specific sections within the current page or other pages
        */
       sublinks?:
         | {
+            /**
+             * Optional: Select a page to link to. Leave empty to link to current page.
+             */
+            page?: {
+              relationTo: 'pages';
+              value: number | Page;
+            } | null;
             label?: string | null;
             /**
              * Enter without # (e.g., "overview" will link to "#overview")
@@ -2505,6 +2561,7 @@ export interface PagesSelect<T extends boolean = true> {
                     sublinks?:
                       | T
                       | {
+                          page?: T;
                           label?: T;
                           hash?: T;
                           id?: T;
@@ -2601,6 +2658,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               sublinks?:
                 | T
                 | {
+                    page?: T;
                     label?: T;
                     hash?: T;
                     id?: T;
@@ -2653,6 +2711,7 @@ export interface ButtonBlockSelect<T extends boolean = true> {
         sublinks?:
           | T
           | {
+              page?: T;
               label?: T;
               hash?: T;
               id?: T;
@@ -2708,6 +2767,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               sublinks?:
                 | T
                 | {
+                    page?: T;
                     label?: T;
                     hash?: T;
                     id?: T;
@@ -2850,6 +2910,7 @@ export interface OurServiceBlockSelect<T extends boolean = true> {
               sublinks?:
                 | T
                 | {
+                    page?: T;
                     label?: T;
                     hash?: T;
                     id?: T;
@@ -2887,6 +2948,7 @@ export interface ToolsWeSupportBlockSelect<T extends boolean = true> {
         sublinks?:
           | T
           | {
+              page?: T;
               label?: T;
               hash?: T;
               id?: T;
@@ -2930,6 +2992,7 @@ export interface WhoWeAreBlockSelect<T extends boolean = true> {
               sublinks?:
                 | T
                 | {
+                    page?: T;
                     label?: T;
                     hash?: T;
                     id?: T;
@@ -2976,6 +3039,7 @@ export interface ProjectsOverviewBlockSelect<T extends boolean = true> {
               sublinks?:
                 | T
                 | {
+                    page?: T;
                     label?: T;
                     hash?: T;
                     id?: T;
@@ -3823,10 +3887,17 @@ export interface Header {
            */
           pos?: ('start' | 'center' | 'end') | null;
           /**
-           * Add links to specific sections within the page
+           * Add links to specific sections within the current page or other pages
            */
           sublinks?:
             | {
+                /**
+                 * Optional: Select a page to link to. Leave empty to link to current page.
+                 */
+                page?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
                 label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
@@ -3885,10 +3956,17 @@ export interface Footer {
            */
           pos?: ('start' | 'center' | 'end') | null;
           /**
-           * Add links to specific sections within the page
+           * Add links to specific sections within the current page or other pages
            */
           sublinks?:
             | {
+                /**
+                 * Optional: Select a page to link to. Leave empty to link to current page.
+                 */
+                page?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
                 label?: string | null;
                 /**
                  * Enter without # (e.g., "overview" will link to "#overview")
@@ -3964,10 +4042,17 @@ export interface Footer {
              */
             pos?: ('start' | 'center' | 'end') | null;
             /**
-             * Add links to specific sections within the page
+             * Add links to specific sections within the current page or other pages
              */
             sublinks?:
               | {
+                  /**
+                   * Optional: Select a page to link to. Leave empty to link to current page.
+                   */
+                  page?: {
+                    relationTo: 'pages';
+                    value: number | Page;
+                  } | null;
                   label?: string | null;
                   /**
                    * Enter without # (e.g., "overview" will link to "#overview")
@@ -4022,10 +4107,17 @@ export interface Footer {
              */
             pos?: ('start' | 'center' | 'end') | null;
             /**
-             * Add links to specific sections within the page
+             * Add links to specific sections within the current page or other pages
              */
             sublinks?:
               | {
+                  /**
+                   * Optional: Select a page to link to. Leave empty to link to current page.
+                   */
+                  page?: {
+                    relationTo: 'pages';
+                    value: number | Page;
+                  } | null;
                   label?: string | null;
                   /**
                    * Enter without # (e.g., "overview" will link to "#overview")
@@ -4173,6 +4265,7 @@ export interface HeaderSelect<T extends boolean = true> {
               sublinks?:
                 | T
                 | {
+                    page?: T;
                     label?: T;
                     hash?: T;
                     id?: T;
@@ -4208,6 +4301,7 @@ export interface FooterSelect<T extends boolean = true> {
               sublinks?:
                 | T
                 | {
+                    page?: T;
                     label?: T;
                     hash?: T;
                     id?: T;
@@ -4239,6 +4333,7 @@ export interface FooterSelect<T extends boolean = true> {
                     sublinks?:
                       | T
                       | {
+                          page?: T;
                           label?: T;
                           hash?: T;
                           id?: T;
@@ -4269,6 +4364,7 @@ export interface FooterSelect<T extends boolean = true> {
                     sublinks?:
                       | T
                       | {
+                          page?: T;
                           label?: T;
                           hash?: T;
                           id?: T;

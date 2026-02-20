@@ -141,12 +141,18 @@ export const HeaderNav: React.FC<{
                   {hasSublinks && isExpanded && (
                     <div className="mt-2 space-y-1">
                       {link.sublinks?.map((sublink, j) => {
-                        const href =
-                          link.type === 'reference' &&
-                          typeof link.reference?.value === 'object' &&
-                          link.reference.value.slug
-                            ? `${link.reference?.relationTo !== 'pages' ? `/${link.reference?.relationTo}` : ''}/${link.reference.value.slug}#${sublink.hash}`
-                            : `${link.url}#${sublink.hash}`
+                        // Use sublink's page reference if provided, otherwise use parent link's reference
+                        const pageRef = sublink.page || link.reference
+                        const pageSlug =
+                          typeof pageRef?.value === 'object' && pageRef.value.slug
+                            ? pageRef.value.slug
+                            : null
+
+                        const href = pageSlug
+                          ? `/${pageSlug}#${sublink.hash}`
+                          : link.type === 'custom'
+                            ? `${link.url}#${sublink.hash}`
+                            : `#${sublink.hash}`
 
                         const isActive =
                           pathname + (typeof window !== 'undefined' ? window.location.hash : '') ===
@@ -209,12 +215,18 @@ export const HeaderNav: React.FC<{
                 }`}
               >
                 {link.sublinks?.map((sublink, j) => {
-                  const href =
-                    link.type === 'reference' &&
-                    typeof link.reference?.value === 'object' &&
-                    link.reference.value.slug
-                      ? `${link.reference?.relationTo !== 'pages' ? `/${link.reference?.relationTo}` : ''}/${link.reference.value.slug}#${sublink.hash}`
-                      : `${link.url}#${sublink.hash}`
+                  // Use sublink's page reference if provided, otherwise use parent link's reference
+                  const pageRef = sublink.page || link.reference
+                  const pageSlug =
+                    typeof pageRef?.value === 'object' && pageRef.value.slug
+                      ? pageRef.value.slug
+                      : null
+
+                  const href = pageSlug
+                    ? `/${pageSlug}#${sublink.hash}`
+                    : link.type === 'custom'
+                      ? `${link.url}#${sublink.hash}`
+                      : `#${sublink.hash}`
 
                   return (
                     <a
