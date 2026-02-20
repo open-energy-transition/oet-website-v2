@@ -89,7 +89,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <InitTheme />
         <meta
           name="google-site-verification"
-          content="wlRX6xu0CHwyo5t04fpxAT-CsCbFC5DL1eEVHamWwOs"
+          content="8Uq0G7lotgCo8nLTJ1Tul3OfUYoUhAj7UPSudrTk6oU"
         />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
