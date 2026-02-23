@@ -45,7 +45,7 @@ export const PostHero: React.FC<{
             </div>
           )}
         </div>
-        <div className="">
+        <div className="mb-4">
           <div className="">
             {categories?.map((category, index) => {
               if (typeof category === 'object' && category !== null) {
