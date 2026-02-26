@@ -48,6 +48,7 @@ export const Posts: CollectionConfig<'posts'> = {
     doi: true,
     content: true,
     publishedAt: true,
+    teamMemberAuthors: true,
     populatedAuthors: true,
     meta: {
       image: true,
@@ -155,6 +156,55 @@ export const Posts: CollectionConfig<'posts'> = {
               type: 'number',
               required: false,
             },
+            {
+              name: 'resources',
+              type: 'array',
+              label: 'Resources',
+              fields: [
+                {
+                  name: 'label',
+                  type: 'text',
+                  required: true,
+                  label: 'Label',
+                },
+                {
+                  name: 'resourceType',
+                  type: 'radio',
+                  required: true,
+                  label: 'Resource Type',
+                  options: [
+                    {
+                      label: 'Upload File',
+                      value: 'upload',
+                    },
+                    {
+                      label: 'External Link',
+                      value: 'link',
+                    },
+                  ],
+                  defaultValue: 'upload',
+                },
+                {
+                  name: 'file',
+                  type: 'upload',
+                  relationTo: 'media',
+                  required: true,
+                  label: 'Upload File',
+                  admin: {
+                    condition: (data, siblingData) => siblingData?.resourceType === 'upload',
+                  },
+                },
+                {
+                  name: 'externalLink',
+                  type: 'text',
+                  required: true,
+                  label: 'External Link URL',
+                  admin: {
+                    condition: (data, siblingData) => siblingData?.resourceType === 'link',
+                  },
+                },
+              ],
+            },
           ],
           label: 'Content',
         },
@@ -246,6 +296,39 @@ export const Posts: CollectionConfig<'posts'> = {
       hasMany: true,
       relationTo: 'users',
     },
+    {
+      name: 'teamMemberAuthors',
+      type: 'relationship',
+      label: 'Team Member Authors',
+      admin: {
+        position: 'sidebar',
+        description: 'Select team members as authors',
+      },
+      hasMany: true,
+      relationTo: 'team-members',
+    },
+    {
+      name: 'customAuthors',
+      type: 'array',
+      label: 'Custom Authors',
+      admin: {
+        position: 'sidebar',
+        description: 'Add authors not in the user list',
+      },
+      fields: [
+        {
+          name: 'fullName',
+          type: 'text',
+          required: true,
+          label: 'Full Name',
+        },
+        {
+          name: 'title',
+          type: 'text',
+          label: 'Title/Position',
+        },
+      ],
+    },
     // This field is only used to populate the user data via the `populateAuthors` hook
     // This is because the `user` collection has access control locked to protect user privacy
     // GraphQL will also not return mutated user data that differs from the underlying schema
@@ -266,6 +349,14 @@ export const Posts: CollectionConfig<'posts'> = {
         },
         {
           name: 'name',
+          type: 'text',
+        },
+        {
+          name: 'image',
+          type: 'text',
+        },
+        {
+          name: 'jobTitle',
           type: 'text',
         },
       ],

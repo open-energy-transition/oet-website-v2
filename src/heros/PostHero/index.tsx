@@ -25,7 +25,7 @@ export const PostHero: React.FC<{
               <span className="mr-2 text-sm text-gray-black-300 dark:text-white transition-colors duration-300">
                 By
               </span>
-              <span className="text-[#E31937] transition-colors duration-300">
+              <span className="text-crimson-red transition-colors duration-300">
                 {formatAuthors(populatedAuthors)}
               </span>
             </div>

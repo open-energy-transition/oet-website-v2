@@ -21,6 +21,17 @@ export const Users: CollectionConfig = {
       name: 'name',
       type: 'text',
     },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Profile Image',
+    },
+    {
+      name: 'jobTitle',
+      type: 'text',
+      label: 'Job Title',
+    },
   ],
   timestamps: true,
 }

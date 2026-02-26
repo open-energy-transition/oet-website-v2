@@ -387,6 +387,15 @@ export interface Post {
   academic_publications_count?: number | null;
   reports_count?: number | null;
   policy_briefs_count?: number | null;
+  resources?:
+    | {
+        label: string;
+        resourceType: 'upload' | 'link';
+        file?: (number | null) | Media;
+        externalLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   relatedPosts?: (number | Post)[] | null;
   categories?: (number | Category)[] | null;
   meta?: {
@@ -399,10 +408,26 @@ export interface Post {
   };
   publishedAt?: string | null;
   authors?: (number | User)[] | null;
+  /**
+   * Select team members as authors
+   */
+  teamMemberAuthors?: (number | TeamMember)[] | null;
+  /**
+   * Add authors not in the user list
+   */
+  customAuthors?:
+    | {
+        fullName: string;
+        title?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   populatedAuthors?:
     | {
         id?: string | null;
         name?: string | null;
+        image?: string | null;
+        jobTitle?: string | null;
       }[]
     | null;
   slug?: string | null;
@@ -531,6 +556,8 @@ export interface Category {
 export interface User {
   id: number;
   name?: string | null;
+  image?: (number | null) | Media;
+  jobTitle?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -548,6 +575,77 @@ export interface User {
       }[]
     | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-members".
+ */
+export interface TeamMember {
+  id: number;
+  _order?: string | null;
+  firstName: string;
+  lastName: string;
+  /**
+   * The team member's categories for user navigation
+   */
+  categories: (number | Staff)[];
+  jobTitle: string;
+  /**
+   * Add degrees, PhDs, and other educational qualifications
+   */
+  education?:
+    | {
+        degree: string;
+        id?: string | null;
+      }[]
+    | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  linkedIn?: string | null;
+  x?: string | null;
+  github?: string | null;
+  email?: string | null;
+  externalLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff".
+ */
+export interface Staff {
+  id: number;
+  _order?: string | null;
+  /**
+   * The name of the staff category (e.g., "Energy System Modeler")
+   */
+  name: string;
+  /**
+   * Optional description of this category
+   */
+  description?: string | null;
+  /**
+   * Select the team member who leads this department. They will be displayed first when this category is selected.
+   */
+  headOfDepartment?: (number | null) | TeamMember;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -726,77 +824,6 @@ export interface Project {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team-members".
- */
-export interface TeamMember {
-  id: number;
-  _order?: string | null;
-  firstName: string;
-  lastName: string;
-  /**
-   * The team member's categories for user navigation
-   */
-  categories: (number | Staff)[];
-  jobTitle: string;
-  /**
-   * Add degrees, PhDs, and other educational qualifications
-   */
-  education?:
-    | {
-        degree: string;
-        id?: string | null;
-      }[]
-    | null;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  image?: (number | null) | Media;
-  linkedIn?: string | null;
-  x?: string | null;
-  github?: string | null;
-  email?: string | null;
-  externalLink?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "staff".
- */
-export interface Staff {
-  id: number;
-  _order?: string | null;
-  /**
-   * The name of the staff category (e.g., "Energy System Modeler")
-   */
-  name: string;
-  /**
-   * Optional description of this category
-   */
-  description?: string | null;
-  /**
-   * Select the team member who leads this department. They will be displayed first when this category is selected.
-   */
-  headOfDepartment?: (number | null) | TeamMember;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3275,6 +3302,15 @@ export interface PostsSelect<T extends boolean = true> {
   academic_publications_count?: T;
   reports_count?: T;
   policy_briefs_count?: T;
+  resources?:
+    | T
+    | {
+        label?: T;
+        resourceType?: T;
+        file?: T;
+        externalLink?: T;
+        id?: T;
+      };
   relatedPosts?: T;
   categories?: T;
   meta?:
@@ -3286,11 +3322,21 @@ export interface PostsSelect<T extends boolean = true> {
       };
   publishedAt?: T;
   authors?: T;
+  teamMemberAuthors?: T;
+  customAuthors?:
+    | T
+    | {
+        fullName?: T;
+        title?: T;
+        id?: T;
+      };
   populatedAuthors?:
     | T
     | {
         id?: T;
         name?: T;
+        image?: T;
+        jobTitle?: T;
       };
   slug?: T;
   slugLock?: T;
@@ -3463,6 +3509,8 @@ export interface TestimonialsSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  image?: T;
+  jobTitle?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

@@ -119,6 +119,7 @@ const config = {
         'gray-black-500': '#1D1F2C',
         'gray-black-500': '#1D1F2C',
         'dark-blue-gray': '#3f4b70',
+        'crimson-red': '#E31937',
       },
       fontFamily: {
         mono: ['var(--font-poppins)'],

@@ -24,7 +24,7 @@ export async function Footer() {
   const cookiePolicy = footerData?.cookiePolicy
 
   return (
-    <footer className="mt-auto border-t border-border bg-[#070707] text-white">
+    <footer className="mt-auto border-t border-border bg-crimson-red text-white">
       <div className="container py-5 lg:py-8 gap-10 lg:pt-16 flex flex-col md:flex-row md:justify-between">
         <div>
           <Link className="flex items-center " href="/">
@@ -42,7 +42,7 @@ export async function Footer() {
               <div className="max-w-[503px]">
                 <RichText
                   data={description}
-                  className="text-poppins-x-small text-gray-black-200"
+                  className="text-poppins-x-small text-white"
                   enableGutter={false}
                 />
               </div>
@@ -173,7 +173,7 @@ export async function Footer() {
           {/* Copyright */}
           {copyright && (
             <RichText
-              className="text-heebo-small-normal text-start lg:text-center lg:text-lg text-gray-black-200"
+              className="text-heebo-small-normal text-start lg:text-center lg:text-lg text-white"
               data={copyright}
               enableProse={false}
               enableGutter={false}
@@ -183,7 +183,7 @@ export async function Footer() {
             {/* Policies */}
             {privacyPolicy && (
               <RichText
-                className="text-heebo-small-link lg:text-lg lg:!text-gray-black-200"
+                className="text-heebo-small-link lg:text-lg text-white"
                 enableGutter={false}
                 enableProse={false}
                 data={privacyPolicy}
@@ -191,7 +191,7 @@ export async function Footer() {
             )}
             {termsOfUse && (
               <RichText
-                className="text-heebo-small-link lg:text-lg lg:!text-gray-black-200"
+                className="text-heebo-small-link lg:text-lg text-white"
                 enableGutter={false}
                 enableProse={false}
                 data={termsOfUse}
@@ -199,7 +199,7 @@ export async function Footer() {
             )}
             {cookiePolicy && (
               <RichText
-                className="text-heebo-small-link lg:text-lg lg:!text-gray-black-200"
+                className="text-heebo-small-link lg:text-lg text-white"
                 enableGutter={false}
                 enableProse={false}
                 data={cookiePolicy}
