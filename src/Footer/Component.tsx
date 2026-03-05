@@ -28,12 +28,7 @@ export async function Footer() {
       <div className="container py-5 lg:py-8 gap-10 lg:pt-16 flex flex-col md:flex-row md:justify-between">
         <div>
           <Link className="flex items-center " href="/">
-            <div className="hidden lg:block">
-              <Logo />
-            </div>
-            <div className="lg:hidden">
-              <LogoMobile className="lg:hidden" />
-            </div>
+            <Logo />
           </Link>
 
           <div className="mt-4 pb-6 lg:pb-8 flex flex-col md:flex-row gap-8 text-sm justify-between">

@@ -28,6 +28,7 @@ import { ContentItems } from '@/blocks/ContentItemsBlock/config'
 import { ProjectAims } from '@/blocks/ProjectAimsBlock/config'
 import { ProjectTeam } from '@/blocks/ProjectTeamBlock/config'
 import { BlogQuote } from '@/blocks/BlogQuoteBlock/config'
+import { Chart } from '@/blocks/ChartBlock/config'
 
 export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
   return [
@@ -74,6 +75,7 @@ export function getLexicalFeatures({ rootFeatures }: { rootFeatures: any[] }) {
       blocks: [
         CallToAction,
         Button,
+        Chart,
         ProjectTabs,
         ProjectsList,
         PostsList,

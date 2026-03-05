@@ -4474,6 +4474,47 @@ export interface TaskSchedulePublish {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ChartBlock".
+ */
+export interface ChartBlock {
+  chartType: 'line' | 'bar' | 'area' | 'pie';
+  title?: string | null;
+  description?: string | null;
+  /**
+   * Optional: define multiple series. Each series has its own label and points. If provided, this takes precedence over the flat `data` array.
+   */
+  series?:
+    | {
+        seriesLabel: string;
+        points?:
+          | {
+              label: string;
+              value: number;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  xAxisLabel?: string | null;
+  yAxisLabel?: string | null;
+  color?: ('blue' | 'red' | 'green' | 'purple' | 'orange') | null;
+  showGrid?: boolean | null;
+  showLegend?: boolean | null;
+  /**
+   * Label used in tooltip and legend for the primary `value` field
+   */
+  valueLabel?: string | null;
+  /**
+   * Label used in tooltip and legend for the optional `value2` field
+   */
+  value2Label?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'chart';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {

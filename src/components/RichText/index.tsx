@@ -25,6 +25,7 @@ import type {
   ProjectAimsBlock as ProjectAimsBlockProps,
   ProjectTeamBlock as ProjectTeamBlockProps,
   BlogQuoteBlock as BlogQuoteBlockProps,
+  ChartBlock as ChartBlockProps,
 } from '@/payload-types'
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
@@ -34,6 +35,7 @@ import { ContentItemsBlock } from '@/blocks/ContentItemsBlock'
 import { ProjectAimsBlock } from '@/blocks/ProjectAimsBlock'
 import { ProjectTeamBlock } from '@/blocks/ProjectTeamBlock'
 import { BlogQuoteBlock } from '@/blocks/BlogQuoteBlock'
+import { ChartBlock } from '@/blocks/ChartBlock/Component'
 
 type NodeTypes =
   | DefaultNodeTypes
@@ -46,6 +48,7 @@ type NodeTypes =
       | ProjectAimsBlockProps
       | ProjectTeamBlockProps
       | BlogQuoteBlockProps
+      | ChartBlockProps
     >
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
@@ -279,6 +282,7 @@ const createJsxConverters =
         code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
         cta: ({ node }) => <CallToActionBlock {...node.fields} />,
         button: ({ node }) => <ButtonBlock {...node.fields} />,
+        chart: ({ node }) => <ChartBlock className="col-start-2" {...node.fields} />,
         contentItems: ({ node }) => <ContentItemsBlock {...(node.fields as any)} />,
         projectAims: ({ node }) => <ProjectAimsBlock {...(node.fields as any)} />,
         projectTeam: ({ node }) => <ProjectTeamBlock {...(node.fields as any)} />,

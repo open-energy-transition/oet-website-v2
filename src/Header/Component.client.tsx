@@ -21,7 +21,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   // Set mobile menu open by default
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
-  const { theme: globalTheme, setTheme: setGlobalTheme } = useTheme()
+  const { headerTheme: globalTheme, setTheme: setGlobalTheme } = useTheme()
   const pathname = usePathname()
 
   useEffect(() => {
@@ -37,6 +37,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerTheme])
+
+  useEffect(() => {
+    console.log('Header theme changed:', theme, globalTheme)
+    if (globalTheme === 'dark' || theme === 'dark') {
+      setTheme('light')
+      setGlobalTheme('light')
+    }
+  }, [globalTheme, theme])
 
   // Close mobile menu when pathname changes
   useEffect(() => {
@@ -57,7 +65,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             <HeaderNav data={data} />
 
             {/* Dark Mode Toggle */}
-            {mounted && (
+            {/* {mounted && (
               <button
                 onClick={() => setGlobalTheme(globalTheme === 'dark' ? 'light' : 'dark')}
                 className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -106,7 +114,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                   </svg>
                 )}
               </button>
-            )}
+            )} */}
           </div>
 
           {/* Desktop Contact Button */}
@@ -178,7 +186,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 />
 
                 {/* Dark Mode Toggle for Mobile */}
-                {mounted && (
+                {/* {mounted && (
                   <div className="mt-6 pt-6 border-t border-gray-200">
                     <button
                       onClick={() => setGlobalTheme(globalTheme === 'dark' ? 'light' : 'dark')}
@@ -231,7 +239,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                       )}
                     </button>
                   </div>
-                )}
+                )} */}
 
                 <div className="mt-4">
                   <button className="hidden lg:block w-full bg-[#E31937] rounded-[12px] text-white px-8 py-3 hover:bg-[#c31530] transition-colors">
