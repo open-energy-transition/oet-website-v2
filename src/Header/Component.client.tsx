@@ -21,7 +21,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   // Set mobile menu open by default
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
-  const { headerTheme: globalTheme, setTheme: setGlobalTheme } = useTheme()
+  const { theme: globalTheme, setTheme: setGlobalTheme } = useTheme()
   const pathname = usePathname()
 
   useEffect(() => {
@@ -39,12 +39,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   useEffect(() => {
-    console.log('Header theme changed:', theme, globalTheme)
     if (globalTheme === 'dark' || theme === 'dark') {
       setTheme('light')
       setGlobalTheme('light')
     }
-  }, [globalTheme, theme])
+  }, [globalTheme, setGlobalTheme, theme])
 
   // Close mobile menu when pathname changes
   useEffect(() => {
