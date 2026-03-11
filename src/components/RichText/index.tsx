@@ -282,7 +282,7 @@ const createJsxConverters =
         code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
         cta: ({ node }) => <CallToActionBlock {...node.fields} />,
         button: ({ node }) => <ButtonBlock {...node.fields} />,
-        chart: ({ node }) => <ChartBlock className="col-start-2" {...node.fields} />,
+        chart: ({ node }) => <ChartBlock className="col-start-2" {...(node.fields as any)} />,
         contentItems: ({ node }) => <ContentItemsBlock {...(node.fields as any)} />,
         projectAims: ({ node }) => <ProjectAimsBlock {...(node.fields as any)} />,
         projectTeam: ({ node }) => <ProjectTeamBlock {...(node.fields as any)} />,
