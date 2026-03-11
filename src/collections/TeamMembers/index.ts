@@ -1,10 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublishedWithoutDrafts } from '../../access/authenticatedOrPublished'
 import { getLexicalFeatures } from '@/utilities/getLexicalFeatures'
@@ -13,7 +8,7 @@ export const TeamMembers: CollectionConfig = {
   slug: 'team-members',
   admin: {
     useAsTitle: 'firstName',
-    defaultColumns: ['firstName', 'lastName', 'category', 'jobTitle', '_order'],
+    defaultColumns: ['firstName', 'lastName', 'categories', 'jobTitle', '_order'],
     listSearchableFields: ['firstName', 'lastName', 'jobTitle'],
   },
   // Enable drag and drop ordering
