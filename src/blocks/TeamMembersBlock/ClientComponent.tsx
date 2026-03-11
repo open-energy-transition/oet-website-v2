@@ -336,7 +336,7 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
         ? selectedStaffCategory.headOfDepartment.id
         : selectedStaffCategory?.headOfDepartment
     console.log('hodId', hodId)
-    // Sort: Head of Department first, then alphabetically by last name
+    // Sort: Head of Department first, then by _order field
     const sorted = filtered.sort((a, b) => {
       // Check if either member is the HOD
       const aIsHOD = hodId && String(a.id) === String(hodId)
@@ -346,10 +346,10 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
       if (aIsHOD && !bIsHOD) return -1
       // If b is HOD, it comes first
       if (!aIsHOD && bIsHOD) return 1
-      // Otherwise, sort alphabetically by last name
-      const lastNameA = a.lastName?.toLowerCase() || ''
-      const lastNameB = b.lastName?.toLowerCase() || ''
-      return lastNameA.localeCompare(lastNameB)
+      // Otherwise, sort by _order field (ascending)
+      const orderA = typeof a._order === 'number' ? a._order : Number.MAX_SAFE_INTEGER
+      const orderB = typeof b._order === 'number' ? b._order : Number.MAX_SAFE_INTEGER
+      return orderA - orderB
     })
 
     setFilteredMembers(sorted)
