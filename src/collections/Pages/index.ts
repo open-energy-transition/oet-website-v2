@@ -30,6 +30,7 @@ import { TeamMembersBlock } from '../../blocks/TeamMembersBlock/config'
 import { JobsBlock } from '../../blocks/JobsBlock/config'
 import { TabsBlock } from '../../blocks/TabsBlock/config'
 import { PartnersBlock } from '@/blocks/PartnersBlock/config'
+import { PartnersListBlock } from '@/blocks/PartnersListBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -127,6 +128,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 JobsBlock,
                 TabsBlock,
                 PartnersBlock,
+                PartnersListBlock,
               ],
               required: true,
               admin: {

@@ -25,6 +25,7 @@ import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Projects } from './collections/Projects'
 import { Models } from './collections/Models'
+import { Partners } from './collections/Partners'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -103,6 +104,7 @@ export default buildConfig({
     Jobs,
     Icons,
     Outputs,
+    Partners,
   ],
   cors: [getServerSideURL(), 'https://www.openenergytransition.org'].filter(Boolean),
   globals: [Header, Footer],

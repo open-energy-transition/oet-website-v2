@@ -95,6 +95,7 @@ const CustomNav: React.FC = () => {
     { label: '💬 Customer Testimonials', href: '/admin/collections/testimonials' },
     { label: '🖌️ Icons', href: '/admin/collections/icons' },
     { label: '📤 Outputs', href: '/admin/collections/outputs' },
+    { label: '🤝 Partners', href: '/admin/collections/partners' },
   ]
 
   const globalItems = [

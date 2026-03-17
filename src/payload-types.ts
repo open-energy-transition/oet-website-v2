@@ -81,6 +81,7 @@ export interface Config {
     jobs: Job;
     icons: Icon;
     outputs: Output;
+    partners: Partner;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -106,6 +107,7 @@ export interface Config {
     jobs: JobsSelect<false> | JobsSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
     outputs: OutputsSelect<false> | OutputsSelect<true>;
+    partners: PartnersSelect<false> | PartnersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -309,6 +311,7 @@ export interface Page {
     | JobsBlock
     | TabsBlock
     | PartnersBlock
+    | PartnersListBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2151,6 +2154,7 @@ export interface TabsBlock {
               | ProjectsListBlock
               | PostsListBlock
               | DepartmentsListBlock
+              | PartnersListBlock
             )[]
           | null;
         id?: string | null;
@@ -2167,6 +2171,25 @@ export interface TabsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'tabs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersListBlock".
+ */
+export interface PartnersListBlock {
+  title?: string | null;
+  subTitle?: string | null;
+  /**
+   * Which tab is selected by default when the block loads.
+   */
+  defaultFilter?: ('all' | 'partner' | 'funder') | null;
+  /**
+   * Toggle the All / Partners / Funders filter tabs.
+   */
+  showFilterTabs?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partnersList';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2269,6 +2292,26 @@ export interface Output {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * Partners and funders displayed on the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners".
+ */
+export interface Partner {
+  id: number;
+  _order?: string | null;
+  name: string;
+  type: 'partner' | 'funder';
+  logo?: (number | null) | Media;
+  website?: string | null;
+  /**
+   * Optional short description of the organisation.
+   */
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2500,6 +2543,10 @@ export interface PayloadLockedDocument {
         value: number | Output;
       } | null)
     | ({
+        relationTo: 'partners';
+        value: number | Partner;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -2648,6 +2695,7 @@ export interface PagesSelect<T extends boolean = true> {
         jobs?: T | JobsBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
         partners?: T | PartnersBlockSelect<T>;
+        partnersList?: T | PartnersListBlockSelect<T>;
       };
   meta?:
     | T
@@ -3261,11 +3309,24 @@ export interface TabsBlockSelect<T extends boolean = true> {
               projectsList?: T | ProjectsListBlockSelect<T>;
               postsList?: T | PostsListBlockSelect<T>;
               departmentsList?: T | DepartmentsListBlockSelect<T>;
+              partnersList?: T | PartnersListBlockSelect<T>;
             };
         id?: T;
       };
   tabStyle?: T;
   tabPosition?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersListBlock_select".
+ */
+export interface PartnersListBlockSelect<T extends boolean = true> {
+  title?: T;
+  subTitle?: T;
+  defaultFilter?: T;
+  showFilterTabs?: T;
   id?: T;
   blockName?: T;
 }
@@ -3647,6 +3708,20 @@ export interface OutputsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners_select".
+ */
+export interface PartnersSelect<T extends boolean = true> {
+  _order?: T;
+  name?: T;
+  type?: T;
+  logo?: T;
+  website?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

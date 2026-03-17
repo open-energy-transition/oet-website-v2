@@ -22,6 +22,7 @@ import { TabsBlock } from '@/blocks/TabsBlock/Component'
 import { CardBlock } from '@/blocks/CardBlock/Component'
 import { QuoteBlock } from '@/blocks/QuoteBlock/Component'
 import { PartnersBlock } from './PartnersBlock/Component'
+import { PartnersListBlock } from './PartnersListBlock/Component'
 import { ProjectsOverviewBlock } from './ProjectsOverviewBlock/Component'
 import { ProjectsListBlock } from './ProjectsListBlock/Component'
 import { PostsListBlock } from './PostsListBlock/Component'
@@ -59,6 +60,7 @@ const blockComponents = {
   projectTeam: ProjectTeamBlock,
   blogQuote: BlogQuoteBlock,
   partners: PartnersBlock,
+  partnersList: PartnersListBlock,
   teamMembers: TeamMembersBlock,
   jobs: JobsBlock,
   tabs: TabsBlock,
