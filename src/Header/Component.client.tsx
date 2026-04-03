@@ -3,7 +3,7 @@ import { useHeaderTheme } from '@/providers/HeaderTheme'
 import { useTheme } from '@/providers/Theme'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 
 import type { Header } from '@/payload-types'
 
@@ -50,13 +50,22 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     setIsMobileMenuOpen(false)
   }, [pathname])
 
+  // Memoize logo instances so hooks are called unconditionally and
+  // the same number/order of hooks is preserved across renders.
+  const desktopLogo = useMemo(() => <Logo type="red" loading="eager" priority="high" />, [])
+
+  const mobileLogo = useMemo(
+    () => <Logo className="ml-0" type="red" loading="eager" priority="high" />,
+    [],
+  )
+
   return (
     <div className="bg-[#F9F9F9] sticky top-0 z-40 lg:relative lg:z-20 dark:border-b dark:border-dark-blue-gray">
       <header className="container relative z-20">
         {/* Desktop Header */}
         <div className="flex justify-between items-center h-[84px]">
-          <Link href="/">
-            <Logo type="red" loading="eager" priority="high" />
+          <Link href="/" className="w-full lg:w-auto h-full flex items-center">
+            {desktopLogo}
           </Link>
 
           {/* Desktop Navigation */}
@@ -148,13 +157,18 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-transparent fixed inset-0 z-50 overflow-y-auto flex">
-            <div className="w-full bg-white dark:bg-transparent">
+        {/* Mobile Navigation Menu (kept mounted to avoid unmounting logo) */}
+        <div
+          className={`lg:hidden bg-[#f9f9f9] fixed inset-0 z-50 overflow-y-auto flex ${
+            isMobileMenuOpen ? '' : 'pointer-events-none'
+          }`}
+          style={{ display: isMobileMenuOpen ? 'flex' : 'none' }}
+        >
+          <div className="w-full">
+            <div className="bg-[#f9f9f9]">
               {/* Header area with logo and close button */}
-              <div className="flex justify-between items-center h-[84px] px-4 ">
-                <Logo className="ml-0" type="red" loading="eager" priority="high" />
+              <div className="flex justify-between items-center h-[84px] container ">
+                {mobileLogo}
                 <button
                   className="p-2 rounded-full bg-gray-100 hover:bg-gray-200"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -177,7 +191,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               </div>
 
               {/* Menu content */}
-              <div className="px-4">
+              <div className="px-4 container">
                 <HeaderNav
                   data={data}
                   isMobile={true}
@@ -248,7 +262,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               </div>
             </div>
           </div>
-        )}
+        </div>
       </header>
     </div>
   )
