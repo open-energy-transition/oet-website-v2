@@ -1,0 +1,51 @@
+# .github/workflows/postgres-backup.yml
+name: Nightly Postgres Backup
+
+on:
+  push:
+    branches:
+      - main    # change if you want a different branch
+  schedule:
+    - cron: '0 2 * * *'  # 2am UTC daily
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install pg_dump (Postgres 17)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg lsb-release wget ca-certificates
+          wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmour -o /usr/share/keyrings/pgdg.gpg
+          echo "deb [signed-by=/usr/share/keyrings/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-17
+          pg_dump --version
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Run pg_dump (containerized) and upload to GCS
+        env:
+          DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+          BUCKET: ${{ secrets.GCP_BUCKET }}
+        run: |
+          set -euo pipefail
+          FILENAME="backup-$(date +%Y-%m-%d_%H-%M-%S).dump"
+          echo "Using containerized pg_dump to avoid client/server version mismatch"
+          docker run --rm -v "$PWD":/backups postgres:17 \
+            pg_dump "$DATABASE_URL" -Fc -f /backups/"$FILENAME"
+          # Handle BUCKET value whether it already contains gs:// or not
+          if [[ "$BUCKET" == gs://* ]]; then
+            DEST="$BUCKET/postgres/$FILENAME"
+          else
+            DEST="gs://$BUCKET/postgres/$FILENAME"
+          fi
+          echo "Uploading to: $DEST"
+          gsutil cp "$FILENAME" "$DEST"
