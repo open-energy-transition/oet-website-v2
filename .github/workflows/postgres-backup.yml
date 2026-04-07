@@ -1,10 +1,6 @@
-# .github/workflows/postgres-backup.yml
 name: Nightly Postgres Backup
 
 on:
-  push:
-    branches:
-      - main    # change if you want a different branch
   schedule:
     - cron: '0 2 * * *'  # 2am UTC daily
   workflow_dispatch:
