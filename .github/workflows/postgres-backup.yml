@@ -1,12 +1,17 @@
 name: Nightly Postgres Backup
 
 on:
+  pull_request:
   schedule:
     - cron: '0 2 * * *'  # 2am UTC daily
   workflow_dispatch:
 
 jobs:
   backup:
+    if: >-
+      github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'Postgres-backup-workflow')
     runs-on: ubuntu-latest
     steps:
       - name: Install pg_dump (Postgres 17)
