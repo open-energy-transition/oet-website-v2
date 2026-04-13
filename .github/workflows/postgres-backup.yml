@@ -13,40 +13,28 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'Postgres-backup-workflow')
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
-      - name: Install pg_dump (Postgres 17)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gnupg lsb-release wget ca-certificates
-          wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmour -o /usr/share/keyrings/pgdg.gpg
-          echo "deb [signed-by=/usr/share/keyrings/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
-          sudo apt-get update
-          sudo apt-get install -y postgresql-client-17
-          pg_dump --version
+      - uses: actions/checkout@v4
 
       - name: Authenticate to GCP
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          project_id: oet-security
+          workload_identity_provider: 'projects/961645183457/locations/global/workloadIdentityPools/github/providers/oet-website-v2'
+          service_account: 'oet-website-v2-backup@oet-security.iam.gserviceaccount.com'
 
       - name: Set up gcloud
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
 
       - name: Run pg_dump (containerized) and upload to GCS
         env:
           DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
-          BUCKET: ${{ secrets.GCP_BUCKET }}
         run: |
           set -euo pipefail
           FILENAME="backup-$(date +%Y-%m-%d_%H-%M-%S).dump"
-          echo "Using containerized pg_dump to avoid client/server version mismatch"
           docker run --rm -v "$PWD":/backups postgres:17 \
             pg_dump "$DATABASE_URL" -Fc -f /backups/"$FILENAME"
-          # Handle BUCKET value whether it already contains gs:// or not
-          if [[ "$BUCKET" == gs://* ]]; then
-            DEST="$BUCKET/postgres/$FILENAME"
-          else
-            DEST="gs://$BUCKET/postgres/$FILENAME"
-          fi
-          echo "Uploading to: $DEST"
-          gsutil cp "$FILENAME" "$DEST"
+          gcloud storage cp "$FILENAME" "gs://oet-website-v2-backups/postgres/$FILENAME"
