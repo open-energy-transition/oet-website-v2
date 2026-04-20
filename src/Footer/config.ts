@@ -103,15 +103,16 @@ export const Footer: GlobalConfig = {
           type: 'text',
           required: false,
           admin: {
-            description: 'Title for the Follow Us section',
+            description: 'Title for the Email section',
           },
         },
         {
           name: 'description',
           type: 'textarea',
           required: false,
+          label: 'Email',
           admin: {
-            description: 'Description for the Follow Us section',
+            description: 'Email address',
           },
         },
         {

@@ -4272,11 +4272,11 @@ export interface Footer {
    */
   followUs?: {
     /**
-     * Title for the Follow Us section
+     * Title for the Email section
      */
     title?: string | null;
     /**
-     * Description for the Follow Us section
+     * Email address
      */
     description?: string | null;
     linkActions?:
