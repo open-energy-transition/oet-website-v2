@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState } from 'react'
-import Image from 'next/image'
+import React from 'react'
 import RichText from '@/components/RichText'
 import Link from 'next/link'
+import DOMPurify from 'dompurify'
 
 export type Job = {
   id: string | number
@@ -50,7 +50,6 @@ const JobListItem: React.FC<{ job: Job; isSingleView?: boolean }> = ({
 }) => {
   const { location, title, metadata } = job
   const employmentType = metadata?.employment_type || 'Full-time'
-
   if (isSingleView && job.content) {
     return (
       <div className="mb-8">
@@ -58,10 +57,7 @@ const JobListItem: React.FC<{ job: Job; isSingleView?: boolean }> = ({
         <div className="mt-6 mb-8 job-description prose max-w-none">
           {(() => {
             try {
-              const safeContent = job.content.replace(
-                /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
-                '',
-              )
+              const safeContent = DOMPurify.sanitize(job.content)
               return <div dangerouslySetInnerHTML={{ __html: safeContent }} />
             } catch (err) {
               console.error('Error rendering job content:', err)
