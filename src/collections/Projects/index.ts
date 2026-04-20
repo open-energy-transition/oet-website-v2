@@ -93,6 +93,15 @@ export const Projects: CollectionConfig = {
       relationTo: 'categories',
     },
     {
+      name: 'partners',
+      type: 'relationship',
+      admin: {
+        position: 'sidebar',
+      },
+      hasMany: true,
+      relationTo: 'partners',
+    },
+    {
       name: 'relatedProjects',
       type: 'relationship',
       admin: {

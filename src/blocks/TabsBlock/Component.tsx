@@ -12,6 +12,7 @@ import { ProjectsListBlock } from '../ProjectsListBlock'
 import { PostsListBlock } from '../PostsListBlock'
 import { ClientJobsBlock } from '../JobsBlock/ClientWrapper'
 import { ClientDepartmentsListBlock } from '../DepartmentsListBlock/ClientWrapper'
+import { ClientPartnersListBlock } from '../PartnersListBlock/ClientWrapper'
 
 const renderTabContent = (content: any[]) => {
   if (!content || content.length === 0) return null
@@ -81,6 +82,17 @@ const renderTabContent = (content: any[]) => {
           <div key={index} className="my-8">
             <PostsListBlock {...block} />
           </div>
+        )
+      case 'partnersList':
+        return (
+          <ClientPartnersListBlock
+            key={index}
+            id={block.id}
+            title={block.title ?? undefined}
+            subTitle={block.subTitle ?? undefined}
+            defaultFilter={block.defaultFilter ?? 'all'}
+            showFilterTabs={block.showFilterTabs ?? true}
+          />
         )
       case 'callToAction':
         return (

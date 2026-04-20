@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useId } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Media } from '@/components/Media'
@@ -19,6 +19,10 @@ interface PartnersCarouselProps {
 }
 
 export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) => {
+  const uid = useId().replace(/:/g, '-')
+  const prevClass = `swiper-prev-${uid}`
+  const nextClass = `swiper-next-${uid}`
+
   return (
     <div className="partners-carousel-container w-full md:px-8 lg:px-12 py-4 relative">
       <Swiper
@@ -31,8 +35,8 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
           pauseOnMouseEnter: true,
         }}
         navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: `.${nextClass}`,
+          prevEl: `.${prevClass}`,
         }}
         pagination={{
           clickable: true,
@@ -73,7 +77,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
 
       {/* Navigation Arrows */}
       <button
-        className="!hidden lg:!flex swiper-button-prev absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10  items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all hover:scale-110 !-mt-1"
+        className={`${prevClass} !hidden lg:!flex swiper-button-prev absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10  items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all hover:scale-110 !-mt-1`}
         aria-label="Previous partner"
       >
         <svg
@@ -93,7 +97,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ images }) =>
       </button>
 
       <button
-        className="!hidden lg:!flex swiper-button-next absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all hover:scale-110 !-mt-1"
+        className={`${nextClass} !hidden lg:!flex absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all hover:scale-110 !-mt-1`}
         aria-label="Next partner"
       >
         <svg

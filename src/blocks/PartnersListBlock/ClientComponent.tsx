@@ -49,11 +49,12 @@ export const PartnersListClient: React.FC<PartnersListClientProps> = ({
               <button
                 key={f.value}
                 onClick={() => setActiveFilter(f.value)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-colors duration-200 border ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeFilter === f.value
-                    ? 'bg-primary text-white border-primary'
-                    : 'bg-transparent text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:border-primary hover:text-primary dark:hover:text-primary'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                 }`}
+                aria-pressed={activeFilter === f.value}
               >
                 {f.label}
               </button>

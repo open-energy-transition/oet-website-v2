@@ -816,6 +816,7 @@ export interface Project {
   date: string;
   imageUrl?: (number | null) | Media;
   categories?: (number | Category)[] | null;
+  partners?: (number | Partner)[] | null;
   relatedProjects?: (number | Project)[] | null;
   slug?: string | null;
   meta?: {
@@ -827,6 +828,26 @@ export interface Project {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * Partners and funders displayed on the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners".
+ */
+export interface Partner {
+  id: number;
+  _order?: string | null;
+  name: string;
+  type: 'partner' | 'funder';
+  logo?: (number | null) | Media;
+  website?: string | null;
+  /**
+   * Optional short description of the organisation.
+   */
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2294,26 +2315,6 @@ export interface Output {
   _status?: ('draft' | 'published') | null;
 }
 /**
- * Partners and funders displayed on the website.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners".
- */
-export interface Partner {
-  id: number;
-  _order?: string | null;
-  name: string;
-  type: 'partner' | 'funder';
-  logo?: (number | null) | Media;
-  website?: string | null;
-  /**
-   * Optional short description of the organisation.
-   */
-  description?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
@@ -3602,6 +3603,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   date?: T;
   imageUrl?: T;
   categories?: T;
+  partners?: T;
   relatedProjects?: T;
   slug?: T;
   meta?:

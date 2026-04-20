@@ -7,12 +7,14 @@ import { ChevronRight } from 'lucide-react'
 import { cn } from '@/utilities/ui'
 import RichText from '@/components/RichText'
 
-import type { Project, ProjectTabsBlock as ProjectTabsBlockProps } from '@/payload-types'
+import type { Project, Partner, ProjectTabsBlock as ProjectTabsBlockProps } from '@/payload-types'
+
+type ProjectWithPartners = Project & { partners?: (number | Partner)[] | null }
 
 export type ProjectTabsClientProps = {
   projects: {
-    inProgress: Project[]
-    completed: Project[]
+    inProgress: ProjectWithPartners[]
+    completed: ProjectWithPartners[]
   }
   introContent: ProjectTabsBlockProps['introContent']
   showTabs: ProjectTabsBlockProps['showTabs']
@@ -23,7 +25,7 @@ export type ProjectTabsClientProps = {
 }
 
 const ProjectCard: React.FC<{
-  project: Project
+  project: ProjectWithPartners
   displayOptions: ProjectTabsBlockProps['displayOptions']
 }> = ({ project, displayOptions }) => {
   const getImageUrl = (imageUrl: Project['imageUrl']): string | null => {
@@ -54,6 +56,42 @@ const ProjectCard: React.FC<{
         {project.subTitle && (
           <div className="customTextState-size-h9 text-gray-black-300 min-h-[72px] max-h-[72px] overflow-hidden line-clamp-3 text-ellipsis dark:!text-white">
             {project.subTitle}
+          </div>
+        )}
+        {/* Partners */}
+        {project.partners && project.partners.length > 0 && (
+          <div className="mt-3 flex items-center gap-3 flex-wrap">
+            {project.partners.map((p) => {
+              const partner = typeof p === 'object' ? p : null
+              if (!partner) return null
+              const logo =
+                partner.logo && typeof partner.logo === 'object' && 'url' in partner.logo
+                  ? partner.logo.url
+                  : null
+              return (
+                <a
+                  key={partner.id}
+                  href={partner.website || '#'}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  {logo ? (
+                    <div className="w-8 h-8 rounded overflow-hidden bg-white">
+                      <Image
+                        src={logo}
+                        alt={partner.name}
+                        width={32}
+                        height={32}
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <span className="text-sm text-gray-600 dark:text-gray-300">{partner.name}</span>
+                  )}
+                </a>
+              )
+            })}
           </div>
         )}
 
