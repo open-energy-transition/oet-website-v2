@@ -335,7 +335,7 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
       typeof selectedStaffCategory.headOfDepartment === 'object'
         ? selectedStaffCategory.headOfDepartment.id
         : selectedStaffCategory?.headOfDepartment
-    console.log('hodId', hodId)
+
     // Sort: Head of Department first, then by _order field
     const sorted = filtered.sort((a, b) => {
       // Check if either member is the HOD

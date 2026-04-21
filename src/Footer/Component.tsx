@@ -34,7 +34,6 @@ export async function Footer() {
   const privacyPolicy = footerData?.privacyPolicy
   const termsOfUse = footerData?.termsOfUse
   const cookiePolicy = footerData?.cookiePolicy
-  console.log('followUs.linkActions', followUs?.linkActions)
 
   return (
     <footer className="mt-auto border-t border-border bg-crimson-red text-white">
@@ -145,13 +144,13 @@ export async function Footer() {
                     {followUs.linkActions.map((action, i) => {
                       const [line1, line2] = splitActionName(action?.name)
                       return (
-                        <a target="_blank" href={action.link} key={i}>
+                        <div key={i}>
                           {action.icon &&
                             typeof action.icon === 'object' &&
                             'svg' in action.icon && (
                               <div className="flex">
                                 <a
-                                  href="#"
+                                  href={action.link}
                                   className="bg-black size-10 bg-dark rounded-[0.375rem] flex items-center justify-center mb-0 me-3"
                                 >
                                   <span
@@ -159,7 +158,7 @@ export async function Footer() {
                                     dangerouslySetInnerHTML={{ __html: action.icon.svg }}
                                   />
                                 </a>
-                                <a href="#" className="text-sm text-start">
+                                <a href={action.link} className="text-sm text-start">
                                   <strong>{line1}</strong>
                                   {line2 && (
                                     <>
@@ -170,7 +169,7 @@ export async function Footer() {
                                 </a>
                               </div>
                             )}
-                        </a>
+                        </div>
                       )
                     })}
                   </div>

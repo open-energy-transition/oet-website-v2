@@ -39,7 +39,7 @@ export function PostSidebar({ post, headings, url }: PostSidebarProps) {
 
   // Get resources
   const resources = post.resources || []
-  console.log('post.authors', post, customAuthorsData)
+
   return (
     <>
       <div className="hidden lg:block min-h-full w-[0.5px] bg-gray-300 dark:bg-gray-700" />

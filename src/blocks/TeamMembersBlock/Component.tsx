@@ -28,7 +28,7 @@ export const TeamMembersBlock: React.FC<
     sort: '_order', // Sort by order field if available
     limit: 999999,
   })
-  console.log('staffCategoriesQuery', staffCategoriesQuery)
+
   const teamMembers = teamMembersQuery.docs
   const staffCategories = staffCategoriesQuery.docs
   return (
