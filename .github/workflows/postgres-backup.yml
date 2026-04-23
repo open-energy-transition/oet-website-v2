@@ -1,0 +1,40 @@
+name: Nightly Postgres Backup
+
+on:
+  pull_request:
+  schedule:
+    - cron: '0 2 * * *'  # 2am UTC daily
+  workflow_dispatch:
+
+jobs:
+  backup:
+    if: >-
+      github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'Postgres-backup-workflow')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: oet-security
+          workload_identity_provider: 'projects/961645183457/locations/global/workloadIdentityPools/github/providers/oet-website-v2'
+          service_account: 'oet-website-v2-backup@oet-security.iam.gserviceaccount.com'
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Run pg_dump (containerized) and upload to GCS
+        env:
+          DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+        run: |
+          set -euo pipefail
+          FILENAME="backup-$(date +%Y-%m-%d_%H-%M-%S).dump"
+          docker run --rm -v "$PWD":/backups postgres:17 \
+            pg_dump "$DATABASE_URL" -Fc -f /backups/"$FILENAME"
+          gcloud storage cp "$FILENAME" "gs://oet-website-v2-backups/postgres/$FILENAME"
