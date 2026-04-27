@@ -119,6 +119,69 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
             </div>
           )}
 
+        {/* Partners */}
+        {project.partners && Array.isArray(project.partners) && project.partners.length > 0 && (
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3 dark:text-white">Partners</h3>
+            <div className="flex flex-wrap gap-6">
+              {project.partners.map((partner) => {
+                if (typeof partner === 'number') return null
+                const logoUrl =
+                  partner.logo && typeof partner.logo === 'object' && 'url' in partner.logo
+                    ? partner.logo.url
+                    : null
+
+                return (
+                  <div key={partner.id} className="flex flex-col items-center gap-2">
+                    {logoUrl ? (
+                      partner.website ? (
+                        <a
+                          href={partner.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Visit ${partner.name}`}
+                          className="w-32 h-32 block"
+                        >
+                          <Image
+                            src={logoUrl}
+                            alt={partner.name}
+                            width={128}
+                            height={128}
+                            className="w-full h-full object-contain"
+                          />
+                        </a>
+                      ) : (
+                        <div className="w-32 h-32 relative">
+                          <Image
+                            src={logoUrl}
+                            alt={partner.name}
+                            width={128}
+                            height={128}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      )
+                    ) : partner.website ? (
+                      <a
+                        href={partner.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600 text-center"
+                      >
+                        {partner.name}
+                      </a>
+                    ) : (
+                      <span className="m-auto inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-white text-center">
+                        {partner.name}
+                      </span>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Related Projects */}
         {project.relatedProjects &&
           Array.isArray(project.relatedProjects) &&
