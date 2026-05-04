@@ -303,3 +303,27 @@ html[data-theme='light'] {
 .footer-icon svg path {
   fill: white
 }
+
+@media print {
+  header,
+  footer,
+  nav {
+    display: none !important;
+  }
+
+  article {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
