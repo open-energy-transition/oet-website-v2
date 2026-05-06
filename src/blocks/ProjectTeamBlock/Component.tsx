@@ -16,18 +16,6 @@ export const ProjectTeamBlockComponent: React.FC<{
 }> = ({ title, teamMembers }) => {
   if (!teamMembers || teamMembers.length === 0) return null
 
-  // Sort team members by last name alphabetically
-  const sortedTeamMembers = [...teamMembers].sort((a, b) => {
-    const memberA = typeof a.member === 'object' ? a.member : null
-    const memberB = typeof b.member === 'object' ? b.member : null
-
-    if (!memberA || !memberB) return 0
-
-    const lastNameA = memberA.lastName?.toLowerCase() || ''
-    const lastNameB = memberB.lastName?.toLowerCase() || ''
-    return lastNameA.localeCompare(lastNameB)
-  })
-
   return (
     <section className="container mx-auto px-4 py-12">
       {/* Title */}
@@ -39,7 +27,7 @@ export const ProjectTeamBlockComponent: React.FC<{
 
       {/* Team Members Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {sortedTeamMembers.map((item, index) => {
+        {teamMembers.map((item, index) => {
           const member = typeof item.member === 'object' ? item.member : null
 
           if (!member) return null
