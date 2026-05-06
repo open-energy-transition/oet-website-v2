@@ -1,3 +1,5 @@
+import { format } from 'date-fns'
+
 export const formatDateTime = (timestamp: string): string => {
   const now = new Date()
   let date = now
@@ -17,4 +19,8 @@ export const formatDateTime = (timestamp: string): string => {
   // const SS = (seconds < 10) ? `0${seconds}` : seconds;
 
   return `${MM}/${DD}/${YYYY}`
+}
+
+export const formatDateTimeVerbose = (d: Date): string => {
+  return format(d, 'MMMM d, yyyy') // -> "March 25, 2026"
 }
