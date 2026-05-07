@@ -182,6 +182,23 @@ This template also pre-configured with the official [Payload Search Plugin](http
 
 If you are migrating an existing site or moving content to a new URL, you can use the `redirects` collection to create a proper redirect from old URLs to new ones. This will ensure that proper request status codes are returned to search engines and that your users are not left with a broken link. This template comes pre-configured with the official [Payload Redirects Plugin](https://payloadcms.com/docs/plugins/redirects) for complete redirect control from the admin panel. All redirects are fully integrated into the front-end website that comes with this template. See [Website](#website) for more details.
 
+## Cookie Consent and GDPR
+
+The site includes a GDPR cookie consent system with three categories:
+
+- **Necessary** (always enabled)
+- **Analytics** (optional)
+- **Marketing** (optional)
+
+On first visit, users are shown a consent banner with **Accept all**, **Reject all**, and **Manage preferences** options. Consent is stored locally in:
+
+- `localStorage` key: `site_cookie_consent_v1`
+- Cookie: `site_consent` (non-PII summary with timestamp/version)
+
+Users can reopen consent controls at any time from the footer via **Cookie settings** to update or revoke preferences. Analytics trackers are blocked unless analytics consent is enabled.
+
+For audit evidence, open cookie settings and click **Download consent JSON** to export a local JSON record containing consent values and timestamps.
+
 ## Jobs and Scheduled Publish
 
 We have configured [Scheduled Publish](https://payloadcms.com/docs/versions/drafts#scheduled-publish) which uses the [jobs queue](https://payloadcms.com/docs/jobs-queue/jobs) in order to publish or unpublish your content on a scheduled time. The tasks are run on a cron schedule and can also be run as a separate instance if needed.

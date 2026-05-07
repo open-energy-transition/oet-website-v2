@@ -5,6 +5,7 @@ import React from 'react'
 import type { Footer } from '@/payload-types'
 
 // import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
+import { CookieSettingsButton } from '@/components/CookieConsent'
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import RichText from '@/components/RichText'
@@ -219,6 +220,8 @@ export async function Footer() {
                   data={cookiePolicy}
                 />
               )}
+              {' / '}
+              <CookieSettingsButton className="text-heebo-small-link text-xs lg:text-sm text-white underline" />
             </div>
           </div>
           <div className="mt-8 lg:mt-0">
