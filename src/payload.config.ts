@@ -26,6 +26,7 @@ import { getServerSideURL } from './utilities/getURL'
 import { Projects } from './collections/Projects'
 import { Models } from './collections/Models'
 import { Partners } from './collections/Partners'
+import { LinkScanRuns } from './collections/LinkScanRuns'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -105,6 +106,7 @@ export default buildConfig({
     Icons,
     Outputs,
     Partners,
+    LinkScanRuns,
   ],
   cors: [getServerSideURL(), 'https://www.openenergytransition.org'].filter(Boolean),
   globals: [Header, Footer],
