@@ -12,7 +12,6 @@ export const LinkScanRuns: CollectionConfig<'link-scan-runs'> = {
   },
   admin: {
     defaultColumns: ['status', 'trigger', 'startedAt', 'finishedAt', 'totalChecked', 'totalFailed'],
-    defaultSort: '-startedAt',
     useAsTitle: 'status',
   },
   fields: [
