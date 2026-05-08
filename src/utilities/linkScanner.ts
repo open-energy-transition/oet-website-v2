@@ -215,6 +215,7 @@ export const runExternalLinkScan = async () => {
       status: 'running',
       totalChecked: 0,
       totalFailed: 0,
+      totalSucceeded: 0,
       trigger: 'cron',
     },
     overrideAccess: true,
@@ -267,19 +268,19 @@ export const runExternalLinkScan = async () => {
 
     const results = await mapWithConcurrency(collectedLinks, REQUEST_CONCURRENCY, validateLink)
     const finishedAt = new Date()
-    const totalFailed = results.filter((result) => !result.ok).length
+    const failedResults = results.filter((result) => !result.ok)
+    const totalFailed = failedResults.length
+    const totalSucceeded = results.length - totalFailed
 
     await payload.update({
       id: run.id,
       collection: 'link-scan-runs',
       data: {
         durationMs: finishedAt.getTime() - startedAt.getTime(),
-        finishedAt: finishedAt.toISOString(),
-        results: results.map((result) => ({
+        failedResults: failedResults.map((result) => ({
           durationMs: result.durationMs,
           error: result.error,
           finalUrl: result.finalUrl,
-          ok: result.ok,
           sourceCollection: result.sourceCollection,
           sourceId: result.sourceId,
           sourcePath: result.sourcePath,
@@ -287,9 +288,11 @@ export const runExternalLinkScan = async () => {
           statusCode: result.statusCode,
           url: result.url,
         })),
+        finishedAt: finishedAt.toISOString(),
         status: 'completed',
         totalChecked: results.length,
         totalFailed,
+        totalSucceeded,
       },
       overrideAccess: true,
     })
@@ -299,6 +302,7 @@ export const runExternalLinkScan = async () => {
       status: 'completed' as const,
       totalChecked: results.length,
       totalFailed,
+      totalSucceeded,
     }
   } catch (error) {
     const finishedAt = new Date()
@@ -309,11 +313,10 @@ export const runExternalLinkScan = async () => {
       collection: 'link-scan-runs',
       data: {
         durationMs: finishedAt.getTime() - startedAt.getTime(),
-        finishedAt: finishedAt.toISOString(),
-        results: [
+        failedResults: [
           {
             error: message,
-            ok: false,
+            finalUrl: undefined,
             sourceCollection: 'system',
             sourceId: 'system',
             sourcePath: 'run',
@@ -321,9 +324,11 @@ export const runExternalLinkScan = async () => {
             url: 'about:blank',
           },
         ],
+        finishedAt: finishedAt.toISOString(),
         status: 'failed',
         totalChecked: 0,
         totalFailed: 1,
+        totalSucceeded: 0,
       },
       overrideAccess: true,
     })

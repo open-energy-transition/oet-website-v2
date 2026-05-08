@@ -11,7 +11,15 @@ export const LinkScanRuns: CollectionConfig<'link-scan-runs'> = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ['status', 'trigger', 'startedAt', 'finishedAt', 'totalChecked', 'totalFailed'],
+    defaultColumns: [
+      'status',
+      'trigger',
+      'startedAt',
+      'finishedAt',
+      'totalChecked',
+      'totalSucceeded',
+      'totalFailed',
+    ],
     useAsTitle: 'status',
   },
   fields: [
@@ -80,11 +88,21 @@ export const LinkScanRuns: CollectionConfig<'link-scan-runs'> = {
       required: true,
     },
     {
-      name: 'results',
+      name: 'totalSucceeded',
+      type: 'number',
+      defaultValue: 0,
+      min: 0,
+      required: true,
+    },
+    {
+      name: 'failedResults',
       type: 'array',
+      admin: {
+        initCollapsed: true,
+      },
       labels: {
-        plural: 'Results',
-        singular: 'Result',
+        plural: 'Failed Results',
+        singular: 'Failed Result',
       },
       fields: [
         {
@@ -95,12 +113,6 @@ export const LinkScanRuns: CollectionConfig<'link-scan-runs'> = {
         {
           name: 'finalUrl',
           type: 'text',
-        },
-        {
-          name: 'ok',
-          type: 'checkbox',
-          defaultValue: false,
-          required: true,
         },
         {
           name: 'statusCode',

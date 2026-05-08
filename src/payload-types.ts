@@ -2329,11 +2329,11 @@ export interface LinkScanRun {
   durationMs?: number | null;
   totalChecked: number;
   totalFailed: number;
-  results?:
+  totalSucceeded: number;
+  failedResults?:
     | {
         url: string;
         finalUrl?: string | null;
-        ok: boolean;
         statusCode?: number | null;
         durationMs?: number | null;
         sourceCollection?: string | null;
@@ -3774,12 +3774,12 @@ export interface LinkScanRunsSelect<T extends boolean = true> {
   durationMs?: T;
   totalChecked?: T;
   totalFailed?: T;
-  results?:
+  totalSucceeded?: T;
+  failedResults?:
     | T
     | {
         url?: T;
         finalUrl?: T;
-        ok?: T;
         statusCode?: T;
         durationMs?: T;
         sourceCollection?: T;

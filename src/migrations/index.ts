@@ -280,6 +280,6 @@ export const migrations = [
   {
     up: migration_20260507_080320_add_link_scan_runs.up,
     down: migration_20260507_080320_add_link_scan_runs.down,
-    name: '20260507_080320_add_link_scan_runs'
+    name: '20260507_080320_add_link_scan_runs',
   },
 ];
