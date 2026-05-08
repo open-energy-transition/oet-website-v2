@@ -90,12 +90,13 @@ const CustomNav: React.FC = () => {
     { label: '🖼️ Media', href: '/admin/collections/media' },
     { label: '👤 User', href: '/admin/collections/users' },
     { label: '👥 Team Members', href: '/admin/collections/team-members' },
-    { label: '🗂️ Staff Categories', href: '/admin/collections/staff' },
+    { label: '🗂️ Staff Categories', href: '/admin/collections/staff-categories' },
     { label: '📊 Departments', href: '/admin/collections/departments' },
     { label: '💬 Customer Testimonials', href: '/admin/collections/testimonials' },
     { label: '🖌️ Icons', href: '/admin/collections/icons' },
     { label: '📤 Outputs', href: '/admin/collections/outputs' },
     { label: '🤝 Partners', href: '/admin/collections/partners' },
+    { label: '🔗 Link Scan Runs', href: '/admin/collections/link-scan-runs' },
   ]
 
   const globalItems = [
