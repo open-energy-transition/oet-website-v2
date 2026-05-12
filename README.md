@@ -74,6 +74,23 @@ After you click the `Deploy` button above, you'll want to have standalone copy o
 
 That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
 
+### Consent manager (Klaro) + GTM
+
+Klaro is initialized client-side from the `klaro` npm package (no CDN script tags). GTM is injected only after consent is granted for the Klaro GTM service.
+
+Environment variables:
+
+- `NEXT_PUBLIC_GTM_ID` - GTM container ID (for example `GTM-XXXXXXX`)
+- `NEXT_PUBLIC_KLARO_DEBUG` - set to `true` to log Klaro lifecycle + GTM injection events in DevTools
+
+Manual verification:
+
+1. Clear cookies/localStorage for the site (or open in an incognito window).
+2. Load the site and confirm the Klaro consent notice/modal appears.
+3. In DevTools Network, verify `https://www.googletagmanager.com/gtm.js` is **not** requested before consent.
+4. Accept analytics/marketing consent in Klaro.
+5. Confirm `gtm.js` is requested only after consent and `window.dataLayer` contains an initial `consent_granted` event.
+
 #### Docker (Optional)
 
 If you prefer to use Docker for local development instead of a local Postgres instance, the provided docker-compose.yml file can be used.

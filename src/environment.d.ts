@@ -4,7 +4,9 @@ declare global {
       PAYLOAD_SECRET: string
       DATABASE_URI: string
       NEXT_PUBLIC_SERVER_URL: string
-      NEXT_PUBLIC_GOOGLE_TAG_ID: string
+      NEXT_PUBLIC_GOOGLE_TAG_ID?: string
+      NEXT_PUBLIC_GTM_ID?: string
+      NEXT_PUBLIC_KLARO_DEBUG?: string
       VERCEL_PROJECT_PRODUCTION_URL: string
     }
   }
