@@ -46,7 +46,6 @@ export const HeaderNav: React.FC<{
                             : link.url || '#'
 
                         const isActive = pathname === href
-
                         return (
                           <div
                             className={cn(
