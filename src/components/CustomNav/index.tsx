@@ -97,6 +97,7 @@ const CustomNav: React.FC = () => {
     { label: '📤 Outputs', href: '/admin/collections/outputs' },
     { label: '🤝 Partners', href: '/admin/collections/partners' },
     { label: '🔗 Link Scan Runs', href: '/admin/collections/link-scan-runs' },
+    { label: '🔀 Redirects', href: '/admin/collections/redirects' },
   ]
 
   const globalItems = [
