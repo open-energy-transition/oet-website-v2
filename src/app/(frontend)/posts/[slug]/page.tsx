@@ -107,7 +107,7 @@ export default async function Post({ params: paramsPromise }: Args) {
                         DOI
                       </h3>
                       <a
-                        href={`https://doi.org/${post.doi}`}
+                        href={post.doi}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-gray-900 font-medium transition-colors"

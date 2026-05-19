@@ -134,7 +134,7 @@ export const Posts: CollectionConfig<'posts'> = {
               type: 'text',
               admin: {
                 description:
-                  'Digital Object Identifier for the post. Example: 10.1038/nphys1170 (Link: https://doi.org/10.1038/nphys1170)',
+                  'Digital Object Identifier for the post. Example: https://doi.org/10.1038/nphys1170)',
               },
               required: false,
             },
