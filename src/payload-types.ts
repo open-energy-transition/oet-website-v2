@@ -82,6 +82,7 @@ export interface Config {
     icons: Icon;
     outputs: Output;
     partners: Partner;
+    'link-scan-runs': LinkScanRun;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -108,6 +109,7 @@ export interface Config {
     icons: IconsSelect<false> | IconsSelect<true>;
     outputs: OutputsSelect<false> | OutputsSelect<true>;
     partners: PartnersSelect<false> | PartnersSelect<true>;
+    'link-scan-runs': LinkScanRunsSelect<false> | LinkScanRunsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -2316,6 +2318,37 @@ export interface Output {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "link-scan-runs".
+ */
+export interface LinkScanRun {
+  id: number;
+  status: 'running' | 'completed' | 'failed';
+  trigger: 'cron' | 'manual';
+  startedAt: string;
+  finishedAt?: string | null;
+  durationMs?: number | null;
+  totalChecked: number;
+  totalFailed: number;
+  totalSucceeded: number;
+  failedResults?:
+    | {
+        url: string;
+        finalUrl?: string | null;
+        statusCode?: number | null;
+        durationMs?: number | null;
+        sourceCollection?: string | null;
+        sourceId?: string | null;
+        sourceTitle?: string | null;
+        sourcePath?: string | null;
+        error?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -2546,6 +2579,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'partners';
         value: number | Partner;
+      } | null)
+    | ({
+        relationTo: 'link-scan-runs';
+        value: number | LinkScanRun;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -3722,6 +3759,36 @@ export interface PartnersSelect<T extends boolean = true> {
   logo?: T;
   website?: T;
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "link-scan-runs_select".
+ */
+export interface LinkScanRunsSelect<T extends boolean = true> {
+  status?: T;
+  trigger?: T;
+  startedAt?: T;
+  finishedAt?: T;
+  durationMs?: T;
+  totalChecked?: T;
+  totalFailed?: T;
+  totalSucceeded?: T;
+  failedResults?:
+    | T
+    | {
+        url?: T;
+        finalUrl?: T;
+        statusCode?: T;
+        durationMs?: T;
+        sourceCollection?: T;
+        sourceId?: T;
+        sourceTitle?: T;
+        sourcePath?: T;
+        error?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
