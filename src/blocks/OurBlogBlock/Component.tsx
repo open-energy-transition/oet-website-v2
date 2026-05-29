@@ -285,12 +285,12 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
                     </div>
                   )}
                   {post.pDate ? (
-                    <div className='className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray"'>
+                    <div className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray">
                       {post.pDate ||
                         (post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : '')}
                     </div>
                   ) : (
-                    <div className='className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray"'>
+                    <div className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray">
                       {post.publishedAt ? formatDateTimeVerbose(new Date(post.publishedAt)) : ''}
                     </div>
                   )}
@@ -362,6 +362,15 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
                             {category.title}
                           </Link>
                         ))}
+                    </div>
+                  )}
+                  {post.pDate ? (
+                    <div className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray">
+                      {post.pDate}
+                    </div>
+                  ) : (
+                    <div className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray">
+                      {post.publishedAt ? formatDateTimeVerbose(new Date(post.publishedAt)) : ''}
                     </div>
                   )}
                 </div>
