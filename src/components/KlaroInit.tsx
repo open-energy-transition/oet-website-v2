@@ -1,6 +1,6 @@
 'use client'
 
-import { injectGtm } from '@/lib/gtm'
+import { injectGtm, revokeGtmConsent } from '@/lib/gtm'
 import { useEffect, useRef } from 'react'
 
 type KlaroInitProps = {
@@ -72,7 +72,13 @@ export default function KlaroInit({ gtmId, debug }: KlaroInitProps) {
     const onConsentChanged = (consent: boolean, service: KlaroService) => {
       log('Consent changed.', { service: service?.name, consent })
 
-      if (!consent || service?.name !== GTM_SERVICE_NAME) {
+      if (service?.name !== GTM_SERVICE_NAME) {
+        return
+      }
+
+      if (!consent) {
+        revokeGtmConsent({ debug: debugMode })
+        log('GTM consent revoked.')
         return
       }
 
@@ -81,7 +87,10 @@ export default function KlaroInit({ gtmId, debug }: KlaroInitProps) {
         return
       }
 
-      const injected = injectGtm(gtmId, { debug: debugMode })
+      const injected = injectGtm(gtmId, {
+        debug: debugMode,
+        consent: { analytics: true, marketing: true },
+      })
       log(injected ? 'GTM script injected.' : 'GTM script already present.')
     }
 

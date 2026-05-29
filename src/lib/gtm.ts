@@ -83,3 +83,37 @@ export const injectGtm = (gtmId: string, options: InjectGtmOptions = {}): boolea
 
   return true
 }
+
+type RevokeGtmConsentOptions = {
+  debug?: boolean
+  dataLayerName?: string
+}
+
+export const revokeGtmConsent = (options: RevokeGtmConsentOptions = {}): void => {
+  if (typeof window === 'undefined') return
+
+  const debug = options.debug === true
+  const dataLayerName = options.dataLayerName || 'dataLayer'
+  const windowWithDataLayer = window as unknown as Window & Record<string, unknown>
+  const dataLayer = ((windowWithDataLayer[dataLayerName] as unknown[]) || []) as unknown[]
+  windowWithDataLayer[dataLayerName] = dataLayer
+
+  dataLayer.push({
+    event: 'consent_revoked',
+    source: 'klaro',
+    revokedAt: new Date().toISOString(),
+  })
+
+  // Use GTM's Consent API to deny further data collection immediately,
+  // without requiring a page reload.
+  dataLayer.push('consent', 'update', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  })
+
+  if (debug) {
+    console.debug('[GTM] Consent revoked. Denied state pushed to dataLayer.', { dataLayerName })
+  }
+}

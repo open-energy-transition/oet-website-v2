@@ -96,10 +96,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
-        <KlaroInit
-          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_ID}
-          debug={process.env.NEXT_PUBLIC_KLARO_DEBUG === 'true'}
-        />
+        {process.env.NEXT_PUBLIC_GOOGLE_TAG_ID && (
+          <KlaroInit
+            gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_ID}
+            debug={process.env.NEXT_PUBLIC_KLARO_DEBUG === 'true'}
+          />
+        )}
         <Providers>
           <AdminBar
             adminBarProps={{
