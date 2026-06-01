@@ -104,15 +104,6 @@ export const revokeGtmConsent = (options: RevokeGtmConsentOptions = {}): void =>
     revokedAt: new Date().toISOString(),
   })
 
-  // Use GTM's Consent API to deny further data collection immediately,
-  // without requiring a page reload.
-  dataLayer.push('consent', 'update', {
-    ad_storage: 'denied',
-    analytics_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-  })
-
   if (debug) {
     console.debug('[GTM] Consent revoked. Denied state pushed to dataLayer.', { dataLayerName })
   }
