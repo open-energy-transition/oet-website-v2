@@ -386,7 +386,7 @@ export interface Post {
     [k: string]: unknown;
   } | null;
   /**
-   * Digital Object Identifier for the post. Example: 10.1038/nphys1170 (Link: https://doi.org/10.1038/nphys1170)
+   * Digital Object Identifier for the post. Example: https://doi.org/10.1038/nphys1170)
    */
   doi?: string | null;
   academic_publications_count?: number | null;
