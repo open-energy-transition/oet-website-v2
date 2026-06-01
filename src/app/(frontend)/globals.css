@@ -304,6 +304,36 @@ html[data-theme='light'] {
   fill: white
 }
 
+.tabs-nav-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tabs-nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.footer-icon {
+  transition: transform 0.2s ease;
+}
+
+.footer-icon-link {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-icon-link:hover {
+  background-color: #ffffff !important;
+}
+
+.footer-icon-link:hover .footer-icon svg path {
+  fill: #E31937;
+}
+
+.footer-icon-link:hover .footer-icon {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
+
 @media print {
   header,
   footer,
