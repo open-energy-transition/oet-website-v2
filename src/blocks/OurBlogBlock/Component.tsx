@@ -5,6 +5,7 @@ import type { Post, Category } from '@/payload-types'
 import { Media } from '@/components/Media'
 import Link from 'next/link'
 import { cn } from '@/utilities/ui'
+import { formatDateTimeVerbose } from '@/utilities/formatDateTime'
 
 interface OurBlogClientProps {
   title?: string | null
@@ -73,7 +74,6 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
         })
       })
     }
-
     // Sort based on selected sort option
     return [...filtered].sort((a, b) => {
       switch (sortBy) {
@@ -104,7 +104,6 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
       }
     })
   }, [activeTab, posts, sortBy])
-
   return (
     <div className="container -my-8 lg:my-0">
       {/* Title and Description */}
@@ -206,7 +205,6 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
               />
             </svg>
           </button>
-
           {showSortDropdown && (
             <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl overflow-hidden shadow-lg z-10">
               <button
@@ -286,6 +284,16 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
                         ))}
                     </div>
                   )}
+                  {post.pDate ? (
+                    <div className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray">
+                      {post.pDate ||
+                        (post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : '')}
+                    </div>
+                  ) : (
+                    <div className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray">
+                      {post.publishedAt ? formatDateTimeVerbose(new Date(post.publishedAt)) : ''}
+                    </div>
+                  )}
                 </div>
                 <div className="flex text-gray-black-400 dark:text-white text-base mb-4">
                   {post.pDate ? <div>{post.pDate}</div> : <></>}
@@ -308,7 +316,6 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
                   )}
                   {post.minRead ? <div>{post.minRead}</div> : <></>}
                 </div>
-
                 <Link
                   href={`/posts/${post.slug}`}
                   className="text-2xl font-medium mb-1 customTextState-size-h8 text-gray-black-500 min-h-[40px] overflow-hidden line-clamp-3 text-ellipsis dark:!text-white"
@@ -355,6 +362,15 @@ export const OurBlogClient: React.FC<OurBlogClientProps> = ({
                             {category.title}
                           </Link>
                         ))}
+                    </div>
+                  )}
+                  {post.pDate ? (
+                    <div className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray">
+                      {post.pDate}
+                    </div>
+                  ) : (
+                    <div className="inline-block px-3 mt-2 py-1.5 text-gray-black-500 rounded-xl dark:!text-white bg-[#ECEFF3] dark:bg-transparent transition-colors dark:border dark:border-dark-blue-gray">
+                      {post.publishedAt ? formatDateTimeVerbose(new Date(post.publishedAt)) : ''}
                     </div>
                   )}
                 </div>

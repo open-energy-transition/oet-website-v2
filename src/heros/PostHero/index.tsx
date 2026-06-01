@@ -1,4 +1,4 @@
-import { formatDateTime } from 'src/utilities/formatDateTime'
+import { formatDateTimeVerbose } from 'src/utilities/formatDateTime'
 import React from 'react'
 import Image from 'next/image'
 
@@ -8,8 +8,7 @@ import { formatAuthors } from '@/utilities/formatAuthors'
 export const PostHero: React.FC<{
   post: Post
 }> = ({ post }) => {
-  const { categories, heroImage, populatedAuthors, publishedAt, title } = post
-
+  const { categories, heroImage, populatedAuthors, publishedAt, title, pDate } = post
   const hasAuthors =
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
 
@@ -38,9 +37,9 @@ export const PostHero: React.FC<{
 
               <time
                 dateTime={publishedAt}
-                className="text-white dark:text-gray-100 transition-colors duration-300"
+                className="dark:text-gray-100 transition-colors duration-300"
               >
-                {formatDateTime(publishedAt)}
+                {pDate ? pDate : formatDateTimeVerbose(new Date(publishedAt))}
               </time>
             </div>
           )}
