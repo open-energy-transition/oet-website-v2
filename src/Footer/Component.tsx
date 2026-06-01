@@ -130,7 +130,7 @@ export async function Footer() {
         </div>
         <div className="lg:w-1/4 lg:pl-4 mt-12 lg:mt-0">
           <div>
-            <div className="font-bold text-xl">
+            <div className="font-bold md:text-sm lg:text-base xl:text-xl">
               <div className="text-sm -mt-2.5 font-medium">{followUs?.title || ''}</div>
               <a href={`mailto:${followUs?.description || ''}`}>{followUs?.description || ''}</a>
             </div>
