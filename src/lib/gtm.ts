@@ -90,7 +90,7 @@ type RevokeGtmConsentOptions = {
 }
 
 export const revokeGtmConsent = (options: RevokeGtmConsentOptions = {}): void => {
-  if (typeof window === 'undefined') return
+  if (typeof window === 'undefined' || typeof document === 'undefined') return
 
   const debug = options.debug === true
   const dataLayerName = options.dataLayerName || 'dataLayer'
@@ -98,13 +98,24 @@ export const revokeGtmConsent = (options: RevokeGtmConsentOptions = {}): void =>
   const dataLayer = ((windowWithDataLayer[dataLayerName] as unknown[]) || []) as unknown[]
   windowWithDataLayer[dataLayerName] = dataLayer
 
+  // Push consent revocation using GTM Consent Mode API format
   dataLayer.push({
     event: 'consent_revoked',
     source: 'klaro',
     revokedAt: new Date().toISOString(),
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
   })
 
+  // Remove injected GTM script(s) matching this dataLayer from the DOM
+  const injectedScripts = document.querySelectorAll<HTMLScriptElement>(
+    `script[${GTM_SCRIPT_ATTRIBUTE}][data-layer-name="${dataLayerName}"]`,
+  )
+  injectedScripts.forEach((s) => s.parentNode?.removeChild(s))
+
   if (debug) {
-    console.debug('[GTM] Consent revoked. Denied state pushed to dataLayer.', { dataLayerName })
+    console.debug('[GTM] Consent revoked. Denied state pushed to dataLayer and script removed.', {
+      dataLayerName,
+    })
   }
 }

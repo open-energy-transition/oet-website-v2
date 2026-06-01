@@ -77,8 +77,16 @@ export default function KlaroInit({ gtmId, debug }: KlaroInitProps) {
       }
 
       if (!consent) {
+        // Only reload if GTM script is actually running in the DOM.
+        // Without this check, every page load with denied consent would trigger
+        // an infinite reload loop.
+        const gtmScriptPresent = !!document.querySelector('script[data-gtm-injected-by]')
         revokeGtmConsent({ debug: debugMode })
         log('GTM consent revoked.')
+        if (gtmScriptPresent) {
+          log('GTM was active — reloading page to fully unload it.')
+          window.location.reload()
+        }
         return
       }
 
@@ -135,7 +143,6 @@ export default function KlaroInit({ gtmId, debug }: KlaroInitProps) {
       try {
         await import('klaro/dist/klaro.css')
         const style = document.createElement('style')
-        style.textContent = '.cm-btn-accept:not(.cm-btn-accept-all) { display: none !important; }'
         document.head.appendChild(style)
         log('Klaro CSS loaded.')
 
@@ -145,6 +152,7 @@ export default function KlaroInit({ gtmId, debug }: KlaroInitProps) {
         log('Klaro module loaded.')
 
         klaroImported.setup(klaroConfig)
+        ;(window as any).klaro = klaroImported
         log('Klaro initialized.')
 
         const manager = klaroImported.getManager(klaroConfig)

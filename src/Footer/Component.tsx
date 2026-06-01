@@ -8,7 +8,7 @@ import type { Footer } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import RichText from '@/components/RichText'
-import { LogoMobile } from '@/components/Logo/LogoMobile'
+import { CookieSettingsButton } from '@/components/CookieSettingsButton'
 
 function splitActionName(name?: string): [string, string] {
   if (!name) return ['', '']
@@ -219,6 +219,8 @@ export async function Footer() {
                   data={cookiePolicy}
                 />
               )}
+              /
+              <CookieSettingsButton />
             </div>
           </div>
           <div className="mt-8 lg:mt-0">
