@@ -14,7 +14,21 @@ const colorClassMap: Record<string, string> = {
   gray: 'bg-gray-400 text-black dark:bg-transparent dark:text-white',
 }
 
-export const ButtonBlock: React.FC<CTABlockProps> = ({ link, color = 'default', icon, size }) => {
+const spacingClassMap: Record<string, string> = {
+  none: 'my-0',
+  sm: 'my-4',
+  md: 'my-8',
+  lg: 'my-12',
+  xl: 'my-16',
+}
+
+export const ButtonBlock: React.FC<CTABlockProps> = ({
+  link,
+  color = 'default',
+  icon,
+  size,
+  spacing = 'none',
+}) => {
   const colorClass = colorClassMap[color || 'default'] || colorClassMap.default
   const iconSvg = (icon as Icon)?.svg || null
   const sizeClass =
@@ -36,8 +50,10 @@ export const ButtonBlock: React.FC<CTABlockProps> = ({ link, color = 'default', 
         return ''
     }
   }
+  const spacingClass = spacingClassMap[spacing || 'md'] || spacingClassMap.md
+
   return (
-    <div>
+    <div className={spacingClass}>
       <div>
         <div className={getPosClass()}>
           {link && (

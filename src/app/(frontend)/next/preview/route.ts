@@ -9,9 +9,11 @@ import configPromise from '@payload-config'
 export async function GET(
   req: {
     cookies: {
-      get: (name: string) => {
-        value: string
-      }
+      get: (name: string) =>
+        | {
+            value: string
+          }
+        | undefined
     }
   } & Request,
 ): Promise<Response> {
