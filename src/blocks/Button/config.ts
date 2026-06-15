@@ -85,6 +85,24 @@ export const Button: Block = {
       },
     },
     {
+      name: 'spacing',
+      label: 'Button Spacing',
+      type: 'select',
+      options: [
+        { label: 'None', value: 'none' },
+        { label: 'Small', value: 'sm' },
+        { label: 'Medium', value: 'md' },
+        { label: 'Large', value: 'lg' },
+        { label: 'Extra Large', value: 'xl' },
+      ],
+      defaultValue: 'none',
+      required: false,
+      admin: {
+        description:
+          'Add vertical margin around the button (maps to Tailwind my-* classes, based on rem)',
+      },
+    },
+    {
       name: 'icon',
       label: 'Button Icon',
       relationTo: 'icons',
