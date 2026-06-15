@@ -6,7 +6,6 @@ settings:
 
 overrides:
   esbuild: 0.28.0
-  js-cookie: 3.0.8
   postcss: 8.5.15
   yaml: 2.8.3
   undici: 7.24.0
@@ -3993,8 +3992,8 @@ packages:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
     engines: {node: '>=10'}
 
-  js-cookie@3.0.8:
-    resolution: {integrity: sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw==}
+  js-cookie@2.2.1:
+    resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -8784,7 +8783,7 @@ snapshots:
       buffer: 4.9.2
       fast-base64-decode: 1.0.0
       isomorphic-unfetch: 3.1.0
-      js-cookie: 3.0.8
+      js-cookie: 2.2.1
     transitivePeerDependencies:
       - encoding
 
@@ -10278,7 +10277,7 @@ snapshots:
 
   joycon@3.1.1: {}
 
-  js-cookie@3.0.8: {}
+  js-cookie@2.2.1: {}
 
   js-tokens@4.0.0: {}
 

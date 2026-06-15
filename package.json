@@ -106,7 +106,6 @@
     ],
     "overrides": {
       "esbuild": "0.28.0",
-      "js-cookie": "3.0.8",
       "postcss": "8.5.15",
       "yaml": "2.8.3",
       "undici": "7.24.0",
