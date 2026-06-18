@@ -123,7 +123,7 @@ export const ProjectDetail: React.FC<{ project: Project }> = ({ project }) => {
         {project.partners && Array.isArray(project.partners) && project.partners.length > 0 && (
           <div className="mb-8">
             <h3 className="text-lg font-semibold text-gray-900 mb-3 dark:text-white">Partners</h3>
-            <div className="flex flex-wrap gap-6">
+            <div className="flex flex-wrap gap-6 items-center">
               {project.partners.map((partner) => {
                 if (typeof partner === 'number') return null
                 const logoUrl =
