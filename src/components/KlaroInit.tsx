@@ -12,6 +12,8 @@ type KlaroService = {
   name: string
 }
 
+type KlaroPurpose = 'necessary' | 'analytics' | 'marketing'
+
 type KlaroConfig = {
   version: number
   elementID: string
@@ -24,7 +26,7 @@ type KlaroConfig = {
   services: Array<{
     name: string
     title: string
-    purposes: string[]
+    purposes: KlaroPurpose[]
     default: boolean
     required: boolean
     onlyOnce: boolean
@@ -39,7 +41,10 @@ type KlaroConfig = {
       consentNotice: {
         description: string
         learnMore: string
+        changeDescription: string
       }
+      purposes: Record<KlaroPurpose, string>
+      purposeDescriptions?: Record<KlaroPurpose, string>
     }
   }
 }
@@ -106,16 +111,28 @@ export default function KlaroInit({ gtmId, debug }: KlaroInitProps) {
       version: 1,
       elementID: 'klaro',
       storageName: 'klaro',
-      mustConsent: true,
+      mustConsent: false,
       acceptAll: true,
       hideDeclineAll: false,
-      groupByPurpose: false,
+      groupByPurpose: true,
       noAutoLoad: false,
+      htmlTexts: true,
       services: [
+        {
+          name: 'necessary',
+          title: 'Necessary Technologies',
+          purposes: ['necessary'],
+          default: true,
+          required: true,
+          onlyOnce: false,
+          callback: () => {
+            log('Necessary technologies consent — always active.')
+          },
+        },
         {
           name: GTM_SERVICE_NAME,
           title: 'Google Tag Manager',
-          purposes: ['functional'],
+          purposes: ['analytics', 'marketing'],
           default: false,
           required: false,
           onlyOnce: true,
@@ -125,13 +142,43 @@ export default function KlaroInit({ gtmId, debug }: KlaroInitProps) {
       translations: {
         en: {
           consentModal: {
-            title: 'Privacy preferences',
-            description: 'You can choose whether Google Tag Manager is allowed on this website.',
+            title: 'May we offer you a cookie?',
+            description: `
+<p>We use cookies and similar technologies on our website.</p>
+<p><strong>Necessary technologies</strong> are required to provide the website, ensure its basic functions, remember your privacy settings, maintain security, and display the website correctly.</p>
+<p>With your consent, we use <strong>analytics technologies</strong> to understand how visitors use our website, and <strong>marketing technologies</strong> to evaluate conversions and advertising.</p>
+<p>Personal data, such as online identifiers, usage data, and device information, may be processed by us and by third-party providers, including Google Ireland Limited. Data may also be transferred to countries outside the European Union or the European Economic Area where an adequacy decision applies or appropriate safeguards are in place.</p>
+<p>The legal basis for processing personal data is Section 25 TDDDG and Article 6(1) GDPR.</p>
+<p>You can change or withdraw your consent at any time, with effect for the future, via the privacy settings link in the footer of this website.</p>
+<p><a href="#" class="klaro-privacy-notice-link" onclick="event.preventDefault(); var k=window.klaro; if(k&&k.show){k.show(window.klaroConfig)}">Read privacy notice</a></p>
+            `.trim(),
           },
           consentNotice: {
-            description:
-              'We use Google Tag Manager to improve our website. You can manage your preferences at any time.',
+            description: `
+              <p><b>May we offer you a cookie?</b></p>
+              <p>We use cookies and similar technologies on our website.</p>
+              <p>Necessary technologies are required to provide the website, ensure its basic functions, remember your privacy settings, maintain security, and display the website correctly.</p>
+              <p>With your consent, we use analytics technologies to understand how visitors use our website, and marketing technologies to evaluate conversions and advertising.</p>
+              <p>Personal data, such as online identifiers, usage data, and device information, may be processed by us and by third-party providers, including Google Ireland Limited. Data may also be transferred to countries outside the European Union or the European Economic Area where an adequacy decision applies or appropriate safeguards are in place.</p>
+              <p>The legal basis for processing personal data is Section 25 TDDDG and Article 6(1) GDPR.</p>
+              <p>You can change or withdraw your consent at any time, with effect for the future, via the privacy settings link in the footer of this website.</p>
+              <p><a href="/privacy-statement" class="klaro-privacy-notice-link" onclick="event.preventDefault(); var k=window.klaro; if(k&&k.show){k.show(window.klaroConfig)}">Read privacy notice</a></p>
+              `,
             learnMore: 'Manage preferences',
+            changeDescription: '.',
+          },
+          purposes: {
+            necessary: 'Necessary',
+            analytics: 'Analytics',
+            marketing: 'Marketing',
+          },
+          purposeDescriptions: {
+            necessary:
+              'Necessary technologies are required to provide the website, ensure its basic functions, remember your privacy settings, maintain security, and display the website correctly.',
+            analytics:
+              'Analytics technologies help us understand how visitors use our website, enabling us to improve our content and user experience.',
+            marketing:
+              'Marketing technologies help us evaluate conversions and advertising to deliver relevant content.',
           },
         },
       },
@@ -143,6 +190,64 @@ export default function KlaroInit({ gtmId, debug }: KlaroInitProps) {
       try {
         await import('klaro/dist/klaro.css')
         const style = document.createElement('style')
+        style.textContent = `
+          #klaro .klaro .cookie-modal,
+          #klaro .klaro .cookie-notice {
+            font-family: inherit;
+          }
+          #klaro .klaro .cookie-modal .cm-btn.cm-btn-success,
+          #klaro .klaro .cookie-notice .cn-btn.cm-btn-success {
+            background: #d8262e;
+            color: #fff;
+          }
+          #klaro .klaro .cookie-modal .cm-btn.cm-btn-success-all,
+          #klaro .klaro .cookie-notice .cn-btn.cm-btn-success-all {
+            background: #d8262e;
+            color: #fff;
+          }
+          #klaro .klaro .cookie-modal .cm-btn.cm-btn-success-all:hover,
+          #klaro .klaro .cookie-modal .cm-btn.cm-btn-success:hover,
+          #klaro .klaro .cookie-notice .cn-btn.cm-btn-success:hover {
+            background: #b01e25;
+          }
+          #klaro .klaro .cookie-modal .cm-btn.cm-btn-info,
+          #klaro .klaro .cookie-notice .cn-btn.cm-btn-info {
+            background: #6c757d;
+            color: #fff;
+          }
+          #klaro .klaro .cookie-modal .cm-btn.cm-btn-danger,
+          #klaro .klaro .cookie-notice .cn-btn.cm-btn-danger {
+            background: #6c757d;
+            color: #fff;
+          }
+          #klaro .klaro .cm-toggle {
+            background: #ccc;
+          }
+          #klaro .klaro .cm-toggle[aria-checked="true"] {
+            background: #d8262e;
+          }
+          #klaro .klaro .cm-list-input:checked + .cm-list-label .cm-list-label-required {
+            background: #d8262e;
+          }
+          #klaro .klaro .cookie-modal a,
+          #klaro .klaro .cookie-notice a {
+            color: #d8262e;
+          }
+          #klaro .klaro .cookie-modal a:hover,
+          #klaro .klaro .cookie-notice a:hover {
+            color: #b01e25;
+          }
+          #klaro .klaro .cookie-modal .cm-list-input:checked + .cm-list-label .slider {
+            background-color: #d8262e;
+          }
+          #klaro .klaro .cookie-modal .cm-list-label .slider,
+          #klaro .klaro .cookie-notice .slider {
+            background-color: #ccc;
+          }
+          #klaro .klaro .cookie-modal .cm-app-title {
+            color: #d8262e;
+          }
+        `
         document.head.appendChild(style)
         log('Klaro CSS loaded.')
 
