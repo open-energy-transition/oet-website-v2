@@ -151,7 +151,7 @@ export async function Footer() {
                               <div className="flex">
                                 <a
                                   href={action.link}
-                                  className="bg-black size-10 bg-dark rounded-[0.375rem] flex items-center justify-center mb-0 me-3"
+                                  className="bg-black size-10 bg-dark rounded-[0.375rem] flex items-center justify-center mb-0 me-3 footer-icon-link"
                                 >
                                   <span
                                     className="text-white inline-block footer-icon"

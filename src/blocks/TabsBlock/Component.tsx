@@ -282,7 +282,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
           className={cn('flex', currentStyle.nav, {
             'flex-col space-y-1 mr-6 min-w-48': tabPosition === 'left',
             'flex-col space-y-1 ml-6 min-w-48 order-2': tabPosition === 'right',
-            'flex-col lg:flex-row gap-6': tabPosition === 'top',
+            'flex-row overflow-x-auto gap-6 pb-1 tabs-nav-scroll': tabPosition === 'top',
           })}
         >
           {tabs.map((tab, index) => (
@@ -297,7 +297,7 @@ export const TabsBlock: React.FC<TabsBlockProps> = (props) => {
                 }
               }}
               className={cn(
-                'transition-colors duration-200 leading-none font-heebo',
+                'transition-colors duration-200 leading-none font-heebo shrink-0',
                 mapTitleSizes(tab.titleSize as string),
                 currentStyle.tab,
                 {
