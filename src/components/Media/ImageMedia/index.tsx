@@ -10,6 +10,7 @@ import type { Props as MediaProps } from '../types'
 
 import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
+import { getClientSideURL } from '@/utilities/getURL'
 
 const { breakpoints } = cssVariables
 
@@ -47,9 +48,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     imageKey = resource.updatedAt
 
     src = getMediaUrl(url)
-    isSameOrigin =
-      typeof src === 'string' &&
-      (src.startsWith('http://localhost') || src.startsWith('http://127.0.0.1'))
+    isSameOrigin = typeof src === 'string' && src.startsWith(getClientSideURL())
   }
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
