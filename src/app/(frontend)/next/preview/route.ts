@@ -1,20 +1,13 @@
 import type { CollectionSlug, PayloadRequest } from 'payload'
 import { getPayload } from 'payload'
+import type { NextRequest } from 'next/server'
 
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import configPromise from '@payload-config'
 
-export async function GET(
-  req: {
-    cookies: {
-      get: (name: string) => {
-        value: string
-      }
-    }
-  } & Request,
-): Promise<Response> {
+export async function GET(req: NextRequest): Promise<Response> {
   const payload = await getPayload({ config: configPromise })
 
   const { searchParams } = new URL(req.url)
@@ -40,7 +33,10 @@ export async function GET(
 
   try {
     user = await payload.auth({
-      req: req as unknown as PayloadRequest,
+      req: {
+        headers: req.headers,
+        cookies: { get: (name: string) => req.cookies.get(name) },
+      } as unknown as PayloadRequest,
       headers: req.headers,
     })
   } catch (error) {
