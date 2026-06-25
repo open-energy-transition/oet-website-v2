@@ -11,11 +11,14 @@ export const ProjectCard: React.FC<{
   return (
     <div className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border-dark-blue-gray">
       {imageUrl && (
-        <Media
-          resource={imageUrl}
-          className="dark:border-t dark:border-dark-blue-gray object-cover w-full h-[217px] rounded-xl overflow-hidden"
-          imgClassName="rounded-xl"
-        />
+        <div className="group relative w-full h-[217px] overflow-hidden rounded-xl">
+          <Media
+            resource={imageUrl}
+            className="dark:border-t dark:border-dark-blue-gray object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-110"
+            imgClassName="rounded-xl"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 rounded-xl" />
+        </div>
       )}
       <div className="p-6 w-full">
         <h3 className="font-semibold text-lg mb-1 customTextState-size-h8 text-gray-black-400 min-h-[60px] max-h-[60px] overflow-hidden line-clamp-3 text-ellipsis">
