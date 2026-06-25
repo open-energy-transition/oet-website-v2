@@ -181,7 +181,7 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
       <div className="container mx-auto px-4 -my-4 lg:py-12">
         {introContent && (
           <div className="mb-8">
-            <RichText data={introContent} />
+            <RichText data={introContent as any} />
           </div>
         )}
         <ProjectGrid projects={allProjects} displayOptions={displayOptions} />
@@ -199,7 +199,7 @@ export const ProjectTabsClient: React.FC<ProjectTabsClientProps> = ({
         )}
         {introContent && (
           <div className="text-heebo-medium-normal text-[#777980] dark:text-gray-300 lg:w-1/2">
-            <RichText enableGutter={false} enableProse={false} data={introContent} />
+            <RichText enableGutter={false} enableProse={false} data={introContent as any} />
           </div>
         )}
       </div>

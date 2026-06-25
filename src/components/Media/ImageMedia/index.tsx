@@ -10,6 +10,7 @@ import type { Props as MediaProps } from '../types'
 
 import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
+import { getClientSideURL } from '@/utilities/getURL'
 
 const { breakpoints } = cssVariables
 
@@ -34,6 +35,8 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   let height: number | undefined
   let alt = altFromProps
   let src: StaticImageData | string = srcFromProps || ''
+  let imageKey: string | undefined
+  let isSameOrigin = false
 
   if (!src && resource && typeof resource === 'object') {
     const { alt: altFromResource, height: fullHeight, url, width: fullWidth } = resource
@@ -42,9 +45,10 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     height = fullHeight!
     alt = altFromResource || ''
 
-    const cacheTag = resource.updatedAt
+    imageKey = resource.updatedAt
 
-    src = getMediaUrl(url, cacheTag)
+    src = getMediaUrl(url)
+    isSameOrigin = typeof src === 'string' && src.startsWith(getClientSideURL())
   }
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
@@ -59,6 +63,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   return (
     <picture className={cn(pictureClassName)}>
       <NextImage
+        key={imageKey}
         alt={alt || ''}
         className={cn(imgClassName)}
         fill={fill}
@@ -71,6 +76,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         sizes={sizes}
         src={src}
         width={!fill ? width : undefined}
+        unoptimized={isSameOrigin}
       />
     </picture>
   )

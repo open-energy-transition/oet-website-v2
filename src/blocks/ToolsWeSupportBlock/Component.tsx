@@ -1,9 +1,16 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
 import type { Model, ToolsWeSupportBlock as ToolsWeSupportBlockProps } from '@/payload-types'
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 import Link from 'next/link'
 import { Media } from '@/components/Media'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
   title,
@@ -12,9 +19,60 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
   link,
   media,
 }) => {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const cardsGridRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate header section (title, description, CTA, media)
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          },
+        )
+      }
+
+      // Animate service cards staggered
+      if (cardsGridRef.current) {
+        gsap.fromTo(
+          cardsGridRef.current.children,
+          { y: 50, opacity: 0, scale: 0.95 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: cardsGridRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          },
+        )
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [services])
+
   return (
-    <div className="container lg:py-4">
-      <div className="flex flex-col lg:flex-row justify-between lg:gap-12">
+    <div ref={sectionRef} className="container lg:py-4">
+      <div ref={headerRef} className="flex flex-col lg:flex-row justify-between lg:gap-12">
         <div className="mb-6 lg:w-3/5">
           <h2 className="text-oxanium-3xl mb-2 font-semibold">{title}</h2>
           {description && (
@@ -39,7 +97,7 @@ export const ToolsWeSupportBlock: React.FC<ToolsWeSupportBlockProps> = ({
       </div>
       <div className="flex justify-center">
         {/* Render services if present */}
-        <div className="w-[40%] grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={cardsGridRef} className="w-[40%] grid grid-cols-1 md:grid-cols-2 gap-8">
           {Array.isArray(services) &&
             services.length > 0 &&
             services
