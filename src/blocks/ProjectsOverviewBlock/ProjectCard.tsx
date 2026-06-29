@@ -7,7 +7,6 @@ export const ProjectCard: React.FC<{
   project: Project
 }> = async ({ project }) => {
   const imageUrl = project.imageUrl
-
   return (
     <div className="flex flex-col items-start border border-[#D9DCDA] border-t-0 rounded-xl dark:border-dark-blue-gray">
       {imageUrl && (

@@ -1,5 +1,12 @@
+'use client'
+
+import React, { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { CustomerTestimonialsListBlock as CustomerTestimonialsListBlockProps } from '@/payload-types'
 import Image from 'next/image'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Star: React.FC = () => (
   <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,14 +22,82 @@ export const CustomerTestimonialsListBlock: React.FC<
   CustomerTestimonialsListBlockProps & { id?: string }
 > = (props) => {
   const { customerTestimonials, title, subtitle } = props
+
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate header (title + subtitle)
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          },
+        )
+      }
+
+      // Animate testimonial cards row by row
+      if (gridRef.current) {
+        const cards = gridRef.current.children
+        if (cards.length > 0) {
+          const cols = 3
+          const rows: Element[][] = []
+          Array.from(cards).forEach((card, i) => {
+            const rowIdx = Math.floor(i / cols)
+            if (!rows[rowIdx]) rows[rowIdx] = []
+            rows[rowIdx].push(card)
+          })
+
+          // Set initial state
+          rows.forEach((row) => gsap.set(row, { y: 80, opacity: 0 }))
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 82%',
+              toggleActions: 'play none none none',
+            },
+          })
+
+          rows.forEach((row) => {
+            tl.to(row, {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: 'power4.out',
+            })
+          })
+        }
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [customerTestimonials])
+
   return (
-    <div className="content-block">
+    <div ref={sectionRef} className="content-block">
       <div className="container my-16">
-        {title && <div className="text-4xl font-poppins font-normal leading-none">{title}</div>}
-        {subtitle && (
-          <div className="text-lg font-heebo font-normal leading-none mt-6 mb-10">{subtitle}</div>
-        )}
-        <div className="grid gap-6 md:grid-cols-3">
+        <div ref={headerRef}>
+          {title && <div className="text-4xl font-poppins font-normal leading-none">{title}</div>}
+          {subtitle && (
+            <div className="text-lg font-heebo font-normal leading-none mt-6 mb-10">{subtitle}</div>
+          )}
+        </div>
+        <div ref={gridRef} className="grid gap-6 md:grid-cols-3">
           {(customerTestimonials ?? []).map((customerTestimonial: any) => (
             <div key={customerTestimonial.id}>
               {customerTestimonial.score && (
