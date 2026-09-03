@@ -24,6 +24,8 @@ import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Projects } from './collections/Projects'
+import { Events } from './collections/Events'
+import { EventCategories } from './collections/EventCategories'
 import { Models } from './collections/Models'
 import { Partners } from './collections/Partners'
 import { LinkScanRuns } from './collections/LinkScanRuns'
@@ -100,6 +102,8 @@ export default buildConfig({
     Testimonials,
     Users,
     Projects,
+    Events,
+    EventCategories,
     TeamMembers,
     StaffCategories,
     Jobs,

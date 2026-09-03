@@ -16,6 +16,7 @@ import { OurServiceBlock } from '@/blocks/OurServiceBlock/Component'
 import { ToolsWeSupportBlock } from '@/blocks/ToolsWeSupportBlock/Component'
 import { WhoWeAreBlock } from '@/blocks/WhoWeAreBlock/Component'
 import { ProjectTabsBlock } from '@/blocks/ProjectTabsBlock/Component'
+import { EventTabsBlock } from '@/blocks/EventTabsBlock/Component'
 import { TeamMembersBlock } from '@/blocks/TeamMembersBlock/Component'
 import { JobsBlock } from '@/blocks/JobsBlock/Component'
 import { TabsBlock } from '@/blocks/TabsBlock/Component'
@@ -51,6 +52,7 @@ const blockComponents = {
   departmentsList: ClientDepartmentsListBlock,
   projectsOverview: ProjectsOverviewBlock,
   projectTabs: ProjectTabsBlock,
+  eventTabs: EventTabsBlock,
   projectsList: ProjectsListBlock,
   postsList: PostsListBlock,
   ourBlog: OurBlogBlock,
