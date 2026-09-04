@@ -20,6 +20,7 @@ import { Icons } from './collections/Icons'
 import { Outputs } from './collections/Outputs'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
+import { EventCta } from './EventCta/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
@@ -113,7 +114,7 @@ export default buildConfig({
     LinkScanRuns,
   ],
   cors: [getServerSideURL(), 'https://www.openenergytransition.org'].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, EventCta],
   plugins: [
     ...plugins,
     vercelBlobStorage({

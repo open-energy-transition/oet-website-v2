@@ -19,6 +19,7 @@ import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ProjectTabs } from '../../blocks/ProjectTabsBlock/config'
 import { EventTabs } from '../../blocks/EventTabsBlock/config'
+import { EventCtaBlock } from '../../blocks/EventCtaBlock/config'
 import { ProjectsList } from '../../blocks/ProjectsListBlock/config'
 import { PostsList } from '../../blocks/PostsListBlock/config'
 import { OurBlog } from '../../blocks/OurBlogBlock/config'
@@ -118,6 +119,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ProjectsOverview,
                 ProjectTabs,
                 EventTabs,
+                EventCtaBlock,
                 ProjectsList,
                 PostsList,
                 OurBlog,

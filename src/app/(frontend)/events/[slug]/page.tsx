@@ -8,6 +8,7 @@ import React, { cache } from 'react'
 import { notFound } from 'next/navigation'
 
 import { EventDetail } from './EventDetail'
+import { EventFooterCta } from '@/components/EventFooterCta'
 import { generateMeta } from '@/utilities/generateMeta'
 
 export async function generateStaticParams() {
@@ -45,10 +46,13 @@ export default async function EventPage({ params: paramsPromise }: Args) {
   }
 
   return (
-    <article className="pt-10 pb-16">
-      <PayloadRedirects disableNotFound url={url} />
-      <EventDetail event={event} />
-    </article>
+    <>
+      <article className="pt-10 pb-16">
+        <PayloadRedirects disableNotFound url={url} />
+        <EventDetail event={event} />
+      </article>
+      <EventFooterCta />
+    </>
   )
 }
 

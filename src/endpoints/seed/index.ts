@@ -20,7 +20,8 @@ const collections: CollectionSlug[] = [
   'form-submissions',
   'search',
 ]
-const globals: GlobalSlug[] = ['header', 'footer']
+// Only globals that share the `navItems` field — the clearing loop below writes `{ navItems: [] }`.
+const globals = ['header', 'footer'] as const satisfies GlobalSlug[]
 
 // Next.js revalidation errors are normal when seeding the database without a server running
 // i.e. running `yarn seed` locally instead of using the admin UI within an active app

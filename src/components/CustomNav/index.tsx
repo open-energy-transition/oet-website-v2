@@ -105,6 +105,7 @@ const CustomNav: React.FC = () => {
   const globalItems = [
     { label: '🔝 Header', href: '/admin/globals/header' },
     { label: '🔻 Footer', href: '/admin/globals/footer' },
+    { label: '📣 Event CTA', href: '/admin/globals/event-cta' },
   ]
 
   // Check if current path matches nav item

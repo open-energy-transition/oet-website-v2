@@ -129,10 +129,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'event-cta': EventCta;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'event-cta': EventCtaSelect<false> | EventCtaSelect<true>;
   };
   locale: null;
   user: User & {
@@ -306,6 +308,7 @@ export interface Page {
     | ProjectsOverviewBlock
     | ProjectTabsBlock
     | EventTabsBlock
+    | EventCtaBlock
     | ProjectsListBlock
     | PostsListBlock
     | OurBlogBlock
@@ -1997,6 +2000,15 @@ export interface EventCategory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventCtaBlock".
+ */
+export interface EventCtaBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'eventCta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ProjectsListBlock".
  */
 export interface ProjectsListBlock {
@@ -2890,6 +2902,7 @@ export interface PagesSelect<T extends boolean = true> {
         projectsOverview?: T | ProjectsOverviewBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
         eventTabs?: T | EventTabsBlockSelect<T>;
+        eventCta?: T | EventCtaBlockSelect<T>;
         projectsList?: T | ProjectsListBlockSelect<T>;
         postsList?: T | PostsListBlockSelect<T>;
         ourBlog?: T | OurBlogBlockSelect<T>;
@@ -3381,6 +3394,14 @@ export interface EventTabsBlockSelect<T extends boolean = true> {
   defaultTab?: T;
   categories?: T;
   pageSize?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventCtaBlock_select".
+ */
+export interface EventCtaBlockSelect<T extends boolean = true> {
   id?: T;
   blockName?: T;
 }
@@ -4685,6 +4706,41 @@ export interface Footer {
   createdAt?: string | null;
 }
 /**
+ * The two-column call-to-action band shown above the site footer on event pages and the News & Events listing.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-cta".
+ */
+export interface EventCta {
+  id: number;
+  /**
+   * Exactly two panels — rendered left then right.
+   */
+  panels?:
+    | {
+        variant?: ('muted' | 'light') | null;
+        /**
+         * Line breaks are preserved.
+         */
+        heading: string;
+        lead: string;
+        note?: string | null;
+        button: {
+          label: string;
+          /**
+           * Leave empty to render the label as a static pill (no link).
+           */
+          url?: string | null;
+          style?: ('outline' | 'solid') | null;
+          newTab?: boolean | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
@@ -4834,6 +4890,32 @@ export interface FooterSelect<T extends boolean = true> {
   privacyPolicy?: T;
   termsOfUse?: T;
   cookiePolicy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-cta_select".
+ */
+export interface EventCtaSelect<T extends boolean = true> {
+  panels?:
+    | T
+    | {
+        variant?: T;
+        heading?: T;
+        lead?: T;
+        note?: T;
+        button?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              style?: T;
+              newTab?: T;
+            };
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
