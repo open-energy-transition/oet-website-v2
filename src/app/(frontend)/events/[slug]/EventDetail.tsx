@@ -23,29 +23,66 @@ const mediaAlt = (value: unknown, fallback: string): string => {
   return fallback
 }
 
-const twoDigit = (n: number) => String(n).padStart(2, '0')
-
-const formatLongDate = (value?: string | null): string => {
-  if (!value) return ''
-  const date = new Date(value)
-  if (Number.isNaN(date.getTime())) return ''
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+// The site is authored from Europe; `timezoneLabel` is only a display string
+// (e.g. "CET"), so map the common abbreviations to an IANA zone and fall back
+// to Berlin. All date/time output is rendered in that zone so it stays correct
+// regardless of the server's timezone (UTC on Vercel).
+const ZONE_BY_LABEL: Record<string, string> = {
+  UTC: 'UTC',
+  GMT: 'UTC',
+  CET: 'Europe/Berlin',
+  CEST: 'Europe/Berlin',
+  BST: 'Europe/London',
+  EST: 'America/New_York',
+  EDT: 'America/New_York',
+  PST: 'America/Los_Angeles',
+  PDT: 'America/Los_Angeles',
+  IST: 'Asia/Kolkata',
 }
 
-const formatTime = (value?: string | null): string => {
-  if (!value) return ''
+const zoneFor = (label?: string | null): string =>
+  (label && ZONE_BY_LABEL[label.trim().toUpperCase()]) || 'Europe/Berlin'
+
+const parse = (value?: string | null): Date | null => {
+  if (!value) return null
   const date = new Date(value)
-  if (Number.isNaN(date.getTime())) return ''
-  return `${twoDigit(date.getHours())}:${twoDigit(date.getMinutes())}`
+  return Number.isNaN(date.getTime()) ? null : date
 }
 
-// e.g. "Wednesday, 02/11/2025"
-const formatDetailDate = (value?: string | null): string => {
-  if (!value) return ''
-  const date = new Date(value)
-  if (Number.isNaN(date.getTime())) return ''
-  const weekday = date.toLocaleDateString('en-US', { weekday: 'long' })
-  return `${weekday}, ${twoDigit(date.getDate())}/${twoDigit(date.getMonth() + 1)}/${date.getFullYear()}`
+// e.g. "November 2, 2025, 1:07 PM"
+const formatByline = (value: string | null | undefined, timeZone: string): string => {
+  const date = parse(value)
+  if (!date) return ''
+  return new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'long',
+    timeStyle: 'short',
+    timeZone,
+  }).format(date)
+}
+
+// e.g. "13:07"
+const formatTime = (value: string | null | undefined, timeZone: string): string => {
+  const date = parse(value)
+  if (!date) return ''
+  return new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone,
+  }).format(date)
+}
+
+// e.g. "Sunday, 02/11/2025"
+const formatDetailDate = (value: string | null | undefined, timeZone: string): string => {
+  const date = parse(value)
+  if (!date) return ''
+  return new Intl.DateTimeFormat('en-GB', {
+    weekday: 'long',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    timeZone,
+  }).format(date)
 }
 
 const authorName = (author: Event['author']): string | null => {
@@ -119,8 +156,10 @@ export const EventDetail: React.FC<{ event: Event }> = ({ event }) => {
     .map((item) => ({ url: mediaUrl(item.image), alt: mediaAlt(item.image, event.title) }))
     .filter((item): item is { url: string; alt: string } => Boolean(item.url))
 
+  const tz = zoneFor(event.timezoneLabel)
+
   const timeDisplay = isUpcoming
-    ? [formatTime(event.startDate), event.endDate ? formatTime(event.endDate) : null]
+    ? [formatTime(event.startDate, tz), event.endDate ? formatTime(event.endDate, tz) : null]
         .filter(Boolean)
         .join(' – ') + (event.durationLabel ? ` (${event.durationLabel})` : '')
     : event.durationLabel || ''
@@ -148,8 +187,8 @@ export const EventDetail: React.FC<{ event: Event }> = ({ event }) => {
               </>
             )}
             {by && event.publishedAt && <span className="mx-2">·</span>}
-            {event.publishedAt && <>Published {formatLongDate(event.publishedAt)}</>}
-            {event.timezoneLabel ? ` ${event.timezoneLabel}` : ''}
+            {event.publishedAt && <>Published {formatByline(event.publishedAt, tz)}</>}
+            {event.publishedAt && event.timezoneLabel ? ` ${event.timezoneLabel}` : ''}
           </p>
         )}
       </header>
@@ -241,7 +280,7 @@ export const EventDetail: React.FC<{ event: Event }> = ({ event }) => {
               {event.startDate && (
                 <li className="flex items-start gap-3">
                   <CalendarDays className="mt-0.5 h-4 w-4 shrink-0 text-gray-black-300" />
-                  <span>{formatDetailDate(event.startDate)}</span>
+                  <span>{formatDetailDate(event.startDate, tz)}</span>
                 </li>
               )}
               {event.location && (
