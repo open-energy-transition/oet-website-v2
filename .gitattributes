@@ -1,0 +1,4 @@
+# Payload generates a full schema snapshot per migration; these are large
+# generated artifacts, not hand-written code. Mark them generated so they are
+# collapsed in diffs and skipped by CodeQL / code scanning.
+src/migrations/*.json linguist-generated=true

@@ -76,6 +76,8 @@ export interface Config {
     testimonials: Testimonial;
     users: User;
     projects: Project;
+    events: Event;
+    'event-categories': EventCategory;
     'team-members': TeamMember;
     staff: Staff;
     jobs: Job;
@@ -103,6 +105,8 @@ export interface Config {
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    'event-categories': EventCategoriesSelect<false> | EventCategoriesSelect<true>;
     'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
     staff: StaffSelect<false> | StaffSelect<true>;
     jobs: JobsSelect<false> | JobsSelect<true>;
@@ -125,10 +129,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'event-cta': EventCta;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'event-cta': EventCtaSelect<false> | EventCtaSelect<true>;
   };
   locale: null;
   user: User & {
@@ -301,6 +307,8 @@ export interface Page {
     | WhoWeAreBlock
     | ProjectsOverviewBlock
     | ProjectTabsBlock
+    | EventTabsBlock
+    | EventCtaBlock
     | ProjectsListBlock
     | PostsListBlock
     | OurBlogBlock
@@ -1938,6 +1946,69 @@ export interface ProjectTabsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventTabsBlock".
+ */
+export interface EventTabsBlock {
+  /**
+   * Heading shown above the tabs, e.g. "News & Events".
+   */
+  title?: string | null;
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  tabLabels?: {
+    highlightsLabel?: string | null;
+    upcomingLabel?: string | null;
+  };
+  defaultTab?: ('highlights' | 'upcoming') | null;
+  /**
+   * Optional. Restricts the category filter chips to this list. Leave empty to show every category used by the listed events.
+   */
+  categories?: (number | EventCategory)[] | null;
+  /**
+   * Maximum number of events to load per tab.
+   */
+  pageSize?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'eventTabs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-categories".
+ */
+export interface EventCategory {
+  id: number;
+  _order?: string | null;
+  title: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventCtaBlock".
+ */
+export interface EventCtaBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'eventCta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ProjectsListBlock".
  */
 export interface ProjectsListBlock {
@@ -2231,6 +2302,107 @@ export interface PartnersBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'partners';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  subtitle?: string | null;
+  /**
+   * Short description shown on the event listing cards.
+   */
+  excerpt?: string | null;
+  /**
+   * Shown as the "By ..." byline on the detail page.
+   */
+  author?: (number | null) | User;
+  /**
+   * Events in the future appear under "Upcoming Events".
+   */
+  startDate: string;
+  /**
+   * Optional. Used for the time range on upcoming events.
+   */
+  endDate?: string | null;
+  /**
+   * Displayed next to the date/time, e.g. "CET".
+   */
+  timezoneLabel?: string | null;
+  /**
+   * Location, country, address and any additional detail.
+   */
+  location?: string | null;
+  /**
+   * Free-text duration shown in the Details panel, e.g. "90 Min".
+   */
+  durationLabel?: string | null;
+  heroImage?: (number | null) | Media;
+  about?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Past-event gallery section. Leave empty to hide it on the detail page.
+   */
+  documentation?: {
+    heading?: string | null;
+    featuredImage?: (number | null) | Media;
+    gallery?:
+      | {
+          image: number | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Livestream / recording link shown over the hero (past events).
+   */
+  videoUrl?: string | null;
+  /**
+   * Recap link shown as a button in the Details panel (past events).
+   */
+  recapUrl?: string | null;
+  /**
+   * "Join This Event" button target (upcoming events).
+   */
+  registrationUrl?: string | null;
+  /**
+   * People listed under "Contributors" on the detail page.
+   */
+  contributors?: (number | TeamMember)[] | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * Used for the category filter on the listing (Open Calls, Webinars, ...).
+   */
+  categories?: (number | EventCategory)[] | null;
+  /**
+   * Include this past event in the "Event Highlights" tab.
+   */
+  featuredAsHighlight?: boolean | null;
+  publishedAt?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2557,6 +2729,14 @@ export interface PayloadLockedDocument {
         value: number | Project;
       } | null)
     | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'event-categories';
+        value: number | EventCategory;
+      } | null)
+    | ({
         relationTo: 'team-members';
         value: number | TeamMember;
       } | null)
@@ -2721,6 +2901,8 @@ export interface PagesSelect<T extends boolean = true> {
         whoWeAre?: T | WhoWeAreBlockSelect<T>;
         projectsOverview?: T | ProjectsOverviewBlockSelect<T>;
         projectTabs?: T | ProjectTabsBlockSelect<T>;
+        eventTabs?: T | EventTabsBlockSelect<T>;
+        eventCta?: T | EventCtaBlockSelect<T>;
         projectsList?: T | ProjectsListBlockSelect<T>;
         postsList?: T | PostsListBlockSelect<T>;
         ourBlog?: T | OurBlogBlockSelect<T>;
@@ -3198,6 +3380,33 @@ export interface ProjectTabsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventTabsBlock_select".
+ */
+export interface EventTabsBlockSelect<T extends boolean = true> {
+  title?: T;
+  introContent?: T;
+  tabLabels?:
+    | T
+    | {
+        highlightsLabel?: T;
+        upcomingLabel?: T;
+      };
+  defaultTab?: T;
+  categories?: T;
+  pageSize?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventCtaBlock_select".
+ */
+export interface EventCtaBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ProjectsListBlock_select".
  */
 export interface ProjectsListBlockSelect<T extends boolean = true> {
@@ -3654,6 +3863,66 @@ export interface ProjectsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  excerpt?: T;
+  author?: T;
+  startDate?: T;
+  endDate?: T;
+  timezoneLabel?: T;
+  location?: T;
+  durationLabel?: T;
+  heroImage?: T;
+  about?: T;
+  documentation?:
+    | T
+    | {
+        heading?: T;
+        featuredImage?: T;
+        gallery?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
+      };
+  videoUrl?: T;
+  recapUrl?: T;
+  registrationUrl?: T;
+  contributors?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  categories?: T;
+  featuredAsHighlight?: T;
+  publishedAt?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-categories_select".
+ */
+export interface EventCategoriesSelect<T extends boolean = true> {
+  _order?: T;
+  title?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -4437,6 +4706,41 @@ export interface Footer {
   createdAt?: string | null;
 }
 /**
+ * The two-column call-to-action band shown above the site footer on event pages and the News & Events listing.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-cta".
+ */
+export interface EventCta {
+  id: number;
+  /**
+   * Exactly two panels — rendered left then right.
+   */
+  panels?:
+    | {
+        variant?: ('muted' | 'light') | null;
+        /**
+         * Line breaks are preserved.
+         */
+        heading: string;
+        lead: string;
+        note?: string | null;
+        button: {
+          label: string;
+          /**
+           * Leave empty to render the label as a static pill (no link).
+           */
+          url?: string | null;
+          style?: ('outline' | 'solid') | null;
+          newTab?: boolean | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
@@ -4592,6 +4896,32 @@ export interface FooterSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-cta_select".
+ */
+export interface EventCtaSelect<T extends boolean = true> {
+  panels?:
+    | T
+    | {
+        variant?: T;
+        heading?: T;
+        lead?: T;
+        note?: T;
+        button?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              style?: T;
+              newTab?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TaskSchedulePublish".
  */
 export interface TaskSchedulePublish {
@@ -4606,6 +4936,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'events';
+          value: number | Event;
         } | null)
       | ({
           relationTo: 'outputs';

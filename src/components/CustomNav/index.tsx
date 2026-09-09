@@ -85,6 +85,8 @@ const CustomNav: React.FC = () => {
     { label: '📄 Pages', href: '/admin/collections/pages' },
     { label: '📝 Posts', href: '/admin/collections/posts' },
     { label: '🚀 Projects', href: '/admin/collections/projects' },
+    { label: '📅 Events', href: '/admin/collections/events' },
+    { label: '🗓️ Event Categories', href: '/admin/collections/event-categories' },
     { label: '📱 Models', href: '/admin/collections/models' },
     { label: '🏷️ Categories', href: '/admin/collections/categories' },
     { label: '🖼️ Media', href: '/admin/collections/media' },
@@ -103,6 +105,7 @@ const CustomNav: React.FC = () => {
   const globalItems = [
     { label: '🔝 Header', href: '/admin/globals/header' },
     { label: '🔻 Footer', href: '/admin/globals/footer' },
+    { label: '📣 Event CTA', href: '/admin/globals/event-cta' },
   ]
 
   // Check if current path matches nav item

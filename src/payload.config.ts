@@ -20,10 +20,13 @@ import { Icons } from './collections/Icons'
 import { Outputs } from './collections/Outputs'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
+import { EventCta } from './EventCta/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Projects } from './collections/Projects'
+import { Events } from './collections/Events'
+import { EventCategories } from './collections/EventCategories'
 import { Models } from './collections/Models'
 import { Partners } from './collections/Partners'
 import { LinkScanRuns } from './collections/LinkScanRuns'
@@ -100,6 +103,8 @@ export default buildConfig({
     Testimonials,
     Users,
     Projects,
+    Events,
+    EventCategories,
     TeamMembers,
     StaffCategories,
     Jobs,
@@ -109,7 +114,7 @@ export default buildConfig({
     LinkScanRuns,
   ],
   cors: [getServerSideURL(), 'https://www.openenergytransition.org'].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, EventCta],
   plugins: [
     ...plugins,
     vercelBlobStorage({
