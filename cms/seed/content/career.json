@@ -1,0 +1,164 @@
+{
+  "hero": {
+    "title": "Work\nWith Us",
+    "lead": [
+      "Our culture is one founded on the principles of autonomy, trust, growth, and transparency. These values are embodied by all OETers, across our Departments, and all of our teams.",
+      "Join OET and work alongside a global community creating open, transparent solutions for a faster and more equitable energy transition."
+    ],
+    "image": {
+      "desktop": {
+        "__asset": "heroes/career-desktop.webp"
+      },
+      "mobile": {
+        "__asset": "heroes/career-mobile.webp"
+      }
+    },
+    "icon": {
+      "__icon": "digital-id"
+    },
+    "count": {
+      "value": "3",
+      "label": "Open Roles"
+    },
+    "action": {
+      "label": "Explore Opportunities",
+      "href": "#open-roles"
+    }
+  },
+  "hiring": {
+    "title": "Our Hiring Process",
+    "paragraphs": [
+      "Hiring at OET is crafted by our People & Culture Department.",
+      "While the hiring process may be adjusted slightly role to role, we strive for consistency wherever possible. This is definitely the case for all candidates within a given role, for the sake of fairness.",
+      "As standard, our hiring process is as follows:"
+    ],
+    "steps": [
+      {
+        "number": "01",
+        "text": "Our People Team drafts and then posts a new role at OET\non this page",
+        "icon": {
+          "__icon": "document"
+        }
+      },
+      {
+        "number": "02",
+        "text": "Our Marketing Team posts about the role on OET social media",
+        "icon": {
+          "__icon": "referral-alt"
+        }
+      },
+      {
+        "number": "03",
+        "text": "Interested candidates apply via the links above",
+        "icon": {
+          "__icon": "person-rays"
+        }
+      },
+      {
+        "number": "04",
+        "text": "The relevant OET team reviews the candidate pool on a rolling basis",
+        "icon": {
+          "__icon": "magnifying-glass-eye"
+        }
+      },
+      {
+        "number": "05",
+        "text": "Candidates of interest are shortlisted internally",
+        "icon": {
+          "__icon": "table-list"
+        }
+      },
+      {
+        "number": "06",
+        "text": "Select applicants are contacted for a quick, 15-min screening voice call",
+        "icon": {
+          "__icon": "meeting"
+        }
+      },
+      {
+        "number": "07",
+        "text": "Select applicants are contacted for a 1-hour, panel format video interview, centered on Role Fit (Round 1/R1)",
+        "icon": {
+          "__icon": "online-interview"
+        }
+      },
+      {
+        "number": "08",
+        "text": "Select applicants are contacted for a 1-hour, panel format video interview, centered on Culture Fit (Round 2/R2)",
+        "icon": {
+          "__icon": "person-through-window"
+        }
+      },
+      {
+        "number": "09",
+        "text": "A finalist is chosen, and an offer letter is sent out",
+        "icon": {
+          "__icon": "paper-plane"
+        }
+      },
+      {
+        "number": "10",
+        "text": "Documents are signed, and onboarding begins!",
+        "icon": {
+          "__icon": "attribution-pen"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "title": "Career | Open Energy Transition",
+    "description": "Join OET and work alongside a global community creating open, transparent solutions for a faster and more equitable energy transition."
+  },
+  "roles": {
+    "id": "open-roles",
+    "tag": "Open Roles",
+    "title": "Currently Open Roles",
+    "columns": [
+      "If you have any issues with or questions to your application, you are welcome to reach out to our team at: <a href=\"mailto:careers@openenergytransition.org\">careers@openenergytransition.org</a>.",
+      "All roles are fully-remote. If any travel is required, the job spec will state this.  In brackets are the fixed location of hire, as well as any mandatory language fluency requirements.",
+      "Please only apply for roles where you fulfil these aspects. We&#39;re excited to review your application!"
+    ],
+    "jobs": [
+      {
+        "title": "Business Operations Manager at IT & Climate NGO",
+        "location": "Southern Africa, Eastern Europe",
+        "languages": "English",
+        "workMode": "Fully Remote",
+        "employmentType": "Full-Time",
+        "href": "mailto:info@openenergytransition.org",
+        "newTab": false,
+        "theme": "research-and-market-development"
+      },
+      {
+        "title": "Finance Manager at Climate Software NGO",
+        "location": "Central/Eastern Europe, Southeastern Europe",
+        "languages": "English",
+        "workMode": "Fully Remote",
+        "employmentType": "Full-Time",
+        "href": "mailto:info@openenergytransition.org",
+        "newTab": false,
+        "theme": "finance"
+      },
+      {
+        "title": "Head of Finance and Operations at IT/​Energy Nonprofit",
+        "location": "Germany, Eastern Europe, Southern Africa",
+        "languages": "English, German",
+        "workMode": "Fully Remote",
+        "employmentType": "Full-Time",
+        "href": "mailto:info@openenergytransition.org",
+        "newTab": false,
+        "theme": "finance"
+      },
+      {
+        "title": "Proactive Application: Energy System Modeler",
+        "location": "Global",
+        "languages": "English",
+        "workMode": "Fully Remote",
+        "employmentType": "Full-Time",
+        "href": "mailto:info@openenergytransition.org",
+        "newTab": false,
+        "theme": "energy-system-modeling"
+      }
+    ]
+  }
+}

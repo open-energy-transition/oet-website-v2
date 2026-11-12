@@ -1,0 +1,78 @@
+name: oet-cms-production
+
+x-cms-environment: &cms-environment
+  NODE_ENV: production
+  DATABASE_URL: postgres://payload:${DB_PASSWORD}@database:5432/oet_cms
+  PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+  PAYLOAD_PUBLIC_URL: https://${CMS_DOMAIN}
+  WEB_URL: ${WEB_URL}
+  WEB_DEPLOY_HOOK_URL: ${WEB_DEPLOY_HOOK_URL}
+  PREVIEW_SECRET: ${PREVIEW_SECRET}
+  MEDIA_STORAGE: disk
+  MEDIA_DIR: /app/media
+  ADMIN_EMAIL: ${ADMIN_EMAIL}
+  ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+
+services:
+  database:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: payload
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: oet_cms
+    healthcheck:
+      test: ['CMD', 'pg_isready', '--host=localhost', '--username=payload', '--dbname=oet_cms']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  cms:
+    build:
+      context: .
+      target: runtime
+    restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - media:/app/media
+    environment: *cms-environment
+
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - cms
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    environment:
+      CMS_DOMAIN: ${CMS_DOMAIN}
+
+  seed:
+    profiles: ['tools']
+    build:
+      context: .
+      target: source
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - media:/app/media
+    environment: *cms-environment
+    command: ['pnpm', 'seed']
+
+volumes:
+  database:
+  media:
+  caddy-data:
+  caddy-config:

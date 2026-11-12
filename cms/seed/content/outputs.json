@@ -1,0 +1,315 @@
+{
+  "authors": [
+    {
+      "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+      "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+      "photo": {
+        "__asset": "outputs/author-photo.webp"
+      },
+      "role": null,
+      "links": []
+    },
+    {
+      "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+      "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+      "photo": {
+        "__asset": "outputs/author-photo.webp"
+      },
+      "role": null,
+      "links": []
+    },
+    {
+      "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+      "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+      "photo": {
+        "__asset": "outputs/author-photo.webp"
+      },
+      "role": null,
+      "links": []
+    }
+  ],
+  "contact": {
+    "name": "Dr. Markus Groissbock",
+    "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+    "photo": {
+      "__asset": "outputs/contact-photo.webp"
+    },
+    "role": "Project Lead",
+    "links": [
+      {
+        "kind": "profile",
+        "href": "mailto:info@openenergytransition.org",
+        "label": "Profile of Dr. Markus Groissbock"
+      },
+      {
+        "kind": "github",
+        "href": "mailto:info@openenergytransition.org",
+        "label": "GitHub of Dr. Markus Groissbock"
+      },
+      {
+        "kind": "linkedin",
+        "href": "mailto:info@openenergytransition.org",
+        "label": "LinkedIn of Dr. Markus Groissbock"
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Discuss a Technology Modelling Need",
+    "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+    "secondary": "or check the relevant services curated for you on your right* adjust secondary CTA here.",
+    "actions": [
+      {
+        "label": "Contact Us",
+        "href": "mailto:info@openenergytransition.org",
+        "emphasis": "primary"
+      },
+      {
+        "label": "Request a Demo",
+        "href": "mailto:info@openenergytransition.org",
+        "emphasis": "secondary"
+      }
+    ]
+  },
+  "pagination": {
+    "current": 1,
+    "total": 10
+  },
+  "partnerLogos": [
+    {
+      "name": "Climact",
+      "image": {
+        "__asset": "outputs/partner-logo-placeholder.png"
+      }
+    },
+    {
+      "name": "Climact",
+      "image": {
+        "__asset": "outputs/partner-logo-placeholder.png"
+      }
+    },
+    {
+      "name": "Climact",
+      "image": {
+        "__asset": "outputs/partner-logo-placeholder.png"
+      }
+    },
+    {
+      "name": "Climact",
+      "image": {
+        "__asset": "outputs/partner-logo-placeholder.png"
+      }
+    },
+    {
+      "name": "Climact",
+      "image": {
+        "__asset": "outputs/partner-logo-placeholder.png"
+      }
+    },
+    {
+      "name": "Climact",
+      "image": {
+        "__asset": "outputs/partner-logo-placeholder.png"
+      }
+    }
+  ],
+  "serviceCtas": {
+    "system-operators-and-utilities": {
+      "icon": {
+        "__icon": "user-headset"
+      },
+      "iconTone": "brand-500",
+      "frame": "brand-500",
+      "title": "System Operators and Utilities",
+      "paragraphs": [
+        "Use open-source tools for complex planning workflows while meeting institutional requirements for security, reliability, performance and integration.",
+        "We support model and data development, software deployment, validation, benchmarking, training, maintenance and ongoing technical support."
+      ],
+      "link": {
+        "label": "Explore services for System Operators and Utilities",
+        "href": "/services/system-operators-and-utilities"
+      },
+      "image": {
+        "__asset": "outputs/service-system-operators.webp"
+      },
+      "imageMobile": null
+    },
+    "regulators-and-public-authorities": {
+      "icon": {
+        "__icon": "family-law"
+      },
+      "iconTone": "brand-600",
+      "frame": "brand-500",
+      "title": "Regulators and Public Authorities",
+      "paragraphs": [
+        "Build independent and transparent analytical capabilities for energy policy, regulation and infrastructure assessment.",
+        "We help public institutions select and adopt appropriate tools, establish reliable data and modelling workflows, train internal teams and assess plans using reproducible methods."
+      ],
+      "link": {
+        "label": "Explore services for Regulators and Public Authorities",
+        "href": "/services/regulators-and-public-authorities"
+      },
+      "image": {
+        "__asset": "outputs/service-regulators.webp"
+      },
+      "imageMobile": null
+    },
+    "consultancies-and-engineering-firms": {
+      "icon": {
+        "__icon": "discussion-idea"
+      },
+      "iconTone": "brand-500",
+      "frame": "brand-500",
+      "title": "Consultancies and Engineering Firms",
+      "paragraphs": [
+        "Add specialist open-source modelling, software and data capabilities to your client offer.",
+        "We work as a technical partner on bids and projects, provide advanced modelling and software development, and help consulting teams build their own capacity to support open-source tools."
+      ],
+      "link": {
+        "label": "Explore services for Consultancies and Engineering Firms",
+        "href": "/services/consultancies-and-engineering-firms"
+      },
+      "image": {
+        "__asset": "outputs/service-consultancies.webp"
+      },
+      "imageMobile": {
+        "__asset": "outputs/service-consultancies-mobile.webp"
+      }
+    },
+    "foundations-and-development-partners": {
+      "icon": {
+        "__icon": "leadership-alt"
+      },
+      "iconTone": "brand-700",
+      "frame": "brand-600",
+      "title": "Foundations and Development Partners",
+      "paragraphs": [
+        "Strengthen the shared tools, data and institutional capacity needed for transparent energy planning to spread.",
+        "We design and deliver programmes that improve open-source infrastructure, close data and software gaps, support adoption by influential institutions and develop local delivery ecosystems."
+      ],
+      "link": {
+        "label": "Explore services for Foundations and Development Partners",
+        "href": "/services/foundations-and-development-partners"
+      },
+      "image": {
+        "__asset": "outputs/service-foundations.webp"
+      },
+      "imageMobile": null
+    },
+    "think-tanks-ngos-and-research-organizations": {
+      "icon": {
+        "__icon": "woman-scientist"
+      },
+      "iconTone": "brand-500",
+      "frame": "brand-500",
+      "title": "Think Tanks, NGOs and Research Orgs.",
+      "paragraphs": [
+        "Develop credible open models, datasets and analytical workflows that can be scrutinised, reused and maintained.",
+        "We support tool development, applied modelling, data infrastructure, quality assurance, training and strategies for publishing and sustaining open-source work."
+      ],
+      "link": {
+        "label": "Explore services for Think Tanks, NGOs and Research Orgs.",
+        "href": "/services/think-tanks-ngos-and-research-organizations"
+      },
+      "image": {
+        "__asset": "outputs/service-think-tanks.webp"
+      },
+      "imageMobile": null
+    },
+    "technology-developers-and-investors": {
+      "icon": {
+        "__icon": "architect-plan"
+      },
+      "iconTone": "brand-600",
+      "frame": "brand-600",
+      "title": "Technology Developers and Investors",
+      "paragraphs": [
+        "Apply transparent energy system modelling to investment or design questions.",
+        "We develop transparent methods, datasets and tools to assess system value, infrastructure requirements and performance under future scenarios, working alongside commercial advisors where broader project or investment analysis is required."
+      ],
+      "link": {
+        "label": "Explore services for Technology Developers and Investors",
+        "href": "/services/technology-developers-and-investors"
+      },
+      "image": {
+        "__asset": "outputs/service-technology.webp"
+      },
+      "imageMobile": null
+    }
+  },
+  "testimonials": {
+    "heading": "Partners & Clients Testimonials",
+    "subline": "Don't just listen to us. This is what our partners and clients say",
+    "items": [
+      {
+        "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+        "name": "Ntathu Masimula",
+        "role": "Senior Environmental Scientist, Eskom",
+        "portrait": {
+          "__asset": "outputs/testimonial-portrait.webp"
+        },
+        "logo": {
+          "__asset": "outputs/testimonial-logo.png"
+        },
+        "company": "Eskom",
+        "paragraphs": [
+          "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+          "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+          "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+        ]
+      },
+      {
+        "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+        "name": "Ntathu Masimula",
+        "role": "Senior Environmental Scientist, Eskom",
+        "portrait": {
+          "__asset": "outputs/testimonial-portrait.webp"
+        },
+        "logo": {
+          "__asset": "outputs/testimonial-logo.png"
+        },
+        "company": "Eskom",
+        "paragraphs": [
+          "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+          "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+          "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+        ]
+      },
+      {
+        "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+        "name": "Ntathu Masimula",
+        "role": "Senior Environmental Scientist, Eskom",
+        "portrait": {
+          "__asset": "outputs/testimonial-portrait.webp"
+        },
+        "logo": {
+          "__asset": "outputs/testimonial-logo.png"
+        },
+        "company": "Eskom",
+        "paragraphs": [
+          "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+          "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+          "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+        ]
+      }
+    ],
+    "single": [
+      {
+        "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+        "name": "Ntathu Masimula",
+        "role": "Senior Environmental Scientist, Eskom",
+        "portrait": {
+          "__asset": "outputs/testimonial-portrait.webp"
+        },
+        "logo": {
+          "__asset": "outputs/testimonial-logo.png"
+        },
+        "company": "Eskom",
+        "paragraphs": [
+          "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+          "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+          "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+        ]
+      }
+    ]
+  }
+}

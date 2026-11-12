@@ -1,0 +1,37 @@
+{
+  "departmentSlugs": [
+    "energy-system-modeling",
+    "modeling-tools-and-data",
+    "software-engineering",
+    "research-and-market-development"
+  ],
+  "routes": {
+    "home": "/",
+    "toolsAndData": "/tools-and-data",
+    "services": "/services",
+    "successStories": "/outputs/success-stories",
+    "publications": "/outputs/publications",
+    "blogs": "/outputs/blogs",
+    "policyBriefs": "/outputs/policy-briefs",
+    "reports": "/outputs/reports",
+    "legal": "/legal",
+    "privacyStatement": "/privacy-statement",
+    "disclaimer": "/disclaimer",
+    "about": "/organization/about",
+    "departments": "/organization/departments",
+    "partners": "/organization/partners-and-funders",
+    "team": "/organization/team",
+    "career": "/organization/career",
+    "theoryOfChange": "/organization/theory-of-change",
+    "newsAndEvents": "/organization/news-and-events",
+    "contact": "mailto:info@openenergytransition.org"
+  },
+  "serviceSlugs": [
+    "system-operators-and-utilities",
+    "regulators-and-public-authorities",
+    "consultancies-and-engineering-firms",
+    "foundations-and-development-partners",
+    "think-tanks-ngos-and-research-organizations",
+    "technology-developers-and-investors"
+  ]
+}

@@ -1,0 +1,1187 @@
+{
+  "continents": {
+    "label": "Where OET’s at Across The World",
+    "items": [
+      {
+        "value": "6",
+        "label": "Africa"
+      },
+      {
+        "value": "10",
+        "label": "Asia"
+      },
+      {
+        "value": "33",
+        "label": "Europe"
+      },
+      {
+        "value": "3",
+        "label": "North America"
+      },
+      {
+        "value": "1",
+        "label": "South America"
+      }
+    ]
+  },
+  "countries": [
+    {
+      "code": "DEU",
+      "name": "Germany",
+      "count": "15",
+      "lon": 10.4,
+      "lat": 51.2,
+      "photo": {
+        "__asset": "team/countries/deu.webp"
+      },
+      "photoAlt": "German flag in front of the Reichstag building in Berlin"
+    },
+    {
+      "code": "ITA",
+      "name": "Italy",
+      "count": "5",
+      "lon": 12.6,
+      "lat": 42.8,
+      "photo": {
+        "__asset": "team/countries/ita.webp"
+      },
+      "photoAlt": "Florence with the cathedral dome"
+    },
+    {
+      "code": "IDN",
+      "name": "Indonesia",
+      "count": "4",
+      "lon": 113.9,
+      "lat": -0.8,
+      "photo": {
+        "__asset": "team/countries/idn.webp"
+      },
+      "photoAlt": "National Monument in Jakarta"
+    },
+    {
+      "code": "IND",
+      "name": "India",
+      "count": "4",
+      "lon": 78.9,
+      "lat": 21.1,
+      "photo": {
+        "__asset": "team/countries/ind.webp"
+      },
+      "photoAlt": "Golden Temple in Amritsar"
+    },
+    {
+      "code": "GBR",
+      "name": "United Kingdom",
+      "count": "4",
+      "lon": -2,
+      "lat": 53.5,
+      "photo": {
+        "__asset": "team/countries/gbr.webp"
+      },
+      "photoAlt": "Houses of Parliament and Big Ben in London"
+    },
+    {
+      "code": "NLD",
+      "name": "Netherlands",
+      "count": "3",
+      "lon": 5.3,
+      "lat": 52.1,
+      "photo": {
+        "__asset": "team/countries/nld.webp"
+      },
+      "photoAlt": "Dutch riverside town with a church tower at dusk"
+    },
+    {
+      "code": "FRA",
+      "name": "France",
+      "count": "2",
+      "lon": 2.4,
+      "lat": 46.6,
+      "photo": {
+        "__asset": "team/countries/fra.webp"
+      },
+      "photoAlt": "Paris skyline with the Eiffel Tower"
+    },
+    {
+      "code": "NGA",
+      "name": "Nigeria",
+      "count": "2",
+      "lon": 8.1,
+      "lat": 9.1,
+      "photo": {
+        "__asset": "team/countries/nga.webp"
+      },
+      "photoAlt": "City skyline and bridge over a lagoon in Lagos"
+    },
+    {
+      "code": "ZMB",
+      "name": "Zambia",
+      "count": "2",
+      "lon": 27.8,
+      "lat": -13.1,
+      "photo": {
+        "__asset": "team/countries/zmb.webp"
+      },
+      "photoAlt": "Stadium in Zambia"
+    },
+    {
+      "code": "CHL",
+      "name": "Chile",
+      "count": "1",
+      "lon": -71.5,
+      "lat": -35.7,
+      "photo": {
+        "__asset": "team/countries/chl.webp"
+      },
+      "photoAlt": "Skyline of Santiago with the Andes behind"
+    },
+    {
+      "code": "HRV",
+      "name": "Croatia",
+      "count": "1",
+      "lon": 16.4,
+      "lat": 45.1,
+      "photo": {
+        "__asset": "team/countries/hrv.webp"
+      },
+      "photoAlt": "Old town and harbour of Dubrovnik"
+    },
+    {
+      "code": "DNK",
+      "name": "Denmark",
+      "count": "1",
+      "lon": 9.5,
+      "lat": 56,
+      "photo": {
+        "__asset": "team/countries/dnk.webp"
+      },
+      "photoAlt": "Rooftops of Copenhagen"
+    },
+    {
+      "code": "SLV",
+      "name": "El Salvador",
+      "count": "1",
+      "lon": -88.9,
+      "lat": 13.8,
+      "photo": {
+        "__asset": "team/countries/slv.webp"
+      },
+      "photoAlt": "Monument and domed church in San Salvador"
+    },
+    {
+      "code": "JPN",
+      "name": "Japan",
+      "count": "1",
+      "lon": 143,
+      "lat": 43.5,
+      "photo": {
+        "__asset": "team/countries/jpn.webp"
+      },
+      "photoAlt": "High-rise buildings and billboards in Tokyo"
+    },
+    {
+      "code": "KAZ",
+      "name": "Kazakhstan",
+      "count": "1",
+      "lon": 68.5,
+      "lat": 49.4,
+      "photo": {
+        "__asset": "team/countries/kaz.webp"
+      },
+      "photoAlt": "Bayterek Tower in Astana"
+    },
+    {
+      "code": "MEX",
+      "name": "Mexico",
+      "count": "1",
+      "lon": -98.2,
+      "lat": 20,
+      "photo": {
+        "__asset": "team/countries/mex.webp"
+      },
+      "photoAlt": "Mexican flag in front of a government palace"
+    },
+    {
+      "code": "NAM",
+      "name": "Namibia",
+      "count": "1",
+      "lon": 18.5,
+      "lat": -22,
+      "photo": {
+        "__asset": "team/countries/nam.webp"
+      },
+      "photoAlt": "Colonial-style houses with a turret in Namibia"
+    },
+    {
+      "code": "NOR",
+      "name": "Norway",
+      "count": "1",
+      "lon": 8.5,
+      "lat": 61,
+      "photo": {
+        "__asset": "team/countries/nor.webp"
+      },
+      "photoAlt": "Bryggen wharf in Bergen"
+    },
+    {
+      "code": "ZAF",
+      "name": "South Africa",
+      "count": "1",
+      "lon": 24.7,
+      "lat": -29,
+      "photo": {
+        "__asset": "team/countries/zaf.webp"
+      },
+      "photoAlt": "Cape Town with Table Mountain"
+    },
+    {
+      "code": "CHE",
+      "name": "Switzerland",
+      "count": "1",
+      "lon": 8.2,
+      "lat": 46.8,
+      "photo": {
+        "__asset": "team/countries/che.webp"
+      },
+      "photoAlt": "Old town of Zurich beside Lake Zurich"
+    },
+    {
+      "code": "USA",
+      "name": "United States",
+      "count": "1",
+      "lon": -98,
+      "lat": 39,
+      "photo": {
+        "__asset": "team/countries/usa.webp"
+      },
+      "photoAlt": "Statue of Liberty with the Manhattan skyline"
+    }
+  ],
+  "filterGroups": [
+    {
+      "label": "Show All",
+      "href": "/organization/team#team",
+      "active": true
+    },
+    {
+      "label": "Senior Leadership",
+      "href": "/organization/team?group=senior-leadership#team",
+      "active": false
+    },
+    {
+      "label": "Finance",
+      "href": "/organization/team?group=finance#team",
+      "active": false
+    },
+    {
+      "label": "People & Culture",
+      "href": "/organization/team?group=people-and-culture#team",
+      "active": false
+    },
+    {
+      "label": "Software Engineering",
+      "href": "/organization/team?group=software-engineering#team",
+      "active": false
+    },
+    {
+      "label": "Modelling Tools & Data",
+      "href": "/organization/team?group=modelling-tools-and-data#team",
+      "active": false
+    },
+    {
+      "label": "Energy System Modeling",
+      "href": "/organization/team?group=energy-system-modeling#team",
+      "active": false
+    },
+    {
+      "label": "Grid Data",
+      "href": "/organization/team?group=grid-data#team",
+      "active": false
+    },
+    {
+      "label": "Research & Market Development",
+      "href": "/organization/team?group=research-and-market-development#team",
+      "active": false
+    }
+  ],
+  "globe": {
+    "view": {
+      "lon": -91.5,
+      "lat": 8
+    },
+    "selected": "USA"
+  },
+  "members": [
+    {
+      "name": "Dr. Siddharth Krishna",
+      "lastName": "Krishna",
+      "role": "Head of Software Engineering",
+      "portrait": {
+        "image": {
+          "__asset": "team/siddharth-krishna.webp"
+        },
+        "desktop": {
+          "x": 17.82,
+          "y": -19,
+          "width": 242.84,
+          "height": 318
+        },
+        "mobile": {
+          "x": 21.13,
+          "y": -19,
+          "width": 287.93,
+          "height": 318
+        },
+        "rotate": 0
+      },
+      "glow": "right",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:siddharth.krishna@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/siddharth-krishna"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/siddharth-krishna-2020/"
+        }
+      ],
+      "tags": [
+        "Senior Leadership",
+        "Software Engineering"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "New York University (PhD, Computer Science)",
+          "kind": "doctorate"
+        }
+      ],
+      "biographyHtml": "<p>Sid is a Computer Scientist and Head of Software Engineering at OET, where he leads a team of talented developers to build easy-to-use tools to make energy system models larger, faster, and more reliable. Currently living in Germany, he grew up in India and has lived in the US, UK, and always-pleasant Malawi previously. He has a background in building and optimizing software systems, including a PhD in cloud database algorithms, a postdoc on distributed AI models, and has written software for industrial automation SCADA systems. When not tapping away in Discord or VS Code, he&#x27;s either doing outdoor sport (running, climbing, ultimate frisbee, tennis, volleyball) or hanging out with friends playing board games.</p>"
+    },
+    {
+      "name": "Shanti Chellaram",
+      "lastName": "Chellaram",
+      "role": "Senior Full-Stack Engineer",
+      "portrait": {
+        "image": {
+          "__asset": "team/shanti-chellaram.webp"
+        },
+        "desktop": {
+          "x": 49.13,
+          "y": -18,
+          "width": 208.47,
+          "height": 273
+        },
+        "mobile": {
+          "x": 58.25,
+          "y": -18,
+          "width": 247.19,
+          "height": 273
+        },
+        "rotate": 0
+      },
+      "glow": "right",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:shanti.chellaram@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/shantiii"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/shanti-chellaram-495444187/"
+        }
+      ],
+      "tags": [
+        "Software Engineering"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "Georgia Institute of Technology (B.S. in Computer Science (Distributed Systems, Simulations & Modeling), Minor in Japanese)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Shanti is a Software Engineer at Open Energy Transition (OET), based in Tokyo, Japan. She brings her 15+ years of industry experience to help build a better platform for energy modeling. Outside of work she enjoys getting lost and un-lost in nature or in cities, film photography, or noodling on her bass.</p>"
+    },
+    {
+      "name": "Lauren Clisby",
+      "lastName": "Clisby",
+      "role": "Product Owner",
+      "portrait": {
+        "image": {
+          "__asset": "team/lauren-clisby.webp"
+        },
+        "desktop": {
+          "x": 18.84,
+          "y": -27,
+          "width": 222.22,
+          "height": 291
+        },
+        "mobile": {
+          "x": 22.33,
+          "y": -27,
+          "width": 263.49,
+          "height": 291
+        },
+        "rotate": 0
+      },
+      "glow": "right",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:lauren.clisby@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/clizbe"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/laurenclisby/"
+        }
+      ],
+      "tags": [
+        "Software Engineering"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "U.S. Air Force Academy (BSc in Operations Research)",
+          "kind": "degree"
+        },
+        {
+          "degree": "Air Force Institute of Technology (MSc in Operations Research)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Lauren is a Product Owner and Team Lead. They bring vision and domain knowledge to their software team, which is focused on delivering a user-friendly and open source modelling platform. They have a Masters in Operations Research and previously led a team in energy framework development and analyses at TNO. Outside of work, you can find Lauren bouldering, reading, or working on craft projects.</p>"
+    },
+    {
+      "name": "Kristijan Faust",
+      "lastName": "Faust",
+      "role": "Software Engineer",
+      "portrait": {
+        "image": {
+          "__asset": "team/kristijan-faust.webp"
+        },
+        "desktop": {
+          "x": 21.38,
+          "y": -31,
+          "width": 254.29,
+          "height": 333
+        },
+        "mobile": {
+          "x": 25.35,
+          "y": -31,
+          "width": 301.52,
+          "height": 333
+        },
+        "rotate": 0
+      },
+      "glow": "right",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:kristijan.faust@openenergytransition.org"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/kristijan-faust"
+        }
+      ],
+      "tags": [
+        "Software Engineering"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "University of Rijeka (MSc, Information Technology)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": null
+    },
+    {
+      "name": "Dr. Maximilian Parzen",
+      "lastName": "Parzen",
+      "role": "CEO, Co-Founder",
+      "portrait": {
+        "image": {
+          "__asset": "team/maximilian-parzen.webp"
+        },
+        "desktop": {
+          "x": -6,
+          "y": -19,
+          "width": 303,
+          "height": 281
+        },
+        "mobile": {
+          "x": -7.11,
+          "y": -45.09,
+          "width": 359.27,
+          "height": 333.19
+        },
+        "rotate": 0
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:max.parzen@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/pz-max"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/maximilian-parzen-b047a1126/"
+        }
+      ],
+      "tags": [
+        "Senior Leadership"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "The University of Edinburgh (PhD, Engineering)",
+          "kind": "doctorate"
+        },
+        {
+          "degree": "The University of Edinburgh (MSc, Sustainable Energy Systems)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Max Parzen is the Co-Founder and CEO of Open Energy Transition, where he is shaping the future of energy system planning on a global scale. He holds a PhD in Energy Modelling and now dedicates his work to making high-quality, open-source energy system planning the mainstream standard.</p>\n<p>Previously, he was a core member of Tom Brown’s wider PyPSA group, founded <em>PyPSA meets Earth</em>, a global grassroots energy research initiative, and led the development of the first global model builder based on PyPSA. His work has consistently shaped how open-source tools and open data are used to inform energy policy, investment, and system design worldwide.</p>\n<p>While his days are now largely spent steering ambitious visions into reality, he still dreams of reclaiming time to write impactful open-source code himself.</p>"
+    },
+    {
+      "name": "Dr. Hazem Abdel-Khalek",
+      "lastName": "Abdel-Khalek",
+      "role": "Head of Modeling Tools & Data, Co-Founder",
+      "portrait": {
+        "image": {
+          "__asset": "team/hazem-abdel-khalek.webp"
+        },
+        "desktop": {
+          "x": 5,
+          "y": -21,
+          "width": 275,
+          "height": 294
+        },
+        "mobile": {
+          "x": 5.93,
+          "y": -48.3,
+          "width": 326.07,
+          "height": 348.6
+        },
+        "rotate": 0
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:hazem.abdelkhalek@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/hazemakhalek"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/hazemakhalek/"
+        }
+      ],
+      "tags": [
+        "Senior Leadership",
+        "Modeling Tools & Data"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "Albert-Ludwigs-Universität Freiburg (PhD, Energy, Environment, and Natural Resources Law)",
+          "kind": "doctorate"
+        },
+        {
+          "degree": "Albert-Ludwigs-Universität Freiburg (MSc, Renewable Energy Engineering and Management)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Hazem is Co-Founder and Head of Tools and Data at Open Energy Transition (OET), with roots in Egypt and based in Berlin. He directs the development of open-source, data-driven energy system modeling tools and co-shapes OET’s strategic direction. He oversees the design of large-scale, multi-regional models for the global energy transition, with a focus on sector coupling, hydrogen systems, and infrastructure planning to support robust and transparent decarbonization pathways. He holds a PhD in Energy Systems from the University of Freiburg, during which he led the development of the sector-coupled PyPSA-Earth model, with research on system-integrated green hydrogen exports.</p>"
+    },
+    {
+      "name": "Dr. Martha Maria Frysztacki",
+      "lastName": "Frysztacki",
+      "role": "Head of Energy System Modeling, Co-Founder",
+      "portrait": {
+        "image": {
+          "__asset": "team/martha-maria-frysztacki.webp"
+        },
+        "desktop": {
+          "x": -18,
+          "y": -19,
+          "width": 317,
+          "height": 257
+        },
+        "mobile": {
+          "x": 8,
+          "y": -19,
+          "width": 317,
+          "height": 257
+        },
+        "rotate": 0
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:martha.frysztacki@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/martacki"
+        }
+      ],
+      "tags": [
+        "Senior Leadership",
+        "Energy System Modeling"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "Karlsruhe Institute of Technology (PhD, Energy Informatics)",
+          "kind": "doctorate"
+        },
+        {
+          "degree": "University of Erlangen-Nuremberg (MSc, Mathematics)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Martha has Polish heritage and is based in Germany. Driven by a passion for mathematics, physics, and the environment, she completed her PhD in energy system modelling under the guidance of Prof. Tom Brown, exploring the role of spatial scale in electricity system optimisation models. During her doctoral work, she became a part of PyPSA&#x27;s development team, contributing methods that strengthened the toolbox beyond the scope of her own research. Inspired by sustainable, transparent energy planning through open-source solutions, she co-founded OET in 2023, where today she leads OET&#x27;s Energy System Modelling Department, supports high-impact projects for regulators, TSOs, and other institutions shaping the energy transition.</p>"
+    },
+    {
+      "name": "Quintin Coetzee",
+      "lastName": "Coetzee",
+      "role": "Head of People",
+      "portrait": {
+        "image": {
+          "__asset": "team/quintin-coetzee.webp"
+        },
+        "desktop": {
+          "x": 0,
+          "y": -19,
+          "width": 280,
+          "height": 297
+        },
+        "mobile": {
+          "x": 0,
+          "y": -46.58,
+          "width": 332,
+          "height": 352.16
+        },
+        "rotate": 0
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:quintin.coetzee@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/QuintinCoetzee-CapeTown"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/quintincoetzee"
+        }
+      ],
+      "tags": [
+        "Senior Leadership",
+        "People And Culture"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "University of Cape Town (MBSc)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Quintin lives in Cape Town, South Africa, and thoroughly enjoys working in People Operations. He believes in following a people-first methodology, and building a culture that is transparent, remote, trusting, and empowering. Quintin holds a Master of Business Science from the University of Cape Town, and has over a decade of experience in Operations. In his free time, he enjoys being out in nature, greeting dogs on the trails, gardening, spending quality time with his loved ones, playing video games, editing Wikipedia, and catching up on the latest developments in tech.</p>"
+    },
+    {
+      "name": "Dr. Siddharth Krishna",
+      "lastName": "Krishna",
+      "role": "Head of Software Engineering",
+      "portrait": {
+        "image": {
+          "__asset": "team/siddharth-krishna.webp"
+        },
+        "desktop": {
+          "x": 17.82,
+          "y": -19,
+          "width": 242.84,
+          "height": 318
+        },
+        "mobile": {
+          "x": 21.13,
+          "y": -19,
+          "width": 287.93,
+          "height": 318
+        },
+        "rotate": 0
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:siddharth.krishna@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/siddharth-krishna"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/siddharth-krishna-2020/"
+        }
+      ],
+      "tags": [
+        "Senior Leadership",
+        "Software Engineering"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "New York University (PhD, Computer Science)",
+          "kind": "doctorate"
+        }
+      ],
+      "biographyHtml": "<p>Sid is a Computer Scientist and Head of Software Engineering at OET, where he leads a team of talented developers to build easy-to-use tools to make energy system models larger, faster, and more reliable. Currently living in Germany, he grew up in India and has lived in the US, UK, and always-pleasant Malawi previously. He has a background in building and optimizing software systems, including a PhD in cloud database algorithms, a postdoc on distributed AI models, and has written software for industrial automation SCADA systems. When not tapping away in Discord or VS Code, he&#x27;s either doing outdoor sport (running, climbing, ultimate frisbee, tennis, volleyball) or hanging out with friends playing board games.</p>"
+    },
+    {
+      "name": "Dr. Harry van der Weijde",
+      "lastName": "van der Weijde",
+      "role": "Head of Research & Market Development",
+      "portrait": {
+        "image": {
+          "__asset": "team/harry-van-der-weijde.webp"
+        },
+        "desktop": {
+          "x": -5,
+          "y": -19,
+          "width": 295,
+          "height": 295
+        },
+        "mobile": {
+          "x": 21,
+          "y": -19,
+          "width": 295,
+          "height": 295
+        },
+        "rotate": 0
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:harry.vanderweijde@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/hvanderweijde"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/harryvanderweijde/"
+        }
+      ],
+      "tags": [
+        "Senior Leadership",
+        "Research & Market Development"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "Vrije Universiteit Amsterdam (PhD, Spatial Economics)",
+          "kind": "doctorate"
+        },
+        {
+          "degree": "The University of Edinburgh (MSc, Economics)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Harry van der Weijde is Head of Research and Market Development at Open Energy Transition. He holds a PhD in Spatial Economics and has held academic positions at the University of Edinburgh, the University of Cambridge, and the University of Erlangen-Nuremberg, where he worked on energy system modelling, power markets, and long-term infrastructure planning. He also previously worked at TNO in a policy-oriented research leadership role. At OET, he leads applied research and partnership development. He gets energy from helping interdisciplinary teams bring together different perspectives to achieve real-world impact.</p>"
+    },
+    {
+      "name": "Dr. Tobias Augspurger",
+      "lastName": "Augspurger",
+      "role": "Head of Grid Data",
+      "portrait": {
+        "image": {
+          "__asset": "team/tobias-augspurger.webp"
+        },
+        "desktop": {
+          "x": -12,
+          "y": -19,
+          "width": 303,
+          "height": 322
+        },
+        "mobile": {
+          "x": 14,
+          "y": -19,
+          "width": 303,
+          "height": 322
+        },
+        "rotate": 0
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:tobias.augspurger@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/Ly0n"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/tobias-augspurger/"
+        }
+      ],
+      "tags": [
+        "Senior Leadership",
+        "Grid Data"
+      ],
+      "profileLabel": "Read",
+      "education": [
+        {
+          "degree": "Bergische Universität Wuppertal (PhD, Atmospheric Physics)",
+          "kind": "doctorate"
+        },
+        {
+          "degree": "FH Aachen University of Applied Sciences (MSc, Luft- und Raumfahrttechnik, Aeronautik und Astronautik)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Tobias is the Head of Grid Data at Open Energy Transition. He established the MapYourGrid initiative, a global project that accelerates the energy transition by standardizing electrical grid data within OpenStreetMap. With over ten years&#x27; experience innovating with open source and open data, he is developing global open data strategies for the energy sector. Outside of his work at OET, Tobias looks after his two young children, explores the mountains and nature, and maintains the open-source projects OpenSustain.tech and ClimateTriage.com.</p>"
+    },
+    {
+      "name": "Andris Prindulis",
+      "lastName": "Prindulis",
+      "role": "Head of Finance",
+      "portrait": {
+        "image": {
+          "__asset": "team/andris-prindulis.webp"
+        },
+        "desktop": {
+          "x": 0,
+          "y": -19,
+          "width": 294,
+          "height": 305
+        },
+        "mobile": {
+          "x": 26,
+          "y": -19,
+          "width": 294,
+          "height": 305
+        },
+        "rotate": 0
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:info@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "mailto:info@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "mailto:info@openenergytransition.org"
+        },
+        {
+          "kind": "linkedin",
+          "href": "mailto:info@openenergytransition.org"
+        }
+      ],
+      "tags": [
+        "Senior Leadership",
+        "Finance"
+      ],
+      "profileLabel": "Read",
+      "education": [],
+      "biographyHtml": null
+    },
+    {
+      "name": "Dr. Fabrizio Finozzi",
+      "lastName": "Finozzi",
+      "role": "Software Engineer & Energy System Modeler",
+      "portrait": {
+        "image": {
+          "__asset": "team/fabrizio-finozzi.webp"
+        },
+        "desktop": {
+          "x": 18.58,
+          "y": -40,
+          "width": 242.84,
+          "height": 318
+        },
+        "mobile": {
+          "x": 44.58,
+          "y": -40,
+          "width": 242.84,
+          "height": 318
+        },
+        "rotate": 0
+      },
+      "glow": "right",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:fabrizio.finozzi@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/finozzifa"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/fabrizio-finozzi/"
+        }
+      ],
+      "tags": [
+        "Software Engineering"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "Ludwig-Maximilians-Universität München (PhD, Astronomy and Astrophysics)",
+          "kind": "doctorate"
+        },
+        {
+          "degree": "Ludwig-Maximilians-Universität München (MSc, Astrophysics)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Fabrizio is a software engineer, based in Varese, Italy. He has a PhD in Astrophysics and pivoted his career towards software development. His passion for ensuring that fossil fuels rest in peace underground and combating climate change led him to join OET. In his free time, Fabrizio loves to spend time with his family and dog and to watch the games of his favourite Ice Hockey team.</p>"
+    },
+    {
+      "name": "Jatmiko Herjati",
+      "lastName": "Herjati",
+      "role": "Geospatial Software Engineer",
+      "portrait": {
+        "image": {
+          "__asset": "team/jatmiko-herjati.webp"
+        },
+        "desktop": {
+          "x": 41.75,
+          "y": -34,
+          "width": 225.27,
+          "height": 295
+        },
+        "mobile": {
+          "x": 67.75,
+          "y": -34,
+          "width": 225.27,
+          "height": 295
+        },
+        "rotate": 0
+      },
+      "glow": "right",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:jatmiko.herjati@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/mikoding9"
+        },
+        {
+          "kind": "linkedin",
+          "href": "https://www.linkedin.com/in/mikoding/"
+        }
+      ],
+      "tags": [
+        "Software Engineering"
+      ],
+      "profileLabel": "Read Profile",
+      "education": [
+        {
+          "degree": "Institut Teknologi Bandung (MEng, Informatics Engineering)",
+          "kind": "degree"
+        },
+        {
+          "degree": "Institut Teknologi Bandung (BEng, Geomatics Engineering)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": "<p>Jatmiko is a Geospatial Software Engineer with 8+ years of experience building digital products and geospatial solutions for both public and private sector organizations. Over the years, he has worked on a wide range of initiatives, from disaster early warning systems and land administration platforms to urban digital twins, rooftop solar estimation, and enterprise geospatial tools. He enjoys turning complex ideas into practical products that are useful, reliable, and easy for people to work with. Lately, Jatmiko has developed a strong interest in renewable energy and energy modelling, and is excited by the growing role software can play in supporting the energy transition. Outside of work, he enjoys going to the gym, playing badminton, reading articles, and discussing geopolitics.</p>"
+    },
+    {
+      "name": "Stefan Radnev",
+      "lastName": "Radnev",
+      "role": "DevSecOps Engineer",
+      "portrait": {
+        "image": {
+          "__asset": "team/stefan-radnev.webp"
+        },
+        "desktop": {
+          "x": 13.75,
+          "y": -13,
+          "width": 251.24,
+          "height": 329
+        },
+        "mobile": {
+          "x": 39.75,
+          "y": -13,
+          "width": 251.24,
+          "height": 329
+        },
+        "rotate": 0
+      },
+      "glow": "right",
+      "links": [
+        {
+          "kind": "email",
+          "href": "mailto:stefan.radnev@openenergytransition.org"
+        },
+        {
+          "kind": "github",
+          "href": "https://github.com/stefan-oet"
+        }
+      ],
+      "tags": [
+        "Software Engineering"
+      ],
+      "profileLabel": "Read",
+      "education": [
+        {
+          "degree": "Utrecht University (MSc, Mathematical Sciences)",
+          "kind": "degree"
+        }
+      ],
+      "biographyHtml": null
+    },
+    {
+      "name": "Snoopy F",
+      "lastName": "F",
+      "role": "Visionary, Head of Wellbeing",
+      "portrait": {
+        "image": {
+          "__asset": "team/snoopy-f.webp"
+        },
+        "desktop": {
+          "x": -10.55,
+          "y": 2.72,
+          "width": 276.69,
+          "height": 370.23
+        },
+        "mobile": {
+          "x": 15.45,
+          "y": 2.72,
+          "width": 276.69,
+          "height": 370.23
+        },
+        "rotate": 18.44
+      },
+      "glow": "center",
+      "links": [
+        {
+          "kind": "message",
+          "href": "mailto:info@openenergytransition.org"
+        }
+      ],
+      "tags": [
+        "Senior Leadership"
+      ],
+      "profileLabel": "Read",
+      "education": [],
+      "biographyHtml": null
+    }
+  ],
+  "mobilePageSize": 8,
+  "teamPage": {
+    "meta": {
+      "title": "Team — Open Energy Transition",
+      "description": "A fully remote team of 50+ people across 21 countries: award-winning researchers and experienced energy modelers."
+    },
+    "hero": {
+      "title": "Built on a Culture of Transparency, Collaboration, & Trust.",
+      "lead": [
+        "Registered in Germany, since our founding in 2023, we have grown to a team of over 50 experts working remotely across multiple continents. We are led by award-winning energy modelers who are shaping the future of global energy planning."
+      ],
+      "stats": [
+        {
+          "value": "9",
+          "label": "Continents"
+        },
+        {
+          "value": "50+",
+          "label": "Experts"
+        },
+        {
+          "value": "8",
+          "label": "Department"
+        }
+      ],
+      "image": {
+        "desktop": {
+          "__asset": "heroes/team-desktop.webp"
+        },
+        "mobile": {
+          "__asset": "heroes/team-mobile.webp"
+        }
+      }
+    },
+    "intro": {
+      "tag": "Team",
+      "title": "A Fully remote team of 50+ people across 21 countries",
+      "subline": "Our team includes award-winning researchers and experienced energy modelers, united by a culture of transparency and collaboration.",
+      "actions": [
+        {
+          "label": "Work With Us",
+          "href": "/organization/career",
+          "variant": "primary",
+          "size": "sm-tall",
+          "arrow": true
+        },
+        {
+          "label": "Explore Departments",
+          "href": "/organization/departments",
+          "variant": "secondary",
+          "size": "sm-tall",
+          "arrow": false
+        }
+      ]
+    },
+    "listing": {
+      "id": "team",
+      "title": "Meet The Team",
+      "mobileDescription": "Discover our innovative projects driving the energy transition  towards a sustainable future with open-source and open data",
+      "sort": {
+        "id": "sort-team",
+        "values": [
+          "a-z",
+          "z-a"
+        ],
+        "selected": "a-z"
+      },
+      "pagination": {
+        "current": 1,
+        "total": 10
+      }
+    }
+  }
+}

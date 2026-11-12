@@ -1,0 +1,443 @@
+{
+  "departments": [
+    {
+      "name": "Energy System Modeling",
+      "lead": "The Energy System Modelling Department develops, applies, and advances integrated open-source energy and grid planning models for real-world decision-making.",
+      "summary": "Our team works across scenario development, market modelling, grid planning, and system analysis, using interoperable, scalable toolchains that align with OET’s open planning ecosystem.",
+      "accent": "red",
+      "icon": {
+        "__icon": "solar-system"
+      },
+      "head": {
+        "name": "Dr. Martha Maria Frysztacki",
+        "role": "Head of Energy System Modeling, Co-Founder",
+        "photo": {
+          "__asset": "organization/heads/frysztacki.jpg"
+        }
+      },
+      "detail": {
+        "slug": "energy-system-modeling",
+        "cardImage": {
+          "desktop": {
+            "__asset": "organization/departments/energy-system-modeling-desktop.jpg"
+          },
+          "mobile": {
+            "__asset": "organization/departments/energy-system-modeling-mobile.jpg"
+          }
+        },
+        "hero": {
+          "title": "Energy System\nModeling",
+          "lead": "The Energy System Modelling Department develops, applies, and advances integrated open-source energy and grid planning models for real-world decision-making. We build transparent, reproducible modelling workflows that enable governments, regulators, TSOs, researchers, and civil society to explore, benchmark, or scrutinize future energy systems and long-term transition pathways.",
+          "image": {
+            "desktop": {
+              "__asset": "heroes/dept-energy-system-modeling-desktop.webp"
+            },
+            "mobile": {
+              "__asset": "heroes/dept-energy-system-modeling-mobile.webp"
+            }
+          },
+          "background": "brand-600",
+          "ornament": "department",
+          "peopleCount": "12"
+        },
+        "about": "<p>Our team works across scenario development, market modelling, grid planning, and system analysis, using interoperable, scalable toolchains that align with OET’s open planning ecosystem.</p><p>The Energy System Modelling Department co-designs and executes the analytical backbone of OET’s work: open, transparent, and decision-grade energy and grid planning studies. We apply and operationalize OET’s open-source modelling stack to support institutions, creating reproducible modelling workflows, building tailored data pipelines, and producing systemwide analyses used in national, regional, and continental planning processes. Rather than focussing on developing the underlying tools, we identify recurring modelling needs, test missing features in real projects, and feed requirements back to the Modelling Tools &amp; Data unit, helping them generalize, improve, and maintain the broader ecosystem.</p>",
+        "works": {
+          "intro": "<p>Our work covers long-term decarbonisation scenarios, market modelling, grid expansion assessments, sector coupling, flexibility analyses, uncertainty studies, and resource adequacy. The department is structured into topic-focused teams:</p>",
+          "topics": [
+            {
+              "title": "Integrated Energy Networks",
+              "description": null,
+              "icon": {
+                "__icon": "code-merge"
+              }
+            },
+            {
+              "title": "Power-to-X",
+              "description": null,
+              "icon": {
+                "__icon": "square-bolt"
+              }
+            },
+            {
+              "title": "Integrated Energy Resource Planning",
+              "description": null,
+              "icon": {
+                "__icon": "population-globe"
+              }
+            },
+            {
+              "title": "Modelling Uncertainty",
+              "description": null,
+              "icon": {
+                "__icon": "circle-dashed"
+              }
+            },
+            {
+              "title": "Flexibility Assessments",
+              "description": null,
+              "icon": {
+                "__icon": "check-circle"
+              }
+            }
+          ],
+          "outro": "<p>Each working on a priority modelling area that is either strategically important or currently high-demand among planners.</p>"
+        },
+        "projects": [
+          {
+            "title": "E-fuels in Australia",
+            "excerpt": "Supporting communication for the Government of Australia to identify potential policy issues from a security of supply perspective",
+            "period": "MM/YYYY - MM/YYYY",
+            "href": "/outputs/success-stories/e-fuels-in-australia",
+            "image": {
+              "__asset": "organization/projects/e-fuels.jpg"
+            },
+            "alt": "",
+            "frame": "bright",
+            "partnerTag": {
+              "name": "Eskom",
+              "logo": {
+                "__asset": "outputs/partner-eskom.png"
+              },
+              "width": 73,
+              "height": 26
+            }
+          },
+          {
+            "title": "Openmod meets USA 2023",
+            "excerpt": "Held in collaboration with Stanford's Bits & Watts Initiative, this event reignited the passion for open energy modelling, a domain where openmod has been a pioneering grassroots movement.",
+            "period": "MM/YYYY - MM/YYYY",
+            "href": "/outputs/success-stories/openmod-meets-usa-2023",
+            "image": {
+              "__asset": "organization/projects/openmod.jpg"
+            },
+            "alt": "",
+            "frame": "brand-800",
+            "partnerTag": {
+              "name": "Stanford",
+              "logo": {
+                "__asset": "outputs/partner-stanford.png"
+              },
+              "width": 98.82,
+              "height": 35
+            }
+          },
+          {
+            "title": "Exploring the Geothermal Resource Potential in the U.S.",
+            "excerpt": "Viability Assessment of Geothermal Using Integrated Energy Planning",
+            "period": "MM/YYYY - MM/YYYY",
+            "href": "/outputs/success-stories/exploring-the-geothermal-resource-potential-in-the-us",
+            "image": {
+              "__asset": "organization/projects/geothermal.jpg"
+            },
+            "alt": "",
+            "frame": "brand-500",
+            "partnerTag": null
+          },
+          {
+            "title": "Exploring the Geothermal Resource Potential in the U.S.",
+            "excerpt": "Viability Assessment of Geothermal Using Integrated Energy Planning",
+            "period": "MM/YYYY - MM/YYYY",
+            "href": "/outputs/success-stories/exploring-the-geothermal-resource-potential-in-the-us",
+            "image": {
+              "__asset": "organization/projects/geothermal.jpg"
+            },
+            "alt": "",
+            "frame": "brand-500",
+            "partnerTag": null
+          }
+        ],
+        "mobileColumn": 326
+      }
+    },
+    {
+      "name": "Modeling Tools & Data",
+      "lead": "The Modeling Tools and Data department develops and maintains an ecosystem of open energy modelling tools and datasets that forms the technical backbone of Open Energy Transition’s mission",
+      "summary": "Our team works to make energy planning open, transparent, and accessible. This ecosystem enables faster, inclusive, and more informed decision-making by offering flexibility, collaboration, and lower cost.",
+      "accent": "dark-red",
+      "icon": {
+        "__icon": "worldwide-network"
+      },
+      "head": {
+        "name": "Dr. Hazem Abdel-Khalek",
+        "role": "Head of Modeling Tools & Data, Co-Founder",
+        "photo": {
+          "__asset": "organization/heads/abdel-khalek.jpg"
+        }
+      },
+      "detail": {
+        "slug": "modeling-tools-and-data",
+        "cardImage": {
+          "desktop": {
+            "__asset": "organization/departments/modeling-tools-and-data-desktop.jpg"
+          },
+          "mobile": {
+            "__asset": "organization/departments/modeling-tools-and-data-mobile.jpg"
+          }
+        },
+        "hero": {
+          "title": "Modeling\nTools & Data",
+          "lead": "The Modeling Tools and Data department develops and maintains an ecosystem of open energy modelling tools and datasets that form the technical backbone of Open Energy Transition’s mission to make energy planning open, transparent, and accessible. This ecosystem enables faster, more inclusive, and more informed decision-making by offering greater flexibility, collaboration, and lower cost.",
+          "image": {
+            "desktop": {
+              "__asset": "heroes/dept-modeling-tools-data-desktop.webp"
+            },
+            "mobile": {
+              "__asset": "heroes/dept-modeling-tools-data-mobile.webp"
+            }
+          },
+          "background": "brand-900",
+          "ornament": "department-inverse",
+          "peopleCount": "12"
+        },
+        "about": "<p>We design, develop, and maintain an ecosystem of open-source tools and open datasets that support energy planning across scales and sectors. These tools are central to how OET, and our partners, analyse energy systems, explore future scenarios, and design solutions for a just and rapid energy transition.</p>",
+        "works": {
+          "intro": "<p>To cover this work end-to-end, we operate through two interconnected streams:</p>",
+          "topics": [
+            {
+              "title": "Open-source Tool\nDevelopment and Maintenance",
+              "description": "ensuring our modelling frameworks remain reliable, scalable, and user-friendly",
+              "icon": {
+                "__icon": "code-merge"
+              }
+            },
+            {
+              "title": "Open Data\nDevelopment and Curation",
+              "description": "delivering rigorously validated, ready-to-use datasets that enable transparent and reproducible energy planning",
+              "icon": {
+                "__icon": "code-merge"
+              }
+            }
+          ],
+          "outro": "<p>As core maintainers and regular contributors to leading energy modelling frameworks, we prioritise openness, quality, and usability. Our work follows clear development roadmaps, involves transparent collaboration with global communities, and adheres to established best practices in code and data management. This helps ensure our tools and datasets remain reliable, current, and straightforward to adopt and adapt.</p><p>Within OET, we coordinate closely with other departments to align our development efforts with strategic goals and practical project requirements. Externally, we actively engage with open-source communities to shape common standards and maintain relevance.</p><p>Ultimately, our aim is to create and support an open and collaborative ecosystem of modelling tools and data that facilitates informed decision-making for sustainable energy transitions.</p>"
+        },
+        "projects": [
+          {
+            "title": "Exploring the Geothermal Resource Potential in the U.S.",
+            "excerpt": "Viability Assessment of Geothermal Using Integrated Energy Planning",
+            "period": "MM/YYYY - MM/YYYY",
+            "href": "/outputs/success-stories/exploring-the-geothermal-resource-potential-in-the-us",
+            "image": {
+              "__asset": "organization/projects/geothermal.jpg"
+            },
+            "alt": "",
+            "frame": "brand-500",
+            "partnerTag": null
+          }
+        ],
+        "mobileColumn": 332
+      }
+    },
+    {
+      "name": "Software Engineering",
+      "lead": "The Software Engineering Department at Open Energy Transition (OET) builds the digital infrastructure that powers modern energy modelling that help modellers and policymakers works.",
+      "summary": "Our team supports and advances OET's mission to accelerate the energy transition through better modeling. We build software that simplify the creation, execution, and analysis of large-scale real-world energy models",
+      "accent": "charcoal",
+      "icon": {
+        "__icon": "circle-bolt"
+      },
+      "head": {
+        "name": "Dr. Siddharth Krishna",
+        "role": "Head of Software Engineering",
+        "photo": {
+          "__asset": "organization/heads/krishna.jpg"
+        }
+      },
+      "detail": {
+        "slug": "software-engineering",
+        "cardImage": {
+          "desktop": {
+            "__asset": "organization/departments/software-engineering-desktop.jpg"
+          },
+          "mobile": {
+            "__asset": "organization/departments/software-engineering-mobile.jpg"
+          }
+        },
+        "hero": {
+          "title": "Software\nEngineering",
+          "lead": "The Software Engineering Department at Open Energy Transition (OET) builds the digital infrastructure that powers modern energy modelling. Our team designs, develops, and maintains tools that help modellers and policymakers work more efficiently, collaboratively, and securely.",
+          "image": {
+            "desktop": {
+              "__asset": "heroes/dept-software-engineering-desktop.webp"
+            },
+            "mobile": {
+              "__asset": "heroes/dept-software-engineering-mobile.webp"
+            }
+          },
+          "background": "neutral-900",
+          "ornament": "department",
+          "peopleCount": "12"
+        },
+        "about": "<p>The Software Engineering Department plays a central role in supporting and advancing OET's mission to accelerate the energy transition through better modelling. We build and maintain software tools that simplify the creation, execution, and analysis of large-scale real-world energy models.</p>",
+        "works": {
+          "intro": "<p>Our work includes developing cloud-based infrastructure to run large models automatically and efficiently, allowing modellers to focus on insight generation rather than operational complexity. We train modelling teams to use this infrastructure effectively and ensure it's secure, scalable, and well-documented.</p><p>We also benchmark solvers and explore ways to make models faster and more resource-efficient. Our team investigates emerging technologies—including machine learning—to clean and enhance input data, assist with model configuration, and streamline workflows. We create interactive dashboards and web apps that allow the public and stakeholders to engage with model outputs and explore different energy scenarios.</p><p>Internally, we promote software engineering best practices—such as continuous integration, version control workflows, and collaborative development tools—to help modelling teams build high-quality, maintainable open-source codebases. Finally, we’re working to establish a robust information security policy to protect sensitive client data and move towards industry-standard certifications.</p>",
+          "topics": [],
+          "outro": null
+        },
+        "projects": [
+          {
+            "title": "E-fuels in Australia",
+            "excerpt": "Supporting communication for the Government of Australia to identify potential policy issues from a security of supply perspective",
+            "period": "MM/YYYY - MM/YYYY",
+            "href": "/outputs/success-stories/e-fuels-in-australia",
+            "image": {
+              "__asset": "organization/projects/e-fuels.jpg"
+            },
+            "alt": "",
+            "frame": "bright",
+            "partnerTag": {
+              "name": "Eskom",
+              "logo": {
+                "__asset": "outputs/partner-eskom.png"
+              },
+              "width": 73,
+              "height": 26
+            }
+          },
+          {
+            "title": "Exploring the Geothermal Resource Potential in the U.S.",
+            "excerpt": "Viability Assessment of Geothermal Using Integrated Energy Planning",
+            "period": "MM/YYYY - MM/YYYY",
+            "href": "/outputs/success-stories/exploring-the-geothermal-resource-potential-in-the-us",
+            "image": {
+              "__asset": "organization/projects/geothermal.jpg"
+            },
+            "alt": "",
+            "frame": "brand-500",
+            "partnerTag": null
+          }
+        ],
+        "mobileColumn": 332
+      }
+    },
+    {
+      "name": "Research and Market Development",
+      "lead": "The Research and Market Development Department at Open Energy Transition (OET) leads the charge in advancing and promoting open energy modeling. ",
+      "summary": "Our team works with research partners across the world to bring the latest new tools and methods into OET, grow the global user and contributor community through training, and drive global market.",
+      "accent": "red",
+      "icon": {
+        "__icon": "yoga-ball"
+      },
+      "head": {
+        "name": "Dr. Harry van der Weijde",
+        "role": "Head of Research & Market Development",
+        "photo": {
+          "__asset": "organization/heads/van-der-weijde.jpg"
+        }
+      },
+      "detail": {
+        "slug": "research-and-market-development",
+        "cardImage": {
+          "desktop": {
+            "__asset": "organization/departments/research-and-market-development-desktop.jpg"
+          },
+          "mobile": {
+            "__asset": "organization/departments/research-and-market-development-mobile.jpg"
+          }
+        },
+        "hero": {
+          "title": "Research and Market\nDevelopment",
+          "lead": "The Research and Market Development Department at Open Energy Transition (OET) leads the charge in advancing and promoting open energy modeling. We work with research partners across the world to bring the latest new tools and methods into OET, grow the global user and contributor community through training, and drive global market development by making the case for open-source solutions and identifying new application areas.",
+          "image": {
+            "desktop": {
+              "__asset": "heroes/dept-research-market-development-desktop.webp"
+            },
+            "mobile": {
+              "__asset": "heroes/dept-research-market-development-mobile.webp"
+            }
+          },
+          "background": "brand-600",
+          "ornament": "department",
+          "peopleCount": "12"
+        },
+        "about": "<p>Our department’s work is structured around three core activities: Research, Training, and Business Development. Together, they pave the way for open energy tools and datasets to become mainstream across the world. </p>",
+        "works": {
+          "intro": "<p>In Research, we explore the frontiers of open-source energy modeling and data. This includes developing new models, datasets, and methodologies that support energy planning across sectors and regions. We participate in research consortia (e.g. through Horizon Europe), co-supervise students, and collaborate closely with universities and institutes to bring academic insights into applied, open tools. We also pioneer new applications for open models, from price forecasting and energy access to flexibility and resilience.</p><p>In Training, we equip energy modelers and decision-makers with the skills and confidence to use open-source tools effectively. We deliver hands-on workshops and structured training sessions using PyPSA and related tools, and we actively foster a growing international user and developer community. Our goal is not just to teach the tools, but to build a support network that sustains long-term growth and collaboration in the open modeling ecosystem.</p><p>In Business Development, we advocate for and expand the use of open-source tools across new user groups. We work with philanthropic funders, policymakers, consultants, and other partners to demonstrate the value of open modeling. This includes writing funding proposals, scoping projects, delivering proof-of-concept studies, and partnering with consultancies to apply open tools in real-world contexts. We help shape how open-source energy modeling enters mainstream decision-making.</p>",
+          "topics": [],
+          "outro": null
+        },
+        "projects": [],
+        "mobileColumn": 332
+      }
+    },
+    {
+      "name": "Finance",
+      "lead": "The Finance Team at Open Energy Transition (OET) builds, manages, and arranges the strong financial foundation behind our mission.",
+      "summary": "The team manages OET’s financial operations, planning, and reporting. Ensuring resources are used responsibly and sustainably to support our work and long-term impact.",
+      "accent": "red",
+      "icon": {
+        "__icon": "personal-finance"
+      },
+      "head": {
+        "name": "Andris Prindulis",
+        "role": "Head of Finance",
+        "photo": {
+          "__asset": "organization/heads/prindulis.jpg"
+        }
+      },
+      "detail": null
+    },
+    {
+      "name": "People and Culture",
+      "lead": "The People and Culture Department at Open Energy Transition (OET) creates an inclusive, supportive environment where our people and community can thrive.",
+      "summary": "Our team nurtures OET’s culture, supports talent development, and strengthens collaboration across the organisations. Empowering people to do their best work and advance our shared mission.",
+      "accent": "plum",
+      "icon": {
+        "__icon": "people-group"
+      },
+      "head": {
+        "name": "Quintin Coetzee",
+        "role": "Head of People",
+        "photo": {
+          "__asset": "organization/heads/coetzee.jpg"
+        }
+      },
+      "detail": null
+    },
+    {
+      "name": "Grid Data",
+      "lead": "The Grid Data Team at Open Energy Transition (OET) develops and maintains open, high-quality datasets that represent electricity networks and support transparent, reliable energy system modelling.",
+      "summary": "The team collects, validates, and structures grid data from diverse sources, for researchers, planners, and policymakers to understand energy systems and build credible models for the energy transition.",
+      "accent": "dark-red",
+      "icon": {
+        "__icon": "grid"
+      },
+      "head": {
+        "name": "Dr. Tobias Augspurger",
+        "role": "Head of Grid Data",
+        "photo": {
+          "__asset": "organization/heads/augspurger.jpg"
+        }
+      },
+      "detail": null
+    }
+  ],
+  "departmentsHeading": {
+    "tag": "Departments",
+    "title": "United by a Culture\nof Transparency & Collaboration"
+  },
+  "departmentsIndex": {
+    "meta": {
+      "title": "Departments | Open Energy Transition",
+      "description": "Meet the teams behind OET—bringing together diverse expertise to advance open, collaborative solutions for the energy transition."
+    },
+    "hero": {
+      "title": "The Departments\nof OET",
+      "lead": "Meet the teams behind OET—bringing together diverse expertise to advance open, collaborative solutions for the energy transition.",
+      "image": {
+        "desktop": {
+          "__asset": "heroes/dept-index-desktop.webp"
+        },
+        "mobile": {
+          "__asset": "heroes/dept-index-mobile.webp"
+        }
+      },
+      "count": {
+        "value": "7",
+        "label": "Department"
+      },
+      "icon": {
+        "__icon": "solar-system"
+      }
+    }
+  }
+}

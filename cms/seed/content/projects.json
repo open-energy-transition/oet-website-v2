@@ -1,0 +1,2841 @@
+{
+  "projects": [
+    {
+      "slug": "e-fuels-in-australia",
+      "title": "E-fuels in Australia",
+      "excerpt": "Supporting communication for the Government of Australia to identify potential policy issues from a security of supply perspective",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-e-fuels-in-australia.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-e-fuels-in-australia.webp"
+      },
+      "alt": "",
+      "frame": "bright",
+      "partnerTag": {
+        "name": "Eskom",
+        "logo": {
+          "__asset": "outputs/partner-eskom.png"
+        },
+        "width": 73,
+        "height": 26
+      },
+      "partnerLink": null,
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "openmod-meets-usa-2023",
+      "title": "Openmod meets USA 2023",
+      "excerpt": "Held in collaboration with Stanford's Bits & Watts Initiative, this event reignited the passion for open energy modelling, a domain where openmod has been a pioneering grassroots movement.",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-openmod-meets-usa-2023.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-openmod-meets-usa-2023.webp"
+      },
+      "alt": "",
+      "frame": "brand-800",
+      "partnerTag": {
+        "name": "Stanford",
+        "logo": {
+          "__asset": "outputs/partner-stanford.png"
+        },
+        "width": 98.82,
+        "height": 35
+      },
+      "partnerLink": null,
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "exploring-the-geothermal-resource-potential-in-the-us",
+      "title": "Exploring the Geothermal Resource Potential in the U.S.",
+      "excerpt": "Viability Assessment of Geothermal Using Integrated Energy Planning",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-geothermal-resource-potential.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-e-fuels-in-australia.webp"
+      },
+      "alt": "",
+      "frame": "brand-500",
+      "partnerTag": null,
+      "partnerLink": null,
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "sustainable-hydrogen-and-power-to-x-ramp-up-in-africa",
+      "title": "Sustainable Hydrogen and Power-to-X ramp-up in Africa",
+      "excerpt": "strengthening the global perspective of energy research, advancing sector coupling in the energy transition, and harnessing digitization to enhance energy systems",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-sustainable-hydrogen.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-sustainable-hydrogen.webp"
+      },
+      "alt": "",
+      "frame": "brand-600",
+      "partnerTag": null,
+      "partnerLink": null,
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "project-tauritron",
+      "title": "Project Tauritron",
+      "excerpt": "This project will improve how people interact with energy data, enable simple calculations and visualizations, promote public engagement, and improve human-centered decision making.",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-project-tauritron.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-project-tauritron.webp"
+      },
+      "alt": "",
+      "frame": "brand-900",
+      "partnerTag": null,
+      "partnerLink": null,
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "google-guarantee-of-origin-study",
+      "title": "Google Guarantee of Origin Study",
+      "excerpt": "Exploring green energy in Europe for the world’s largest companies",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-google-guarantee-of-origin.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-google-guarantee-of-origin.webp"
+      },
+      "alt": "",
+      "frame": "brand-500",
+      "partnerTag": {
+        "name": "Google",
+        "logo": {
+          "__asset": "home/partner-google.png"
+        },
+        "width": 70,
+        "height": 25
+      },
+      "partnerLink": {
+        "label": "Google.com",
+        "href": "https://www.google.com"
+      },
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "grid-modelling-to-assess-electrofuels-supply-potential",
+      "title": "Grid Modelling to Assess Electrofuels Supply Potential",
+      "excerpt": "Evaluating the impact of electrofuels adoption in the US on the electricity grid",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-grid-modelling-electrofuels.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-grid-modelling-electrofuels.webp"
+      },
+      "alt": "",
+      "frame": "brand-500",
+      "partnerTag": null,
+      "partnerLink": {
+        "label": "International Council on Clean Transportation",
+        "href": "https://theicct.org"
+      },
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "wallonia-energy-plan",
+      "title": "Wallonia Energy Plan",
+      "excerpt": "Open modeling to inform regional policy design and compare transition pathways",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-wallonia-energy-plan.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-wallonia-energy-plan.webp"
+      },
+      "alt": "",
+      "frame": "brand-500",
+      "partnerTag": null,
+      "partnerLink": null,
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "multi-country-electricity-transition-potential-and-challenges-project",
+      "title": "Multi-Country Electricity Transition Potential and Challenges Project",
+      "excerpt": "Training and supporting modelling teams in 10 countries",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-multi-country-electricity-transition.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-multi-country-electricity-transition.webp"
+      },
+      "alt": "",
+      "frame": "brand-700",
+      "partnerTag": null,
+      "partnerLink": null,
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "the-role-of-energy-storage-in-germany",
+      "title": "The Role of Energy Storage in Germany",
+      "excerpt": "Quantification of energy storage benefits in reducing carbon emissions in the German electricity system",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-energy-storage-germany.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-energy-storage-germany.webp"
+      },
+      "alt": "",
+      "frame": "brand-800",
+      "partnerTag": null,
+      "partnerLink": {
+        "label": "International Council on Clean Transportation",
+        "href": "https://theicct.org"
+      },
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    },
+    {
+      "slug": "comprehensive-pypsa-training-session",
+      "title": "Comprehensive PyPSA Training Session",
+      "excerpt": "Equipping energy professionals with advanced skills of open source energy modeling",
+      "period": "MM/YYYY - MM/YYYY",
+      "thumbnail": {
+        "__asset": "outputs/thumb-pypsa-training-session.webp"
+      },
+      "hero": {
+        "__asset": "outputs/hero-pypsa-training-session.webp"
+      },
+      "alt": "",
+      "frame": "brand-500",
+      "partnerTag": null,
+      "partnerLink": null,
+      "detail": {
+        "highlights": [
+          "Strengthens Australia’s energy security by reducing reliance on imported fuels.",
+          "Identifies opportunities for locally produced green ammonia and methanol.",
+          "Supports more informed e-fuel policies through open, transparent modelling.",
+          "Helps decision-makers explore economic impacts under different energy scenarios. Demonstrates how OET and PyPSA-Earth can accelerate a resilient net-zero transition."
+        ],
+        "tools": [
+          "PyPSA",
+          "Openmod-tracker",
+          "Detect-Infra"
+        ],
+        "services": [
+          "SoftwareDevelopment",
+          "Open-source migration",
+          "Train and support"
+        ],
+        "start": "May 1, 2026",
+        "rangeWord": "to",
+        "end": "May 1, 2026",
+        "status": "Completed",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "body": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>Australia is heavily reliant on imported fuel while, at the same time, having an abundance of solar and wind resources. This creates significant potential for producing and using e-fuels such as e-methanol and e-ammonia as replacements for traditional gas oil and ammonia-based fertilizers, respectively.</p>\n<p>When produced using clean hydrogen and electricity, both are net-zero in terms of carbon emissions as the CO₂ released during use is captured during production. Investment in local production of synthetic fuel is a way to hedge against the risks of international price volatility, increasing the economic value of fuels by creating local jobs.</p>\n<p>This project develops an open, PyPSA-Earth-based model for Australia. Its easy-to-use app provides a graphic user interface to change the required model inputs, and enables users to explore the economic benefits of switching to e-fuels such as e-ammonia and e-methanol in case of oil import price shocks.</p>\n<h3>Project Aims</h3>\n<p>Support communication with the Government of Australia to identify potential policy issues from a security of supply perspective especially for eFuels covering green Ammonia and green Methanol</p>\n<p>Use PyPSA-Earth to model the eFuel demand of Australia. Within this project, eFuel reflects Ammonia (for use within fertilizers production) and Methanol (for use within diesel replacement).</p>\n<p>Prepare a simple Streamlit interface for direct interaction with the model (e.g., capex assumptions, e-fuel share of production)</p>",
+        "linkGroups": [
+          {
+            "title": "Tools",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Openmod-tracker",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Power Net Zero",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Open Energy Benchmark",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Data",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Dataset A",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": true,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Dataset B",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Repository",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Interact With The Model (Streamlit)",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "name": "Dr. Markus Groissbock",
+          "title": "Project Director & Senior Energy System Modeler | Power-to-X (Team Lead)",
+          "photo": {
+            "__asset": "outputs/contact-photo.webp"
+          },
+          "role": "Project Lead",
+          "links": [
+            {
+              "kind": "profile",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "Profile of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "github",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "GitHub of Dr. Markus Groissbock"
+            },
+            {
+              "kind": "linkedin",
+              "href": "mailto:info@openenergytransition.org",
+              "label": "LinkedIn of Dr. Markus Groissbock"
+            }
+          ]
+        },
+        "partners": [
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          },
+          {
+            "name": "Climact",
+            "image": {
+              "__asset": "outputs/partner-logo-placeholder.png"
+            }
+          }
+        ],
+        "testimonial": [
+          {
+            "quote": "“I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.”",
+            "name": "Ntathu Masimula",
+            "role": "Senior Environmental Scientist, Eskom",
+            "portrait": {
+              "__asset": "outputs/testimonial-portrait.webp"
+            },
+            "logo": {
+              "__asset": "outputs/testimonial-logo.png"
+            },
+            "company": "Eskom",
+            "paragraphs": [
+              "The workshop exceeded my expectations in both content and delivery. I particularly appreciated the hands-on structure that allowed us to actively apply PyPSA in realistic modelling scenarios.",
+              "The facilitation team created a collaborative environment where technical professionals and market analysts could learn from each other, something I found both rare and highly enriching.",
+              "The training made a compelling case for using open-source modelling in African contexts especially where resource constraints limit access to commercial software. I was particularly inspired by the transparency and replicability that open-source platforms like PyPSA offer."
+            ]
+          }
+        ],
+        "related": [
+          "e-fuels-in-australia",
+          "openmod-meets-usa-2023",
+          "exploring-the-geothermal-resource-potential-in-the-us",
+          "exploring-the-geothermal-resource-potential-in-the-us"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "consultancies-and-engineering-firms"
+      }
+    }
+  ],
+  "successStories": {
+    "meta": {
+      "title": "Success Stories | Open Energy Transition",
+      "description": "Discover our innovative projects driving the energy transition towards a sustainable future with open-source and open data."
+    },
+    "hero": {
+      "title": "Driving The Energy Transition With Open-Source & Open Data",
+      "links": [
+        {
+          "label": "Success Stories",
+          "href": "#success-stories"
+        }
+      ]
+    },
+    "listing": {
+      "id": "success-stories",
+      "title": "Success Stories",
+      "description": "Discover our innovative projects driving the energy transition \ntowards a sustainable future with open-source and open data",
+      "tabs": [
+        {
+          "label": "Completed",
+          "href": "/outputs/success-stories",
+          "active": true
+        },
+        {
+          "label": "In Progress",
+          "href": "/outputs/success-stories",
+          "active": false
+        }
+      ],
+      "mobilePageSize": 6,
+      "items": [
+        "e-fuels-in-australia",
+        "openmod-meets-usa-2023",
+        "exploring-the-geothermal-resource-potential-in-the-us",
+        "sustainable-hydrogen-and-power-to-x-ramp-up-in-africa",
+        "project-tauritron",
+        "google-guarantee-of-origin-study",
+        "grid-modelling-to-assess-electrofuels-supply-potential",
+        "wallonia-energy-plan",
+        "multi-country-electricity-transition-potential-and-challenges-project",
+        "the-role-of-energy-storage-in-germany",
+        "comprehensive-pypsa-training-session"
+      ]
+    }
+  }
+}

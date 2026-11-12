@@ -1,0 +1,331 @@
+{
+  "toolCategories": [
+    {
+      "id": "tools",
+      "slug": "tools",
+      "label": "Tools",
+      "tabLabel": "Tools",
+      "tone": "brand"
+    },
+    {
+      "id": "model",
+      "slug": "models",
+      "label": "Model",
+      "tabLabel": "Model",
+      "tone": "brand-700"
+    },
+    {
+      "id": "data",
+      "slug": "data",
+      "label": "Data",
+      "tabLabel": "Data",
+      "tone": "neutral-900"
+    },
+    {
+      "id": "solvers",
+      "slug": "open-source-solvers",
+      "label": "Open-source solvers",
+      "tabLabel": "Open Source Solvers",
+      "tone": "neutral-700"
+    },
+    {
+      "id": "community",
+      "slug": "community",
+      "label": "Community",
+      "tabLabel": "Community",
+      "tone": "brand-900"
+    }
+  ],
+  "tools": [
+    {
+      "name": "Openmod-tracker",
+      "description": [
+        "Maintainer | Explore and compare open-source energy modeling tools.",
+        "Find metrics, documentation, and community activity for tools used in energy transition planning"
+      ],
+      "categories": [
+        "tools"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Power Net Zero",
+      "description": [
+        "Maintainer | PyPSA-Earth Visualization Dashboard"
+      ],
+      "categories": [
+        "tools"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Open Energy Benchmark",
+      "description": [
+        "Maintainer | An open-source benchmark of optimization solvers on representative problems from the energy planning domain"
+      ],
+      "categories": [
+        "tools",
+        "solvers"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "PyPSA",
+      "description": [
+        "Co-maintainer | A python software toolbox for simulating and optimising modern power systems"
+      ],
+      "categories": [
+        "model"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "PyPSA-Earth",
+      "description": [
+        "Co-maintainer | A python software toolbox for simulating and optimising modern power systems globally"
+      ],
+      "categories": [
+        "model"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "PyPSA-Eur",
+      "description": [
+        "Co-maintainer | A python software toolbox for simulating and optimising modern power systems in Europe"
+      ],
+      "categories": [
+        "model"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Open-TYNDP",
+      "description": [
+        "Maintainer | Interfacing open energy system planning with ENTSO-E Models and contributing to TYNDP"
+      ],
+      "categories": [
+        "model"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "DemandCast",
+      "description": [
+        "Maintainer | A Python-based project focused on collecting, processing, and forecasting hourly electricity demand data"
+      ],
+      "categories": [
+        "data"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Atlite",
+      "description": [
+        "Co-maintainer | Convert weather data to energy systems data"
+      ],
+      "categories": [
+        "data"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Detect-Infra",
+      "description": [
+        "A machine learning pipeline to detect infrastructure from satellite images"
+      ],
+      "categories": [
+        "data"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Powerplant matching",
+      "description": [
+        "Co-maintainer | A toolbox to combine multiple powerplant databases"
+      ],
+      "categories": [
+        "data"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "TechnologyData",
+      "description": [
+        "Co-maintainer | A tool that compiles assumptions on energy system technologies"
+      ],
+      "categories": [
+        "data"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "MapYourGrid",
+      "description": [
+        "Co-maintainer | MapYourGrid is an open, collaborative initiative that aims to map electricity grids around the world, focusing on high-voltage transmission lines, substations, power plants, and major energy consumers"
+      ],
+      "categories": [
+        "data",
+        "community"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Awesome Grid Model Data",
+      "description": [
+        "Maintainer | A curated collection of publicly available electricity grid (production cost, power flow, etc.) model datasets for academic and industry research"
+      ],
+      "categories": [
+        "data"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Awesome Electrical Grid Mapping",
+      "description": [
+        "Maintainers | A curated list of global electrical grid maps, datasets and resources"
+      ],
+      "categories": [
+        "data"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Awesome Electricity Demand",
+      "description": [
+        "Maintainer | A curated collection of links to hourly or sub-hourly electricity demand data, designed to improve the accessibility and discoverability of datasets for energy system modelers and planners"
+      ],
+      "categories": [
+        "data"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "Linopy",
+      "description": [
+        "Maintainer | Linear optimization interface for Python"
+      ],
+      "categories": [
+        "solvers"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "HiGHS-campaign",
+      "description": [
+        "We organised a campaign, collecting +500k$, to make the worlds-fastest open-source solver HiGHS ready for large energy planning problems"
+      ],
+      "categories": [
+        "solvers"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    },
+    {
+      "name": "PyPSA meets Earth",
+      "description": [
+        "The heart of the PyPSA meets Earth community life is happening on Discord. We hold there all our meetings, coffee breaks and exchanges. Discord provides voice channels, text channels, and event stages."
+      ],
+      "categories": [
+        "community"
+      ],
+      "sourceHref": "mailto:info@openenergytransition.org",
+      "websiteHref": "mailto:info@openenergytransition.org",
+      "githubHref": "mailto:info@openenergytransition.org"
+    }
+  ],
+  "toolsPage": {
+    "meta": {
+      "title": "Tools and Data",
+      "description": "Open models, open-source software and open data supported or built by Open Energy Transition."
+    },
+    "hero": {
+      "eyebrow": {
+        "label": "Tools & Data",
+        "mobile": false
+      },
+      "title": "Range of Open Models, Open-Source Software, and Open Data.",
+      "link": {
+        "label": "Tools & Data",
+        "href": "#tools"
+      },
+      "image": {
+        "desktop": {
+          "__asset": "heroes/tools-and-data-desktop.webp"
+        },
+        "mobile": {
+          "__asset": "heroes/tools-and-data-mobile.webp"
+        }
+      }
+    },
+    "intro": {
+      "id": "tools",
+      "title": "Tools and Data\nSupported or Built by Us",
+      "paragraphs": [
+        "Open tools and data ensure transparency and reproducibility, collaboration and innovation, flexibility and speed, interoperability, capacity development, and lower cost. ",
+        "We support a range of open models, open-source software, and open data. We are technology-agnostic with extensive expertise in PyPSA, Temoa, TIMES, and others."
+      ]
+    },
+    "mobilePagination": {
+      "current": 1,
+      "total": 10
+    },
+    "cta": {
+      "tone": "brand-600",
+      "heading": "Discuss a Technology Modelling Need",
+      "lead": null,
+      "text": "If you are interested in collaborating with us on energy transition studies, open-source platforms, and training and support, please contact us.",
+      "actions": [
+        {
+          "label": "Contact Us",
+          "href": "mailto:info@openenergytransition.org",
+          "emphasis": "primary",
+          "newTab": false
+        },
+        {
+          "label": "Request a Demo",
+          "href": "mailto:info@openenergytransition.org",
+          "emphasis": "secondary",
+          "newTab": false
+        }
+      ],
+      "collage": "thermalpower",
+      "breakout": true
+    }
+  }
+}

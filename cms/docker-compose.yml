@@ -1,0 +1,19 @@
+name: oet-cms
+
+services:
+  database:
+    image: postgres:16-alpine
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: payload
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: oet_cms
+    healthcheck:
+      test: ['CMD', 'pg_isready', '--host=localhost', '--username=payload', '--dbname=oet_cms']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s

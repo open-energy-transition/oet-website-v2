@@ -1,0 +1,296 @@
+{
+  "navigation": {
+    "desktop": [
+      {
+        "kind": "list",
+        "id": "tools-and-data",
+        "label": "Tools & Data",
+        "links": [
+          {
+            "label": "Our Tools",
+            "href": "/tools-and-data"
+          },
+          {
+            "label": "Models",
+            "href": "/tools-and-data/models"
+          },
+          {
+            "label": "Data",
+            "href": "/tools-and-data/data"
+          },
+          {
+            "label": "Open-Source Solver",
+            "href": "/tools-and-data/open-source-solvers"
+          },
+          {
+            "label": "Community",
+            "href": "/tools-and-data/community"
+          }
+        ]
+      },
+      {
+        "kind": "mega",
+        "id": "services",
+        "label": "Services",
+        "links": [
+          {
+            "label": "System Operators & Utilities",
+            "description": "We support model and data development, software deployment, validation, benchmarking, training, maintenance",
+            "href": "/services/system-operators-and-utilities",
+            "icon": "pylon"
+          },
+          {
+            "label": "Consultancies & Engineering Firm",
+            "description": "Add specialist open-source modelling, software and data capabilities to your client offer.",
+            "href": "/services/consultancies-and-engineering-firms",
+            "icon": "engineer"
+          },
+          {
+            "label": "Think Tanks, NGOs & Research Organizations",
+            "description": "We support model and data development, software deployment, validation, benchmarking, training, maintenance",
+            "href": "/services/think-tanks-ngos-and-research-organizations",
+            "icon": "research"
+          },
+          {
+            "label": "Regulators & Public Authorities",
+            "description": "Build independent and transparent analytical capabilities for energy policy, regulation and infrastructure assessment.",
+            "href": "/services/regulators-and-public-authorities",
+            "icon": "government"
+          },
+          {
+            "label": "Foundations & Development Partners",
+            "description": "Strengthen the shared tools, data and institutional capacity needed for transparent energy planning to spread.",
+            "href": "/services/foundations-and-development-partners",
+            "icon": "column"
+          },
+          {
+            "label": "Technology Developers & Investors",
+            "description": "We support model and data development, software deployment, validation, benchmarking, training, maintenance",
+            "href": "/services/technology-developers-and-investors",
+            "icon": "monitor"
+          }
+        ],
+        "more": {
+          "label": "Learn More About Our Service",
+          "description": "We support the full journey, from assessing suitable tools and use cases to building and integrating the components required for institutional use",
+          "href": "/services"
+        }
+      },
+      {
+        "kind": "list",
+        "id": "outputs",
+        "label": "Outputs",
+        "links": [
+          {
+            "label": "Success Stories",
+            "href": "/outputs/success-stories"
+          },
+          {
+            "label": "Publications",
+            "href": "/outputs/publications"
+          },
+          {
+            "label": "Blogs",
+            "href": "/outputs/blogs"
+          },
+          {
+            "label": "Policy Briefs",
+            "href": "/outputs/policy-briefs"
+          },
+          {
+            "label": "Reports",
+            "href": "/outputs/reports"
+          }
+        ]
+      },
+      {
+        "kind": "list",
+        "id": "organization",
+        "label": "Organization",
+        "links": [
+          {
+            "label": "About Us",
+            "href": "/organization/about"
+          },
+          {
+            "label": "Department",
+            "href": "/organization/departments"
+          },
+          {
+            "label": "Partners and Funders",
+            "href": "/organization/partners-and-funders"
+          },
+          {
+            "label": "Our Team",
+            "href": "/organization/team"
+          },
+          {
+            "label": "Career",
+            "href": "/organization/career"
+          },
+          {
+            "label": "News & Events",
+            "href": "/organization/news-and-events"
+          },
+          {
+            "label": "Theory of Change",
+            "href": "/organization/theory-of-change"
+          }
+        ]
+      }
+    ],
+    "mobile": [
+      {
+        "kind": "link",
+        "id": "tools-and-data",
+        "label": "Tools & Data",
+        "href": "/tools-and-data"
+      },
+      {
+        "kind": "list",
+        "id": "solutions",
+        "label": "Solutions",
+        "links": [
+          {
+            "label": "Projects",
+            "href": "/outputs/success-stories"
+          },
+          {
+            "label": "Success Stories",
+            "href": "/outputs/success-stories"
+          }
+        ]
+      },
+      {
+        "kind": "mega",
+        "id": "services",
+        "label": "Services",
+        "links": [
+          {
+            "label": "System Operators & Utilities",
+            "description": "We support model and data development, software deployment, validation, benchmarking, training, maintenance",
+            "href": "/services/system-operators-and-utilities",
+            "icon": "pylon"
+          },
+          {
+            "label": "Regulators & Public Authorities",
+            "description": "Build independent and transparent analytical capabilities for energy policy, regulation and infrastructure assessment.",
+            "href": "/services/regulators-and-public-authorities",
+            "icon": "government"
+          },
+          {
+            "label": "Consultancies & Engineering Firm",
+            "description": "Add specialist open-source modelling, software and data capabilities to your client offer.",
+            "href": "/services/consultancies-and-engineering-firms",
+            "icon": "engineer"
+          },
+          {
+            "label": "Foundations & Development Partners",
+            "description": "Strengthen the shared tools, data and institutional capacity needed for transparent energy planning to spread.",
+            "href": "/services/foundations-and-development-partners",
+            "icon": "column"
+          },
+          {
+            "label": "Think Tanks, NGOs & Research Organizations",
+            "description": "We support model and data development, software deployment, validation, benchmarking, training, maintenance",
+            "href": "/services/think-tanks-ngos-and-research-organizations",
+            "icon": "research"
+          },
+          {
+            "label": "Technology Developers & Investors",
+            "description": "We support model and data development, software deployment, validation, benchmarking, training, maintenance",
+            "href": "/services/technology-developers-and-investors",
+            "icon": "monitor"
+          }
+        ],
+        "more": {
+          "label": "Learn More About Our Service",
+          "description": "We support the full journey, from assessing suitable tools and use cases to building and integrating the components required for institutional use",
+          "href": "/services"
+        }
+      },
+      {
+        "kind": "list",
+        "id": "outputs",
+        "label": "Outputs",
+        "links": [
+          {
+            "label": "Success Stories",
+            "href": "/outputs/success-stories"
+          },
+          {
+            "label": "Publications",
+            "href": "/outputs/publications"
+          },
+          {
+            "label": "Blogs",
+            "href": "/outputs/blogs"
+          },
+          {
+            "label": "Policy Briefs",
+            "href": "/outputs/policy-briefs"
+          },
+          {
+            "label": "Reports",
+            "href": "/outputs/reports"
+          }
+        ]
+      },
+      {
+        "kind": "list",
+        "id": "organization",
+        "label": "Organization",
+        "links": [
+          {
+            "label": "About Us",
+            "href": "/organization/about"
+          },
+          {
+            "label": "Department",
+            "href": "/organization/departments"
+          },
+          {
+            "label": "Partners and Funders",
+            "href": "/organization/partners-and-funders"
+          },
+          {
+            "label": "Our Team",
+            "href": "/organization/team"
+          },
+          {
+            "label": "Career",
+            "href": "/organization/career"
+          },
+          {
+            "label": "News & Events",
+            "href": "/organization/news-and-events"
+          },
+          {
+            "label": "Theory of Change",
+            "href": "/organization/theory-of-change"
+          }
+        ]
+      }
+    ],
+    "contact": {
+      "label": "Contact Us",
+      "href": "mailto:info@openenergytransition.org"
+    },
+    "legal": [
+      {
+        "label": "Legal",
+        "href": "/legal"
+      },
+      {
+        "label": "Privacy Statement",
+        "href": "/privacy-statement"
+      },
+      {
+        "label": "Disclaimer",
+        "href": "/disclaimer"
+      }
+    ],
+    "consentLabel": "Cookie Settings",
+    "copyright": "© 2026 Open Energy Transition gGmbH. All rights reserved."
+  }
+}

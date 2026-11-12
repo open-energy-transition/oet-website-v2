@@ -1,0 +1,231 @@
+.oet-brand {
+  max-width: 100%;
+  height: auto;
+}
+
+.oet-login {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.oet-login h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.oet-welcome {
+  border-top: 4px solid #e31937;
+  background: #fffefb;
+  padding: clamp(20px, 3vw, 40px);
+  margin-bottom: 32px;
+}
+
+.oet-welcome h1 {
+  max-width: 650px;
+  font-size: clamp(28px, 3vw, 44px);
+  letter-spacing: -0.03em;
+  margin: 12px 0;
+}
+
+.oet-eyebrow {
+  color: #b51029;
+  font-weight: 600;
+}
+
+.oet-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.oet-quick-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid #d9d7d4;
+  text-decoration: none;
+}
+
+.oet-quick-actions a:first-child {
+  background: #b51029;
+  border-color: #b51029;
+  color: #fffefb;
+}
+
+.oet-quick-actions a:hover {
+  text-decoration: underline;
+}
+
+.oet-quick-actions a:focus-visible {
+  outline: 2px solid #b51029;
+  outline-offset: 3px;
+}
+
+.nav__link::before {
+  content: '';
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-inline-end: 10px;
+  background-color: currentColor;
+  mask: var(--nav-icon) center / contain no-repeat;
+  opacity: 0.75;
+}
+
+.nav__link:has(.nav__link-indicator)::before {
+  opacity: 1;
+}
+
+.nav__link-indicator {
+  background: #e31937;
+}
+
+#nav-global-home-page {
+  --nav-icon: url('/admin-icons/house.svg');
+}
+
+#nav-global-site-header {
+  --nav-icon: url('/admin-icons/panel-top.svg');
+}
+
+#nav-global-site-footer {
+  --nav-icon: url('/admin-icons/panel-bottom.svg');
+}
+
+#nav-global-site-settings {
+  --nav-icon: url('/admin-icons/settings.svg');
+}
+
+#nav-projects {
+  --nav-icon: url('/admin-icons/folder-kanban.svg');
+}
+
+#nav-publications {
+  --nav-icon: url('/admin-icons/book-open.svg');
+}
+
+#nav-testimonials {
+  --nav-icon: url('/admin-icons/quote.svg');
+}
+
+#nav-regions {
+  --nav-icon: url('/admin-icons/globe.svg');
+}
+
+#nav-tags {
+  --nav-icon: url('/admin-icons/tag.svg');
+}
+
+#nav-publication-categories {
+  --nav-icon: url('/admin-icons/library.svg');
+}
+
+#nav-global-success-stories-page {
+  --nav-icon: url('/admin-icons/trophy.svg');
+}
+
+#nav-global-publications-page {
+  --nav-icon: url('/admin-icons/file-text.svg');
+}
+
+#nav-tools {
+  --nav-icon: url('/admin-icons/wrench.svg');
+}
+
+#nav-tool-categories {
+  --nav-icon: url('/admin-icons/shapes.svg');
+}
+
+#nav-services {
+  --nav-icon: url('/admin-icons/briefcase.svg');
+}
+
+#nav-cta-banners {
+  --nav-icon: url('/admin-icons/megaphone.svg');
+}
+
+#nav-global-tools-page {
+  --nav-icon: url('/admin-icons/layout-grid.svg');
+}
+
+#nav-global-services-page {
+  --nav-icon: url('/admin-icons/layout-list.svg');
+}
+
+#nav-events {
+  --nav-icon: url('/admin-icons/calendar.svg');
+}
+
+#nav-event-types {
+  --nav-icon: url('/admin-icons/calendar-cog.svg');
+}
+
+#nav-pages {
+  --nav-icon: url('/admin-icons/file.svg');
+}
+
+#nav-redirects {
+  --nav-icon: url('/admin-icons/signpost.svg');
+}
+
+#nav-form-submissions {
+  --nav-icon: url('/admin-icons/inbox.svg');
+}
+
+#nav-global-news-events-page {
+  --nav-icon: url('/admin-icons/newspaper.svg');
+}
+
+#nav-team-members {
+  --nav-icon: url('/admin-icons/users.svg');
+}
+
+#nav-departments {
+  --nav-icon: url('/admin-icons/network.svg');
+}
+
+#nav-countries {
+  --nav-icon: url('/admin-icons/flag.svg');
+}
+
+#nav-partners {
+  --nav-icon: url('/admin-icons/handshake.svg');
+}
+
+#nav-jobs {
+  --nav-icon: url('/admin-icons/briefcase-business.svg');
+}
+
+#nav-global-about-page {
+  --nav-icon: url('/admin-icons/info.svg');
+}
+
+#nav-global-departments-page {
+  --nav-icon: url('/admin-icons/building-2.svg');
+}
+
+#nav-global-team-page {
+  --nav-icon: url('/admin-icons/contact.svg');
+}
+
+#nav-global-partners-page {
+  --nav-icon: url('/admin-icons/heart-handshake.svg');
+}
+
+#nav-global-career-page {
+  --nav-icon: url('/admin-icons/user-plus.svg');
+}
+
+#nav-global-theory-of-change-page {
+  --nav-icon: url('/admin-icons/route.svg');
+}
+
+#nav-media {
+  --nav-icon: url('/admin-icons/image.svg');
+}
+
+#nav-users {
+  --nav-icon: url('/admin-icons/user-cog.svg');
+}

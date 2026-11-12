@@ -1,0 +1,158 @@
+{
+  "footer": {
+    "cta": {
+      "headline": [
+        "Energy Transition",
+        "Starts Now."
+      ],
+      "email": {
+        "label": "info@openenergytransition.org",
+        "href": "mailto:info@openenergytransition.org"
+      },
+      "action": {
+        "label": "Send an Inquiry",
+        "href": "mailto:info@openenergytransition.org"
+      }
+    },
+    "blurb": "Open Energy Transition is a registered nonprofit dedicated to accelerating the energy transition by tackling energy planning challenges.",
+    "copyright": "© 2026 Open Energy Transition gGmbH. All rights reserved.",
+    "legal": [
+      {
+        "label": "Legal",
+        "href": "/legal"
+      },
+      {
+        "label": "Disclaimer",
+        "href": "/disclaimer"
+      },
+      {
+        "label": "Privacy Statement",
+        "href": "/privacy-statement"
+      }
+    ],
+    "consentLabel": "Cookies Settings",
+    "consentLabelCompact": "Cookie Settings",
+    "columns": [
+      {
+        "title": "Tools & Data",
+        "links": [
+          {
+            "label": "Our Tools",
+            "href": "/tools-and-data"
+          },
+          {
+            "label": "Models",
+            "href": "/tools-and-data/models"
+          },
+          {
+            "label": "Data",
+            "href": "/tools-and-data/data"
+          },
+          {
+            "label": "Open-Source Solver",
+            "href": "/tools-and-data/open-source-solvers"
+          },
+          {
+            "label": "Community",
+            "href": "/tools-and-data/community"
+          }
+        ]
+      },
+      {
+        "title": "Services",
+        "links": [
+          {
+            "label": "System Operators & Utilities",
+            "href": "/services/system-operators-and-utilities"
+          },
+          {
+            "label": "Consultancies & Engineering Firm",
+            "href": "/services/consultancies-and-engineering-firms"
+          },
+          {
+            "label": "Think Tanks, NGOs & Research Organizations",
+            "href": "/services/think-tanks-ngos-and-research-organizations"
+          },
+          {
+            "label": "Regulators & Public Authorities",
+            "href": "/services/regulators-and-public-authorities"
+          },
+          {
+            "label": "Foundations & Development Partners",
+            "href": "/services/foundations-and-development-partners"
+          },
+          {
+            "label": "Technology Developers & Investors",
+            "href": "/services/technology-developers-and-investors"
+          }
+        ]
+      },
+      {
+        "title": "Outputs",
+        "links": [
+          {
+            "label": "Success Stories",
+            "href": "/outputs/success-stories"
+          },
+          {
+            "label": "Completed Success Stories",
+            "href": "/outputs/success-stories?status=completed"
+          },
+          {
+            "label": "Ongoing Success Stories",
+            "href": "/outputs/success-stories?status=ongoing"
+          },
+          {
+            "label": "Academic Publication",
+            "href": "/outputs/academic-publications"
+          },
+          {
+            "label": "Blogs",
+            "href": "/outputs/blogs"
+          },
+          {
+            "label": "Policy Briefs",
+            "href": "/outputs/policy-briefs"
+          },
+          {
+            "label": "Reports",
+            "href": "/outputs/reports"
+          }
+        ]
+      },
+      {
+        "title": "Organization",
+        "links": [
+          {
+            "label": "About Us",
+            "href": "/organization/about"
+          },
+          {
+            "label": "Department",
+            "href": "/organization/departments"
+          },
+          {
+            "label": "Partners and Funders",
+            "href": "/organization/partners-and-funders"
+          },
+          {
+            "label": "Our Team",
+            "href": "/organization/team"
+          },
+          {
+            "label": "Career",
+            "href": "/organization/career"
+          },
+          {
+            "label": "Theory of Change",
+            "href": "/organization/theory-of-change"
+          },
+          {
+            "label": "News & Events",
+            "href": "/organization/news-and-events"
+          }
+        ]
+      }
+    ]
+  }
+}

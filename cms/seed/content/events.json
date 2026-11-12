@@ -1,0 +1,273 @@
+{
+  "eventTypes": [
+    {
+      "id": "webinars",
+      "label": "Webinars"
+    },
+    {
+      "id": "events",
+      "label": "Events"
+    },
+    {
+      "id": "support-meetups",
+      "label": "Support Meetups"
+    },
+    {
+      "id": "open-calls",
+      "label": "Open Calls"
+    }
+  ],
+  "events": [
+    {
+      "brief": "Get support from OET’s experts on your questions about:  The PyPSA ecosystem (PyPSA, Linopy, Atlite, PyPSA-Eur, Open-TYNDP, Snakemake, etc.) Implementation details IT infrastructure and self-hosting requirements",
+      "descriptionHtml": "<p>Energy grid planning is one of the most critical components in shaping the future of global energy systems. As modern societies become increasingly dependent on electricity for everything from communication and transportation to healthcare and industry, ensuring a stable, efficient, and sustainable power supply has become a top priority.</p>\n<p>Ultimately, energy grid planning is not just a technical discipline; it’s a vital part of national development strategy. It links energy policy with environmental goals, industrial growth, and social welfare.</p>",
+      "timeZone": "Europe/Berlin",
+      "publishedAt": "2025-11-02T13:07:00+01:00",
+      "locationRegion": "Online",
+      "locationAddress": "Location, Country, Address, Additional Location Detail Here No Maximum Line Lorem Ipsum Dolor Sit Amet",
+      "mapHref": "mailto:info@openenergytransition.org",
+      "calendarHref": "mailto:info@openenergytransition.org",
+      "joinHref": "mailto:info@openenergytransition.org",
+      "title": "Free Monthly PyPSA Support for European Transmission System Operators",
+      "excerpt": "Get support from OET’s experts on your questions about:  The PyPSA ecosystem (PyPSA, Linopy, Atlite, PyPSA-Eur, Open-TYNDP, Snakemake, etc.) Implementation details IT infrastructure and self-hosting requirements",
+      "type": "support-meetups",
+      "start": "2026-12-03T10:00:00+01:00",
+      "end": "2026-12-03T11:00:00+01:00",
+      "registrationClosesAt": "2026-10-01T12:00:00+02:00",
+      "featuredAsHighlight": false,
+      "contributors": [
+        {
+          "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+          "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+          "photo": {
+            "__asset": "shared/person-placeholder.png"
+          }
+        },
+        {
+          "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+          "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+          "photo": {
+            "__asset": "shared/person-placeholder.png"
+          }
+        }
+      ],
+      "highlight": null,
+      "gallery": [],
+      "slug": "free-monthly-pypsa-support-for-european-transmission-system-operators",
+      "poster": {
+        "image": {
+          "__asset": "events/poster-pypsa-support.webp"
+        },
+        "alt": "Poster: Online Sessions, Free Monthly PyPSA Support for European Transmission System Operators"
+      },
+      "posterFit": "cover"
+    },
+    {
+      "brief": "The flattening of the peak energy demand study gave Eurima material for effective communications",
+      "descriptionHtml": "<p>Energy grid planning is one of the most critical components in shaping the future of global energy systems. As modern societies become increasingly dependent on electricity for everything from communication and transportation to healthcare and industry, ensuring a stable, efficient, and sustainable power supply has become a top priority.</p>\n<p>Ultimately, energy grid planning is not just a technical discipline; it’s a vital part of national development strategy. It links energy policy with environmental goals, industrial growth, and social welfare.</p>",
+      "timeZone": "Europe/Berlin",
+      "publishedAt": "2025-11-02T13:07:00+01:00",
+      "locationRegion": "Online",
+      "locationAddress": "Location, Country, Address, Additional Location Detail Here No Maximum Line Lorem Ipsum Dolor Sit Amet",
+      "mapHref": "mailto:info@openenergytransition.org",
+      "calendarHref": "mailto:info@openenergytransition.org",
+      "joinHref": "mailto:info@openenergytransition.org",
+      "title": "Sharing Session: Communication on Energy-Efficient and Flexible Buildings with Eurima",
+      "excerpt": "The flattening of the peak energy demand study gave Eurima material for effective communications",
+      "type": "webinars",
+      "start": "2026-08-10T10:00:00+02:00",
+      "end": "2026-08-10T11:00:00+02:00",
+      "registrationClosesAt": null,
+      "featuredAsHighlight": true,
+      "contributors": [
+        {
+          "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+          "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+          "photo": {
+            "__asset": "shared/person-placeholder.png"
+          }
+        },
+        {
+          "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+          "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+          "photo": {
+            "__asset": "shared/person-placeholder.png"
+          }
+        },
+        {
+          "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+          "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+          "photo": {
+            "__asset": "shared/person-placeholder.png"
+          }
+        }
+      ],
+      "poster": {
+        "image": {
+          "__asset": "events/poster-pypsa-support.webp"
+        },
+        "alt": "Poster: Online Sessions, Free Monthly PyPSA Support for European Transmission System Operators"
+      },
+      "posterFit": "cover",
+      "highlight": {
+        "image": {
+          "__asset": "events/highlight-session.webp"
+        },
+        "alt": "Three participants at a table during the session",
+        "video": {
+          "embedUrl": "https://www.youtube-nocookie.com/embed/VIDEO_ID?autoplay=1",
+          "watchUrl": "https://www.youtube.com/watch?v=VIDEO_ID",
+          "title": "Event recap video"
+        }
+      },
+      "gallery": [
+        {
+          "image": {
+            "__asset": "events/documentation-substation.webp"
+          },
+          "alt": "Electrical substation under a cloudy sky"
+        },
+        {
+          "image": {
+            "__asset": "events/documentation-substation.webp"
+          },
+          "alt": "Electrical substation under a cloudy sky"
+        },
+        {
+          "image": {
+            "__asset": "events/documentation-substation.webp"
+          },
+          "alt": "Electrical substation under a cloudy sky"
+        },
+        {
+          "image": {
+            "__asset": "events/documentation-substation.webp"
+          },
+          "alt": "Electrical substation under a cloudy sky"
+        },
+        {
+          "image": {
+            "__asset": "events/documentation-substation.webp"
+          },
+          "alt": "Electrical substation under a cloudy sky"
+        }
+      ],
+      "slug": "sharing-session-energy-efficient-and-flexible-buildings-with-eurima"
+    }
+  ],
+  "eventsPage": {
+    "meta": {
+      "title": "News and Events",
+      "description": "From community meetups to industry forums: upcoming and highlighted events from Open Energy Transition."
+    },
+    "hero": {
+      "title": "News and Events from Community Meetups to Industry Forums",
+      "link": {
+        "label": "News & Events",
+        "href": "#news-and-events"
+      },
+      "image": {
+        "desktop": {
+          "__asset": "heroes/news-and-events-desktop.webp"
+        },
+        "mobile": {
+          "__asset": "heroes/news-and-events-mobile.webp"
+        }
+      }
+    },
+    "listing": {
+      "id": "news-and-events",
+      "title": "News and Events",
+      "description": "From community meetups to industry forums, each event reflects our commitment to advancing open, transparent, and collaborative solutions for the energy transition."
+    },
+    "stateTabs": [
+      {
+        "id": "all",
+        "label": "All Events"
+      },
+      {
+        "id": "highlighted",
+        "label": "Highlighted Events"
+      },
+      {
+        "id": "upcoming",
+        "label": "Upcoming Events"
+      }
+    ],
+    "sort": {
+      "selected": "a-z",
+      "values": [
+        "a-z",
+        "z-a",
+        "newest",
+        "oldest"
+      ]
+    },
+    "mobilePagination": {
+      "current": 1,
+      "total": 10
+    },
+    "cta": {
+      "support": {
+        "tone": "brand-600",
+        "heading": "Book OET\nfor Support Sessions",
+        "lead": "Connect directly with the OET team for practical guidance, technical support, and expert insight.",
+        "text": "Whether you’re exploring our tools, working through a challenge, or looking for ways to contribute, book a session tailored to your needs.",
+        "actions": [
+          {
+            "label": "Sign Up for a Call",
+            "href": "mailto:info@openenergytransition.org",
+            "emphasis": "primary",
+            "newTab": false
+          },
+          {
+            "label": "Request a Demo",
+            "href": "mailto:info@openenergytransition.org",
+            "emphasis": "secondary",
+            "newTab": false
+          }
+        ],
+        "collage": "wind",
+        "breakout": true
+      },
+      "discuss": {
+        "tone": "brand-600",
+        "heading": "Discuss a Technology Modelling Need",
+        "lead": null,
+        "text": "If you are interested in collaborating with us on energy transition studies, open-source platforms, and training and support, please contact us.",
+        "actions": [
+          {
+            "label": "Contact Us",
+            "href": "mailto:info@openenergytransition.org",
+            "emphasis": "primary",
+            "newTab": false
+          },
+          {
+            "label": "Request a Demo",
+            "href": "mailto:info@openenergytransition.org",
+            "emphasis": "secondary",
+            "newTab": false
+          }
+        ],
+        "collage": "wind",
+        "breakout": true
+      },
+      "updates": {
+        "tone": "light",
+        "heading": "Monthly Updates\nOpen Call",
+        "lead": "Open call for the latest OET updates, project insights, and opportunities to connect and contribute.",
+        "text": "A recurring monthly event where you can hear the latest from OET, connect with the community, and join the conversation.",
+        "actions": [
+          {
+            "label": "New Updates Every 7th of The Month",
+            "href": "mailto:info@openenergytransition.org",
+            "emphasis": "secondary",
+            "newTab": false
+          }
+        ],
+        "collage": "thermalpower",
+        "breakout": false
+      }
+    }
+  }
+}

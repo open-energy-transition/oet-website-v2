@@ -1,0 +1,28 @@
+{
+  "partnerTags": {
+    "eskom": {
+      "name": "Eskom",
+      "logo": {
+        "__asset": "outputs/partner-eskom.png"
+      },
+      "width": 73,
+      "height": 26
+    },
+    "stanford": {
+      "name": "Stanford",
+      "logo": {
+        "__asset": "outputs/partner-stanford.png"
+      },
+      "width": 98.82,
+      "height": 35
+    },
+    "google": {
+      "name": "Google",
+      "logo": {
+        "__asset": "home/partner-google.png"
+      },
+      "width": 70,
+      "height": 25
+    }
+  }
+}

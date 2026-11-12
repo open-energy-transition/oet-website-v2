@@ -1,0 +1,388 @@
+{
+  "filter": {
+    "options": [
+      {
+        "label": "Funders",
+        "href": "/organization/partners-and-funders?type=funders",
+        "active": false
+      },
+      {
+        "label": "Partners",
+        "href": "/organization/partners-and-funders?type=partners",
+        "active": false
+      }
+    ]
+  },
+  "hero": {
+    "title": "Partnerships and Funding Powers OET’s Vision to Lasting Change for Communities Worldwide.",
+    "image": {
+      "desktop": {
+        "__asset": "heroes/partners-desktop.webp"
+      },
+      "mobile": {
+        "__asset": "heroes/partners-mobile.webp"
+      }
+    },
+    "stats": [
+      {
+        "icon": {
+          "__icon": "globe-alt"
+        },
+        "tone": "brand",
+        "value": "9",
+        "label": "Country"
+      },
+      {
+        "icon": {
+          "__icon": "employees"
+        },
+        "tone": "light",
+        "value": "99",
+        "label": "Partners"
+      },
+      {
+        "icon": {
+          "__icon": "handshake"
+        },
+        "tone": "light",
+        "value": "999",
+        "label": "Funders"
+      }
+    ]
+  },
+  "intro": {
+    "statement": "Our partners and funders expertise, and commitment enable us to accelerate the energy transition.",
+    "paragraphs": [
+      "Their commitment turns shared ambition into meaningful action, expands our reach, and creates lasting impact in communities around the world.",
+      "Together, we are building a more inclusive and sustainable future—bringing OET’s vision to communities around the world."
+    ]
+  },
+  "logos": [
+    {
+      "name": "Agora Energiewende",
+      "image": {
+        "__asset": "home/logos/agora.png"
+      },
+      "width": 93,
+      "height": 40
+    },
+    {
+      "name": "International Council on Clean Transportation",
+      "image": {
+        "__asset": "home/logos/icct.png"
+      },
+      "width": 99,
+      "height": 59
+    },
+    {
+      "name": "Sequoia Climate Foundation",
+      "image": {
+        "__asset": "home/logos/sequoia.png"
+      },
+      "width": 127,
+      "height": 40
+    },
+    {
+      "name": "Quadrature Climate Foundation",
+      "image": {
+        "__asset": "home/logos/quadrature.png"
+      },
+      "width": 133,
+      "height": 40
+    },
+    {
+      "name": "Stanford University",
+      "image": {
+        "__asset": "home/logos/stanford.png"
+      },
+      "width": 117,
+      "height": 52
+    },
+    {
+      "name": "TransnetBW",
+      "image": {
+        "__asset": "home/logos/transnetbw.png"
+      },
+      "width": 145,
+      "height": 18
+    },
+    {
+      "name": "OTH Regensburg",
+      "image": {
+        "__asset": "home/logos/oth-regensburg.png"
+      },
+      "width": 93,
+      "height": 61
+    },
+    {
+      "name": "Ember",
+      "image": {
+        "__asset": "home/logos/ember.png"
+      },
+      "width": 93,
+      "height": 40
+    },
+    {
+      "name": "Agora Energiewende",
+      "image": {
+        "__asset": "home/logos/agora.png"
+      },
+      "width": 93,
+      "height": 40
+    },
+    {
+      "name": "International Council on Clean Transportation",
+      "image": {
+        "__asset": "home/logos/icct.png"
+      },
+      "width": 99,
+      "height": 59
+    },
+    {
+      "name": "Sequoia Climate Foundation",
+      "image": {
+        "__asset": "home/logos/sequoia.png"
+      },
+      "width": 127,
+      "height": 40
+    },
+    {
+      "name": "Quadrature Climate Foundation",
+      "image": {
+        "__asset": "home/logos/quadrature.png"
+      },
+      "width": 133,
+      "height": 40
+    },
+    {
+      "name": "Stanford University",
+      "image": {
+        "__asset": "home/logos/stanford.png"
+      },
+      "width": 117,
+      "height": 52
+    },
+    {
+      "name": "TransnetBW",
+      "image": {
+        "__asset": "home/logos/transnetbw.png"
+      },
+      "width": 145,
+      "height": 18
+    },
+    {
+      "name": "OTH Regensburg",
+      "image": {
+        "__asset": "home/logos/oth-regensburg.png"
+      },
+      "width": 93,
+      "height": 61
+    },
+    {
+      "name": "Ember",
+      "image": {
+        "__asset": "home/logos/ember.png"
+      },
+      "width": 93,
+      "height": 40
+    },
+    {
+      "name": "Agora Energiewende",
+      "image": {
+        "__asset": "home/logos/agora.png"
+      },
+      "width": 93,
+      "height": 40
+    },
+    {
+      "name": "International Council on Clean Transportation",
+      "image": {
+        "__asset": "home/logos/icct.png"
+      },
+      "width": 99,
+      "height": 59
+    },
+    {
+      "name": "Sequoia Climate Foundation",
+      "image": {
+        "__asset": "home/logos/sequoia.png"
+      },
+      "width": 127,
+      "height": 40
+    },
+    {
+      "name": "Quadrature Climate Foundation",
+      "image": {
+        "__asset": "home/logos/quadrature.png"
+      },
+      "width": 133,
+      "height": 40
+    },
+    {
+      "name": "Stanford University",
+      "image": {
+        "__asset": "home/logos/stanford.png"
+      },
+      "width": 117,
+      "height": 52
+    },
+    {
+      "name": "TransnetBW",
+      "image": {
+        "__asset": "home/logos/transnetbw.png"
+      },
+      "width": 145,
+      "height": 18
+    },
+    {
+      "name": "OTH Regensburg",
+      "image": {
+        "__asset": "home/logos/oth-regensburg.png"
+      },
+      "width": 93,
+      "height": 61
+    },
+    {
+      "name": "Ember",
+      "image": {
+        "__asset": "home/logos/ember.png"
+      },
+      "width": 93,
+      "height": 40
+    }
+  ],
+  "logosMobile": [
+    {
+      "name": "Agora Energiewende",
+      "image": {
+        "__asset": "home/logos/agora.png"
+      },
+      "width": 93,
+      "height": 40
+    },
+    {
+      "name": "Stanford University",
+      "image": {
+        "__asset": "home/logos/stanford.png"
+      },
+      "width": 117,
+      "height": 52
+    },
+    {
+      "name": "International Council on Clean Transportation",
+      "image": {
+        "__asset": "home/logos/icct.png"
+      },
+      "width": 99,
+      "height": 59
+    },
+    {
+      "name": "TransnetBW",
+      "image": {
+        "__asset": "home/logos/transnetbw.png"
+      },
+      "width": 145,
+      "height": 18
+    },
+    {
+      "name": "Sequoia Climate Foundation",
+      "image": {
+        "__asset": "home/logos/sequoia.png"
+      },
+      "width": 127,
+      "height": 40
+    },
+    {
+      "name": "OTH Regensburg",
+      "image": {
+        "__asset": "home/logos/oth-regensburg.png"
+      },
+      "width": 93,
+      "height": 61
+    },
+    {
+      "name": "Quadrature Climate Foundation",
+      "image": {
+        "__asset": "home/logos/quadrature.png"
+      },
+      "width": 133,
+      "height": 40
+    },
+    {
+      "name": "Ember",
+      "image": {
+        "__asset": "home/logos/ember.png"
+      },
+      "width": 93,
+      "height": 40
+    },
+    {
+      "name": "Agora Energiewende",
+      "image": {
+        "__asset": "home/logos/agora.png"
+      },
+      "width": 93,
+      "height": 40
+    },
+    {
+      "name": "Stanford University",
+      "image": {
+        "__asset": "home/logos/stanford.png"
+      },
+      "width": 117,
+      "height": 52
+    },
+    {
+      "name": "International Council on Clean Transportation",
+      "image": {
+        "__asset": "home/logos/icct.png"
+      },
+      "width": 99,
+      "height": 59
+    },
+    {
+      "name": "TransnetBW",
+      "image": {
+        "__asset": "home/logos/transnetbw.png"
+      },
+      "width": 145,
+      "height": 18
+    },
+    {
+      "name": "Sequoia Climate Foundation",
+      "image": {
+        "__asset": "home/logos/sequoia.png"
+      },
+      "width": 127,
+      "height": 40
+    },
+    {
+      "name": "OTH Regensburg",
+      "image": {
+        "__asset": "home/logos/oth-regensburg.png"
+      },
+      "width": 93,
+      "height": 61
+    },
+    {
+      "name": "Quadrature Climate Foundation",
+      "image": {
+        "__asset": "home/logos/quadrature.png"
+      },
+      "width": 133,
+      "height": 40
+    },
+    {
+      "name": "Ember",
+      "image": {
+        "__asset": "home/logos/ember.png"
+      },
+      "width": 93,
+      "height": 40
+    }
+  ],
+  "meta": {
+    "title": "Partners and Funders | Open Energy Transition",
+    "description": "Our partners and funders expertise, and commitment enable us to accelerate the energy transition."
+  }
+}

@@ -1,0 +1,1911 @@
+{
+  "publications": [
+    {
+      "slug": "ukraine-against-darkness",
+      "title": "Ukraine Against Darkness",
+      "excerpt": "Under Russia’s invasion, 60% of Ukraine’s power system capacity remains occupied, damaged, or destroyed, and the bombardments weaken the remaining coal, hydro and nuclear capacities",
+      "date": "February 20, 2026",
+      "category": "Academic Publications",
+      "type": "academic",
+      "thumbnail": {
+        "__asset": "outputs/pub-ukraine-against-darkness.webp"
+      },
+      "alt": "",
+      "frame": "neutral-900",
+      "detail": {
+        "highlight": "I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima",
+        "authorNames": [
+          "Dr. Martha Maria Frysztacki",
+          "Charlotte Heikendorf"
+        ],
+        "date": "May 1, 2026",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "hero": {
+          "__asset": "outputs/hero-publication-eurima.webp"
+        },
+        "heroAlt": "",
+        "body": [
+          {
+            "kind": "richText",
+            "html": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima</p>\n<p>The European Insulation Manufacturers Association <a href=\"mailto:info@openenergytransition.org\">(Eurima)</a> commissioned a study together with the <a href=\"mailto:info@openenergytransition.org\">International Copper Association Europe</a>  and the <a href=\"mailto:info@openenergytransition.org\">European Climate Foundation</a> in 2023, titled \"Flattening the Peak Demand Curve Through Energy Efficient Buildings: A Holistic Approach Towards Net-Zero Carbon,\" later turned into the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign.</p>\n<p>Eurima is a Brussels-based business association representing mineral wool insulation manufacturers. Communicating the benefits of mineral wool insulation, Eurima assists its members in fields such as product standardisation and EU-focused issue monitoring and management, helping them to stay informed and contribute to EU affairs relevant to mineral wool insulation products and the industry's licence-to-operate.</p>"
+          },
+          {
+            "kind": "stats",
+            "title": "Outputs",
+            "stats": [
+              {
+                "value": "3",
+                "label": "Policy Recommendations \nin the Light Report",
+                "icon": {
+                  "__icon": "world"
+                }
+              },
+              {
+                "value": "5",
+                "label": "Stakeholder Workshops",
+                "icon": {
+                  "__icon": "time-quarter-to"
+                }
+              },
+              {
+                "value": "40+",
+                "label": "Meetings Across the EU Energy and Construction Sectors",
+                "icon": {
+                  "__icon": "circle-dashed"
+                }
+              },
+              {
+                "value": "6",
+                "label": "Events Presenting the Findings",
+                "icon": {
+                  "__icon": "angle-circle-right"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "richText",
+            "html": "<h3>Why Conduct an Open Energy System Study?</h3>\n<p><a href=\"mailto:info@openenergytransition.org\">Buildings account for >30% of the EU's energy-related greenhouse gas emissions when using fossil fuels</a>. The wish for a study was based on the need to address demand peaks through energy efficiency, flagged by members of Eurima.  It was a topic of great interest to the insulation and building sectors on how to achieve energy efficiency and performance requirements.</p>\n<p>Eurima saw the need to address this issue by gathering arguments and narratives to contribute to European policy in the context of rapid electrification and the implementation of the <a href=\"mailto:info@openenergytransition.org\">Energy Performance of Buildings Directive</a>. Research had to look into the cost-optimal mix of measures needed in buildings to drive decarbonisation, grid planning, and lower Europeans' electricity bills. It required an energy system modelling study with different scenarios.</p>\n<p>After being introduced to an open energy model study with <a href=\"mailto:info@openenergytransition.org\">PyPSA-Eur</a> in 2023, they decided to explore PyPSA further. \"It seemed to be the perfect type of modelling instrument for our needs,\" says Salvatore Fantoni, Communications Manager at Eurima.</p>\n<p>We needed the results to be scientifically sound, effective, and transparent to support our ongoing activities. The study was incredibly useful. Due to popular demand, we are now working towards a  second iteration of the study with even more granularity. - Dimitar Kolichev, Energy &amp; Climate Policy Manager, Eurima</p>\n<h3>The Study</h3>\n<ul>\n<li>The objective of this study is to assess the impact of various energy efficiency measures in buildings on reducing energy generation needs, flattening the peak demand curve, and influencing energy system costs, and energy bill prices.</li>\n<li>The focus of this particular study was on the representation of building retrofitting, which implies improvement of the building envelope, as well as the implementation of \"active\" demand-side measures.</li>\n<li><a href=\"mailto:info@openenergytransition.org\">The Your Home, Our Future Campaign</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The results of the study were later published as an academic article in Applied Energy in April 2025.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The model is publicly available on GitHub.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">See the project description on our website</a></li>\n</ul>\n<h3>Awareness and Behaviour Change</h3>\n<p>\"We are going for a paradigm shift,\" say Salvatore Fantoni (Sustainable Construction and Communication Manager) and Dimitar Kolichev (Energy &amp; Climate Policy Manager). Even though impact is not always easy to quantify, the study is widely seen as having made a strong contribution, with elements already incorporated into policy.</p>\n<p>The results of the study were used in the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign. They contributed to policy communication, strategic partnerships across the construction and energy systems sectors, and presentations at various conferences.</p>\n<p>As Salvatore Fantoni and Dimitar Kolichev explain, most European-level energy system modelling is based on proprietary tools, where underlying assumptions, methodologies and data inputs are not always fully transparent or accessible, which limits the ability of external stakeholders to scrutinise, replicate, or build upon the results.</p>\n<p>The open model approach built credibility as the results, assumptions, and methods were transparent. Highlighting relevant code snippets or cost assumptions directly in the model (on GitHub) during the study fostered constructive discussions and suggestions for improvement.</p>\n<p>One of the most remarkable findings, according to Salvatore Fantoni, was the impact that energy efficiency in buildings can have on actual physical space. Improving the energy performance of buildings optimises the supply-demand nexus, which means that energy generation infrastructure can be built fit for size to meet optimised consumption needs. These infrastructure optimisations can mean up to 200 km² more can be used for, for instance, biodiversity preservation in Europe simply by insulating buildings. It also means lower costs for the consumer.</p>\n<p>The study is also meant to show homeowners that they have an important role to play in the energy transition. Peak demand impacts their lives and they can do something about it.</p>\n<p>Changing behaviours does not happen overnight. It is a gradual process and Eurima will keep working on the peak demand and electrification agenda, possibly with another study very soon.</p>"
+          },
+          {
+            "kind": "image",
+            "image": {
+              "__asset": "outputs/pub-body-image.webp"
+            },
+            "alt": ""
+          }
+        ],
+        "linkGroups": [
+          {
+            "title": "Resources",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Case Study PDF",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Slides",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "The Your Home, Our Future Campaign",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "The results of the study",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Model is publicly available on GitHub",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Project description on our website",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Journal & DOI",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "IEEE Power and Energy Magazine",
+                    "underline": true
+                  },
+                  {
+                    "text": ", ",
+                    "underline": false
+                  },
+                  {
+                    "text": "Volume: 24 Issue: 4",
+                    "underline": true
+                  },
+                  {
+                    "text": ", pages 100 - 115",
+                    "underline": false
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "DOI: ",
+                    "underline": false
+                  },
+                  {
+                    "text": "https://doi.org/10.1109/MPE.2025.3562145",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "authors": [
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          }
+        ],
+        "citation": "IEEE Power and Energy Magazine, Volume: 24 Issue: 4, pages 100 - 115. DOI: https://doi.org/10.1109/MPE.2025.3562145",
+        "related": [
+          "ukraine-against-darkness"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "system-operators-and-utilities"
+      }
+    },
+    {
+      "slug": "techno-economic-impacts-of-shipping-liquid-hydrogen-ammonia-or-methanol",
+      "title": "Techno-Economic Impacts of Shipping Liquid Hydrogen, Ammonia or Methanol on",
+      "excerpt": "Published in: 2025 21st International Conference on the European Energy Market (EEM)",
+      "date": "Preprint",
+      "category": "Academic Publications",
+      "type": "academic",
+      "thumbnail": {
+        "__asset": "outputs/pub-shipping-liquid-hydrogen.webp"
+      },
+      "alt": "",
+      "frame": "neutral-800",
+      "detail": {
+        "highlight": "I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima",
+        "authorNames": [
+          "Dr. Martha Maria Frysztacki",
+          "Charlotte Heikendorf"
+        ],
+        "date": "May 1, 2026",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "hero": {
+          "__asset": "outputs/hero-publication-eurima.webp"
+        },
+        "heroAlt": "",
+        "body": [
+          {
+            "kind": "richText",
+            "html": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima</p>\n<p>The European Insulation Manufacturers Association <a href=\"mailto:info@openenergytransition.org\">(Eurima)</a> commissioned a study together with the <a href=\"mailto:info@openenergytransition.org\">International Copper Association Europe</a>  and the <a href=\"mailto:info@openenergytransition.org\">European Climate Foundation</a> in 2023, titled \"Flattening the Peak Demand Curve Through Energy Efficient Buildings: A Holistic Approach Towards Net-Zero Carbon,\" later turned into the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign.</p>\n<p>Eurima is a Brussels-based business association representing mineral wool insulation manufacturers. Communicating the benefits of mineral wool insulation, Eurima assists its members in fields such as product standardisation and EU-focused issue monitoring and management, helping them to stay informed and contribute to EU affairs relevant to mineral wool insulation products and the industry's licence-to-operate.</p>"
+          },
+          {
+            "kind": "stats",
+            "title": "Outputs",
+            "stats": [
+              {
+                "value": "3",
+                "label": "Policy Recommendations \nin the Light Report",
+                "icon": {
+                  "__icon": "world"
+                }
+              },
+              {
+                "value": "5",
+                "label": "Stakeholder Workshops",
+                "icon": {
+                  "__icon": "time-quarter-to"
+                }
+              },
+              {
+                "value": "40+",
+                "label": "Meetings Across the EU Energy and Construction Sectors",
+                "icon": {
+                  "__icon": "circle-dashed"
+                }
+              },
+              {
+                "value": "6",
+                "label": "Events Presenting the Findings",
+                "icon": {
+                  "__icon": "angle-circle-right"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "richText",
+            "html": "<h3>Why Conduct an Open Energy System Study?</h3>\n<p><a href=\"mailto:info@openenergytransition.org\">Buildings account for >30% of the EU's energy-related greenhouse gas emissions when using fossil fuels</a>. The wish for a study was based on the need to address demand peaks through energy efficiency, flagged by members of Eurima.  It was a topic of great interest to the insulation and building sectors on how to achieve energy efficiency and performance requirements.</p>\n<p>Eurima saw the need to address this issue by gathering arguments and narratives to contribute to European policy in the context of rapid electrification and the implementation of the <a href=\"mailto:info@openenergytransition.org\">Energy Performance of Buildings Directive</a>. Research had to look into the cost-optimal mix of measures needed in buildings to drive decarbonisation, grid planning, and lower Europeans' electricity bills. It required an energy system modelling study with different scenarios.</p>\n<p>After being introduced to an open energy model study with <a href=\"mailto:info@openenergytransition.org\">PyPSA-Eur</a> in 2023, they decided to explore PyPSA further. \"It seemed to be the perfect type of modelling instrument for our needs,\" says Salvatore Fantoni, Communications Manager at Eurima.</p>\n<p>We needed the results to be scientifically sound, effective, and transparent to support our ongoing activities. The study was incredibly useful. Due to popular demand, we are now working towards a  second iteration of the study with even more granularity. - Dimitar Kolichev, Energy &amp; Climate Policy Manager, Eurima</p>\n<h3>The Study</h3>\n<ul>\n<li>The objective of this study is to assess the impact of various energy efficiency measures in buildings on reducing energy generation needs, flattening the peak demand curve, and influencing energy system costs, and energy bill prices.</li>\n<li>The focus of this particular study was on the representation of building retrofitting, which implies improvement of the building envelope, as well as the implementation of \"active\" demand-side measures.</li>\n<li><a href=\"mailto:info@openenergytransition.org\">The Your Home, Our Future Campaign</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The results of the study were later published as an academic article in Applied Energy in April 2025.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The model is publicly available on GitHub.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">See the project description on our website</a></li>\n</ul>\n<h3>Awareness and Behaviour Change</h3>\n<p>\"We are going for a paradigm shift,\" say Salvatore Fantoni (Sustainable Construction and Communication Manager) and Dimitar Kolichev (Energy &amp; Climate Policy Manager). Even though impact is not always easy to quantify, the study is widely seen as having made a strong contribution, with elements already incorporated into policy.</p>\n<p>The results of the study were used in the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign. They contributed to policy communication, strategic partnerships across the construction and energy systems sectors, and presentations at various conferences.</p>\n<p>As Salvatore Fantoni and Dimitar Kolichev explain, most European-level energy system modelling is based on proprietary tools, where underlying assumptions, methodologies and data inputs are not always fully transparent or accessible, which limits the ability of external stakeholders to scrutinise, replicate, or build upon the results.</p>\n<p>The open model approach built credibility as the results, assumptions, and methods were transparent. Highlighting relevant code snippets or cost assumptions directly in the model (on GitHub) during the study fostered constructive discussions and suggestions for improvement.</p>\n<p>One of the most remarkable findings, according to Salvatore Fantoni, was the impact that energy efficiency in buildings can have on actual physical space. Improving the energy performance of buildings optimises the supply-demand nexus, which means that energy generation infrastructure can be built fit for size to meet optimised consumption needs. These infrastructure optimisations can mean up to 200 km² more can be used for, for instance, biodiversity preservation in Europe simply by insulating buildings. It also means lower costs for the consumer.</p>\n<p>The study is also meant to show homeowners that they have an important role to play in the energy transition. Peak demand impacts their lives and they can do something about it.</p>\n<p>Changing behaviours does not happen overnight. It is a gradual process and Eurima will keep working on the peak demand and electrification agenda, possibly with another study very soon.</p>"
+          },
+          {
+            "kind": "image",
+            "image": {
+              "__asset": "outputs/pub-body-image.webp"
+            },
+            "alt": ""
+          }
+        ],
+        "linkGroups": [
+          {
+            "title": "Resources",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Case Study PDF",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Slides",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "The Your Home, Our Future Campaign",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "The results of the study",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Model is publicly available on GitHub",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Project description on our website",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Journal & DOI",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "IEEE Power and Energy Magazine",
+                    "underline": true
+                  },
+                  {
+                    "text": ", ",
+                    "underline": false
+                  },
+                  {
+                    "text": "Volume: 24 Issue: 4",
+                    "underline": true
+                  },
+                  {
+                    "text": ", pages 100 - 115",
+                    "underline": false
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "DOI: ",
+                    "underline": false
+                  },
+                  {
+                    "text": "https://doi.org/10.1109/MPE.2025.3562145",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "authors": [
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          }
+        ],
+        "citation": "IEEE Power and Energy Magazine, Volume: 24 Issue: 4, pages 100 - 115. DOI: https://doi.org/10.1109/MPE.2025.3562145",
+        "related": [
+          "ukraine-against-darkness"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "system-operators-and-utilities"
+      }
+    },
+    {
+      "slug": "integrated-system-planning-emerging-software-requirements-in-the-power",
+      "title": "Integrated System Planning: Emerging Software Requirements in the Power",
+      "excerpt": "Published in IEEE Power and Energy Magazine, Volume: 24 Issue: 4",
+      "date": "February 20, 2026",
+      "category": "Academic Publications",
+      "type": "academic",
+      "thumbnail": {
+        "__asset": "outputs/pub-integrated-system-planning.webp"
+      },
+      "alt": "",
+      "frame": "neutral-950",
+      "detail": {
+        "highlight": "I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima",
+        "authorNames": [
+          "Dr. Martha Maria Frysztacki",
+          "Charlotte Heikendorf"
+        ],
+        "date": "May 1, 2026",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "hero": {
+          "__asset": "outputs/hero-publication-eurima.webp"
+        },
+        "heroAlt": "",
+        "body": [
+          {
+            "kind": "richText",
+            "html": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima</p>\n<p>The European Insulation Manufacturers Association <a href=\"mailto:info@openenergytransition.org\">(Eurima)</a> commissioned a study together with the <a href=\"mailto:info@openenergytransition.org\">International Copper Association Europe</a>  and the <a href=\"mailto:info@openenergytransition.org\">European Climate Foundation</a> in 2023, titled \"Flattening the Peak Demand Curve Through Energy Efficient Buildings: A Holistic Approach Towards Net-Zero Carbon,\" later turned into the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign.</p>\n<p>Eurima is a Brussels-based business association representing mineral wool insulation manufacturers. Communicating the benefits of mineral wool insulation, Eurima assists its members in fields such as product standardisation and EU-focused issue monitoring and management, helping them to stay informed and contribute to EU affairs relevant to mineral wool insulation products and the industry's licence-to-operate.</p>"
+          },
+          {
+            "kind": "stats",
+            "title": "Outputs",
+            "stats": [
+              {
+                "value": "3",
+                "label": "Policy Recommendations \nin the Light Report",
+                "icon": {
+                  "__icon": "world"
+                }
+              },
+              {
+                "value": "5",
+                "label": "Stakeholder Workshops",
+                "icon": {
+                  "__icon": "time-quarter-to"
+                }
+              },
+              {
+                "value": "40+",
+                "label": "Meetings Across the EU Energy and Construction Sectors",
+                "icon": {
+                  "__icon": "circle-dashed"
+                }
+              },
+              {
+                "value": "6",
+                "label": "Events Presenting the Findings",
+                "icon": {
+                  "__icon": "angle-circle-right"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "richText",
+            "html": "<h3>Why Conduct an Open Energy System Study?</h3>\n<p><a href=\"mailto:info@openenergytransition.org\">Buildings account for >30% of the EU's energy-related greenhouse gas emissions when using fossil fuels</a>. The wish for a study was based on the need to address demand peaks through energy efficiency, flagged by members of Eurima.  It was a topic of great interest to the insulation and building sectors on how to achieve energy efficiency and performance requirements.</p>\n<p>Eurima saw the need to address this issue by gathering arguments and narratives to contribute to European policy in the context of rapid electrification and the implementation of the <a href=\"mailto:info@openenergytransition.org\">Energy Performance of Buildings Directive</a>. Research had to look into the cost-optimal mix of measures needed in buildings to drive decarbonisation, grid planning, and lower Europeans' electricity bills. It required an energy system modelling study with different scenarios.</p>\n<p>After being introduced to an open energy model study with <a href=\"mailto:info@openenergytransition.org\">PyPSA-Eur</a> in 2023, they decided to explore PyPSA further. \"It seemed to be the perfect type of modelling instrument for our needs,\" says Salvatore Fantoni, Communications Manager at Eurima.</p>\n<p>We needed the results to be scientifically sound, effective, and transparent to support our ongoing activities. The study was incredibly useful. Due to popular demand, we are now working towards a  second iteration of the study with even more granularity. - Dimitar Kolichev, Energy &amp; Climate Policy Manager, Eurima</p>\n<h3>The Study</h3>\n<ul>\n<li>The objective of this study is to assess the impact of various energy efficiency measures in buildings on reducing energy generation needs, flattening the peak demand curve, and influencing energy system costs, and energy bill prices.</li>\n<li>The focus of this particular study was on the representation of building retrofitting, which implies improvement of the building envelope, as well as the implementation of \"active\" demand-side measures.</li>\n<li><a href=\"mailto:info@openenergytransition.org\">The Your Home, Our Future Campaign</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The results of the study were later published as an academic article in Applied Energy in April 2025.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The model is publicly available on GitHub.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">See the project description on our website</a></li>\n</ul>\n<h3>Awareness and Behaviour Change</h3>\n<p>\"We are going for a paradigm shift,\" say Salvatore Fantoni (Sustainable Construction and Communication Manager) and Dimitar Kolichev (Energy &amp; Climate Policy Manager). Even though impact is not always easy to quantify, the study is widely seen as having made a strong contribution, with elements already incorporated into policy.</p>\n<p>The results of the study were used in the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign. They contributed to policy communication, strategic partnerships across the construction and energy systems sectors, and presentations at various conferences.</p>\n<p>As Salvatore Fantoni and Dimitar Kolichev explain, most European-level energy system modelling is based on proprietary tools, where underlying assumptions, methodologies and data inputs are not always fully transparent or accessible, which limits the ability of external stakeholders to scrutinise, replicate, or build upon the results.</p>\n<p>The open model approach built credibility as the results, assumptions, and methods were transparent. Highlighting relevant code snippets or cost assumptions directly in the model (on GitHub) during the study fostered constructive discussions and suggestions for improvement.</p>\n<p>One of the most remarkable findings, according to Salvatore Fantoni, was the impact that energy efficiency in buildings can have on actual physical space. Improving the energy performance of buildings optimises the supply-demand nexus, which means that energy generation infrastructure can be built fit for size to meet optimised consumption needs. These infrastructure optimisations can mean up to 200 km² more can be used for, for instance, biodiversity preservation in Europe simply by insulating buildings. It also means lower costs for the consumer.</p>\n<p>The study is also meant to show homeowners that they have an important role to play in the energy transition. Peak demand impacts their lives and they can do something about it.</p>\n<p>Changing behaviours does not happen overnight. It is a gradual process and Eurima will keep working on the peak demand and electrification agenda, possibly with another study very soon.</p>"
+          },
+          {
+            "kind": "image",
+            "image": {
+              "__asset": "outputs/pub-body-image.webp"
+            },
+            "alt": ""
+          }
+        ],
+        "linkGroups": [
+          {
+            "title": "Resources",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Case Study PDF",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Slides",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "The Your Home, Our Future Campaign",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "The results of the study",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Model is publicly available on GitHub",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Project description on our website",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Journal & DOI",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "IEEE Power and Energy Magazine",
+                    "underline": true
+                  },
+                  {
+                    "text": ", ",
+                    "underline": false
+                  },
+                  {
+                    "text": "Volume: 24 Issue: 4",
+                    "underline": true
+                  },
+                  {
+                    "text": ", pages 100 - 115",
+                    "underline": false
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "DOI: ",
+                    "underline": false
+                  },
+                  {
+                    "text": "https://doi.org/10.1109/MPE.2025.3562145",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "authors": [
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          }
+        ],
+        "citation": "IEEE Power and Energy Magazine, Volume: 24 Issue: 4, pages 100 - 115. DOI: https://doi.org/10.1109/MPE.2025.3562145",
+        "related": [
+          "ukraine-against-darkness"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "system-operators-and-utilities"
+      }
+    },
+    {
+      "slug": "ai-coding-agents-should-optimize-for-less-owned-code",
+      "title": "AI coding agents should optimize for less owned code",
+      "excerpt": "As AI makes code cheaper to produce, costs shift from generation to ownership. To avoid technical debt, coding agents need an open-source intelligence layer that helps them reuse trusted components before generating new code.",
+      "date": "July 14, 2026",
+      "category": "Blog | Category List Here",
+      "type": "blogs",
+      "thumbnail": {
+        "__asset": "outputs/pub-ai-coding-agents.webp"
+      },
+      "alt": "",
+      "frame": "neutral-800",
+      "detail": {
+        "highlight": "I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima",
+        "authorNames": [
+          "Dr. Martha Maria Frysztacki",
+          "Charlotte Heikendorf"
+        ],
+        "date": "May 1, 2026",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "hero": {
+          "__asset": "outputs/hero-publication-eurima.webp"
+        },
+        "heroAlt": "",
+        "body": [
+          {
+            "kind": "richText",
+            "html": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima</p>\n<p>The European Insulation Manufacturers Association <a href=\"mailto:info@openenergytransition.org\">(Eurima)</a> commissioned a study together with the <a href=\"mailto:info@openenergytransition.org\">International Copper Association Europe</a>  and the <a href=\"mailto:info@openenergytransition.org\">European Climate Foundation</a> in 2023, titled \"Flattening the Peak Demand Curve Through Energy Efficient Buildings: A Holistic Approach Towards Net-Zero Carbon,\" later turned into the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign.</p>\n<p>Eurima is a Brussels-based business association representing mineral wool insulation manufacturers. Communicating the benefits of mineral wool insulation, Eurima assists its members in fields such as product standardisation and EU-focused issue monitoring and management, helping them to stay informed and contribute to EU affairs relevant to mineral wool insulation products and the industry's licence-to-operate.</p>"
+          },
+          {
+            "kind": "stats",
+            "title": "Outputs",
+            "stats": [
+              {
+                "value": "3",
+                "label": "Policy Recommendations \nin the Light Report",
+                "icon": {
+                  "__icon": "world"
+                }
+              },
+              {
+                "value": "5",
+                "label": "Stakeholder Workshops",
+                "icon": {
+                  "__icon": "time-quarter-to"
+                }
+              },
+              {
+                "value": "40+",
+                "label": "Meetings Across the EU Energy and Construction Sectors",
+                "icon": {
+                  "__icon": "circle-dashed"
+                }
+              },
+              {
+                "value": "6",
+                "label": "Events Presenting the Findings",
+                "icon": {
+                  "__icon": "angle-circle-right"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "richText",
+            "html": "<h3>Why Conduct an Open Energy System Study?</h3>\n<p><a href=\"mailto:info@openenergytransition.org\">Buildings account for >30% of the EU's energy-related greenhouse gas emissions when using fossil fuels</a>. The wish for a study was based on the need to address demand peaks through energy efficiency, flagged by members of Eurima.  It was a topic of great interest to the insulation and building sectors on how to achieve energy efficiency and performance requirements.</p>\n<p>Eurima saw the need to address this issue by gathering arguments and narratives to contribute to European policy in the context of rapid electrification and the implementation of the <a href=\"mailto:info@openenergytransition.org\">Energy Performance of Buildings Directive</a>. Research had to look into the cost-optimal mix of measures needed in buildings to drive decarbonisation, grid planning, and lower Europeans' electricity bills. It required an energy system modelling study with different scenarios.</p>\n<p>After being introduced to an open energy model study with <a href=\"mailto:info@openenergytransition.org\">PyPSA-Eur</a> in 2023, they decided to explore PyPSA further. \"It seemed to be the perfect type of modelling instrument for our needs,\" says Salvatore Fantoni, Communications Manager at Eurima.</p>\n<p>We needed the results to be scientifically sound, effective, and transparent to support our ongoing activities. The study was incredibly useful. Due to popular demand, we are now working towards a  second iteration of the study with even more granularity. - Dimitar Kolichev, Energy &amp; Climate Policy Manager, Eurima</p>\n<h3>The Study</h3>\n<ul>\n<li>The objective of this study is to assess the impact of various energy efficiency measures in buildings on reducing energy generation needs, flattening the peak demand curve, and influencing energy system costs, and energy bill prices.</li>\n<li>The focus of this particular study was on the representation of building retrofitting, which implies improvement of the building envelope, as well as the implementation of \"active\" demand-side measures.</li>\n<li><a href=\"mailto:info@openenergytransition.org\">The Your Home, Our Future Campaign</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The results of the study were later published as an academic article in Applied Energy in April 2025.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The model is publicly available on GitHub.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">See the project description on our website</a></li>\n</ul>\n<h3>Awareness and Behaviour Change</h3>\n<p>\"We are going for a paradigm shift,\" say Salvatore Fantoni (Sustainable Construction and Communication Manager) and Dimitar Kolichev (Energy &amp; Climate Policy Manager). Even though impact is not always easy to quantify, the study is widely seen as having made a strong contribution, with elements already incorporated into policy.</p>\n<p>The results of the study were used in the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign. They contributed to policy communication, strategic partnerships across the construction and energy systems sectors, and presentations at various conferences.</p>\n<p>As Salvatore Fantoni and Dimitar Kolichev explain, most European-level energy system modelling is based on proprietary tools, where underlying assumptions, methodologies and data inputs are not always fully transparent or accessible, which limits the ability of external stakeholders to scrutinise, replicate, or build upon the results.</p>\n<p>The open model approach built credibility as the results, assumptions, and methods were transparent. Highlighting relevant code snippets or cost assumptions directly in the model (on GitHub) during the study fostered constructive discussions and suggestions for improvement.</p>\n<p>One of the most remarkable findings, according to Salvatore Fantoni, was the impact that energy efficiency in buildings can have on actual physical space. Improving the energy performance of buildings optimises the supply-demand nexus, which means that energy generation infrastructure can be built fit for size to meet optimised consumption needs. These infrastructure optimisations can mean up to 200 km² more can be used for, for instance, biodiversity preservation in Europe simply by insulating buildings. It also means lower costs for the consumer.</p>\n<p>The study is also meant to show homeowners that they have an important role to play in the energy transition. Peak demand impacts their lives and they can do something about it.</p>\n<p>Changing behaviours does not happen overnight. It is a gradual process and Eurima will keep working on the peak demand and electrification agenda, possibly with another study very soon.</p>"
+          },
+          {
+            "kind": "image",
+            "image": {
+              "__asset": "outputs/pub-body-image.webp"
+            },
+            "alt": ""
+          }
+        ],
+        "linkGroups": [
+          {
+            "title": "Resources",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Case Study PDF",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Slides",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "The Your Home, Our Future Campaign",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "The results of the study",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Model is publicly available on GitHub",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Project description on our website",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Journal & DOI",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "IEEE Power and Energy Magazine",
+                    "underline": true
+                  },
+                  {
+                    "text": ", ",
+                    "underline": false
+                  },
+                  {
+                    "text": "Volume: 24 Issue: 4",
+                    "underline": true
+                  },
+                  {
+                    "text": ", pages 100 - 115",
+                    "underline": false
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "DOI: ",
+                    "underline": false
+                  },
+                  {
+                    "text": "https://doi.org/10.1109/MPE.2025.3562145",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "authors": [
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          }
+        ],
+        "citation": "IEEE Power and Energy Magazine, Volume: 24 Issue: 4, pages 100 - 115. DOI: https://doi.org/10.1109/MPE.2025.3562145",
+        "related": [
+          "ukraine-against-darkness"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "system-operators-and-utilities"
+      }
+    },
+    {
+      "slug": "case-study-communication-on-energy-efficient-and-flexible-buildings-with-eurima",
+      "title": "Case Study: Communication on Energy-Efficient and Flexible Buildings with Eurima",
+      "excerpt": "The flattening of the peak energy demand study gave Eurima material for effective communications",
+      "date": "April 27, 2026",
+      "category": "Blog | Case Study",
+      "type": "blogs",
+      "thumbnail": {
+        "__asset": "outputs/pub-eurima-case-study.webp"
+      },
+      "alt": "",
+      "frame": "neutral-950",
+      "detail": {
+        "highlight": "I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima",
+        "authorNames": [
+          "Dr. Martha Maria Frysztacki",
+          "Charlotte Heikendorf"
+        ],
+        "date": "May 1, 2026",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "hero": {
+          "__asset": "outputs/hero-publication-eurima.webp"
+        },
+        "heroAlt": "",
+        "body": [
+          {
+            "kind": "richText",
+            "html": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima</p>\n<p>The European Insulation Manufacturers Association <a href=\"mailto:info@openenergytransition.org\">(Eurima)</a> commissioned a study together with the <a href=\"mailto:info@openenergytransition.org\">International Copper Association Europe</a>  and the <a href=\"mailto:info@openenergytransition.org\">European Climate Foundation</a> in 2023, titled \"Flattening the Peak Demand Curve Through Energy Efficient Buildings: A Holistic Approach Towards Net-Zero Carbon,\" later turned into the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign.</p>\n<p>Eurima is a Brussels-based business association representing mineral wool insulation manufacturers. Communicating the benefits of mineral wool insulation, Eurima assists its members in fields such as product standardisation and EU-focused issue monitoring and management, helping them to stay informed and contribute to EU affairs relevant to mineral wool insulation products and the industry's licence-to-operate.</p>"
+          },
+          {
+            "kind": "stats",
+            "title": "Outputs",
+            "stats": [
+              {
+                "value": "3",
+                "label": "Policy Recommendations \nin the Light Report",
+                "icon": {
+                  "__icon": "world"
+                }
+              },
+              {
+                "value": "5",
+                "label": "Stakeholder Workshops",
+                "icon": {
+                  "__icon": "time-quarter-to"
+                }
+              },
+              {
+                "value": "40+",
+                "label": "Meetings Across the EU Energy and Construction Sectors",
+                "icon": {
+                  "__icon": "circle-dashed"
+                }
+              },
+              {
+                "value": "6",
+                "label": "Events Presenting the Findings",
+                "icon": {
+                  "__icon": "angle-circle-right"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "richText",
+            "html": "<h3>Why Conduct an Open Energy System Study?</h3>\n<p><a href=\"mailto:info@openenergytransition.org\">Buildings account for >30% of the EU's energy-related greenhouse gas emissions when using fossil fuels</a>. The wish for a study was based on the need to address demand peaks through energy efficiency, flagged by members of Eurima.  It was a topic of great interest to the insulation and building sectors on how to achieve energy efficiency and performance requirements.</p>\n<p>Eurima saw the need to address this issue by gathering arguments and narratives to contribute to European policy in the context of rapid electrification and the implementation of the <a href=\"mailto:info@openenergytransition.org\">Energy Performance of Buildings Directive</a>. Research had to look into the cost-optimal mix of measures needed in buildings to drive decarbonisation, grid planning, and lower Europeans' electricity bills. It required an energy system modelling study with different scenarios.</p>\n<p>After being introduced to an open energy model study with <a href=\"mailto:info@openenergytransition.org\">PyPSA-Eur</a> in 2023, they decided to explore PyPSA further. \"It seemed to be the perfect type of modelling instrument for our needs,\" says Salvatore Fantoni, Communications Manager at Eurima.</p>\n<p>We needed the results to be scientifically sound, effective, and transparent to support our ongoing activities. The study was incredibly useful. Due to popular demand, we are now working towards a  second iteration of the study with even more granularity. - Dimitar Kolichev, Energy &amp; Climate Policy Manager, Eurima</p>\n<h3>The Study</h3>\n<ul>\n<li>The objective of this study is to assess the impact of various energy efficiency measures in buildings on reducing energy generation needs, flattening the peak demand curve, and influencing energy system costs, and energy bill prices.</li>\n<li>The focus of this particular study was on the representation of building retrofitting, which implies improvement of the building envelope, as well as the implementation of \"active\" demand-side measures.</li>\n<li><a href=\"mailto:info@openenergytransition.org\">The Your Home, Our Future Campaign</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The results of the study were later published as an academic article in Applied Energy in April 2025.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The model is publicly available on GitHub.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">See the project description on our website</a></li>\n</ul>\n<h3>Awareness and Behaviour Change</h3>\n<p>\"We are going for a paradigm shift,\" say Salvatore Fantoni (Sustainable Construction and Communication Manager) and Dimitar Kolichev (Energy &amp; Climate Policy Manager). Even though impact is not always easy to quantify, the study is widely seen as having made a strong contribution, with elements already incorporated into policy.</p>\n<p>The results of the study were used in the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign. They contributed to policy communication, strategic partnerships across the construction and energy systems sectors, and presentations at various conferences.</p>\n<p>As Salvatore Fantoni and Dimitar Kolichev explain, most European-level energy system modelling is based on proprietary tools, where underlying assumptions, methodologies and data inputs are not always fully transparent or accessible, which limits the ability of external stakeholders to scrutinise, replicate, or build upon the results.</p>\n<p>The open model approach built credibility as the results, assumptions, and methods were transparent. Highlighting relevant code snippets or cost assumptions directly in the model (on GitHub) during the study fostered constructive discussions and suggestions for improvement.</p>\n<p>One of the most remarkable findings, according to Salvatore Fantoni, was the impact that energy efficiency in buildings can have on actual physical space. Improving the energy performance of buildings optimises the supply-demand nexus, which means that energy generation infrastructure can be built fit for size to meet optimised consumption needs. These infrastructure optimisations can mean up to 200 km² more can be used for, for instance, biodiversity preservation in Europe simply by insulating buildings. It also means lower costs for the consumer.</p>\n<p>The study is also meant to show homeowners that they have an important role to play in the energy transition. Peak demand impacts their lives and they can do something about it.</p>\n<p>Changing behaviours does not happen overnight. It is a gradual process and Eurima will keep working on the peak demand and electrification agenda, possibly with another study very soon.</p>"
+          },
+          {
+            "kind": "image",
+            "image": {
+              "__asset": "outputs/pub-body-image.webp"
+            },
+            "alt": ""
+          }
+        ],
+        "linkGroups": [
+          {
+            "title": "Resources",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Case Study PDF",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Slides",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "The Your Home, Our Future Campaign",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "The results of the study",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Model is publicly available on GitHub",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Project description on our website",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Journal & DOI",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "IEEE Power and Energy Magazine",
+                    "underline": true
+                  },
+                  {
+                    "text": ", ",
+                    "underline": false
+                  },
+                  {
+                    "text": "Volume: 24 Issue: 4",
+                    "underline": true
+                  },
+                  {
+                    "text": ", pages 100 - 115",
+                    "underline": false
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "DOI: ",
+                    "underline": false
+                  },
+                  {
+                    "text": "https://doi.org/10.1109/MPE.2025.3562145",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "authors": [
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          }
+        ],
+        "citation": "IEEE Power and Energy Magazine, Volume: 24 Issue: 4, pages 100 - 115. DOI: https://doi.org/10.1109/MPE.2025.3562145",
+        "related": [
+          "ukraine-against-darkness"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "system-operators-and-utilities"
+      }
+    },
+    {
+      "slug": "protecting-europes-digital-sovereignty-with-open-energy-models",
+      "title": "Protecting Europe’s Digital Sovereignty with Open Energy Models",
+      "excerpt": "Open, auditable planning tools give Europe strategic control over its critical energy system decisions while improving transparency and innovation.",
+      "date": "February 20, 2026",
+      "category": "Blog",
+      "type": "blogs",
+      "thumbnail": {
+        "__asset": "outputs/pub-digital-sovereignty.webp"
+      },
+      "alt": "",
+      "frame": "neutral-900",
+      "detail": {
+        "highlight": "I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima",
+        "authorNames": [
+          "Dr. Martha Maria Frysztacki",
+          "Charlotte Heikendorf"
+        ],
+        "date": "May 1, 2026",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "hero": {
+          "__asset": "outputs/hero-publication-eurima.webp"
+        },
+        "heroAlt": "",
+        "body": [
+          {
+            "kind": "richText",
+            "html": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima</p>\n<p>The European Insulation Manufacturers Association <a href=\"mailto:info@openenergytransition.org\">(Eurima)</a> commissioned a study together with the <a href=\"mailto:info@openenergytransition.org\">International Copper Association Europe</a>  and the <a href=\"mailto:info@openenergytransition.org\">European Climate Foundation</a> in 2023, titled \"Flattening the Peak Demand Curve Through Energy Efficient Buildings: A Holistic Approach Towards Net-Zero Carbon,\" later turned into the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign.</p>\n<p>Eurima is a Brussels-based business association representing mineral wool insulation manufacturers. Communicating the benefits of mineral wool insulation, Eurima assists its members in fields such as product standardisation and EU-focused issue monitoring and management, helping them to stay informed and contribute to EU affairs relevant to mineral wool insulation products and the industry's licence-to-operate.</p>"
+          },
+          {
+            "kind": "stats",
+            "title": "Outputs",
+            "stats": [
+              {
+                "value": "3",
+                "label": "Policy Recommendations \nin the Light Report",
+                "icon": {
+                  "__icon": "world"
+                }
+              },
+              {
+                "value": "5",
+                "label": "Stakeholder Workshops",
+                "icon": {
+                  "__icon": "time-quarter-to"
+                }
+              },
+              {
+                "value": "40+",
+                "label": "Meetings Across the EU Energy and Construction Sectors",
+                "icon": {
+                  "__icon": "circle-dashed"
+                }
+              },
+              {
+                "value": "6",
+                "label": "Events Presenting the Findings",
+                "icon": {
+                  "__icon": "angle-circle-right"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "richText",
+            "html": "<h3>Why Conduct an Open Energy System Study?</h3>\n<p><a href=\"mailto:info@openenergytransition.org\">Buildings account for >30% of the EU's energy-related greenhouse gas emissions when using fossil fuels</a>. The wish for a study was based on the need to address demand peaks through energy efficiency, flagged by members of Eurima.  It was a topic of great interest to the insulation and building sectors on how to achieve energy efficiency and performance requirements.</p>\n<p>Eurima saw the need to address this issue by gathering arguments and narratives to contribute to European policy in the context of rapid electrification and the implementation of the <a href=\"mailto:info@openenergytransition.org\">Energy Performance of Buildings Directive</a>. Research had to look into the cost-optimal mix of measures needed in buildings to drive decarbonisation, grid planning, and lower Europeans' electricity bills. It required an energy system modelling study with different scenarios.</p>\n<p>After being introduced to an open energy model study with <a href=\"mailto:info@openenergytransition.org\">PyPSA-Eur</a> in 2023, they decided to explore PyPSA further. \"It seemed to be the perfect type of modelling instrument for our needs,\" says Salvatore Fantoni, Communications Manager at Eurima.</p>\n<p>We needed the results to be scientifically sound, effective, and transparent to support our ongoing activities. The study was incredibly useful. Due to popular demand, we are now working towards a  second iteration of the study with even more granularity. - Dimitar Kolichev, Energy &amp; Climate Policy Manager, Eurima</p>\n<h3>The Study</h3>\n<ul>\n<li>The objective of this study is to assess the impact of various energy efficiency measures in buildings on reducing energy generation needs, flattening the peak demand curve, and influencing energy system costs, and energy bill prices.</li>\n<li>The focus of this particular study was on the representation of building retrofitting, which implies improvement of the building envelope, as well as the implementation of \"active\" demand-side measures.</li>\n<li><a href=\"mailto:info@openenergytransition.org\">The Your Home, Our Future Campaign</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The results of the study were later published as an academic article in Applied Energy in April 2025.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The model is publicly available on GitHub.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">See the project description on our website</a></li>\n</ul>\n<h3>Awareness and Behaviour Change</h3>\n<p>\"We are going for a paradigm shift,\" say Salvatore Fantoni (Sustainable Construction and Communication Manager) and Dimitar Kolichev (Energy &amp; Climate Policy Manager). Even though impact is not always easy to quantify, the study is widely seen as having made a strong contribution, with elements already incorporated into policy.</p>\n<p>The results of the study were used in the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign. They contributed to policy communication, strategic partnerships across the construction and energy systems sectors, and presentations at various conferences.</p>\n<p>As Salvatore Fantoni and Dimitar Kolichev explain, most European-level energy system modelling is based on proprietary tools, where underlying assumptions, methodologies and data inputs are not always fully transparent or accessible, which limits the ability of external stakeholders to scrutinise, replicate, or build upon the results.</p>\n<p>The open model approach built credibility as the results, assumptions, and methods were transparent. Highlighting relevant code snippets or cost assumptions directly in the model (on GitHub) during the study fostered constructive discussions and suggestions for improvement.</p>\n<p>One of the most remarkable findings, according to Salvatore Fantoni, was the impact that energy efficiency in buildings can have on actual physical space. Improving the energy performance of buildings optimises the supply-demand nexus, which means that energy generation infrastructure can be built fit for size to meet optimised consumption needs. These infrastructure optimisations can mean up to 200 km² more can be used for, for instance, biodiversity preservation in Europe simply by insulating buildings. It also means lower costs for the consumer.</p>\n<p>The study is also meant to show homeowners that they have an important role to play in the energy transition. Peak demand impacts their lives and they can do something about it.</p>\n<p>Changing behaviours does not happen overnight. It is a gradual process and Eurima will keep working on the peak demand and electrification agenda, possibly with another study very soon.</p>"
+          },
+          {
+            "kind": "image",
+            "image": {
+              "__asset": "outputs/pub-body-image.webp"
+            },
+            "alt": ""
+          }
+        ],
+        "linkGroups": [
+          {
+            "title": "Resources",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Case Study PDF",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Slides",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "The Your Home, Our Future Campaign",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "The results of the study",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Model is publicly available on GitHub",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Project description on our website",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Journal & DOI",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "IEEE Power and Energy Magazine",
+                    "underline": true
+                  },
+                  {
+                    "text": ", ",
+                    "underline": false
+                  },
+                  {
+                    "text": "Volume: 24 Issue: 4",
+                    "underline": true
+                  },
+                  {
+                    "text": ", pages 100 - 115",
+                    "underline": false
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "DOI: ",
+                    "underline": false
+                  },
+                  {
+                    "text": "https://doi.org/10.1109/MPE.2025.3562145",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "authors": [
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          }
+        ],
+        "citation": "IEEE Power and Energy Magazine, Volume: 24 Issue: 4, pages 100 - 115. DOI: https://doi.org/10.1109/MPE.2025.3562145",
+        "related": [
+          "ukraine-against-darkness"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "system-operators-and-utilities"
+      }
+    },
+    {
+      "slug": "the-state-of-solvers-for-energy-planning",
+      "title": "The State of Solvers for Energy Planning - Results of the 2025 Open Energy Benchmark",
+      "excerpt": "This report presents the 2025 results of the Open Energy Benchmark initiative, a transparent and reproducible benchmarking effort evaluating optimization solvers on realistic, community-contributed energy system models.",
+      "date": "Preprint",
+      "category": "Reports",
+      "type": "reports",
+      "thumbnail": {
+        "__asset": "outputs/pub-state-of-solvers.webp"
+      },
+      "alt": "",
+      "frame": "neutral-900",
+      "detail": {
+        "highlight": "I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima",
+        "authorNames": [
+          "Dr. Martha Maria Frysztacki",
+          "Charlotte Heikendorf"
+        ],
+        "date": "May 1, 2026",
+        "region": "Australia/Oceania",
+        "tags": [
+          "#SoftwareDevelopment",
+          "#Tags"
+        ],
+        "hero": {
+          "__asset": "outputs/hero-publication-eurima.webp"
+        },
+        "heroAlt": "",
+        "body": [
+          {
+            "kind": "richText",
+            "html": "<h2>Develops an open, PyPSA-Earth-based model <br class=\"max-lg:hidden\">for Australia</h2>\n<p>I was positively surprised by what the model could take into account when analysing energy prices and electricity costs. It was also welcomed by the policy makers and energy stakeholders  we discussed the results with. It was very impressive. - Salvatore Fantoni, Sustainable Construction and Communications Manager, Eurima</p>\n<p>The European Insulation Manufacturers Association <a href=\"mailto:info@openenergytransition.org\">(Eurima)</a> commissioned a study together with the <a href=\"mailto:info@openenergytransition.org\">International Copper Association Europe</a>  and the <a href=\"mailto:info@openenergytransition.org\">European Climate Foundation</a> in 2023, titled \"Flattening the Peak Demand Curve Through Energy Efficient Buildings: A Holistic Approach Towards Net-Zero Carbon,\" later turned into the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign.</p>\n<p>Eurima is a Brussels-based business association representing mineral wool insulation manufacturers. Communicating the benefits of mineral wool insulation, Eurima assists its members in fields such as product standardisation and EU-focused issue monitoring and management, helping them to stay informed and contribute to EU affairs relevant to mineral wool insulation products and the industry's licence-to-operate.</p>"
+          },
+          {
+            "kind": "stats",
+            "title": "Outputs",
+            "stats": [
+              {
+                "value": "3",
+                "label": "Policy Recommendations \nin the Light Report",
+                "icon": {
+                  "__icon": "world"
+                }
+              },
+              {
+                "value": "5",
+                "label": "Stakeholder Workshops",
+                "icon": {
+                  "__icon": "time-quarter-to"
+                }
+              },
+              {
+                "value": "40+",
+                "label": "Meetings Across the EU Energy and Construction Sectors",
+                "icon": {
+                  "__icon": "circle-dashed"
+                }
+              },
+              {
+                "value": "6",
+                "label": "Events Presenting the Findings",
+                "icon": {
+                  "__icon": "angle-circle-right"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "richText",
+            "html": "<h3>Why Conduct an Open Energy System Study?</h3>\n<p><a href=\"mailto:info@openenergytransition.org\">Buildings account for >30% of the EU's energy-related greenhouse gas emissions when using fossil fuels</a>. The wish for a study was based on the need to address demand peaks through energy efficiency, flagged by members of Eurima.  It was a topic of great interest to the insulation and building sectors on how to achieve energy efficiency and performance requirements.</p>\n<p>Eurima saw the need to address this issue by gathering arguments and narratives to contribute to European policy in the context of rapid electrification and the implementation of the <a href=\"mailto:info@openenergytransition.org\">Energy Performance of Buildings Directive</a>. Research had to look into the cost-optimal mix of measures needed in buildings to drive decarbonisation, grid planning, and lower Europeans' electricity bills. It required an energy system modelling study with different scenarios.</p>\n<p>After being introduced to an open energy model study with <a href=\"mailto:info@openenergytransition.org\">PyPSA-Eur</a> in 2023, they decided to explore PyPSA further. \"It seemed to be the perfect type of modelling instrument for our needs,\" says Salvatore Fantoni, Communications Manager at Eurima.</p>\n<p>We needed the results to be scientifically sound, effective, and transparent to support our ongoing activities. The study was incredibly useful. Due to popular demand, we are now working towards a  second iteration of the study with even more granularity. - Dimitar Kolichev, Energy &amp; Climate Policy Manager, Eurima</p>\n<h3>The Study</h3>\n<ul>\n<li>The objective of this study is to assess the impact of various energy efficiency measures in buildings on reducing energy generation needs, flattening the peak demand curve, and influencing energy system costs, and energy bill prices.</li>\n<li>The focus of this particular study was on the representation of building retrofitting, which implies improvement of the building envelope, as well as the implementation of \"active\" demand-side measures.</li>\n<li><a href=\"mailto:info@openenergytransition.org\">The Your Home, Our Future Campaign</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The results of the study were later published as an academic article in Applied Energy in April 2025.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">The model is publicly available on GitHub.</a></li>\n<li><a href=\"mailto:info@openenergytransition.org\">See the project description on our website</a></li>\n</ul>\n<h3>Awareness and Behaviour Change</h3>\n<p>\"We are going for a paradigm shift,\" say Salvatore Fantoni (Sustainable Construction and Communication Manager) and Dimitar Kolichev (Energy &amp; Climate Policy Manager). Even though impact is not always easy to quantify, the study is widely seen as having made a strong contribution, with elements already incorporated into policy.</p>\n<p>The results of the study were used in the <a href=\"mailto:info@openenergytransition.org\">Your Home, Our Future</a> campaign. They contributed to policy communication, strategic partnerships across the construction and energy systems sectors, and presentations at various conferences.</p>\n<p>As Salvatore Fantoni and Dimitar Kolichev explain, most European-level energy system modelling is based on proprietary tools, where underlying assumptions, methodologies and data inputs are not always fully transparent or accessible, which limits the ability of external stakeholders to scrutinise, replicate, or build upon the results.</p>\n<p>The open model approach built credibility as the results, assumptions, and methods were transparent. Highlighting relevant code snippets or cost assumptions directly in the model (on GitHub) during the study fostered constructive discussions and suggestions for improvement.</p>\n<p>One of the most remarkable findings, according to Salvatore Fantoni, was the impact that energy efficiency in buildings can have on actual physical space. Improving the energy performance of buildings optimises the supply-demand nexus, which means that energy generation infrastructure can be built fit for size to meet optimised consumption needs. These infrastructure optimisations can mean up to 200 km² more can be used for, for instance, biodiversity preservation in Europe simply by insulating buildings. It also means lower costs for the consumer.</p>\n<p>The study is also meant to show homeowners that they have an important role to play in the energy transition. Peak demand impacts their lives and they can do something about it.</p>\n<p>Changing behaviours does not happen overnight. It is a gradual process and Eurima will keep working on the peak demand and electrification agenda, possibly with another study very soon.</p>"
+          },
+          {
+            "kind": "image",
+            "image": {
+              "__asset": "outputs/pub-body-image.webp"
+            },
+            "alt": ""
+          }
+        ],
+        "linkGroups": [
+          {
+            "title": "Resources",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "Case Study PDF",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Slides",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Links",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "The Your Home, Our Future Campaign",
+                    "underline": true
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "The results of the study",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Model is publicly available on GitHub",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "Project description on our website",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          },
+          {
+            "title": "Journal & DOI",
+            "links": [
+              {
+                "label": [
+                  {
+                    "text": "IEEE Power and Energy Magazine",
+                    "underline": true
+                  },
+                  {
+                    "text": ", ",
+                    "underline": false
+                  },
+                  {
+                    "text": "Volume: 24 Issue: 4",
+                    "underline": true
+                  },
+                  {
+                    "text": ", pages 100 - 115",
+                    "underline": false
+                  }
+                ],
+                "truncate": false,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              },
+              {
+                "label": [
+                  {
+                    "text": "DOI: ",
+                    "underline": false
+                  },
+                  {
+                    "text": "https://doi.org/10.1109/MPE.2025.3562145",
+                    "underline": true
+                  }
+                ],
+                "truncate": true,
+                "href": "mailto:info@openenergytransition.org",
+                "disabled": false,
+                "newTab": false
+              }
+            ]
+          }
+        ],
+        "authors": [
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          },
+          {
+            "name": "Dr. Martha Maria Frysztacki Name Here 2 Line Max",
+            "title": "Title in OET/Company Here 1 Line Maximum Lorem ipsum dolor",
+            "photo": {
+              "__asset": "outputs/author-photo.webp"
+            },
+            "role": null,
+            "links": []
+          }
+        ],
+        "citation": "IEEE Power and Energy Magazine, Volume: 24 Issue: 4, pages 100 - 115. DOI: https://doi.org/10.1109/MPE.2025.3562145",
+        "related": [
+          "ukraine-against-darkness"
+        ],
+        "cta": {
+          "heading": "Discuss a Technology Modelling Need",
+          "primary": "Talk to our team about a technology, dataset or repeatable analytical tool that should be represented transparently in energy system planning.",
+          "secondary": "or check the relevant services curated for you on your right.",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "primary"
+            },
+            {
+              "label": "Request a Demo",
+              "href": "mailto:info@openenergytransition.org",
+              "emphasis": "secondary"
+            }
+          ]
+        },
+        "service": "system-operators-and-utilities"
+      }
+    }
+  ],
+  "publicationsPage": {
+    "meta": {
+      "title": "Publications | Open Energy Transition",
+      "description": "Explore our publications, from academic works to thought leadership."
+    },
+    "hero": {
+      "title": "Explore Our Publication from Academic Works to Thought Leadership.",
+      "links": [
+        {
+          "label": "Academic Publications",
+          "href": "#publications"
+        },
+        {
+          "label": "Blogs",
+          "href": "#publications"
+        },
+        {
+          "label": "Policy Briefs",
+          "href": "#publications"
+        },
+        {
+          "label": "Reports",
+          "href": "#publications"
+        }
+      ]
+    },
+    "listing": {
+      "id": "publications",
+      "title": "Our Publications",
+      "typeTabs": [
+        {
+          "type": "academic",
+          "label": "Academic Publication",
+          "href": "/outputs/publications"
+        },
+        {
+          "type": "blogs",
+          "label": "Blogs",
+          "href": "/outputs/blogs"
+        },
+        {
+          "type": "policy-briefs",
+          "label": "Policy Briefs",
+          "href": "/outputs/policy-briefs"
+        },
+        {
+          "type": "reports",
+          "label": "Reports",
+          "href": "/outputs/reports"
+        }
+      ],
+      "mobilePageSize": 5,
+      "items": [
+        "ukraine-against-darkness",
+        "techno-economic-impacts-of-shipping-liquid-hydrogen-ammonia-or-methanol",
+        "integrated-system-planning-emerging-software-requirements-in-the-power",
+        "ai-coding-agents-should-optimize-for-less-owned-code",
+        "case-study-communication-on-energy-efficient-and-flexible-buildings-with-eurima",
+        "protecting-europes-digital-sovereignty-with-open-energy-models",
+        "the-state-of-solvers-for-energy-planning",
+        "techno-economic-impacts-of-shipping-liquid-hydrogen-ammonia-or-methanol"
+      ]
+    },
+    "outputs": {
+      "title": "Outputs",
+      "description": "Read our Outputs out there on the socials\nlorem ipsum dolor sit amet",
+      "mobilePageSize": 5,
+      "items": [
+        "ukraine-against-darkness",
+        "techno-economic-impacts-of-shipping-liquid-hydrogen-ammonia-or-methanol",
+        "integrated-system-planning-emerging-software-requirements-in-the-power",
+        "ukraine-against-darkness",
+        "techno-economic-impacts-of-shipping-liquid-hydrogen-ammonia-or-methanol",
+        "integrated-system-planning-emerging-software-requirements-in-the-power",
+        "ukraine-against-darkness",
+        "techno-economic-impacts-of-shipping-liquid-hydrogen-ammonia-or-methanol",
+        "integrated-system-planning-emerging-software-requirements-in-the-power"
+      ]
+    }
+  }
+}

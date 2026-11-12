@@ -1,0 +1,725 @@
+{
+  "hero": {
+    "actions": {
+      "secondary": {
+        "label": "About Us",
+        "href": "/organization/about"
+      },
+      "primary": {
+        "label": "Explore Our Tools",
+        "href": "/tools-and-data"
+      }
+    },
+    "slides": [
+      {
+        "label": "OET for Business",
+        "title": "Mainstreaming\nOpen Energy Models\nfor a Global Sustainable Tomorrow",
+        "paragraphs": [
+          "OET is a non-profit\ntackling energy planning challenges",
+          "We Develop, co-maintain, and apply open-source tools that empower energy planners to make informed decisions for a sustainable tomorrow."
+        ],
+        "image": {
+          "__asset": "home/hero-1.jpg"
+        },
+        "imageMobile": {
+          "__asset": "home/hero-1-mobile.jpg"
+        },
+        "thumbnail": {
+          "__asset": "home/hero-thumb-1.jpg"
+        },
+        "pattern": {
+          "image": {
+            "__asset": "home/hero-pattern-1.png"
+          },
+          "left": 1173,
+          "top": 302
+        },
+        "alt": "Wind turbines at sunset"
+      },
+      {
+        "label": "OET for NGO",
+        "title": "Better, Faster, & More Trusted Energy Decisions Globally.",
+        "paragraphs": [
+          "Registered in Germany, we are committed to building solutions for a sustainable global future.",
+          "We conduct research, develop open-source tools, and provide training to inform decision-making and address energy planning challenges"
+        ],
+        "image": {
+          "__asset": "home/hero-2.jpg"
+        },
+        "imageMobile": {
+          "__asset": "home/hero-2-mobile.jpg"
+        },
+        "thumbnail": {
+          "__asset": "home/hero-thumb-2.jpg"
+        },
+        "pattern": {
+          "image": {
+            "__asset": "home/hero-pattern-2.png"
+          },
+          "left": 1,
+          "top": 365
+        },
+        "alt": "High-voltage transmission tower against a cloudy sky"
+      },
+      {
+        "label": "OET for Governance",
+        "title": "UVP Marketing Statement for\nGovernment Here",
+        "paragraphs": [
+          "Registered in Germany, we are committed to building solutions for a sustainable global future.",
+          "We conduct research, develop open-source tools, and provide training to inform decision-making and address energy planning challenges"
+        ],
+        "image": {
+          "__asset": "home/hero-3.jpg"
+        },
+        "imageMobile": {
+          "__asset": "home/hero-3-mobile.jpg"
+        },
+        "thumbnail": {
+          "__asset": "home/hero-thumb-3.jpg"
+        },
+        "pattern": {
+          "image": {
+            "__asset": "home/hero-pattern-3.png"
+          },
+          "left": 1,
+          "top": 365
+        },
+        "alt": "Statue with a European flag in front of a government building"
+      }
+    ]
+  },
+  "intro": {
+    "tag": "How We Help",
+    "title": "We envision a world\nwhere energy systems\nare sustainable and equitable for all.",
+    "paragraphs": [
+      "To succeed with this, energy planning tools must be transparent, innovative, and locally adapted – and collaboration is key to make this happen.",
+      "Therefore it is our mission to mainstream open-source tools that enable this vision and empower all decision-makers and communities to plan, model and implement energy transition effectively."
+    ],
+    "actions": [
+      {
+        "label": "Theory of Change",
+        "href": "/organization/theory-of-change",
+        "variant": "primary",
+        "arrow": true
+      },
+      {
+        "label": "About Us",
+        "href": "/organization/about",
+        "variant": "outline",
+        "arrow": false
+      }
+    ],
+    "image": {
+      "__asset": "home/intro.jpg"
+    },
+    "alt": "Solar panels on a roof at dusk"
+  },
+  "meta": {
+    "title": "Open Energy Transition",
+    "description": "OET is a non-profit tackling energy planning challenges. We develop, co-maintain, and apply open-source tools that empower energy planners to make informed decisions for a sustainable tomorrow."
+  },
+  "partnerGroups": [
+    {
+      "label": "Our Trusted Partners",
+      "logos": [
+        {
+          "name": "Bundesministerium für Bildung und Forschung",
+          "image": {
+            "__asset": "home/logos/bmbf.png"
+          },
+          "width": 127,
+          "height": 67
+        },
+        {
+          "name": "Environmental Defense Fund",
+          "image": {
+            "__asset": "home/logos/edf.png"
+          },
+          "width": 122,
+          "height": 40
+        },
+        {
+          "name": "Climate Compatible Growth",
+          "image": {
+            "__asset": "home/logos/ccg.png"
+          },
+          "width": 70,
+          "height": 70
+        },
+        {
+          "name": "Verfassungsschutz Baden-Württemberg",
+          "image": {
+            "__asset": "home/logos/verfassungsschutz-bw.png"
+          },
+          "width": 120,
+          "height": 63
+        },
+        {
+          "name": "Agora Energiewende",
+          "image": {
+            "__asset": "home/logos/agora.png"
+          },
+          "width": 93,
+          "height": 40
+        },
+        {
+          "name": "The International Council on Clean Transportation",
+          "image": {
+            "__asset": "home/logos/icct.png"
+          },
+          "width": 99,
+          "height": 59
+        },
+        {
+          "name": "Sequoia Climate Foundation",
+          "image": {
+            "__asset": "home/logos/sequoia.png"
+          },
+          "width": 127,
+          "height": 40
+        },
+        {
+          "name": "Quadrature Climate Foundation",
+          "image": {
+            "__asset": "home/logos/quadrature.png"
+          },
+          "width": 133,
+          "height": 40
+        },
+        {
+          "name": "Climact",
+          "image": {
+            "__asset": "home/logos/climact.png"
+          },
+          "width": 79,
+          "height": 60
+        },
+        {
+          "name": "Breakthrough Energy",
+          "image": {
+            "__asset": "home/logos/breakthrough-energy.png"
+          },
+          "width": 136,
+          "height": 42
+        }
+      ]
+    },
+    {
+      "label": "Our Global Networks and Affiliations",
+      "logos": [
+        {
+          "name": "University of Canterbury",
+          "image": {
+            "__asset": "home/logos/uc.png"
+          },
+          "width": 61,
+          "height": 50
+        },
+        {
+          "name": "Environmental Defense Fund",
+          "image": {
+            "__asset": "home/logos/edf.png"
+          },
+          "width": 122,
+          "height": 40
+        },
+        {
+          "name": "Climate Compatible Growth",
+          "image": {
+            "__asset": "home/logos/ccg.png"
+          },
+          "width": 70,
+          "height": 70
+        },
+        {
+          "name": "Verfassungsschutz Baden-Württemberg",
+          "image": {
+            "__asset": "home/logos/verfassungsschutz-bw.png"
+          },
+          "width": 120,
+          "height": 63
+        },
+        {
+          "name": "Agora Energiewende",
+          "image": {
+            "__asset": "home/logos/agora.png"
+          },
+          "width": 93,
+          "height": 40
+        },
+        {
+          "name": "The International Council on Clean Transportation",
+          "image": {
+            "__asset": "home/logos/icct.png"
+          },
+          "width": 99,
+          "height": 59
+        },
+        {
+          "name": "Sequoia Climate Foundation",
+          "image": {
+            "__asset": "home/logos/sequoia.png"
+          },
+          "width": 127,
+          "height": 40
+        },
+        {
+          "name": "Quadrature Climate Foundation",
+          "image": {
+            "__asset": "home/logos/quadrature.png"
+          },
+          "width": 133,
+          "height": 40
+        },
+        {
+          "name": "Climact",
+          "image": {
+            "__asset": "home/logos/climact.png"
+          },
+          "width": 79,
+          "height": 60
+        },
+        {
+          "name": "Breakthrough Energy",
+          "image": {
+            "__asset": "home/logos/breakthrough-energy.png"
+          },
+          "width": 136,
+          "height": 42
+        }
+      ]
+    }
+  ],
+  "partnerGroupsMobile": [
+    {
+      "label": "Our Trusted Partners",
+      "logos": [
+        {
+          "name": "Bundesministerium für Bildung und Forschung",
+          "image": {
+            "__asset": "home/logos/bmbf.png"
+          },
+          "width": 69,
+          "height": 36
+        },
+        {
+          "name": "Verfassungsschutz Baden-Württemberg",
+          "image": {
+            "__asset": "home/logos/verfassungsschutz-bw.png"
+          },
+          "width": 69,
+          "height": 36
+        },
+        {
+          "name": "University of Canterbury",
+          "image": {
+            "__asset": "home/logos/uc.png"
+          },
+          "width": 61,
+          "height": 50
+        },
+        {
+          "name": "Environmental Defense Fund",
+          "image": {
+            "__asset": "home/logos/edf.png"
+          },
+          "width": 76,
+          "height": 25
+        },
+        {
+          "name": "Climate Compatible Growth",
+          "image": {
+            "__asset": "home/logos/ccg.png"
+          },
+          "width": 55,
+          "height": 55
+        },
+        {
+          "name": "Agora Energiewende",
+          "image": {
+            "__asset": "home/logos/agora.png"
+          },
+          "width": 69,
+          "height": 30
+        },
+        {
+          "name": "The International Council on Clean Transportation",
+          "image": {
+            "__asset": "home/logos/icct.png"
+          },
+          "width": 67,
+          "height": 40
+        },
+        {
+          "name": "Environmental Defense Fund",
+          "image": {
+            "__asset": "home/logos/edf.png"
+          },
+          "width": 76,
+          "height": 25
+        },
+        {
+          "name": "Sequoia Climate Foundation",
+          "image": {
+            "__asset": "home/logos/sequoia.png"
+          },
+          "width": 69,
+          "height": 22
+        },
+        {
+          "name": "Quadrature Climate Foundation",
+          "image": {
+            "__asset": "home/logos/quadrature.png"
+          },
+          "width": 69,
+          "height": 21
+        },
+        {
+          "name": "Climact",
+          "image": {
+            "__asset": "home/logos/climact.png"
+          },
+          "width": 54,
+          "height": 41
+        },
+        {
+          "name": "Breakthrough Energy",
+          "image": {
+            "__asset": "home/logos/breakthrough-energy.png"
+          },
+          "width": 70,
+          "height": 22
+        },
+        {
+          "name": "Stanford University",
+          "image": {
+            "__asset": "home/logos/stanford.png"
+          },
+          "width": 72,
+          "height": 32
+        },
+        {
+          "name": "TransnetBW",
+          "image": {
+            "__asset": "home/logos/transnetbw.png"
+          },
+          "width": 81,
+          "height": 10
+        },
+        {
+          "name": "OTH Regensburg",
+          "image": {
+            "__asset": "home/logos/oth-regensburg.png"
+          },
+          "width": 67,
+          "height": 44
+        },
+        {
+          "name": "Ember",
+          "image": {
+            "__asset": "home/logos/ember.png"
+          },
+          "width": 67,
+          "height": 29
+        },
+        {
+          "name": "European Climate Foundation",
+          "image": {
+            "__asset": "home/logos/ecf.png"
+          },
+          "width": 60,
+          "height": 29
+        },
+        {
+          "name": "eurima",
+          "image": {
+            "__asset": "home/logos/eurima.png"
+          },
+          "width": 76,
+          "height": 28
+        }
+      ]
+    }
+  ],
+  "projects": {
+    "tag": "Projects",
+    "title": "Helping governments, businesses, and the non-profit sector make better evidence-informed decisions.",
+    "label": "Projects",
+    "items": [
+      {
+        "title": "Sustainable Hydrogen and Power-to-X ramp-up in Africa",
+        "titleLines": 3,
+        "excerpt": "strengthening the global perspective of energy research, advancing sector coupling in the energy transition, and harnessing digitization to enhance energy systems",
+        "period": "MM/YYYY - MM/YYYY",
+        "href": "/outputs/success-stories/sustainable-hydrogen-and-power-to-x-ramp-up-in-africa",
+        "image": {
+          "__asset": "home/project-1.jpg"
+        },
+        "alt": "",
+        "partnerTag": null,
+        "partnerLink": null
+      },
+      {
+        "title": "Project Tauritron",
+        "titleLines": 2,
+        "excerpt": "This project will improve how people interact with energy data, enable simple calculations and visualizations, promote public engagement, and improve human-centered decision making.",
+        "period": "MM/YYYY - MM/YYYY",
+        "href": "/outputs/success-stories/project-tauritron",
+        "image": {
+          "__asset": "home/project-2.jpg"
+        },
+        "alt": "",
+        "partnerTag": null,
+        "partnerLink": null
+      },
+      {
+        "title": "Google Guarantee of Origin Study",
+        "titleLines": 2,
+        "excerpt": "Exploring green energy in Europe for the world’s largest companies",
+        "period": "MM/YYYY - MM/YYYY",
+        "href": "/outputs/success-stories/google-guarantee-of-origin-study",
+        "image": {
+          "__asset": "home/project-3.jpg"
+        },
+        "alt": "",
+        "partnerTag": {
+          "name": "Google",
+          "logo": {
+            "__asset": "home/partner-google.png"
+          },
+          "width": 70,
+          "height": 25
+        },
+        "partnerLink": {
+          "label": "Google.com",
+          "href": "https://www.google.com"
+        }
+      }
+    ]
+  },
+  "services": {
+    "tag": "Services",
+    "title": "Make open-source energy planning\nwork for your organization",
+    "items": [
+      {
+        "title": "System Operators & Utilities",
+        "paragraphs": [
+          "Use open-source tools for complexdemanding planning workflows while meeting institutional requirements for security, reliability, performance and integration.",
+          "We support model and data development, software deployment, validation, benchmarking, training, maintenance and ongoing technical support."
+        ],
+        "href": "/services/system-operators-and-utilities",
+        "image": {
+          "__asset": "home/service-1.jpg"
+        },
+        "alt": "Line workers servicing equipment on a transmission tower"
+      },
+      {
+        "title": "Regulators & Public Authorities",
+        "paragraphs": [
+          "Build independent and transparent analytical capabilities for energy policy, regulation and infrastructure assessment. We help public institutions select and adopt appropriate tools, establish reliable data and modelling workflows, train internal teams and assess plans using reproducible methods."
+        ],
+        "href": "/services/regulators-and-public-authorities",
+        "image": {
+          "__asset": "home/service-2.jpg"
+        },
+        "alt": ""
+      },
+      {
+        "title": "Consultancies & Engineering Firms",
+        "paragraphs": [
+          "Add specialist open-source modelling, software and data capabilities to your client offer. We work as a technical partner on bids and projects, provide advanced modelling and software development, and help consulting teams build their own capacity to support open-source tools."
+        ],
+        "href": "/services/consultancies-and-engineering-firms",
+        "image": {
+          "__asset": "home/service-3.jpg"
+        },
+        "alt": ""
+      },
+      {
+        "title": "Foundations & Development Partners",
+        "paragraphs": [
+          "Strengthen the shared tools, data and institutional capacity needed for transparent energy planning to spread. We design and deliver programmes that improve open-source infrastructure, close data and software gaps, support adoption by influential institutions and develop local delivery ecosystems."
+        ],
+        "href": "/services/foundations-and-development-partners",
+        "image": {
+          "__asset": "home/service-4.jpg"
+        },
+        "alt": ""
+      },
+      {
+        "title": "Think Tanks, NGOs & Research Organizations",
+        "paragraphs": [
+          "Develop credible open models, datasets and analytical workflows that can be scrutinised, reused and maintained.",
+          "We support tool development, applied modelling, data infrastructure, quality assurance, training and strategies for publishing and sustaining open-source work."
+        ],
+        "href": "/services/think-tanks-ngos-and-research-organizations",
+        "image": {
+          "__asset": "home/service-5.jpg"
+        },
+        "alt": ""
+      },
+      {
+        "title": "Technology Developers & investors",
+        "paragraphs": [
+          "Apply transparent energy system modelling to investment or design questions. We develop transparent methods, datasets and tools to assess system value, infrastructure requirements and performance under future scenarios, working alongside commercial advisors where broader project or investment analysis is required."
+        ],
+        "href": "/services/technology-developers-and-investors",
+        "image": {
+          "__asset": "home/service-6.jpg"
+        },
+        "alt": ""
+      }
+    ]
+  },
+  "stats": [
+    {
+      "value": "35",
+      "label": "Projects",
+      "icon": "blueprint"
+    },
+    {
+      "value": "25",
+      "label": "Partners",
+      "icon": "handshake"
+    },
+    {
+      "value": "50+",
+      "label": "Team Members",
+      "icon": "employees"
+    },
+    {
+      "value": "40+",
+      "label": "Countries",
+      "icon": "world"
+    },
+    {
+      "value": "19",
+      "label": "Tools & Data",
+      "icon": "folder-edit"
+    },
+    {
+      "value": "€0",
+      "label": "Price per License",
+      "icon": "license"
+    }
+  ],
+  "steps": {
+    "tag": "How We Help",
+    "title": "Build, Deploy, Scale",
+    "items": [
+      {
+        "title": "Build",
+        "paragraphs": [
+          "We build and maintain open-source data and software solutions for energy planning",
+          "Energy transition and planning studies with actionable insights for low-carbon strategy, investment, and resource adequacy, tailored to your needs."
+        ],
+        "note": "Powered by transparent, reproducible open-source models, which we always make available to the client to adapt and re-use down the line.",
+        "image": {
+          "__asset": "home/step-build.jpg"
+        },
+        "alt": "Wind turbines silhouetted against an orange sunset"
+      },
+      {
+        "title": "Deploy",
+        "paragraphs": [
+          "Enterprise-grade open-source platforms with flexible, secure and scalable software tools that meet your energy planning needs.",
+          "We deploy open tools to create trusted studies and insights, help institutions to develop the same capability and infrastructure and become more independent of proprietary modeling tool"
+        ],
+        "note": "Built on the latest international academic and industry knowledge, integrated into your data pipelines, and fully adapted to your requirements",
+        "image": {
+          "__asset": "home/step-deploy.jpg"
+        },
+        "alt": "Source code on a screen"
+      },
+      {
+        "title": "Scale",
+        "paragraphs": [
+          "Hands-on training programs, comprehensive guidance, and real-time technical support. We help best practises to spread through training and support, awareness building, benchmarks"
+        ],
+        "note": "For organizations and individuals who use open-source tools for impactful, smarter, and more sustainable energy planning.",
+        "image": {
+          "__asset": "home/step-scale.jpg"
+        },
+        "alt": "Colleagues talking during a training session"
+      }
+    ]
+  },
+  "tools": {
+    "tag": "Tools Support",
+    "title": "OET Supports\na Broad Range\nof Modeling Platforms",
+    "paragraphs": [
+      "We support a broad range of modeling platforms to meet diverse needs and also build secure, open-source applications that integrate proprietary data, ensuring accessibility, privacy, and local self-maintenance without requiring public sharing.",
+      "These include Python for Power System Analysis (PyPSA), the PyPSA-based European and global sector-coupled energy systems models PyPSA-Eur and PyPSA-Earth"
+    ],
+    "action": {
+      "label": "See All Tools",
+      "href": "/tools-and-data"
+    },
+    "logos": [
+      {
+        "name": "PyPSA",
+        "image": {
+          "__asset": "home/logos/pypsa.png"
+        },
+        "width": 140,
+        "height": 56
+      },
+      {
+        "name": "PyPSA/atlite",
+        "image": {
+          "__asset": "home/logos/pypsa-atlite.png"
+        },
+        "width": 127,
+        "height": 44
+      },
+      {
+        "name": "Calliope",
+        "image": {
+          "__asset": "home/logos/calliope.png"
+        },
+        "width": 148,
+        "height": 44
+      },
+      {
+        "name": "OSeMOSYS",
+        "image": {
+          "__asset": "home/logos/osemosys.png"
+        },
+        "width": 120,
+        "height": 44
+      },
+      {
+        "name": "linopy",
+        "image": {
+          "__asset": "home/logos/linopy.png"
+        },
+        "width": 133,
+        "height": 44
+      },
+      {
+        "name": "GenX.jl",
+        "image": {
+          "__asset": "home/logos/genx.png"
+        },
+        "width": 115,
+        "height": 44
+      },
+      {
+        "name": "TIMES",
+        "image": {
+          "__asset": "home/logos/times.png"
+        },
+        "width": 133,
+        "height": 56
+      },
+      {
+        "name": "OpenStreetMap",
+        "image": {
+          "__asset": "home/logos/openstreetmap.png"
+        },
+        "width": 92,
+        "height": 56
+      }
+    ]
+  }
+}
