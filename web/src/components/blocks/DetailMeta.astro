@@ -1,0 +1,74 @@
+---
+import Calendars from '../../icons/calendars.svg'
+import GlobeAlt from '../../icons/globe-alt.svg'
+import Tags from '../../icons/tags.svg'
+
+type MetaIcon = 'calendar' | 'globe' | 'tags'
+type Segment = { text: string; emphasis: boolean }
+type Cell = { layout: 'text' | 'tags'; grow: boolean; segments: Segment[] }
+type Tone = 'red' | 'maroon' | 'light'
+
+interface Props {
+  tone: Tone
+  rows: { icon: MetaIcon; label: string; cells: Cell[] }[]
+  class: string
+}
+
+const { tone, rows, class: className } = Astro.props
+
+const icons: Record<MetaIcon, typeof Calendars> = {
+  calendar: Calendars,
+  globe: GlobeAlt,
+  tags: Tags,
+}
+
+const tones: Record<Tone, { row: string; cell: string; iconCell: string }> = {
+  red: {
+    row: 'h-[41px]',
+    cell: 'border-brand-800 text-white',
+    iconCell: 'w-[38px] border-brand-800 bg-brand-800 text-white',
+  },
+  maroon: {
+    row: 'h-[41px]',
+    cell: 'border-brand-950 text-white',
+    iconCell: 'w-[38px] border-brand-950 bg-brand-950 text-white',
+  },
+  light: {
+    row: 'h-[46px]',
+    cell: 'border-neutral-100 text-black',
+    iconCell: 'w-[46px] border-neutral-100 bg-neutral-100 text-black',
+  },
+}
+
+const style = tones[tone]
+---
+
+<ul class:list={['flex min-w-0 flex-col', className]}>
+  {rows.map((row) => {
+    const Icon = icons[row.icon]
+    return (
+      <li class:list={['flex', style.row]}>
+        <span class:list={['flex shrink-0 items-center justify-center border', style.iconCell]}>
+          <Icon class="size-[14px]" aria-hidden="true" />
+          <span class="sr-only">{row.label}</span>
+        </span>
+        {row.cells.map((cell) => (
+          <span
+            class:list={[
+              'text-body-sm flex min-w-0 items-center border',
+              cell.layout === 'tags' ? 'gap-3 px-2' : 'gap-2 px-3',
+              cell.grow && 'flex-1',
+              style.cell,
+            ]}
+          >
+            {cell.segments.map((segment) => (
+              <span class:list={['truncate', segment.emphasis && 'font-medium']}>
+                {segment.text}
+              </span>
+            ))}
+          </span>
+        ))}
+      </li>
+    )
+  })}
+</ul>

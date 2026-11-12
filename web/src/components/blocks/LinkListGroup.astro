@@ -1,0 +1,66 @@
+---
+import ArrowRight from '../../icons/arrow-right.svg'
+
+type Part = { text: string; underline: boolean }
+type Link = { label: Part[]; truncate: boolean; href: string; disabled: boolean; newTab: boolean }
+type Group = { title: string; links: Link[] }
+
+interface Props {
+  groups: Group[]
+  class?: string
+}
+
+const { groups, class: className } = Astro.props
+
+const row =
+  'text-body-sm relative -mt-px flex min-h-10 items-center gap-2 border px-[11px] py-[7px] font-medium'
+const wraps = (truncate: boolean) => (truncate ? 'truncate' : '[overflow-wrap:anywhere]')
+---
+
+<div class:list={['grid gap-5 border-t border-l border-neutral-100 lg:grid-cols-3', className]}>
+  {groups.map((group) => (
+    <section class="flex min-w-0 flex-col gap-4">
+      <h3 class="text-heading-4 font-medium text-neutral-800">{group.title}</h3>
+      <ul class="flex flex-col pt-px">
+        {group.links.map((link) => (
+          <li class="contents">
+            {link.disabled ? (
+              <span
+                class:list={[row, 'border-neutral-400 text-neutral-500']}
+                role="link"
+                aria-disabled="true"
+              >
+                <span class:list={['min-w-0 flex-1', wraps(link.truncate)]}>
+                  {link.label.map((part) => (
+                    <span class:list={['[overflow-wrap:anywhere]', part.underline && 'underline']}>
+                      {part.text}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            ) : (
+              <a
+                href={link.href}
+                target={link.newTab ? '_blank' : undefined}
+                rel={link.newTab ? 'noopener noreferrer' : undefined}
+                class:list={[
+                  row,
+                  'border-brand-600 text-brand-600 hover:bg-brand-600 transition-colors hover:z-10 hover:text-neutral-50 focus-visible:z-10',
+                ]}
+              >
+                <span class:list={['min-w-0 flex-1', wraps(link.truncate)]}>
+                  {link.label.map((part) => (
+                    <span class:list={['[overflow-wrap:anywhere]', part.underline && 'underline']}>
+                      {part.text}
+                    </span>
+                  ))}
+                </span>
+                <ArrowRight class="h-auto w-4 shrink-0" aria-hidden="true" />
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>

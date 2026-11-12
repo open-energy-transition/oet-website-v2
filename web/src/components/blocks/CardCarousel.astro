@@ -1,0 +1,124 @@
+---
+import type { Locale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import ArrowRight from '../../icons/arrow-right.svg'
+
+type Header = 'side' | 'above' | 'none'
+type Bleed = 'gutter' | 'viewport'
+type Trailing = 'flush' | 'gutter'
+type Gap = 4 | 20
+
+interface Props {
+  label: string
+  header: Header
+  controls: 'arrows' | 'none'
+  gap: Gap
+  bleed: Bleed
+  trailing: Trailing
+  locale: Locale
+}
+
+const { label, header, controls, gap, bleed, trailing, locale } = Astro.props
+
+const hosts: Record<Header, string> = {
+  side: 'flex flex-col lg:flex-row',
+  above: 'block',
+  none: 'block',
+}
+
+const tracks: Record<Header, string> = {
+  side: 'min-w-0 flex-1',
+  above: '',
+  none: '',
+}
+
+const gaps: Record<Gap, string> = { 4: 'gap-1', 20: 'gap-5' }
+
+const bleeds: Record<Bleed, string> = {
+  gutter: '-mr-gutter lg:-mr-gutter-lg',
+  viewport: '-mr-gutter lg:mr-0 lg:w-[calc(100vw-max(80px,(100vw-1440px)/2+80px))]',
+}
+
+const trailings: Record<Trailing, string> = {
+  flush: '',
+  gutter: 'pr-gutter lg:pr-gutter-lg',
+}
+
+const arrow =
+  'flex size-4 cursor-pointer items-center justify-center text-brand-500 aria-disabled:cursor-default aria-disabled:text-neutral-300'
+---
+
+<oet-card-carousel class={hosts[header]}>
+  {header === 'side' && (
+    <div class="flex shrink-0 flex-col items-start gap-3 border border-transparent px-5 pt-[39px] pb-[3px] lg:w-[426.67px] lg:pt-[19px] lg:pl-10">
+      <slot name="header" />
+      {controls === 'arrows' && (
+        <div class="flex w-full items-center gap-6 py-3 pr-6">
+          <button
+            type="button"
+            class={arrow}
+            aria-label={t(locale, 'carousel.previous')}
+            data-previous
+            aria-disabled="true"
+          >
+            <ArrowRight class="h-[9px] w-4 rotate-180" aria-hidden="true" />
+          </button>
+          <button type="button" class={arrow} aria-label={t(locale, 'carousel.next')} data-next>
+            <ArrowRight class="h-[9px] w-4" aria-hidden="true" />
+          </button>
+        </div>
+      )}
+    </div>
+  )}
+  {header === 'above' && <slot name="header" />}
+  <div class:list={['min-w-0', tracks[header]]} role="region" aria-label={label}>
+    <ul
+      class:list={[
+        'focus-inset flex snap-x snap-mandatory items-start overflow-x-auto overscroll-x-contain [scrollbar-width:none] motion-safe:scroll-smooth',
+        gaps[gap],
+        bleeds[bleed],
+        trailings[trailing],
+      ]}
+      tabindex="0"
+      data-track
+      data-gap={gap}
+    >
+      <slot />
+    </ul>
+  </div>
+</oet-card-carousel>
+
+<noscript>
+  <style is:inline>
+    oet-card-carousel [data-previous],
+    oet-card-carousel [data-next] {
+      display: none;
+    }
+  </style>
+</noscript>
+
+<script>
+  class OetCardCarousel extends HTMLElement {
+    connectedCallback() {
+      const track = this.querySelector<HTMLElement>('[data-track]')!
+      track.addEventListener('focusin', (event) => {
+        const item = [...track.children].find((child) => child.contains(event.target as Node))
+        if (item) item.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+      })
+      const previous = this.querySelector<HTMLButtonElement>('[data-previous]')
+      const next = this.querySelector<HTMLButtonElement>('[data-next]')
+      if (!previous || !next) return
+      const gap = Number(track.dataset.gap)
+      const step = () => track.firstElementChild!.getBoundingClientRect().width + gap
+      const update = () => {
+        previous.ariaDisabled = String(track.scrollLeft < 1)
+        next.ariaDisabled = String(track.scrollLeft > track.scrollWidth - track.clientWidth - 1)
+      }
+      previous.addEventListener('click', () => track.scrollBy({ left: -step() }))
+      next.addEventListener('click', () => track.scrollBy({ left: step() }))
+      track.addEventListener('scroll', update, { passive: true })
+      update()
+    }
+  }
+  customElements.define('oet-card-carousel', OetCardCarousel)
+</script>

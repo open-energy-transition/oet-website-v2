@@ -1,0 +1,50 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import Globe from '../../icons/globe.svg'
+import type { Locale } from '../../i18n/config'
+import { barCell, listLink, listPanel } from './menuStyles'
+
+interface Props {
+  id: string
+  locales: readonly Locale[]
+  current: Locale
+  label: string
+  class: string
+}
+
+const { id, locales, current, label, class: className } = Astro.props
+
+const names = new Intl.DisplayNames([current], { type: 'language' })
+const segments = Astro.url.pathname.split('/').filter(Boolean)
+const path = (segments[0] === current ? segments.slice(1) : segments).join('/')
+---
+
+<div class:list={['relative flex', className]} data-dropdown>
+  <button
+    type="button"
+    class:list={[
+      'peer w-[38px] text-(--h-fg) shadow-[inset_1px_0_0_var(--h-lang-line)] lg:shadow-[inset_1px_0_0_var(--h-lang-line),inset_-1px_0_0_var(--h-lang-line)]',
+      barCell,
+    ]}
+    aria-expanded="false"
+    aria-controls={id}
+    aria-label={label}
+  >
+    <Globe aria-hidden="true" />
+  </button>
+  <ul id={id} class:list={['left-[-41px] w-[120px]', listPanel]} data-panel>
+    {locales.map((code) => (
+      <li>
+        <a
+          href={getRelativeLocaleUrl(code, path)}
+          hreflang={code}
+          lang={code}
+          aria-current={code === current ? 'true' : undefined}
+          class={listLink}
+        >
+          {names.of(code)}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>

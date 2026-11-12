@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import type { HeaderTheme } from '../../data/navigation'
+
+const sections: { theme: HeaderTheme; title: string; class: string }[] = [
+  {
+    theme: 'light',
+    title: 'Light header over a photo',
+    class:
+      'm-5 h-[780px] rounded-lg bg-[linear-gradient(180deg,#3d6d85,#5d7f8c_45%,#a48f7c)] text-white',
+  },
+  { theme: 'dark', title: 'Dark header on a light page', class: 'h-[900px] text-neutral-800' },
+  {
+    theme: 'on-red',
+    title: 'Header on a red section',
+    class: 'mx-5 h-[900px] rounded-lg bg-brand-600 text-white',
+  },
+  { theme: 'dark', title: 'Dark header again', class: 'h-[700px] text-neutral-800' },
+]
+---
+
+<BaseLayout
+  title="Shell demo"
+  description="Site header, mobile menu, footer and preloader."
+  share={{ image: null, type: 'website' }}
+  headerTheme="light"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    {sections.map((section, index) => (
+      <section
+        data-header-theme={section.theme}
+        class:list={['flex items-center justify-center', section.class]}
+      >
+        {index === 0 ? (
+          <h1 class="text-display-3 font-medium">{section.title}</h1>
+        ) : (
+          <h2 class="text-display-3 font-medium">{section.title}</h2>
+        )}
+      </section>
+    ))}
+  </main>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import type { FooterCtaContent } from '../../data/footer'
+
+interface Props {
+  content: FooterCtaContent
+}
+
+const { content } = Astro.props
+---
+
+<div class="mx-auto flex w-full max-w-page flex-col items-center px-5 pt-[228px] pb-[180px] lg:pt-[254px] lg:pb-[128px]">
+  <h2 class="min-h-[162px] text-center text-display-3 font-medium text-white lg:text-display-1">
+    {content.headline.map((line) => (
+      <span class="block">{line}</span>
+    ))}
+  </h2>
+  <div class="mt-[39px] flex w-full flex-col items-center gap-6 pt-6 ring-1 ring-white ring-inset lg:mt-[37px] lg:w-auto lg:flex-row lg:pt-0 lg:pl-6">
+    <a
+      href={content.email.href}
+      class="text-body-md font-medium whitespace-nowrap text-white lg:text-body-lg"
+    >
+      {content.email.label}
+    </a>
+    <a
+      href={content.action.href}
+      class="flex items-center justify-center bg-white px-3 py-4 text-[1rem] leading-6 font-medium whitespace-nowrap text-brand-500 transition-colors hover:bg-neutral-100 motion-reduce:transition-none max-lg:w-full"
+    >
+      {content.action.label}
+    </a>
+  </div>
+</div>

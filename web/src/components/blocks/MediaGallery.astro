@@ -1,0 +1,101 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+interface Item {
+  image: ImageMetadata
+  alt: string
+}
+
+interface Props {
+  id: string
+  label: string
+  items: Item[]
+  thumbnailLabel: (position: number, total: number) => string
+  class?: string
+}
+
+const { id, label, items, thumbnailLabel, class: className } = Astro.props
+---
+
+<oet-media-gallery class:list={['flex w-full flex-col gap-4', className]}>
+  <div class="relative h-[303px] w-full overflow-hidden">
+    {items.map((item, index) => (
+      <div
+        id={`${id}-panel-${index}`}
+        role="tabpanel"
+        aria-labelledby={`${id}-tab-${index}`}
+        class="absolute inset-0"
+        hidden={index > 0}
+      >
+        <Image
+          src={item.image}
+          alt={item.alt}
+          widths={[333, 687, 1024, 1374]}
+          sizes="(min-width: 1440px) 687px, (min-width: 1024px) 48vw, 81vw"
+          loading="lazy"
+          class="size-full object-cover"
+        />
+      </div>
+    ))}
+  </div>
+  <div role="tablist" aria-label={label} class="grid w-full grid-cols-5 gap-2 lg:gap-3">
+    {items.map((item, index) => (
+      <button
+        type="button"
+        role="tab"
+        id={`${id}-tab-${index}`}
+        aria-controls={`${id}-panel-${index}`}
+        aria-selected={index === 0 ? 'true' : 'false'}
+        aria-label={thumbnailLabel(index + 1, items.length)}
+        tabindex={index === 0 ? 0 : -1}
+        class="group aria-selected:border-brand-500 relative aspect-[424/425] cursor-pointer overflow-hidden border border-transparent"
+      >
+        <Image
+          src={item.image}
+          alt=""
+          widths={[62, 128, 256]}
+          sizes="(min-width: 1024px) 128px, 62px"
+          loading="lazy"
+          class="absolute inset-0 size-full object-cover"
+        />
+        <span class="absolute inset-0 hidden bg-[rgba(227,25,55,0.24)] group-aria-selected:block" />
+      </button>
+    ))}
+  </div>
+</oet-media-gallery>
+
+<script>
+  class OetMediaGallery extends HTMLElement {
+    connectedCallback() {
+      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
+      const panels = [...this.querySelectorAll<HTMLElement>('[role="tabpanel"]')]
+      const select = (index: number, focus: boolean) => {
+        tabs.forEach((tab, position) => {
+          tab.setAttribute('aria-selected', position === index ? 'true' : 'false')
+          tab.tabIndex = position === index ? 0 : -1
+        })
+        panels.forEach((panel, position) => {
+          panel.hidden = position !== index
+        })
+        if (focus) tabs[index].focus()
+      }
+      const moves: Record<string, (index: number) => number> = {
+        ArrowRight: (index) => (index + 1) % tabs.length,
+        ArrowLeft: (index) => (index - 1 + tabs.length) % tabs.length,
+        Home: () => 0,
+        End: () => tabs.length - 1,
+      }
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => select(index, false))
+        tab.addEventListener('keydown', (event) => {
+          if (!(event.key in moves)) return
+          event.preventDefault()
+          select(moves[event.key](index), true)
+        })
+      })
+    }
+  }
+
+  customElements.define('oet-media-gallery', OetMediaGallery)
+</script>

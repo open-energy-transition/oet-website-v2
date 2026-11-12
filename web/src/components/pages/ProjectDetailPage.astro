@@ -1,0 +1,186 @@
+---
+import CardCarousel from '../../components/blocks/CardCarousel.astro'
+import DetailHeader from '../../components/blocks/DetailHeader.astro'
+import DetailHeroImage from '../../components/blocks/DetailHeroImage.astro'
+import LinkListGroup from '../../components/blocks/LinkListGroup.astro'
+import PartnerLogoList from '../../components/blocks/PartnerLogoList.astro'
+import ServiceCtaBand from '../../components/blocks/ServiceCtaBand.astro'
+import TestimonialSlider from '../../components/blocks/TestimonialSlider.astro'
+import ProjectCard from '../../components/cards/ProjectCard.astro'
+import ServiceCtaCard from '../../components/cards/ServiceCtaCard.astro'
+import PersonRow from '../../components/ui/PersonRow.astro'
+import RichText from '../../components/ui/RichText.astro'
+import type { Project } from '../../data/projects'
+import { routes } from '../../data/routes'
+import { defaultLocale } from '../../i18n/config'
+import { detailLabels, sidebarLabels } from '../../i18n/groups'
+import { t } from '../../i18n/ui'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+interface Props {
+  project: Project
+  related: Project[]
+}
+
+const { project, related: relatedProjects } = Astro.props
+const { detail } = project
+const locale = defaultLocale
+const labels = detailLabels(locale)
+const sidebar = sidebarLabels(locale)
+const container = 'max-w-page px-gutter lg:px-gutter-lg mx-auto w-full'
+const column =
+  'min-w-0 border-neutral-100 max-lg:shadow-[inset_1px_0_0_var(--color-neutral-100)] lg:w-[calc(100%_-_325px)] lg:max-w-[847px] lg:shrink-0 lg:border-l lg:pr-[120px]'
+const text = (value: string, emphasis: boolean) => ({ text: value, emphasis })
+const groups = [
+  { icon: 'tools' as const, label: labels.tools, items: detail.tools },
+  { icon: 'services' as const, label: labels.service, items: detail.services },
+].filter((group) => group.items.length > 0)
+---
+
+<BaseLayout
+  title={`${project.title} | Open Energy Transition`}
+  description={project.excerpt}
+  share={{ image: project.hero, type: 'article' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main" class="overflow-x-clip">
+    <article>
+      <DetailHeader
+        tone="red"
+        title={project.title}
+        highlights={{ kind: 'list', label: labels.highlights, items: detail.highlights }}
+        groups={groups}
+        meta={[
+          {
+            icon: 'calendar',
+            label: labels.date,
+            cells: [
+              {
+                layout: 'text',
+                grow: false,
+                segments: [
+                  text(detail.start, true),
+                  text(detail.rangeWord, false),
+                  text(detail.end, true),
+                ],
+              },
+              { layout: 'text', grow: false, segments: [text(detail.status, true)] },
+            ],
+          },
+          {
+            icon: 'globe',
+            label: labels.region,
+            cells: [{ layout: 'text', grow: false, segments: [text(detail.region, true)] }],
+          },
+          {
+            icon: 'tags',
+            label: labels.tags,
+            cells: [
+              { layout: 'tags', grow: true, segments: detail.tags.map((tag) => text(tag, false)) },
+            ],
+          },
+        ]}
+      />
+      <DetailHeroImage image={project.hero} alt={project.alt} />
+
+      <div class:list={[container, 'flex flex-col lg:flex-row lg:items-start lg:gap-5']}>
+        <div
+          class:list={[column, 'pt-20', relatedProjects.length === 0 && 'pb-10']}
+          data-print="article"
+        >
+          <RichText html={detail.body} size="lg" class="px-5 pb-[60px]" />
+          <LinkListGroup groups={detail.linkGroups} class="px-5 py-[60px]" />
+          {detail.testimonial.length > 0 && (
+            <div class="pb-[60px]" data-print="hide">
+              <TestimonialSlider
+                variant="compact"
+                heading={detail.testimonialHeading}
+                subline={null}
+                locale={locale}
+                items={detail.testimonial}
+              />
+            </div>
+          )}
+        </div>
+        <aside
+          class="flex flex-col gap-3 border-neutral-100 pt-20 pb-5 max-lg:order-first max-lg:shadow-[inset_1px_0_0_var(--color-neutral-100)] lg:sticky lg:top-[60px] lg:w-[305px] lg:shrink-0 lg:border-l"
+          data-print="hide"
+        >
+          <section class="flex flex-col gap-4 pr-3 pl-5">
+            <h2 class="text-heading-3 font-medium text-neutral-800">{sidebar.contact}</h2>
+            <PersonRow {...detail.contact} />
+          </section>
+          {detail.partners.length > 0 && (
+            <div class="pr-3 pl-5">
+              <PartnerLogoList title={sidebar.partners} partners={detail.partners} />
+            </div>
+          )}
+          {detail.funders.length > 0 && (
+            <div class="pr-3 pl-5">
+              <PartnerLogoList title={sidebar.funders} partners={detail.funders} />
+            </div>
+          )}
+        </aside>
+      </div>
+      {relatedProjects.length > 0 && (
+        <div class={container}>
+          <div class:list={[column, 'pb-10']}>
+            <section class="pb-20" aria-labelledby="related-projects" data-print="hide">
+              <CardCarousel
+                label={sidebar.relatedProjects}
+                header="above"
+                controls="none"
+                gap={20}
+                bleed="viewport"
+                trailing="flush"
+                locale={locale}
+              >
+                <h2
+                  slot="header"
+                  id="related-projects"
+                  class="text-heading-4 px-5 pb-5 font-medium text-neutral-800"
+                >
+                  {sidebar.relatedProjects}
+                </h2>
+                {relatedProjects.map((related) => {
+                  return (
+                    <li class="shrink-0 snap-start">
+                      <ProjectCard
+                        title={related.title}
+                        titleLines={2}
+                        excerpt={related.excerpt}
+                        period={related.period}
+                        href={routes.successStory(related.slug)}
+                        linkLabel={t(locale, 'card.viewProject')}
+                        image={related.thumbnail}
+                        alt={related.alt}
+                        sizes="367px"
+                        frame={related.frame}
+                        mobileFrame="scaled"
+                        height="fixed"
+                        partnerTag={related.partnerTag}
+                        partnerLink={related.partnerLink}
+                        footer="when-partner"
+                        class="w-[407px]"
+                      />
+                    </li>
+                  )
+                })}
+              </CardCarousel>
+            </section>
+          </div>
+        </div>
+      )}
+    </article>
+
+    <div data-print="hide">
+      <ServiceCtaBand tone="brand-700" {...detail.cta}>
+        <ServiceCtaCard {...detail.serviceCta} class="w-full lg:w-[559px]" />
+      </ServiceCtaBand>
+      <div class={container}>
+        <div class="h-[240px] border-l border-neutral-100 lg:h-[140px]"></div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,187 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Picture } from 'astro:assets'
+import ChevronDown from '../../icons/chevron-down.svg'
+import Button from '../ui/Button.astro'
+
+interface Item {
+  title: string
+  paragraphs: string[]
+  href: string
+  image: ImageMetadata
+  alt: string
+}
+
+interface Props {
+  id: string
+  items: Item[]
+  linkLabel: string
+}
+
+const { id, items, linkLabel } = Astro.props
+const number = (index: number) => String(index + 1).padStart(2, '0')
+---
+
+<oet-accordion class="flex flex-col border border-neutral-100 lg:h-[516px] lg:flex-row">
+  <div class="relative aspect-[640/516] w-full shrink-0 overflow-clip lg:h-full lg:w-1/2">
+    {items.map((item, index) => (
+      <Picture
+        src={item.image}
+        alt={item.alt}
+        formats={['avif', 'webp']}
+        pictureAttributes={{ class: 'contents' }}
+        widths={[372, 640, 651, 744, 1280]}
+        sizes="(min-width: 1440px) 640px, (min-width: 1024px) calc(50vw - 80px), calc(100vw - 40px)"
+        loading="lazy"
+        class="accordion-image absolute inset-0 size-full object-cover"
+        data-image={index}
+        data-open={index === 0 ? '' : undefined}
+      />
+    ))}
+  </div>
+  <div class="flex min-w-0 flex-1 flex-col border-neutral-100 lg:border-l">
+    {items.map((item, index) => (
+      <div
+        class="accordion-item flex flex-col justify-between border-t border-neutral-100 pt-[15px] pr-[19px] pb-4 pl-[11px] last:pb-[15px] lg:first:border-t-0"
+        data-item={index}
+        data-open={index === 0 ? '' : undefined}
+      >
+        <h3>
+          <button
+            type="button"
+            class="flex w-full cursor-pointer items-center gap-1 text-left text-neutral-800"
+            id={`${id}-button-${index}`}
+            aria-expanded={index === 0 ? 'true' : 'false'}
+            aria-controls={`${id}-panel-${index}`}
+          >
+            <span class="text-body-xs w-[18px] shrink-0 self-start text-right font-medium">
+              {number(index)}
+            </span>
+            <span class="text-body-xl min-w-0 flex-1 font-medium">{item.title}</span>
+            <span class="flex size-4 shrink-0 items-center justify-center">
+              <ChevronDown class="accordion-chevron h-[5px] w-[9px]" aria-hidden="true" />
+            </span>
+          </button>
+        </h3>
+        <div
+          class="accordion-panel grid"
+          id={`${id}-panel-${index}`}
+          role="region"
+          aria-labelledby={`${id}-button-${index}`}
+        >
+          <div class="min-h-0 overflow-hidden">
+            <div class="flex flex-col items-start gap-10 pt-[60px] pl-[22px] lg:flex-row lg:items-end lg:pt-4">
+              <div class="text-body-sm min-w-0 flex-1 space-y-[17px] font-medium text-neutral-800">
+                {item.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+              <Button
+                href={item.href}
+                label={linkLabel}
+                variant="primary"
+                size="sm"
+                arrow
+                newTab={false}
+                class="focus-inset h-[33px]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</oet-accordion>
+
+<noscript>
+  <style is:inline>
+    oet-accordion .accordion-panel {
+      grid-template-rows: 1fr;
+      visibility: visible;
+    }
+
+    oet-accordion {
+      height: auto;
+    }
+  </style>
+</noscript>
+
+<style is:global>
+  oet-accordion .accordion-image {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+
+  oet-accordion .accordion-image[data-open] {
+    opacity: 1;
+  }
+
+  oet-accordion:not([data-ready]) .accordion-image:not([data-open]) {
+    display: none;
+  }
+
+  oet-accordion .accordion-panel {
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+      grid-template-rows 0.3s ease-out,
+      visibility 0.3s;
+  }
+
+  oet-accordion .accordion-item[data-open] .accordion-panel {
+    grid-template-rows: 1fr;
+    visibility: visible;
+  }
+
+  oet-accordion .accordion-chevron {
+    transition: rotate 0.3s ease-out;
+  }
+
+  oet-accordion .accordion-item[data-open] .accordion-chevron {
+    rotate: 180deg;
+  }
+
+  @media (min-width: 1024px) {
+    oet-accordion .accordion-item {
+      flex: 0 0 auto;
+      transition: flex-grow 0.3s ease-out;
+    }
+
+    oet-accordion .accordion-item[data-open] {
+      flex-grow: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    oet-accordion .accordion-image,
+    oet-accordion .accordion-panel,
+    oet-accordion .accordion-chevron,
+    oet-accordion .accordion-item {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  class OetAccordion extends HTMLElement {
+    connectedCallback() {
+      const items = [...this.querySelectorAll<HTMLElement>('[data-item]')]
+      const images = [...this.querySelectorAll<HTMLElement>('[data-image]')]
+      const ready = () => this.toggleAttribute('data-ready', true)
+      this.addEventListener('pointerenter', ready, { once: true })
+      this.addEventListener('focusin', ready, { once: true })
+      this.addEventListener('touchstart', ready, { once: true, passive: true })
+      items.forEach((item, index) => {
+        item.querySelector('button')!.addEventListener('click', () => {
+          ready()
+          items.forEach((other, position) => {
+            other.toggleAttribute('data-open', position === index)
+            other.querySelector('button')!.setAttribute('aria-expanded', String(position === index))
+            images[position].toggleAttribute('data-open', position === index)
+          })
+        })
+      })
+    }
+  }
+  customElements.define('oet-accordion', OetAccordion)
+</script>

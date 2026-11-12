@@ -1,0 +1,22 @@
+---
+import type { ComponentProps } from 'astro/types'
+import DepartmentCard from '../cards/DepartmentCard.astro'
+
+interface Props {
+  cards: ComponentProps<typeof DepartmentCard>[]
+  class?: string
+}
+
+const { cards, class: className } = Astro.props
+---
+
+<ul class:list={['grid grid-cols-1 gap-y-20 lg:grid-cols-2 lg:gap-10', className]}>
+  {cards.map((card) => (
+    <li
+      class="relative min-w-0 lg:odd:before:absolute lg:odd:before:top-0 lg:odd:before:left-0 lg:odd:before:h-px lg:odd:before:w-[calc(200%+40px)] lg:odd:before:bg-neutral-100"
+      data-reveal
+    >
+      <DepartmentCard {...card} />
+    </li>
+  ))}
+</ul>

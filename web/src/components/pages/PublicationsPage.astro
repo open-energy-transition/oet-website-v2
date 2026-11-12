@@ -1,0 +1,216 @@
+---
+import ListingHeader from '../blocks/ListingHeader.astro'
+import PageHero from '../blocks/PageHero.astro'
+import PublicationCard from '../cards/PublicationCard.astro'
+import ListingFilter from '../interactive/ListingFilter.astro'
+import FilterBar from '../ui/FilterBar.astro'
+import FilterTabs from '../ui/FilterTabs.astro'
+import Pagination from '../ui/Pagination.astro'
+import { loadFilters, sort } from '../../data/outputs'
+import {
+  loadPublicationsPage,
+  type Publication,
+  type PublicationTypeId,
+} from '../../data/publications'
+import { routes } from '../../data/routes'
+import { defaultLocale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { firstPageClass, sortByNewest } from '../../lib/listing'
+
+interface Props {
+  type: PublicationTypeId | null
+}
+
+const { type } = Astro.props
+const locale = defaultLocale
+const [{ meta, hero, listing, outputs }, filters] = await Promise.all([
+  loadPublicationsPage(locale),
+  loadFilters(locale, 'publications'),
+])
+
+const activeTab = listing.typeTabs.find((tab) => tab.type === type)
+if (type !== null && !activeTab) throw new Error(`Unknown publication type: ${type}`)
+const base = activeTab ? activeTab.href : routes.publications
+const title = activeTab ? `${activeTab.label} | ${meta.title}` : meta.title
+const tabs = [
+  { label: t(locale, 'tabs.showAll'), href: routes.publications, active: type === null },
+  ...listing.typeTabs.map((tab) => ({
+    label: tab.label,
+    href: `${tab.href}#${listing.id}`,
+    active: tab.type === type,
+  })),
+]
+const ofType = (items: Publication[]) => items.filter((item) => type === null || item.type === type)
+const listed = sortByNewest(ofType(listing.items), (item) => item.isoDate)
+const outputItems = sortByNewest(ofType(outputs.items), (item) => item.isoDate)
+const hrefFor = (page: number) => `${base}?page=${page}#${listing.id}`
+const pages = (count: number, size: number) => Math.max(1, Math.ceil(count / size))
+const container = 'max-w-page px-gutter lg:px-gutter-lg mx-auto w-full'
+const sizes =
+  '(min-width: 1440px) 367px, (min-width: 1024px) calc((100vw - 340px) / 3), calc(100vw - 80px)'
+const grid =
+  'grid scroll-mt-32 gap-5 border-t border-neutral-100 pt-5 lg:grid-cols-3 lg:border-l lg:pl-5 [&:not(:has(>li:not([hidden])))]:hidden'
+---
+
+<BaseLayout
+  title={title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="listing"
+      title={hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-5"
+      eyebrow={null}
+      lead={[]}
+      links={hero.links}
+      stats={null}
+      person={null}
+      image={hero.image}
+      background="brand-900"
+      chipsBottomMobile={62}
+      ornament="right-upper"
+      headerTheme="light"
+    />
+
+    <ListingFilter pageSize={listing.pageSize} ranked={false} infinite={false}>
+      <ListingHeader
+        layout="split"
+        title={listing.title}
+        description={null}
+        descriptionStyle="body-lg"
+        tabsWidth="column"
+        topSpace={180}
+        id={listing.id}
+      >
+        <FilterTabs
+          slot="tabs"
+          label={t(locale, 'tabs.publicationType')}
+          layout="compact"
+          mobileBreakAfter={1}
+          options={tabs}
+        />
+        <FilterBar
+          slot="controls"
+          locale={locale}
+          filters={filters}
+          sort={sort(locale, 'publications', 'newest')}
+        />
+        <Pagination
+          class="py-5 lg:hidden"
+          current={1}
+          total={pages(listed.length, listing.pageSize.mobile)}
+          hrefFor={hrefFor}
+          locale={locale}
+        />
+      </ListingHeader>
+
+      <div class={container}>
+        <ul data-listing-items aria-live="polite" class:list={[grid, 'pb-5 lg:gap-y-10']}>
+          {listed.map((publication, index) => (
+            <li
+              class:list={firstPageClass(index, listing.pageSize)}
+              data-listing-item
+              data-facet-region={publication.facets.region}
+              data-facet-service={publication.facets.service}
+              data-facet-product={publication.facets.product}
+              data-facet-tag={publication.facets.tag}
+              data-title={publication.title}
+              data-date={publication.isoDate}
+            >
+              <PublicationCard
+                title={publication.title}
+                excerpt={publication.excerpt}
+                date={publication.date}
+                category={publication.category}
+                href={routes.publication(publication.slug)}
+                linkLabel={t(locale, 'card.read')}
+                media={{
+                  image: publication.thumbnail,
+                  alt: publication.alt,
+                  sizes,
+                  frame: publication.frame,
+                  mobileFrame: 'fixed',
+                }}
+                height="fixed"
+                class="h-full"
+              />
+            </li>
+          ))}
+        </ul>
+        <p
+          data-listing-empty
+          class="text-body-md border-t border-neutral-100 py-10 pl-5 font-medium text-neutral-800 lg:border-l"
+          hidden={listed.length > 0}
+        >
+          {t(locale, listed.length > 0 ? 'publications.noMatch' : 'publications.empty')}
+        </p>
+        <div
+          class="flex justify-center border-neutral-100 pt-10 pb-[60px] lg:border-l"
+          hidden={listed.length === 0}
+        >
+          <Pagination
+            class="w-full lg:w-[372px]"
+            current={1}
+            total={pages(listed.length, listing.pageSize.desktop)}
+            hrefFor={hrefFor}
+            locale={locale}
+          />
+        </div>
+      </div>
+    </ListingFilter>
+
+    <div class={container}>
+      {outputItems.length > 0 ? (
+        <ListingFilter pageSize={outputs.pageSize} ranked={false} infinite={false}>
+          <div class="flex flex-col gap-3 border-l border-neutral-100 pt-[180px] pb-10 pl-5 font-medium text-neutral-800">
+            <h2 class="text-display-5">{outputs.title}</h2>
+            <p class="text-[1rem] leading-[21px] tracking-[-0.01em] whitespace-pre-line">
+              {outputs.description}
+            </p>
+          </div>
+          <ul data-listing-items class={grid}>
+            {outputItems.map((publication, index) => {
+              return (
+                <li
+                  class:list={firstPageClass(index, outputs.pageSize)}
+                  data-listing-item
+                  data-title={publication.title}
+                  data-date={publication.isoDate}
+                >
+                  <PublicationCard
+                    title={publication.title}
+                    excerpt={publication.excerpt}
+                    date={publication.date}
+                    category={null}
+                    href={routes.publication(publication.slug)}
+                    linkLabel={t(locale, 'card.read')}
+                    media={null}
+                    height="natural"
+                    class="h-full"
+                  />
+                </li>
+              )
+            })}
+          </ul>
+          <div class="flex justify-center border-neutral-100 pt-[60px] pb-[160px] lg:border-l lg:pb-[120px]">
+            <Pagination
+              class="w-full lg:w-[372px]"
+              current={1}
+              total={pages(outputItems.length, outputs.pageSize.desktop)}
+              hrefFor={hrefFor}
+              locale={locale}
+            />
+          </div>
+        </ListingFilter>
+      ) : (
+        <div class="h-[160px] border-neutral-100 lg:h-[120px] lg:border-l" />
+      )}
+    </div>
+  </main>
+</BaseLayout>

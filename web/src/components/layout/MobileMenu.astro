@@ -1,0 +1,126 @@
+---
+import ChevronDown from '../../icons/chevron-down.svg'
+import AngleRight from '../../icons/angle-right.svg'
+import CloseSmall from '../../icons/close-small.svg'
+import type { MobileNavEntry, NavLink } from '../../data/navigation'
+import NavServiceItem from './NavServiceItem.astro'
+import { focusRing } from './menuStyles'
+
+interface Props {
+  id: string
+  entries: MobileNavEntry[]
+  legal: NavLink[]
+  consentLabel: string
+  copyright: string
+  navLabel: string
+  legalLabel: string
+}
+
+const { id, entries, legal, consentLabel, copyright, navLabel, legalLabel } = Astro.props
+
+const row = `flex h-[65px] items-center justify-center gap-[10px] text-body-sm font-medium text-neutral-50 shadow-[inset_0_1px_0_var(--color-neutral-50)] ${focusRing}`
+const summary = `${row} cursor-pointer list-none [&::-webkit-details-marker]:hidden`
+const chevron = 'flex size-[14px] items-center justify-center'
+const legalItem = `flex-1 text-center text-body-xs text-white ${focusRing}`
+const strip =
+  'p-4 shadow-[inset_1px_0_0_rgba(236,236,236,0.32),inset_-1px_0_0_rgba(236,236,236,0.32),inset_0_-1px_0_rgba(236,236,236,0.32)]'
+---
+
+<div
+  id={id}
+  class="pointer-events-auto fixed inset-0 -z-10 hidden overflow-y-auto bg-brand-500 lg:hidden"
+  data-mobile-menu
+>
+  <div class="flex min-h-full flex-col justify-between gap-5 pt-[94px] pb-5">
+    <nav aria-label={navLabel} class="px-5">
+      <ul class="relative overflow-clip rounded-sm after:pointer-events-none after:absolute after:inset-0 after:rounded-sm after:ring-1 after:ring-neutral-50 after:content-[''] after:ring-inset">
+        {entries.map((entry) => (
+          <li data-drill={entry.kind === 'mega' ? '' : undefined}>
+            {entry.kind === 'link' && (
+              <a href={entry.href} class={row}>
+                {entry.label}
+              </a>
+            )}
+            {entry.kind === 'list' && (
+              <details name={`${id}-group`} class="group">
+                <summary class:list={[summary, 'group-open:bg-black/12']}>
+                  {entry.label}
+                  <span class={chevron}>
+                    <ChevronDown aria-hidden="true" />
+                  </span>
+                </summary>
+                <ul class="flex flex-col gap-4 rounded-b-sm bg-black/12 p-4 shadow-[inset_0_1px_0_var(--color-neutral-100)]">
+                  {entry.links.map((link) => (
+                    <li>
+                      <a
+                        href={link.href}
+                        class:list={[
+                          'block rounded-sm p-2 text-center text-body-xs font-medium text-neutral-50',
+                          focusRing,
+                        ]}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
+            {entry.kind === 'mega' && (
+              <details class="group">
+                <summary class:list={[summary, 'group-open:justify-between group-open:px-5']}>
+                  {entry.label}
+                  <span class:list={[chevron, '-rotate-90 group-open:hidden']}>
+                    <ChevronDown aria-hidden="true" />
+                  </span>
+                  <span class:list={[chevron, 'hidden group-open:flex']}>
+                    <CloseSmall aria-hidden="true" />
+                  </span>
+                </summary>
+                <ul class="flex flex-col gap-3 p-5 shadow-[inset_0_1px_0_var(--color-neutral-50)]">
+                  {entry.links.map((link) => (
+                    <li>
+                      <NavServiceItem link={link} tone="light" />
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={entry.more.href}
+                  class:list={[
+                    'flex gap-2 px-8 pt-4 pb-5 text-neutral-50 shadow-[inset_0_1px_0_var(--color-neutral-200)]',
+                    focusRing,
+                  ]}
+                >
+                  <span class="flex min-w-0 flex-1 flex-col gap-1">
+                    <span class="text-body-xs font-medium">{entry.more.label}</span>
+                    <span class="text-body-2xs text-neutral-100">{entry.more.description}</span>
+                  </span>
+                  <span class="flex w-4 shrink-0 items-center justify-center text-white">
+                    <AngleRight aria-hidden="true" />
+                  </span>
+                </a>
+              </details>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="px-5 ring-1 ring-[rgba(236,236,236,0.44)] ring-inset">
+      <ul aria-label={legalLabel} class:list={['flex items-center gap-[10px]', strip]}>
+        {legal.map((link) => (
+          <li class="flex flex-1">
+            <a href={link.href} class={legalItem}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+        <li class="flex flex-1">
+          <button type="button" class:list={[legalItem, 'cursor-pointer']} data-consent-settings>
+            {consentLabel}
+          </button>
+        </li>
+      </ul>
+      <p class:list={['text-center text-body-xs text-white', strip]}>{copyright}</p>
+    </div>
+  </div>
+</div>

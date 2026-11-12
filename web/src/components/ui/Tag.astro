@@ -1,0 +1,25 @@
+---
+type Tone = 'dark' | 'light' | 'white'
+
+interface Props {
+  label: string
+  tone: Tone
+}
+
+const { label, tone } = Astro.props
+
+const tones: Record<Tone, string> = {
+  dark: 'border-black/32 bg-black/2 text-neutral-900',
+  light: 'border-white/32 bg-white/2 text-neutral-50',
+  white: 'border-white bg-black/2 text-neutral-50',
+}
+---
+
+<span
+  class:list={[
+    'inline-flex items-center justify-center rounded-full border px-[7px] pt-[5px] pb-[4px] text-[0.75rem] leading-[15px] font-medium tracking-[-0.01em] whitespace-nowrap backdrop-blur-[4px]',
+    tones[tone],
+  ]}
+>
+  {label}
+</span>

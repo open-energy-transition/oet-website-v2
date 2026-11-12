@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import CardCarousel from '../../components/blocks/CardCarousel.astro'
+import PageHero from '../../components/blocks/PageHero.astro'
+import WorkTopicGrid from '../../components/blocks/WorkTopicGrid.astro'
+import ProjectCard from '../../components/cards/ProjectCard.astro'
+import RichText from '../../components/ui/RichText.astro'
+import { heroStats, loadDepartmentPages } from '../../data/departments'
+import { defaultLocale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+
+type Props = Awaited<ReturnType<typeof loadDepartmentPages>>[number]
+
+const { department, detail, projects } = Astro.props
+const locale = defaultLocale
+const columns = { 326: 'pr-[26px] lg:pr-5', 332: 'pr-5' }
+const column = `pl-[19px] lg:max-w-[727px] ${columns[detail.mobileColumn]}`
+const heading = 'font-medium text-neutral-800'
+---
+
+<BaseLayout
+  title={`${department.name} | Open Energy Transition`}
+  description={detail.hero.lead}
+  share={{ image: detail.hero.image.desktop, type: 'article' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="map-left"
+      title={detail.hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-3"
+      eyebrow={null}
+      lead={[detail.hero.lead]}
+      links={[]}
+      stats={heroStats(
+        locale,
+        department.icon,
+        detail.hero.peopleCount,
+        t(locale, 'department.people'),
+      )}
+      person={department.head}
+      image={detail.hero.image}
+      background={detail.hero.background}
+      textLeft={80}
+      mobileAnchor="bottom-30"
+      ornament={detail.hero.ornament}
+      headerTheme="light"
+    />
+    <div class="max-w-page px-gutter lg:px-gutter-lg mx-auto w-full">
+      <div
+        class:list={[
+          'border-l border-neutral-100 pt-20',
+          projects.length > 0 ? 'pb-10' : 'pb-10 lg:pb-20',
+        ]}
+      >
+        <section class:list={['flex flex-col gap-4 pb-[60px]', column]}>
+          <h2 class:list={['text-heading-1', heading]}>{t(locale, 'department.about')}</h2>
+          <RichText html={detail.about} size="md" />
+        </section>
+
+        <section class:list={['flex flex-col gap-4 pb-[60px]', column]}>
+          <h2 class:list={['text-heading-2', heading]}>{t(locale, 'department.works')}</h2>
+          <RichText html={detail.works.intro} size="md" />
+          {detail.works.topics.length > 0 && <WorkTopicGrid topics={detail.works.topics} />}
+          {detail.works.outro !== null && <RichText html={detail.works.outro} size="md" />}
+        </section>
+
+        {projects.length > 0 && (
+          <section class="pb-20">
+            <h2 class:list={['text-heading-4 pb-5', heading, column]}>
+              {t(locale, 'department.projects')}
+            </h2>
+            <div class="-ml-[21px] lg:-ml-px">
+              <CardCarousel
+                label={t(locale, 'department.projects')}
+                header="none"
+                controls="none"
+                gap={20}
+                bleed="gutter"
+                trailing="flush"
+                locale={locale}
+              >
+                {projects.map((project) => (
+                  <li class="shrink-0 snap-center bg-neutral-50 first:ml-[2.67px] last:mr-[2.67px] lg:snap-start lg:first:ml-0 lg:last:mr-0">
+                    <ProjectCard
+                      title={project.title}
+                      titleLines={2}
+                      excerpt={project.excerpt}
+                      period={project.period}
+                      href={project.href}
+                      linkLabel={t(locale, 'card.viewProject')}
+                      image={project.image}
+                      alt={project.alt}
+                      sizes="367px"
+                      frame={project.frame}
+                      mobileFrame="scaled"
+                      height="natural"
+                      partnerTag={project.partnerTag}
+                      partnerLink={null}
+                      footer="always"
+                      class="w-[406.67px] max-w-[calc(100vw-5.33px)]"
+                    />
+                  </li>
+                ))}
+              </CardCarousel>
+            </div>
+          </section>
+        )}
+      </div>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+interface Props {
+  image: ImageMetadata
+  alt: string
+}
+
+const { image, alt } = Astro.props
+---
+
+<div class="max-w-page lg:px-gutter-lg relative mx-auto w-full" data-header-theme="light">
+  <div class="bg-brand-600 relative aspect-[1280/712] w-full overflow-clip">
+    <Image
+      src={image}
+      alt={alt}
+      widths={[412, 824, 1280, 1920, 2560]}
+      sizes="(min-width: 1440px) 1280px, (min-width: 1024px) calc(100vw - 160px), 100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="absolute inset-0 size-full object-cover"
+    />
+    <div class="absolute inset-0 border border-neutral-100/90" aria-hidden="true"></div>
+  </div>
+</div>

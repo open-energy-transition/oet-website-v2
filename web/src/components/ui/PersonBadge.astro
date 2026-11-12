@@ -1,0 +1,27 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+interface Props {
+  name: string
+  role: string
+  photo: ImageMetadata
+}
+
+const { name, role, photo } = Astro.props
+---
+
+<div class="flex w-full items-center outline -outline-offset-1 outline-[#ececec] lg:w-[427px]">
+  <Image
+    src={photo}
+    alt=""
+    widths={[96, 192]}
+    sizes="96px"
+    loading="lazy"
+    class="size-24 shrink-0 bg-neutral-200 object-cover"
+  />
+  <div class="flex min-w-0 flex-col gap-1 p-4">
+    <p class="text-body-lg font-medium text-neutral-50">{name}</p>
+    <p class="text-body-md font-medium text-neutral-50">{role}</p>
+  </div>
+</div>

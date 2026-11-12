@@ -1,0 +1,201 @@
+---
+import { Image } from 'astro:assets'
+import CardCarousel from '../../components/blocks/CardCarousel.astro'
+import DetailHeader from '../../components/blocks/DetailHeader.astro'
+import DetailHeroImage from '../../components/blocks/DetailHeroImage.astro'
+import LinkListGroup from '../../components/blocks/LinkListGroup.astro'
+import ServiceCtaBand from '../../components/blocks/ServiceCtaBand.astro'
+import ShareBar from '../../components/blocks/ShareBar.astro'
+import StatGrid from '../../components/blocks/StatGrid.astro'
+import TableOfContents from '../../components/blocks/TableOfContents.astro'
+import { headingId, withHeadingIds } from '../../components/blocks/tableOfContents'
+import PublicationCard from '../../components/cards/PublicationCard.astro'
+import ServiceCtaCard from '../../components/cards/ServiceCtaCard.astro'
+import PersonRow from '../../components/ui/PersonRow.astro'
+import RichText from '../../components/ui/RichText.astro'
+import type { Publication } from '../../data/publications'
+import { routes } from '../../data/routes'
+import { defaultLocale } from '../../i18n/config'
+import { detailLabels, sidebarLabels } from '../../i18n/groups'
+import { t } from '../../i18n/ui'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+interface Props {
+  publication: Publication
+  related: Publication[]
+}
+
+const { publication, related: relatedPublications } = Astro.props
+const { detail } = publication
+const locale = defaultLocale
+const labels = detailLabels(locale)
+const sidebar = sidebarLabels(locale)
+const container = 'max-w-page px-gutter lg:px-gutter-lg mx-auto w-full'
+const column =
+  'min-w-0 border-neutral-100 max-lg:shadow-[inset_1px_0_0_var(--color-neutral-100)] lg:w-[calc(100%_-_325px)] lg:max-w-[847px] lg:shrink-0 lg:border-l lg:pr-[120px]'
+const text = (value: string, emphasis: boolean) => ({ text: value, emphasis })
+
+const blocks = detail.body.map((block) => {
+  if (block.kind === 'richText') {
+    const { html, items } = withHeadingIds(block.html, ['h2', 'h3'])
+    return { ...block, html, items }
+  }
+  if (block.kind === 'stats') {
+    const id = headingId(block.title)
+    return { ...block, id, items: [{ id, label: block.title }] }
+  }
+  return { ...block, items: [] }
+})
+const tocItems = blocks.flatMap((block) => block.items)
+---
+
+<BaseLayout
+  title={`${publication.title} | Open Energy Transition`}
+  description={publication.excerpt}
+  share={{ image: publication.detail.hero, type: 'article' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main" class="overflow-x-clip">
+    <article>
+      <DetailHeader
+        tone="maroon"
+        title={publication.title}
+        highlights={{ kind: 'text', label: labels.highlights, text: detail.highlight }}
+        groups={[{ icon: 'authors', label: labels.authors, items: detail.authorNames }]}
+        meta={[
+          {
+            icon: 'calendar',
+            label: labels.date,
+            cells: [{ layout: 'text', grow: false, segments: [text(detail.date, true)] }],
+          },
+          {
+            icon: 'globe',
+            label: labels.region,
+            cells: [{ layout: 'text', grow: false, segments: [text(detail.region, true)] }],
+          },
+          {
+            icon: 'tags',
+            label: labels.tags,
+            cells: [
+              { layout: 'tags', grow: false, segments: detail.tags.map((tag) => text(tag, false)) },
+            ],
+          },
+        ]}
+      />
+      <DetailHeroImage image={detail.hero} alt={detail.heroAlt} />
+
+      <div class:list={[container, 'flex flex-col lg:flex-row lg:items-start lg:justify-between']}>
+        <div
+          class:list={[column, 'pt-20', relatedPublications.length === 0 && 'pb-10']}
+          data-print="article"
+        >
+          {blocks.map((block) => (
+            <>
+              {block.kind === 'richText' && (
+                <RichText html={block.html} size="md" class="px-5 pb-[60px]" />
+              )}
+              {block.kind === 'stats' && (
+                <StatGrid
+                  id={block.id}
+                  title={block.title}
+                  stats={block.stats}
+                  class="px-5 pb-[60px]"
+                />
+              )}
+              {block.kind === 'image' && (
+                <div class="-mt-11 px-5 pb-[60px]">
+                  <Image
+                    src={block.image}
+                    alt={block.alt}
+                    widths={[332, 687, 1374]}
+                    sizes="(min-width: 1024px) 687px, calc(100vw - 80px)"
+                    loading="lazy"
+                    class="h-auto w-full"
+                  />
+                </div>
+              )}
+            </>
+          ))}
+          <LinkListGroup groups={detail.linkGroups} class="px-5 pt-5 pb-[60px]" />
+        </div>
+        <aside
+          class="flex flex-col gap-5 border-neutral-100 pt-20 pb-5 max-lg:order-first max-lg:shadow-[inset_1px_0_0_var(--color-neutral-100)] lg:sticky lg:top-[60px] lg:w-[305px] lg:shrink-0 lg:border-l"
+          data-print="hide"
+        >
+          {detail.authors.length > 0 && (
+            <section class="flex flex-col gap-4 pr-3 pl-5">
+              <h2 class="text-body-lg font-medium text-neutral-800">{sidebar.authors}</h2>
+              {detail.authors.map((author) => (
+                <PersonRow {...author} />
+              ))}
+            </section>
+          )}
+          <div class="border-t border-neutral-100 pt-5 pr-3 pl-5">
+            <TableOfContents title={sidebar.tableOfContents} items={tocItems} />
+          </div>
+          <div class="border-t border-neutral-100 pt-5 pr-3 pl-5">
+            <ShareBar title={publication.title} citation={detail.citation} locale={locale} />
+          </div>
+        </aside>
+      </div>
+      {relatedPublications.length > 0 && (
+        <div class={container}>
+          <div class:list={[column, 'pb-10']}>
+            <section class="pb-20" aria-labelledby="related-publications" data-print="hide">
+              <CardCarousel
+                label={sidebar.relatedPublications}
+                header="above"
+                controls="none"
+                gap={20}
+                bleed="viewport"
+                trailing="flush"
+                locale={locale}
+              >
+                <h2
+                  slot="header"
+                  id="related-publications"
+                  class="text-heading-4 px-5 pb-5 font-medium text-neutral-800"
+                >
+                  {sidebar.relatedPublications}
+                </h2>
+                {relatedPublications.map((related) => {
+                  return (
+                    <li class="shrink-0 snap-start">
+                      <PublicationCard
+                        title={related.title}
+                        excerpt={related.excerpt}
+                        date={related.date}
+                        category={related.category}
+                        href={routes.publication(related.slug)}
+                        linkLabel={t(locale, 'card.read')}
+                        media={{
+                          image: related.thumbnail,
+                          alt: related.alt,
+                          sizes: '367px',
+                          frame: related.frame,
+                          mobileFrame: 'scaled',
+                        }}
+                        height="natural"
+                        class="w-[406px]"
+                      />
+                    </li>
+                  )
+                })}
+              </CardCarousel>
+            </section>
+          </div>
+        </div>
+      )}
+    </article>
+
+    <div data-print="hide">
+      <ServiceCtaBand tone="brand-600" {...detail.cta}>
+        <ServiceCtaCard {...detail.serviceCta} class="w-full lg:w-[559px]" />
+      </ServiceCtaBand>
+      <div class={container}>
+        <div class="h-[240px] border-l border-neutral-100 lg:h-[119px]"></div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

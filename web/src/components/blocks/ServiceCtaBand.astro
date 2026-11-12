@@ -1,0 +1,63 @@
+---
+import Button from '../ui/Button.astro'
+
+type Tone = 'brand-600' | 'brand-700'
+type Action = { label: string; href: string; emphasis: 'primary' | 'secondary' }
+
+interface Props {
+  tone: Tone
+  heading: string
+  primary: string
+  secondary: string
+  actions: Action[]
+}
+
+const { tone, heading, primary, secondary, actions } = Astro.props
+
+const tones: Record<Tone, string> = {
+  'brand-600': 'bg-brand-600',
+  'brand-700': 'bg-brand-700',
+}
+
+const variants: Record<Action['emphasis'], 'tint' | 'outline-tint'> = {
+  primary: 'tint',
+  secondary: 'outline-tint',
+}
+---
+
+<section class="max-w-page lg:px-gutter-lg mx-auto w-full">
+  <div class="relative isolate flex flex-col gap-3 border-neutral-100 lg:grid lg:grid-cols-2 lg:border-l">
+    <div
+      class:list={[
+        'absolute inset-x-0 top-0 bottom-[182px] -z-10 lg:bottom-auto lg:h-[454px]',
+        tones[tone],
+      ]}
+      aria-hidden="true"
+      data-header-theme="light"
+    ></div>
+    <div class="flex min-w-0 flex-col gap-3 p-10 text-neutral-100 lg:h-[454px] lg:justify-center">
+      <h2 class="text-display-3 max-w-[550px] font-medium">{heading}</h2>
+      <div class="flex gap-[10px] pt-2 pb-6">
+        <p class="text-body-xl w-0 flex-1">{primary}</p>
+        <p class="text-body-md w-0 flex-1 self-end">{secondary}</p>
+      </div>
+      <div class="flex flex-col items-start">
+        {actions.map((action) => (
+          <Button
+            href={action.href}
+            label={action.label}
+            variant={variants[action.emphasis]}
+            size="sm"
+            arrow={action.emphasis === 'primary'}
+            newTab={false}
+          />
+        ))}
+      </div>
+    </div>
+    <div class="px-gutter flex min-w-0 lg:justify-center lg:px-0">
+      <div class="flex w-full lg:contents" data-header-theme="dark">
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

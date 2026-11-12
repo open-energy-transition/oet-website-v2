@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string | { desktop: string; mobile: string }
+}
+
+const { text } = Astro.props
+---
+
+{typeof text === 'string' ? (
+  text
+) : (
+  <>
+    <span class="lg:hidden">{text.mobile}</span>
+    <span class="max-lg:hidden">{text.desktop}</span>
+  </>
+)}

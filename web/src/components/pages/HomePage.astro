@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import CardCarousel from '../blocks/CardCarousel.astro'
+import HomeHero from '../blocks/HomeHero.astro'
+import IntroStatement from '../blocks/IntroStatement.astro'
+import LogoWall from '../blocks/LogoWall.astro'
+import LogoRow from '../blocks/LogoRow.astro'
+import ServiceAccordion from '../blocks/ServiceAccordion.astro'
+import StatStrip from '../blocks/StatStrip.astro'
+import VerticalCarousel from '../blocks/VerticalCarousel.astro'
+import ProjectCard from '../cards/ProjectCard.astro'
+import ImagePreload from '../layout/ImagePreload.astro'
+import { homeHeroSources } from '../layout/heroSources'
+import BrandImage from '../ui/BrandImage.astro'
+import Button from '../ui/Button.astro'
+import Tag from '../ui/Tag.astro'
+import { loadHomePage } from '../../data/home'
+import { routes } from '../../data/routes'
+import { defaultLocale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+
+const locale = defaultLocale
+const { hero, intro, meta, partners, projects, services, stats, steps, tools } =
+  await loadHomePage(locale)
+const heroPreload = await homeHeroSources(hero.slides[0].image, hero.slides[0].imageMobile)
+const container = 'max-w-page px-gutter lg:px-gutter-lg mx-auto w-full'
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <ImagePreload slot="head" sources={heroPreload} />
+  <main id="main">
+    <HomeHero
+      label={t(locale, 'hero.slides')}
+      slideLabel={(position, total) => `${position} / ${total}`}
+      nextLabel={t(locale, 'carousel.next')}
+      slides={hero.slides}
+      secondaryAction={hero.actions.secondary}
+      primaryAction={hero.actions.primary}
+    />
+
+    <IntroStatement
+      variant="home"
+      tag={intro.tag}
+      title={intro.title}
+      paragraphs={intro.paragraphs}
+      actions={intro.actions}
+    >
+      <BrandImage
+        slot="media"
+        image={intro.image}
+        alt={intro.alt}
+        widths={[353, 630, 706, 1260]}
+        sizes="(min-width: 1440px) 630px, (min-width: 1024px) calc(50vw - 90px), calc(100vw - 60px)"
+        loading="lazy"
+        blocks="bottom-right"
+        class="size-full"
+      />
+    </IntroStatement>
+
+    <StatStrip stats={stats} />
+
+    <div class={container}>
+      <div class="pt-[120px] pb-[160px] shadow-[inset_1px_0_0_var(--color-neutral-100),inset_-1px_0_0_var(--color-neutral-100)]">
+        <section>
+          <div class="flex flex-col items-start gap-[10px] pt-3 pr-3 pb-6 pl-5 lg:pl-10">
+            <Tag label={services.tag} tone="dark" />
+            <h2 class="text-display-5 font-medium text-neutral-900 max-lg:leading-none lg:whitespace-pre-line">
+              {services.title}
+            </h2>
+          </div>
+          <ServiceAccordion
+            id="services"
+            items={services.items}
+            linkLabel={t(locale, 'card.viewService')}
+          />
+        </section>
+
+        <section>
+          <div class="flex flex-col items-start gap-3 pt-[160px] pr-5 pb-6 pl-5 lg:gap-[10px] lg:pr-3 lg:pl-10">
+            <Tag label={tools.tag} tone="dark" />
+            <div class="flex w-full flex-col gap-3 lg:flex-row lg:gap-0">
+              <h2 class="text-display-5 min-w-0 flex-1 font-medium whitespace-pre-line text-neutral-900">
+                {tools.title}
+              </h2>
+              <div class="text-body-sm flex min-w-0 flex-1 flex-col gap-[10px] pt-2 font-normal text-neutral-800 lg:flex-row lg:font-medium lg:text-[1rem] lg:leading-[21px]">
+                <p class="min-w-0 flex-1">{tools.paragraphs[0]}</p>
+                <div class="flex min-w-0 flex-1 flex-col items-start gap-4">
+                  <p>{tools.paragraphs[1]}</p>
+                  <Button
+                    href={tools.action.href}
+                    label={tools.action.label}
+                    variant="primary"
+                    size="sm"
+                    arrow
+                    newTab={false}
+                    class="h-8 font-semibold"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <LogoRow logos={tools.logos} />
+        </section>
+      </div>
+    </div>
+
+    <div class="pt-px lg:pt-[21px]">
+      <VerticalCarousel tag={steps.tag} title={steps.title} steps={steps.items} />
+    </div>
+
+    {partners.visible && (
+      <>
+        <div class={container}>
+          <div class="h-[158px] shadow-[inset_1px_0_0_var(--color-neutral-100),inset_-1px_0_0_var(--color-neutral-100)]"></div>
+        </div>
+        <LogoWall
+          locale={locale}
+          columns={6}
+          slots={10}
+          groups={partners.groups}
+          link={{ label: t(locale, 'logos.allPartners'), href: routes.partners }}
+          class="hidden lg:block"
+        />
+        <LogoWall
+          locale={locale}
+          columns={4}
+          slots={18}
+          groups={partners.groupsMobile}
+          link={null}
+          class="lg:hidden"
+        />
+      </>
+    )}
+
+    {projects.visible && (
+      <section class={container}>
+        <div class="py-[160px] shadow-[inset_1px_0_0_var(--color-neutral-100)]">
+          <CardCarousel
+            label={projects.label}
+            header="side"
+            controls="arrows"
+            gap={4}
+            bleed="gutter"
+            trailing="gutter"
+            locale={locale}
+          >
+            <Fragment slot="header">
+              <Tag label={projects.tag} tone="dark" />
+              <h2 class="text-heading-3 lg:text-heading-2 flex-1 font-medium text-neutral-800">
+                {projects.title}
+              </h2>
+            </Fragment>
+            {projects.items.map((project) => (
+              <li class="shrink-0 snap-start">
+                <ProjectCard
+                  title={project.title}
+                  titleLines={project.titleLines}
+                  excerpt={project.excerpt}
+                  period={project.period}
+                  href={project.href}
+                  linkLabel={t(locale, 'card.viewProject')}
+                  image={project.image}
+                  alt={project.alt}
+                  sizes="263px"
+                  frame="brand-500"
+                  mobileFrame="scaled"
+                  height="natural"
+                  partnerTag={project.partnerTag}
+                  partnerLink={project.partnerLink}
+                  footer="when-partner"
+                  class="w-[305px] [zoom:0.9564]"
+                />
+              </li>
+            ))}
+          </CardCarousel>
+        </div>
+      </section>
+    )}
+  </main>
+</BaseLayout>

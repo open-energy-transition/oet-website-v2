@@ -1,0 +1,75 @@
+---
+import Download from '../../icons/download.svg'
+import type { Locale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+
+interface Props {
+  title: string
+  citation: string
+  locale: Locale
+}
+
+const { title, citation, locale } = Astro.props
+
+const button =
+  'text-body-sm border-brand-600 text-brand-600 hover:bg-brand-600 relative -ml-px flex h-10 cursor-pointer items-center gap-2 border px-[11px] font-medium whitespace-nowrap transition-colors hover:text-neutral-50 focus-visible:z-10'
+---
+
+<oet-share-bar
+  class="flex flex-col gap-2"
+  data-title={title}
+  data-citation={citation}
+  data-link-copied={t(locale, 'share.linkCopied')}
+  data-citation-copied={t(locale, 'share.citationCopied')}
+>
+  <div role="group" aria-label={t(locale, 'share.group')} class="flex pl-px">
+    <button type="button" class={button} data-action="share">
+      {t(locale, 'share.share')}
+    </button>
+    <button type="button" class={button} data-action="cite">
+      {t(locale, 'share.cite')}
+    </button>
+    <button type="button" class={button} data-action="pdf">
+      <Download class="size-4 shrink-0" aria-hidden="true" />
+      {t(locale, 'share.pdf')}
+    </button>
+  </div>
+  <p class="text-body-xs text-neutral-600 empty:hidden" role="status" data-status></p>
+</oet-share-bar>
+
+<noscript>
+  <style is:inline>
+    oet-share-bar {
+      display: none;
+    }
+  </style>
+</noscript>
+
+<script>
+  class OetShareBar extends HTMLElement {
+    connectedCallback() {
+      const status = this.querySelector<HTMLElement>('[data-status]')!
+      const copy = async (text: string, message: string) => {
+        await navigator.clipboard.writeText(text)
+        status.textContent = message
+      }
+      const actions: Record<string, () => Promise<void> | void> = {
+        share: () =>
+          'share' in navigator
+            ? navigator
+                .share({ title: this.dataset.title, url: location.href })
+                .catch((error: DOMException) => {
+                  if (error.name !== 'AbortError') throw error
+                })
+            : copy(location.href, this.dataset.linkCopied!),
+        cite: () => copy(this.dataset.citation!, this.dataset.citationCopied!),
+        pdf: () => window.print(),
+      }
+      this.addEventListener('click', (event) => {
+        const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-action]')
+        if (button) void actions[button.dataset.action!]()
+      })
+    }
+  }
+  customElements.define('oet-share-bar', OetShareBar)
+</script>

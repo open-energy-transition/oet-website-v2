@@ -1,0 +1,99 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+import CardBody from './CardBody.astro'
+import CardShell from './CardShell.astro'
+import type { CardHeight, FrameTone, MobileFrame, PartnerTag, TitleLines } from './types'
+
+interface Props {
+  title: string
+  titleLines: TitleLines
+  excerpt: string
+  period: string
+  href: string
+  linkLabel: string
+  image: ImageMetadata
+  alt: string
+  sizes: string
+  frame: FrameTone
+  mobileFrame: MobileFrame
+  height: CardHeight
+  partnerTag: PartnerTag | null
+  partnerLink: { label: string; href: string } | null
+  footer: 'when-partner' | 'always'
+  class?: string
+}
+
+const {
+  title,
+  titleLines,
+  excerpt,
+  period,
+  href,
+  linkLabel,
+  image,
+  alt,
+  sizes,
+  frame,
+  mobileFrame,
+  height,
+  partnerTag,
+  partnerLink,
+  footer,
+  class: className,
+} = Astro.props
+
+const reserved = footer === 'always' || partnerTag !== null
+const footerKind = partnerLink !== null ? 'content' : reserved ? 'empty' : 'none'
+---
+
+<CardShell
+  tab={null}
+  body="fixed"
+  media={{ kind: 'framed', tone: frame, mobile: mobileFrame, badge: partnerTag !== null }}
+  footer={footerKind}
+  height={height}
+  class={className}
+>
+  <CardBody
+    title={title}
+    titleLines={titleLines}
+    excerpt={excerpt}
+    meta={period}
+    href={href}
+    linkLabel={linkLabel}
+  />
+  <Image
+    slot="media"
+    src={image}
+    alt={alt}
+    widths={[263, 367, 526, 790]}
+    sizes={sizes}
+    loading="lazy"
+    class="absolute inset-0 size-full object-cover"
+  />
+  {partnerTag !== null && (
+    <Image
+      slot="badge"
+      src={partnerTag.logo}
+      alt={partnerTag.name}
+      width={Math.round(partnerTag.width)}
+      height={Math.round(partnerTag.height)}
+      densities={[1, 2]}
+      loading="lazy"
+      class="h-auto"
+      style={`width:${(partnerTag.width / 112.5) * 100}%`}
+    />
+  )}
+  {partnerLink !== null && (
+    <a
+      slot="footer"
+      href={partnerLink.href}
+      class="truncate underline decoration-from-font underline-offset-auto"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {partnerLink.label}
+    </a>
+  )}
+</CardShell>

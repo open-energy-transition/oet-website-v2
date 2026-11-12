@@ -1,0 +1,83 @@
+---
+type DescriptionStyle =
+  'body-md-medium' | 'body-lg' | 'body-md-medium-mobile' | 'body-md-medium-to-lg'
+
+interface Props {
+  layout: 'stacked' | 'split'
+  title: string
+  description: string | null
+  descriptionStyle: DescriptionStyle
+  tabsWidth: 'column' | 'wide'
+  topSpace: 120 | 180
+  id: string
+}
+
+const { layout, title, description, descriptionStyle, tabsWidth, topSpace, id } = Astro.props
+
+const spaces: Record<Props['topSpace'], string> = {
+  120: 'pt-[180px] lg:pt-[120px]',
+  180: 'pt-[180px]',
+}
+const descriptionStyles: Record<DescriptionStyle, string> = {
+  'body-md-medium':
+    'text-[1rem] leading-[21px] font-medium tracking-[-0.01em] lg:whitespace-pre-line',
+  'body-lg': 'text-body-lg',
+  'body-md-medium-to-lg':
+    'text-[1rem] leading-[21px] font-medium tracking-[-0.01em] lg:text-body-lg lg:font-normal',
+  'body-md-medium-mobile':
+    '-mr-2 pb-1 text-[1rem] leading-[21px] font-medium tracking-[-0.01em] whitespace-pre-wrap lg:hidden',
+}
+const tabsWidths: Record<Props['tabsWidth'], string> = {
+  column: 'contents',
+  wide: 'lg:w-[700px] lg:pt-[7px]',
+}
+const textGaps: Record<DescriptionStyle, string> = {
+  'body-md-medium': 'gap-2',
+  'body-lg': 'gap-3',
+  'body-md-medium-mobile': 'gap-2',
+  'body-md-medium-to-lg': 'gap-2 lg:gap-3',
+}
+const textGap = textGaps[descriptionStyle]
+---
+
+<div class="max-w-page px-gutter lg:px-gutter-lg mx-auto w-full" id={id}>
+  <div
+    class:list={[
+      '@container flex flex-col gap-3 border-l border-neutral-100 pb-10 pl-5',
+      spaces[topSpace],
+    ]}
+  >
+    {layout === 'stacked' && (
+      <>
+        <div class:list={['flex flex-col text-neutral-800', textGap]}>
+          <h2 class="text-display-5 font-medium">{title}</h2>
+          {description && <p class={descriptionStyles[descriptionStyle]}>{description}</p>}
+        </div>
+        <div class="flex flex-col gap-3 lg:-mt-[2px] lg:flex-row lg:items-center lg:justify-between lg:gap-[2px]">
+          <slot name="tabs" />
+          <slot name="controls" />
+        </div>
+      </>
+    )}
+    {layout === 'split' && (
+      <div class="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between xl:gap-0 xl:@max-[1100px]:[&_:is(a,button).h-10]:px-[10px]">
+        <div
+          class:list={[
+            'flex flex-col text-neutral-800 lg:w-[625px] xl:w-auto xl:max-w-[625px] xl:min-w-0 xl:flex-initial',
+            textGap,
+          ]}
+        >
+          <h2 class="text-display-5 font-medium">{title}</h2>
+          {description && <p class={descriptionStyles[descriptionStyle]}>{description}</p>}
+          <div class={tabsWidths[tabsWidth]}>
+            <slot name="tabs" />
+          </div>
+        </div>
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:gap-0 xl:shrink-0 xl:justify-end">
+          <slot name="controls" />
+        </div>
+      </div>
+    )}
+    <slot />
+  </div>
+</div>

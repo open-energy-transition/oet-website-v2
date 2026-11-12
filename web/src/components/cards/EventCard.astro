@@ -1,0 +1,85 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+import ArrowRight from '../../icons/arrow-right.svg'
+import CardShell from './CardShell.astro'
+
+type Status = 'upcoming' | 'highlighted'
+
+interface Props {
+  status: Status
+  statusLabel: string
+  date: string
+  dateTime: string
+  title: string
+  excerpt: string
+  registration: string | null
+  href: string
+  linkLabel: string
+  poster: ImageMetadata
+  posterAlt: string
+  posterFit: 'cover' | 'contain'
+  sizes: string
+  class?: string
+}
+
+const {
+  status,
+  statusLabel,
+  date,
+  dateTime,
+  title,
+  excerpt,
+  registration,
+  href,
+  linkLabel,
+  poster,
+  posterAlt,
+  posterFit,
+  sizes,
+  class: className,
+} = Astro.props
+
+const tones = { upcoming: 'brand-tint', highlighted: 'brand-950-tint' } as const
+const fits = { cover: 'object-cover', contain: 'object-contain' } as const
+---
+
+<CardShell
+  tab={{ label: statusLabel, tone: tones[status] }}
+  body="auto"
+  media={{ kind: 'bleed' }}
+  footer="none"
+  height="natural"
+  class={className}
+>
+  <div class="flex w-full flex-col gap-1 font-medium">
+    <p class="text-body-sm truncate text-neutral-900">
+      <time datetime={dateTime}>{date}</time>
+    </p>
+    <h3 class="text-heading-4 text-neutral-800">
+      <a href={href} class="focus-stretched after:absolute after:inset-0">
+        {title}
+      </a>
+    </h3>
+    <p class="text-body-sm line-clamp-3 min-h-[3lh] w-full text-neutral-600">{excerpt}</p>
+  </div>
+  <div class="text-body-sm text-brand-600 min-h-[1lh] w-full">
+    {registration !== null && <p class="truncate">{registration}</p>}
+  </div>
+  <span
+    class="flex items-center gap-[6px] text-[0.875rem] leading-none font-semibold tracking-[-0.01em] text-brand-600"
+    aria-hidden="true"
+  >
+    {linkLabel}
+    <ArrowRight class="h-2 w-[15px]" />
+  </span>
+  <Image
+    slot="media"
+    src={poster}
+    alt={posterAlt}
+    widths={[372, 407, 744, 814]}
+    sizes={sizes}
+    loading="lazy"
+    class:list={['absolute inset-0 size-full', fits[posterFit]]}
+  />
+</CardShell>

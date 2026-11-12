@@ -1,0 +1,60 @@
+---
+import Github from '../../icons/github.svg'
+import GlobeLines from '../../icons/globe-lines.svg'
+import CardShell from './CardShell.astro'
+
+type Tone = 'brand' | 'brand-700' | 'neutral-900' | 'neutral-700' | 'brand-900'
+type Link = { label: string; href: string }
+
+interface Props {
+  category: { label: string; tone: Tone }
+  name: string
+  description: string[]
+  source: Link
+  website: Link
+  github: Link
+  class?: string
+}
+
+const { category, name, description, source, website, github, class: className } = Astro.props
+
+const iconLinks = [
+  { link: website, Icon: GlobeLines },
+  { link: github, Icon: Github },
+]
+---
+
+<CardShell
+  tab={category}
+  body="compact"
+  media={null}
+  footer="none"
+  height="natural"
+  class={className}
+>
+  <div class="flex w-full flex-1 flex-col gap-2 font-medium">
+    <h3 class="text-heading-4 min-h-[2lh] text-neutral-800">{name}</h3>
+    <div class="text-body-md flex flex-col gap-[1lh] text-neutral-600">
+      {description.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+  </div>
+  <div class="text-brand-500 flex w-full items-center gap-[6px]">
+    <p class="text-body-sm min-w-0 flex-1 truncate font-medium">
+      <a href={source.href} class="focus-inset underline decoration-from-font hover:text-brand-600">
+        {source.label}
+        <span class="sr-only">: {name}</span>
+      </a>
+    </p>
+    {iconLinks.map(({ link, Icon }) => (
+      <a
+        href={link.href}
+        aria-label={`${link.label}: ${name}`}
+        class="hover:text-brand-600 block shrink-0"
+      >
+        <Icon class="size-4" aria-hidden="true" />
+      </a>
+    ))}
+  </div>
+</CardShell>

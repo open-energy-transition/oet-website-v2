@@ -1,0 +1,39 @@
+{
+  "name": "oet-web",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0 <23"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "format": "prettier --write .",
+    "shoot": "node scripts/shoot.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/vercel": "^11.0.12",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@payloadcms/live-preview": "3.90.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "7.3.6",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3"
+  },
+  "allowScripts": {
+    "esbuild": true
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@11.20.0"
+}

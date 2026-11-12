@@ -1,0 +1,57 @@
+---
+import type { ImageMetadata } from 'astro'
+import { getImage } from 'astro:assets'
+import ArrowRight from '../../icons/arrow-right.svg'
+
+interface Props {
+  title: string
+  paragraphs: readonly string[]
+  link: { label: string; href: string }
+  image: { desktop: ImageMetadata; mobile: ImageMetadata }
+  class?: string
+}
+
+const { title, paragraphs, link, image, class: className } = Astro.props
+
+const desktop = await getImage({ src: image.desktop, widths: [172, 344, 516], format: 'webp' })
+const mobile = await getImage({ src: image.mobile, widths: [372, 744], format: 'webp' })
+---
+
+<article
+  class:list={[
+    'relative flex flex-col after:pointer-events-none after:absolute after:inset-0 after:border after:border-neutral-100 lg:min-h-[295px] lg:flex-row',
+    className,
+  ]}
+>
+  <picture class="block shrink-0 lg:w-[172px]">
+    <source media="(min-width: 1024px)" srcset={desktop.srcSet.attribute} sizes="172px" />
+    <img
+      src={mobile.src}
+      srcset={mobile.srcSet.attribute}
+      sizes="(min-width: 412px) 372px, calc(100vw - 40px)"
+      alt=""
+      width={image.mobile.width}
+      height={image.mobile.height}
+      loading="lazy"
+      decoding="async"
+      class="aspect-[372/200] w-full object-cover lg:aspect-auto lg:h-full"
+    />
+  </picture>
+  <div class="flex min-w-0 flex-1 flex-col justify-between gap-4 p-5">
+    <div class="flex flex-col gap-6">
+      <h3 class="text-heading-4 font-medium whitespace-pre-line text-neutral-800">{title}</h3>
+      <div class="text-body-md flex flex-col gap-[19px] font-medium text-neutral-600">
+        {paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+    <a
+      href={link.href}
+      class="text-body-md text-brand-500 flex items-center gap-[6px] font-medium after:absolute after:inset-0 focus-stretched"
+    >
+      <span class="min-w-0 flex-1 truncate underline decoration-from-font">{link.label}</span>
+      <ArrowRight class="text-brand-500 h-auto w-4 shrink-0" aria-hidden="true" />
+    </a>
+  </div>
+</article>

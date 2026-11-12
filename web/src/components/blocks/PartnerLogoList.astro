@@ -1,0 +1,57 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+interface Partner {
+  name: string
+  logo: ImageMetadata | null
+  href: string | null
+}
+
+interface Props {
+  title: string
+  partners: Partner[]
+}
+
+const { title, partners } = Astro.props
+const logos = partners.flatMap(({ name, logo }) => (logo === null ? [] : [{ name, image: logo }]))
+const names = partners.filter((partner) => partner.logo === null)
+---
+
+<section class="flex flex-col gap-1">
+  <h2 class="text-heading-3 font-medium text-neutral-800">{title}</h2>
+  {logos.length > 0 && (
+    <ul class="grid grid-cols-3 gap-x-2 gap-y-1 pt-2">
+      {logos.map((logo) => (
+        <li class="aspect-square overflow-clip">
+          <Image
+            src={logo.image}
+            alt={logo.name}
+            widths={[88, 108, 176, 264]}
+            sizes="(min-width: 1024px) 86px, 88px"
+            loading="lazy"
+            class="size-[88px] object-contain lg:size-full"
+          />
+        </li>
+      ))}
+    </ul>
+  )}
+  {names.length > 0 && (
+    <ul class="text-body-sm flex flex-col gap-1 pt-2 font-medium text-neutral-800">
+      {names.map((partner) => (
+        <li>
+          {partner.href === null ? (
+            partner.name
+          ) : (
+            <a
+              href={partner.href}
+              class="hover:text-brand-500 underline underline-offset-2 transition-colors motion-reduce:transition-none"
+            >
+              {partner.name}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</section>

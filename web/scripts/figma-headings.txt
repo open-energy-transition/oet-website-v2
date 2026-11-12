@@ -1,0 +1,50 @@
+162:686 1440 6154 / :: 151/252/Mainstreaming Open | 1078/216/We envision a worl | 1855/80/Make open-source e | 2671/120/OET Supports a Bro | 3325/54/Build, Deploy, Sca | 4813/278/Helping government
+196:1458 412 9930 / :: 130/324/Mainstreaming Open | 1024/200/We envision a worl | 2038/144/Make open-source e | 3422/160/OET Supports a Bro | 4406/108/Build, Deploy, Sca | 8864/162/Energy Transition
+648:15307 1440 4876 /organization/about :: 162/126/Committed to Build | 1040/240/Our vision is to a | 1843/80/United by a Cultur | 3237/120/At Open Energy Tra
+648:16936 412 9390 /organization/about :: 188/160/Committed to Build | 1062/400/Our vision is to a | 2954/120/United by a Cultur | 6013/240/At Open Energy Tra | 8324/162/Energy Transition
+648:16265 1440 3582 /organization/departments :: 180/126/The Departments of | 811/80/United by a Cultur
+648:18733 412 6076 /organization/departments :: 180/162/The Departments of | 811/120/United by a Cultur | 5010/162/Energy Transition
+648:15690 1440 2906 /organization/departments/energy-system-modeling :: 180/126/Energy System Mode | 673/36/About Department | 1032/31/Works
+648:19300 412 3881 /organization/departments/energy-system-modeling :: 170/108/Energy System Mode | 776/36/About Department | 1344/31/Works | 2815/162/Energy Transition
+648:15897 1440 2878 /organization/departments/modeling-tools-and-data :: 180/126/Modeling Tools & D | 673/36/About Department | 861/31/Works
+648:19806 412 3881 /organization/departments/modeling-tools-and-data :: 170/108/Modeling Tools & D | 776/36/About Department | 1040/31/Works | 2815/162/Energy Transition
+648:16025 1440 2759 /organization/departments/software-engineering :: 180/126/Software Engineeri | 673/36/About Department | 861/31/Works
+648:20154 412 3651 /organization/departments/software-engineering :: 208/108/Software Engineeri | 776/36/About Department | 1021/31/Works | 2585/162/Energy Transition
+648:16167 1440 2256 /organization/departments/research-and-market-development :: 180/126/Research and Marke | 673/36/About Department | 842/31/Works
+648:20417 412 3184 /organization/departments/research-and-market-development :: 97/162/Research and Marke | 776/36/About Department | 983/31/Works | 2118/162/Energy Transition
+650:26653 1440 2400 /organization/partners :: 180/216/Partnerships and F | 713/240/Our partners and f
+650:26878 412 3628 /organization/partners :: 173/240/Partnerships and F | 773/240/Our partners and f | 2562/162/Energy Transition
+650:27431 1440 3647 /organization/career :: 180/126/Work With Us | 759/40/Currently Open Rol | 2037/31/Our Hiring Process
+650:21852 412 6111 /organization/career :: 180/108/Work With Us | 819/80/Currently Open Rol | 3483/40/Our Hiring Process | 5045/162/Energy Transition
+650:24621 1440 4651 /organization/team :: 180/189/Built on a Culture | 759/80/A Fully remote tea | 1785/40/Meet The Team
+651:28624 412 7437 /organization/team :: 162/160/Built on a Culture | 819/120/A Fully remote tea | 2115/40/Meet The Team | 6371/162/Energy Transition
+656:12898 1440 5273 /organization/theory-of-change :: 284/126/Our Theory of Chan | 1902/40/Our Approach | 2779/40/Output and Outcome | 3737/40/Impact
+657:14499 412 6927 /organization/theory-of-change :: 228/120/Our Theory of Chan | 1940/40/Our Approach | 4038/80/Output and Outcome | 4859/40/Impact | 5861/162/Energy Transition
+643:9903 1440 4894 /outputs/success-stories :: 499/189/Driving The Energy | 1002/40/Success Stories | 3425/40/Partners & Clients
+643:10556 412 7318 /outputs/success-stories :: 548/120/Driving The Energy | 1002/40/Success Stories | 4705/80/Partners & Clients | 6252/162/Energy Transition
+645:14357 1440 4672 /outputs/publications :: 499/189/Explore Our Public | 1002/40/Our Publications | 2860/40/Outputs
+645:14863 412 7035 /outputs/publications :: 460/160/Explore Our Public | 1002/40/Our Publications | 4178/40/Outputs | 5969/162/Energy Transition
+645:3668 1440 5126 /outputs/success-stories/e-fuels-in-australia :: 160/189/E-fuels in Austral | 1389/108/Develops an open,  | 1903/31/Project Aims | 3625/108/Discuss a Technolo
+645:11996 412 7880 /outputs/success-stories/e-fuels-in-australia :: 160/270/E-fuels in Austral | 1828/108/Develops an open,  | 2650/31/Project Aims | 5056/216/Discuss a Technolo | 6814/162/Energy Transition
+647:2023 1440 6899 /outputs/publications/case-study-communication-on-energy-efficient-and-flexible-buildings-with-eurima :: 160/189/Case Study: Commun | 1326/108/Develops an open,  | 1814/31/Outputs | 2104/31/Why Conduct an Ope | 2610/31/The Study | 3021/31/Awareness and Beha | 5437/108/Discuss a Technolo
+647:5794 412 10314 /outputs/publications/case-study-communication-on-energy-efficient-and-flexible-buildings-with-eurima :: 160/378/Case Study: Commun | 1894/144/Develops an open,  | 2703/31/Outputs | 3176/62/Why Conduct an Ope | 4055/31/The Study | 4618/62/Awareness and Beha | 7490/216/Discuss a Technolo | 9248/162/Energy Transition
+657:26425 1440 5674 /tools-and-data :: 499/189/Range of Open Mode | 942/80/Tools and Data Sup | 4285/108/Discuss a Technolo
+657:22947 412 6550 /tools-and-data :: 540/160/Range of Open Mode | 1002/120/Tools and Data Sup | 4541/120/Discuss a Technolo | 5484/162/Energy Transition
+659:38515 1440 4765 /organization/news-and-events :: 499/189/News and Events fr | 1002/40/News and Events | 2884/108/Book OET for Suppo | 3363/108/Monthly Updates Op
+659:34941 412 7279 /organization/news-and-events :: 430/270/News and Events fr | 1002/40/News and Events | 4506/120/Discuss a Technolo | 5261/80/Monthly Updates Op | 6213/162/Energy Transition
+660:39226 1440 4103 /organization/news-and-events/free-monthly-pypsa-support-for-european-transmission-system-operators-2 :: 160/189/Free Monthly PyPSA | 1619/36/About Event | 2222/108/Book OET for Suppo | 2701/108/Monthly Updates Op
+659:35192 412 5313 /organization/news-and-events/free-monthly-pypsa-support-for-european-transmission-system-operators-2 :: 160/324/Free Monthly PyPSA | 1820/36/About Event | 2540/120/Discuss a Technolo | 3295/80/Monthly Updates Op | 4247/162/Energy Transition
+662:51024 1440 5353 /services :: 499/189/Make open-source e | 980/120/Open-source energy | 2289/40/We start with the  | 3171/40/Your Reliable Part | 3965/108/Discuss a Technolo
+662:42561 412 10081 /services :: 418/270/Make open-source e | 1036/280/Open-source energy | 5166/160/We start with the  | 6276/80/Your Reliable Part | 8072/120/Discuss a Technolo | 9015/162/Energy Transition
+662:45991 1440 6128 /services/system-operators-and-utilities :: 278/108/System Operators a | 878/162/Put open-source pl | 1532/40/How We Can Help | 3295/40/Why OET | 3974/40/Related Projects | 4736/108/Discuss a Technolo
+662:55049 412 8675 /services/system-operators-and-utilities :: 239/162/System Operators a | 819/120/Put open-source pl | 1623/40/How We Can Help | 4271/40/Why OET | 5931/40/Related Projects | 6666/120/Discuss a Technolo | 7609/162/Energy Transition
+662:46520 1440 7259 /services/regulators-and-public-authorities :: 254/108/Regulators and Pub | 878/162/Build independent, | 1532/40/How We Can Help | 3325/40/Why Work with OET | 4191/120/We start with the  | 5075/40/Related Projects | 5870/108/Discuss Your Analy
+662:57136 412 9922 /services/regulators-and-public-authorities :: 201/162/Regulators and Pub | 819/120/Build independent, | 1680/40/How We Can Help | 4488/40/Why OET | 6218/160/We start with the  | 7194/40/Related Projects | 7953/80/Discuss Your Analy | 8856/162/Energy Transition
+662:47083 1440 7364 /services/foundations-and-development-partners :: 254/108/Foundations and De | 878/162/Build lasting open | 1607/40/How We Can Help | 3475/40/Why work with OET | 4256/160/We begin by identi | 5180/40/Related Projects | 5975/108/Discuss a Programm
+673:60961 412 10327 /services/foundations-and-development-partners :: 147/216/Foundations and De | 819/120/Build lasting open | 1738/40/How We Can Help | 4785/40/Why OET | 6583/160/We start with the  | 7559/40/Related Projects | 8294/120/Discuss a Programm | 9261/162/Energy Transition
+662:47631 1440 7486 /services/consultancies-and-engineering-firms :: 254/108/Consultancies and  | 878/162/Extend your open-s | 1532/40/How We Can Help | 3485/40/Why OET | 4378/160/We start by defini | 5302/40/Related Projects | 6097/108/Strengthen your ne
+672:58997 412 9942 /services/consultancies-and-engineering-firms :: 201/162/Consultancies and  | 819/120/Extend your open-s | 1642/40/How We Can Help | 4446/40/Why OET | 6264/160/We start with the  | 7240/40/Related Projects | 7973/80/Strengthen your ne | 8876/162/Energy Transition
+662:48243 1440 6968 /services/think-tanks-ngos-and-research-organizations :: 254/108/Think Tanks, NGOs  | 878/108/Build credible ope | 1532/40/How We Can Help | 3217/40/Why work with OET | 3899/120/We start with the  | 4783/40/Related Projects | 5576/108/Strengthen your ne
+673:62718 412 9453 /services/think-tanks-ngos-and-research-organizations :: 166/216/Think Tanks, NGOs  | 819/80/Build credible ope | 1659/40/How We Can Help | 4076/40/Why OET | 5758/160/We start with the  | 6734/40/Related Projects | 7468/120/Strengthen your ne | 8387/162/Energy Transition
+662:48742 1440 6878 /services/technology-developers-and-investors :: 230/108/Technology Develop | 878/216/Represent new tech | 1621/40/How We Can Help | 3125/40/Why work with OET | 3807/160/We begin with the  | 4731/40/Related Projects | 5486/108/Discuss a technolo
+674:64234 412 9621 /services/technology-developers-and-investors :: 182/162/Technology Develop | 819/160/Represent new tech | 1797/40/How We Can Help | 4171/40/Why OET | 5901/160/We start with the  | 6877/40/Related Projects | 7612/120/Discuss a technolo | 8555/162/Energy Transition

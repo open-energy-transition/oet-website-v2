@@ -1,0 +1,32 @@
+---
+interface Props {
+  id: string
+  label: string
+  items: { value: string; label: string }[]
+  class?: string
+}
+
+const { id, label, items, class: className } = Astro.props
+
+const cell =
+  'flex min-h-[168px] lg:min-h-[120px] flex-col justify-center gap-1 border border-neutral-100 px-[19px] text-neutral-800 [overflow-wrap:anywhere]'
+---
+
+<div
+  class:list={['grid grid-cols-3 lg:grid-cols-(--columns)', className]}
+  style={{ '--columns': `repeat(${items.length + 1}, minmax(0, 1fr))` }}
+  role="group"
+  aria-labelledby={id}
+>
+  <p id={id} class:list={['text-body-lg border-l-0 py-[39px] lg:border-y lg:py-0', cell]}>
+    {label}
+  </p>
+  <ul class="contents">
+    {items.map((item) => (
+      <li class:list={['lg:last:border-r-0', cell]}>
+        <span class="text-body-lg">{item.value}</span>
+        <span class="text-body-sm">{item.label}</span>
+      </li>
+    ))}
+  </ul>
+</div>

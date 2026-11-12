@@ -1,0 +1,50 @@
+---
+interface Props {
+  serverUrl: string
+}
+
+const { serverUrl } = Astro.props
+---
+
+<oet-live-preview data-server-url={new URL(serverUrl).origin}></oet-live-preview>
+
+<script>
+  import { isDocumentEvent, ready } from '@payloadcms/live-preview'
+
+  class OetLivePreview extends HTMLElement {
+    connectedCallback() {
+      const serverURL = this.dataset.serverUrl
+      if (!serverURL) throw new Error('oet-live-preview: missing server URL')
+      let pending: AbortController | null = null
+
+      const refresh = async () => {
+        if (pending) pending.abort()
+        const controller = new AbortController()
+        pending = controller
+        const response = await fetch(location.href, {
+          cache: 'no-store',
+          signal: controller.signal,
+        })
+        if (!response.ok) throw new Error(`oet-live-preview: preview answered ${response.status}`)
+        const next = new DOMParser().parseFromString(await response.text(), 'text/html')
+        const incoming = next.querySelector('main#main')
+        const current = document.querySelector('main#main')
+        if (!incoming || !current) throw new Error('oet-live-preview: page without main#main')
+        current.replaceWith(document.importNode(incoming, true))
+        document.title = next.title
+      }
+
+      window.addEventListener('message', (event) => {
+        if (!isDocumentEvent(event, serverURL)) return
+        refresh().catch((error: unknown) => {
+          if (error instanceof DOMException && error.name === 'AbortError') return
+          throw error
+        })
+      })
+      ready({ serverURL })
+    }
+  }
+
+  if (!customElements.get('oet-live-preview'))
+    customElements.define('oet-live-preview', OetLivePreview)
+</script>

@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ApproachSteps from '../blocks/ApproachSteps.astro'
+import CtaBanner from '../blocks/CtaBanner.astro'
+import PageHero from '../blocks/PageHero.astro'
+import ServiceCard from '../cards/ServiceCard.astro'
+import ValueCard from '../cards/ValueCard.astro'
+import Reveal from '../interactive/Reveal.astro'
+import SectionHeading from '../ui/SectionHeading.astro'
+import { loadServicesPage } from '../../data/services'
+import { defaultLocale } from '../../i18n/config'
+
+const servicesPage = await loadServicesPage(defaultLocale)
+const { meta, hero, intro, values, cta, cards, shared } = servicesPage
+const { approach, ctaActions } = shared
+const container = 'max-w-page px-gutter lg:px-gutter-lg mx-auto w-full'
+const rail =
+  'relative isolate before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:-z-10 before:border-l before:border-neutral-100'
+const topRuleMobile = 'max-lg:shadow-[inset_0_1px_0_var(--color-neutral-100)]'
+const topRuleDesktop = 'lg:shadow-[inset_0_1px_0_var(--color-neutral-100)]'
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="map-bottom-left"
+      title={hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-3"
+      eyebrow={null}
+      lead={[]}
+      links={hero.links}
+      stats={null}
+      person={null}
+      image={hero.image}
+      background="brand-700"
+      chipsBottomMobile={42}
+      ornament="left-middle"
+      headerTheme="light"
+    />
+
+    <section id={intro.id} class={container}>
+      <div class={rail}>
+        <SectionHeading
+          layout="split"
+          tag={intro.tag}
+          title={intro.title}
+          level="h2"
+          gap="8/12"
+          width="full"
+          titleTone="neutral-900"
+          linkTone="brand"
+          align="center"
+          subline={null}
+          columns={intro.columns}
+          columnStyle="body-md"
+          actions={[]}
+          class="pt-[180px] pb-10 pl-5 lg:px-5 lg:pt-[120px]"
+        />
+        <Reveal
+          axis="x"
+          order="column"
+          steps={[0, -120]}
+          easing="gentle"
+          duration={1.022}
+          delay={0.3}
+        >
+          <ul
+            class:list={[
+              'grid grid-cols-[minmax(0,1fr)] gap-10 py-5 lg:grid-cols-2 lg:gap-0 lg:gap-x-5 lg:py-0',
+              topRuleMobile,
+            ]}
+          >
+            {cards.map((card) => (
+              <li
+                class="lg:before:pointer-events-none lg:relative lg:flex lg:pt-5 lg:odd:before:absolute lg:odd:before:top-0 lg:odd:before:left-0 lg:odd:before:w-[calc(200%+20px)] lg:odd:before:border-t lg:odd:before:border-neutral-100"
+                data-reveal
+              >
+                <ServiceCard
+                  title={card.title}
+                  paragraphs={card.paragraphs}
+                  link={card.link}
+                  image={card.image}
+                  class="w-full"
+                />
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
+    </section>
+
+    <section class={container}>
+      <div class:list={[rail, 'pt-[120px] pb-10 pl-5 lg:pt-[160px] lg:pl-0']}>
+        <SectionHeading
+          layout="stack"
+          tag={servicesPage.approach.tag}
+          title={servicesPage.approach.title}
+          level="h2"
+          gap="8/12"
+          width="full"
+          titleTone="neutral-900"
+          linkTone="brand"
+          align="center"
+          subline={null}
+          columns={[]}
+          columnStyle="body-md"
+          actions={[]}
+          class="lg:px-5"
+        />
+        <ApproachSteps
+          columns={4}
+          steps={approach.steps}
+          illustration={approach.illustration}
+          mobile="scroll"
+          class="pt-[52px] lg:pt-10"
+        />
+      </div>
+    </section>
+
+    <section class={container}>
+      <div class:list={[rail, 'pt-[180px] pb-[140px] lg:pt-20 lg:pb-[160px]']}>
+        <SectionHeading
+          layout="stack"
+          tag={values.tag}
+          title={values.title}
+          level="h2"
+          gap="8/12"
+          width="full"
+          titleTone="neutral-900"
+          linkTone="brand"
+          align="center"
+          subline={null}
+          columns={[]}
+          columnStyle="body-md"
+          actions={[]}
+          class="pr-10 pb-5 pl-5 lg:px-5 lg:pb-10"
+        />
+        <ul
+          class:list={[
+            'grid grid-cols-2 items-start gap-y-5 lg:grid-cols-5 lg:p-5',
+            topRuleDesktop,
+          ]}
+        >
+          {values.items.map((value) => (
+            <li class="flex min-w-0">
+              <ValueCard
+                titleLines="three"
+                thumbnail={value.thumbnail}
+                thumbnailMobile={value.thumbnailMobile}
+                label={value.label}
+                title={value.title}
+                body={value.body}
+                class="w-full lg:h-[434px]"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <CtaBanner
+      tone="brand-600"
+      heading={cta.heading}
+      lead={null}
+      text={cta.text}
+      actions={ctaActions}
+      collage="wind"
+      breakout
+    />
+    <div class:list={[container, 'hidden lg:block']}>
+      <div class="h-[160px] border-l border-neutral-100"></div>
+    </div>
+  </main>
+</BaseLayout>

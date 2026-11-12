@@ -1,0 +1,358 @@
+---
+import CubeLid from '../../assets/theory/cube-lid.svg'
+import CubeWall from '../../assets/theory/cube-wall.svg'
+import Grid from '../../assets/theory/grid.svg'
+import TrailLeft from '../../assets/theory/trail-left.svg'
+import TrailRight from '../../assets/theory/trail-right.svg'
+
+interface Caption {
+  label: string
+  statement: string
+  emphasis: string | null
+  details: [string, string]
+}
+
+interface Props {
+  id: string
+  challenge: Caption
+  goal: Caption
+  values: string[]
+}
+
+type State = 'initial' | 'transition' | 'end'
+type CaptionKey = 'challenge' | 'goal'
+
+const { id, challenge, goal, values } = Astro.props
+
+const captions: Record<CaptionKey, { content: Caption; rule: string; details: string }> = {
+  challenge: { content: challenge, rule: 'border-neutral-700', details: 'text-neutral-300' },
+  goal: { content: goal, rule: 'border-neutral-50', details: 'text-neutral-50' },
+}
+
+const panels: {
+  state: State
+  captions: { key: CaptionKey; hidden: boolean; silent: boolean }[]
+}[] = [
+  {
+    state: 'initial',
+    captions: [
+      { key: 'challenge', hidden: false, silent: false },
+      { key: 'goal', hidden: true, silent: false },
+    ],
+  },
+  {
+    state: 'transition',
+    captions: [{ key: 'goal', hidden: false, silent: false }],
+  },
+  {
+    state: 'end',
+    captions: [{ key: 'goal', hidden: false, silent: true }],
+  },
+]
+
+const offsets = [
+  { from: -183.5, shift: -18 },
+  { from: -64, shift: -6 },
+  { from: 63.5, shift: 6 },
+  { from: 189.5, shift: 18 },
+]
+const face = 'scene-face absolute'
+---
+
+<oet-theory-scene id={id} class="relative block" data-header-theme="light">
+  <span class="scene-cue pointer-events-none absolute inset-x-0 h-px" aria-hidden="true"></span>
+  {panels.map((panel) => (
+    <div class="scene-panel relative h-[900px] overflow-clip" data-state={panel.state}>
+      <div class="scene-stage absolute bottom-0 left-1/2 h-[900px] w-[1440px] origin-bottom">
+        <span
+          class="scene-line absolute top-[454.2px] left-[155px] w-[1130.24px]"
+          aria-hidden="true"
+        >
+          <Grid class="h-auto w-full" />
+        </span>
+        {panel.state !== 'transition' && (
+          <ul
+            class="scene-values text-body-xl absolute inset-x-0 top-[382px] text-center font-normal text-neutral-50 italic lg:top-[402px]"
+            aria-hidden={panel.state === 'initial' ? 'true' : undefined}
+            data-scene="values"
+          >
+            {values.map((value, index) => (
+              <li
+                class="scene-value h-8 lg:absolute lg:top-0 lg:left-1/2 lg:h-auto lg:whitespace-nowrap"
+                style={`--from:${offsets[index].from}px;--shift:${offsets[index].shift}px`}
+              >
+                {value}
+              </li>
+            ))}
+          </ul>
+        )}
+        <span
+          class:list={[face, 'scene-wall-right top-[396.13px] left-[719.5px] w-[194px]']}
+          aria-hidden="true"
+        >
+          <CubeWall class="h-auto w-full -scale-x-100" />
+        </span>
+        <span
+          class:list={[face, 'scene-wall-left top-[396.13px] left-[526.5px] w-[194px]']}
+          aria-hidden="true"
+        >
+          <CubeWall class="h-auto w-full" />
+        </span>
+        <span
+          class:list={[face, 'scene-lid top-[285.42px] left-[526px] w-[387.99px]']}
+          aria-hidden="true"
+        >
+          <CubeLid class="h-auto w-full" />
+        </span>
+        <span
+          class="scene-trail-right absolute top-[395px] left-[1016px] w-[193px]"
+          aria-hidden="true"
+        >
+          <TrailRight class="h-auto w-full" />
+        </span>
+        <span
+          class="scene-trail-left absolute top-[391px] left-[292px] w-[132.3px]"
+          aria-hidden="true"
+        >
+          <TrailLeft class="h-auto w-full" />
+        </span>
+      </div>
+      <div class="max-w-page absolute inset-0 mx-auto">
+        {panel.captions.map(({ key, hidden, silent }) => (
+          <div
+            class:list={[
+              'scene-caption absolute inset-y-0 right-0 left-0 flex items-end border-l lg:right-20 lg:left-20',
+              captions[key].rule,
+            ]}
+            data-scene={key}
+            hidden={hidden}
+            aria-hidden={silent ? 'true' : undefined}
+          >
+            <div class="flex w-full flex-col gap-4 bg-[rgb(25_25_24/0.01)] p-10 pl-[39px] backdrop-blur-[6px] lg:flex-row lg:items-start">
+              <h2 class="text-heading-1 font-medium text-neutral-200 lg:w-0 lg:flex-1">
+                {captions[key].content.label}
+              </h2>
+              <p class="text-heading-4 font-medium text-neutral-200 lg:w-0 lg:flex-1">
+                {captions[key].content.statement}
+                {captions[key].content.emphasis !== null && (
+                  <em class="underline [text-decoration-skip-ink:none] [text-underline-position:from-font]">
+                    {captions[key].content.emphasis}
+                  </em>
+                )}
+              </p>
+              <div class:list={['text-body-md flex gap-5 lg:w-0 lg:flex-1', captions[key].details]}>
+                {captions[key].content.details.map((detail) => (
+                  <p class="w-0 flex-1">{detail}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</oet-theory-scene>
+
+<style>
+  .scene-panel[data-state='transition'] {
+    --p1: 1;
+  }
+
+  .scene-panel[data-state='end'] {
+    --p1: 1;
+    --p2: 1;
+  }
+
+  .scene-panel {
+    --p1: 0;
+    --p2: 0;
+    --t1: 0s;
+    --t2: 0s;
+    --lift: 160px;
+    --spread: 150px;
+    --scene-scale: 1;
+    --scene-fill: color-mix(in srgb, #191918 calc((1 - var(--p1)) * 100%), #bf1534);
+    --scene-line: color-mix(in srgb, #5d5b59 calc((1 - var(--p1)) * 100%), #fffefb);
+    background-color: var(--scene-fill);
+    transition: background-color var(--t1);
+  }
+
+  @media (width >= 64rem) {
+    .scene-panel {
+      --lift: 147px;
+      --spread: 188px;
+    }
+
+    .scene-value {
+      translate: calc(-50% + var(--from) + var(--p2) * var(--shift)) 0;
+      transition: translate var(--t2);
+    }
+  }
+
+  .scene-stage {
+    translate: -50% 0;
+    scale: var(--scene-scale);
+  }
+
+  .scene-line,
+  .scene-face {
+    color: var(--scene-line);
+    transition: color var(--t1);
+  }
+
+  .scene-face :global(path) {
+    fill: var(--scene-fill);
+    transition: fill var(--t1);
+  }
+
+  .scene-values {
+    opacity: var(--p2);
+    transition: opacity var(--t2);
+  }
+
+  .scene-wall-right {
+    translate: calc(var(--p2) * var(--spread)) 0;
+  }
+
+  .scene-wall-left {
+    translate: calc(var(--p2) * var(--spread) * -1) 0;
+  }
+
+  .scene-lid {
+    translate: 0 calc(var(--p2) * var(--lift) * -1);
+  }
+
+  .scene-wall-right,
+  .scene-wall-left,
+  .scene-lid {
+    transition: translate var(--t2);
+  }
+
+  .scene-trail-right {
+    opacity: var(--p2);
+    translate: calc(var(--p2) * 20px) 0;
+  }
+
+  .scene-trail-left {
+    opacity: var(--p2);
+    translate: calc(var(--p2) * -20px) 0;
+  }
+
+  .scene-trail-right,
+  .scene-trail-left {
+    transition:
+      opacity var(--t2),
+      translate var(--t2);
+  }
+
+  .scene-caption {
+    transition: translate var(--t1);
+  }
+
+  .scene-caption[data-scene='challenge'] {
+    translate: 0 calc(var(--p1) * -100%);
+  }
+
+  .scene-caption[data-scene='goal'] {
+    translate: 0 calc((1 - var(--p1)) * 100%);
+  }
+
+  .scene-cue {
+    display: none;
+  }
+
+  oet-theory-scene[data-enhanced] {
+    height: calc(100svh + 800px);
+  }
+
+  oet-theory-scene[data-enhanced] .scene-cue {
+    display: block;
+    top: 120px;
+  }
+
+  oet-theory-scene[data-enhanced] .scene-panel {
+    display: none;
+  }
+
+  oet-theory-scene[data-enhanced] .scene-panel[data-state='initial'] {
+    position: sticky;
+    top: 0;
+    display: block;
+    height: 100svh;
+    --t1: 0.5s ease-out;
+    --t2: 0.5s ease-out;
+  }
+
+  oet-theory-scene[data-enhanced]:is([data-phase='1'], [data-phase='2'])
+    .scene-panel[data-state='initial'] {
+    --p1: 1;
+    --t1: 0.3s ease-out;
+    --t2: 0.6s cubic-bezier(0.45, 1.45, 0.8, 1);
+  }
+
+  oet-theory-scene[data-enhanced][data-phase='2'] .scene-panel[data-state='initial'] {
+    --p2: 1;
+  }
+
+  oet-theory-scene[data-enhanced]:not([data-phase])
+    .scene-panel[data-state='initial']
+    .scene-caption[data-scene='goal'] {
+    visibility: hidden;
+  }
+</style>
+
+<script>
+  class TheoryScene extends HTMLElement {
+    connectedCallback() {
+      const panel = this.querySelector<HTMLElement>('[data-state="initial"]')
+      const goal = this.querySelector<HTMLElement>('[data-state="initial"] [data-scene="goal"]')
+      const words = this.querySelector<HTMLElement>('[data-state="initial"] [data-scene="values"]')
+      const cue = this.querySelector<HTMLElement>('.scene-cue')
+      if (!panel || !goal || !words || !cue)
+        throw new Error('TheoryScrollScene: missing initial panel')
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)')
+      let timer = 0
+
+      const enter = (entered: boolean) => {
+        if (entered === this.hasAttribute('data-phase')) return
+        window.clearTimeout(timer)
+        if (!entered) {
+          this.removeAttribute('data-phase')
+          return
+        }
+        this.dataset.phase = '1'
+        timer = window.setTimeout(() => {
+          this.dataset.phase = '2'
+        }, 1300)
+      }
+      const passed = new IntersectionObserver((entries) => {
+        const entry = entries[entries.length - 1]
+        enter(!entry.isIntersecting && entry.boundingClientRect.top < 0)
+      })
+      const sized = new ResizeObserver(() => {
+        panel.style.setProperty('--scene-scale', String(Math.min(1, panel.clientHeight / 900)))
+      })
+      const apply = () => {
+        const animated = !still.matches
+        this.toggleAttribute('data-enhanced', animated)
+        goal.hidden = !animated
+        words.ariaHidden = animated ? null : 'true'
+        if (animated) {
+          passed.observe(cue)
+          sized.observe(panel)
+          return
+        }
+        passed.disconnect()
+        sized.disconnect()
+        window.clearTimeout(timer)
+        this.removeAttribute('data-phase')
+        panel.style.setProperty('--scene-scale', '1')
+      }
+
+      still.addEventListener('change', apply)
+      apply()
+    }
+  }
+
+  customElements.define('oet-theory-scene', TheoryScene)
+</script>

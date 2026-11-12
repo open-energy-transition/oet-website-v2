@@ -1,0 +1,274 @@
+---
+import { routes } from '../../data/routes'
+import type { ConsentTexts } from '../../data/site'
+import type { Locale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+
+interface Props {
+  texts: ConsentTexts
+  tagManagerId: string | null
+  locale: Locale
+}
+
+const { texts, tagManagerId, locale } = Astro.props
+
+const button =
+  'inline-flex cursor-pointer items-center justify-center border border-brand-500 px-[15px] pt-[9px] pb-[11px] text-[1rem] leading-[18px] font-semibold tracking-[-0.01em] whitespace-nowrap transition-colors max-sm:grow'
+const outline = `${button} text-brand-500 hover:bg-brand-500 hover:text-white`
+const primary = `${button} bg-brand-500 text-white hover:border-brand-600 hover:bg-brand-600`
+const privacyLink = 'text-brand-500 underline-offset-4 hover:underline'
+const toggle =
+  "relative h-5 w-[35px] shrink-0 cursor-pointer appearance-none rounded-full border-[1.25px] border-neutral-500 bg-neutral-50 transition-colors before:absolute before:top-[1.25px] before:left-[1.25px] before:size-[15px] before:rounded-full before:bg-neutral-500 before:transition-transform before:content-[''] checked:border-brand-500 checked:bg-brand-50 checked:before:translate-x-[15px] checked:before:bg-brand-500 disabled:cursor-default motion-reduce:before:transition-none"
+const serviceTitle = 'text-body-md font-medium text-neutral-800'
+const serviceText = 'text-body-sm text-neutral-600'
+---
+
+<oet-consent
+  data-config={JSON.stringify({ tagManagerId })}
+  class="fixed right-5 bottom-5 left-5 z-60 sm:left-auto sm:w-[427px] lg:right-10 lg:bottom-10"
+  hidden
+>
+  <section
+    data-view="notice"
+    aria-labelledby="consent-notice-title"
+    class="flex flex-col border-b-4 border-brand-500 bg-neutral-50 p-5 text-neutral-800 shadow-[0_8px_20px_rgb(227_25_55/0.32)]"
+    hidden
+  >
+    <h2 id="consent-notice-title" class="text-heading-4 font-medium">
+      {t(locale, 'consent.title')}
+    </h2>
+    <p class="text-body-md mt-3">
+      {`${texts.notice} ${t(locale, 'consent.noticePrivacy')} `}
+      <a href={routes.privacyStatement} class:list={[privacyLink, 'font-medium']}>
+        {t(locale, 'consent.privacyName')}
+      </a>
+    </p>
+    <div class="mt-7 flex flex-wrap">
+      <button type="button" class={outline} data-consent-open>
+        {t(locale, 'consent.settings')}
+      </button>
+      <button type="button" class={outline} data-consent-decide="decline">
+        {t(locale, 'consent.decline')}
+      </button>
+      <button type="button" class={primary} data-consent-decide="accept">
+        {t(locale, 'consent.accept')}
+      </button>
+    </div>
+  </section>
+  <section
+    data-view="settings"
+    role="dialog"
+    aria-labelledby="consent-settings-title"
+    tabindex="-1"
+    class="flex flex-col gap-2 border-b-4 border-brand-500 bg-neutral-50 p-5 text-neutral-800 shadow-[0_8px_20px_rgb(227_25_55/0.32)] focus:outline-none"
+    hidden
+  >
+    <h2 id="consent-settings-title" class="text-heading-4 font-medium">
+      {texts.modalTitle}
+    </h2>
+    <p class="text-body-md mb-5 font-medium">
+      {`${texts.modalDescription} ${t(locale, 'consent.settingsPrivacy')} `}
+      <a href={routes.privacyStatement} class={privacyLink}>
+        {t(locale, 'consent.privacyName')}
+      </a>
+    </p>
+    <ul class="flex flex-col gap-2">
+      <li class="flex items-center gap-1 border-b border-neutral-100 pb-2 last:border-b-0">
+        <label for="consent-necessary" class="flex flex-1 flex-col gap-1">
+          <span class={serviceTitle}>
+            {`${texts.necessaryTitle} `}
+            <span class="font-normal">{t(locale, 'consent.alwaysOn')}</span>
+          </span>
+          <span class={serviceText}>
+            {`${texts.necessaryDescription} ${t(locale, 'consent.purpose')} ${t(locale, 'consent.necessary')}`}
+          </span>
+        </label>
+        <input
+          id="consent-necessary"
+          type="checkbox"
+          role="switch"
+          class={toggle}
+          checked
+          disabled
+        />
+      </li>
+      {tagManagerId !== null && (
+        <li class="flex items-center gap-1 pb-2">
+          <label for="consent-analytics" class="flex flex-1 flex-col gap-1">
+            <span class={serviceTitle}>{texts.analyticsTitle}</span>
+            <span class={serviceText}>
+              {`${texts.analyticsDescription} ${t(locale, 'consent.purpose')} ${t(locale, 'consent.analytics')}`}
+            </span>
+          </label>
+          <input
+            id="consent-analytics"
+            type="checkbox"
+            role="switch"
+            class={toggle}
+            data-consent-analytics
+          />
+        </li>
+      )}
+    </ul>
+    <div class="flex flex-wrap items-center">
+      <button type="button" class:list={[outline, 'sm:mr-auto']} data-consent-back>
+        {t(locale, 'consent.back')}
+      </button>
+      <button type="button" class={outline} data-consent-decide="decline">
+        {t(locale, 'consent.decline')}
+      </button>
+      <button type="button" class={primary} data-consent-decide="choices">
+        {t(locale, 'consent.save')}
+      </button>
+    </div>
+  </section>
+</oet-consent>
+
+<script>
+  type Decision = 'accept' | 'decline' | 'choices'
+
+  const storageName = 'oet-consent'
+  const essentials = 'essentials'
+  const analytics = 'google-tag-manager'
+  const analyticsCookies = /^(_ga|_gid|_gat)/
+
+  const storedConsent = (): Record<string, boolean> | null => {
+    const entry = document.cookie.split('; ').find((cookie) => cookie.startsWith(`${storageName}=`))
+    if (!entry) return null
+    return JSON.parse(decodeURIComponent(entry.slice(storageName.length + 1)))
+  }
+
+  const storeConsent = (consent: Record<string, boolean>) => {
+    const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString()
+    document.cookie = `${storageName}=${encodeURIComponent(JSON.stringify(consent))}; expires=${expires}; path=/; SameSite=Lax`
+  }
+
+  const clearAnalyticsCookies = () => {
+    const parts = location.hostname.split('.')
+    const domains = parts.map((_, index) => parts.slice(index).join('.'))
+    for (const cookie of document.cookie.split('; ')) {
+      const name = cookie.split('=')[0]
+      if (!analyticsCookies.test(name)) continue
+      const expired = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`
+      document.cookie = expired
+      for (const domain of domains) document.cookie = `${expired}; domain=.${domain}`
+    }
+  }
+
+  const startTagManager = (id: string) => {
+    if (document.querySelector('script[data-tag-manager]')) return
+    const scope = window as Window & { dataLayer?: unknown[] }
+    if (!scope.dataLayer) scope.dataLayer = []
+    const layer = scope.dataLayer
+    function gtag(..._: unknown[]) {
+      layer.push(arguments)
+    }
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'granted',
+    })
+    const script = document.createElement('script')
+    script.async = true
+    if (id.startsWith('GTM-')) {
+      layer.push({ 'gtm.start': Date.now(), event: 'gtm.js' })
+      script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(id)}`
+    } else {
+      gtag('js', new Date())
+      gtag('config', id)
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`
+    }
+    script.dataset.tagManager = id
+    document.head.append(script)
+  }
+
+  const find = <T extends Element>(root: ParentNode, selector: string): T => {
+    const element = root.querySelector<T>(selector)
+    if (!element) throw new Error(`oet-consent: missing ${selector}`)
+    return element
+  }
+
+  class OetConsent extends HTMLElement {
+    connectedCallback() {
+      const raw = this.dataset.config
+      if (!raw) throw new Error('oet-consent: missing config')
+      const { tagManagerId } = JSON.parse(raw) as { tagManagerId: string | null }
+      const notice = find<HTMLElement>(this, '[data-view="notice"]')
+      const settings = find<HTMLElement>(this, '[data-view="settings"]')
+      const analyticsToggle = this.querySelector<HTMLInputElement>('[data-consent-analytics]')
+      const openButton = find<HTMLButtonElement>(notice, '[data-consent-open]')
+      let opener: HTMLElement | null = null
+
+      const undecided = () => {
+        const stored = storedConsent()
+        return tagManagerId !== null && (stored === null || !(analytics in stored))
+      }
+
+      const show = (view: HTMLElement | null) => {
+        notice.hidden = view !== notice
+        settings.hidden = view !== settings
+        this.hidden = view === null
+      }
+
+      const close = () => {
+        show(null)
+        if (opener !== null && !this.contains(opener)) opener.focus()
+        opener = null
+      }
+
+      const openSettings = (trigger: HTMLElement) => {
+        opener = trigger
+        if (analyticsToggle) analyticsToggle.checked = storedConsent()?.[analytics] === true
+        show(settings)
+        settings.focus()
+      }
+
+      const decide = (decision: Decision) => {
+        const granted =
+          decision === 'accept' || (decision === 'choices' && analyticsToggle?.checked === true)
+        const previous = storedConsent()?.[analytics] === true
+        storeConsent(
+          tagManagerId === null
+            ? { [essentials]: true }
+            : { [essentials]: true, [analytics]: granted },
+        )
+        close()
+        if (tagManagerId === null) return
+        if (granted) startTagManager(tagManagerId)
+        else if (previous) {
+          clearAnalyticsCookies()
+          if (document.querySelector('script[data-tag-manager]')) location.reload()
+        }
+      }
+
+      if (tagManagerId !== null && storedConsent()?.[analytics] === true)
+        startTagManager(tagManagerId)
+      if (undecided()) {
+        const reveal = () => show(notice)
+        if (document.readyState === 'complete') reveal()
+        else window.addEventListener('load', reveal, { once: true })
+      }
+
+      for (const button of this.querySelectorAll<HTMLButtonElement>('[data-consent-decide]')) {
+        button.addEventListener('click', () => decide(button.dataset.consentDecide as Decision))
+      }
+      openButton.addEventListener('click', () => openSettings(openButton))
+      find<HTMLButtonElement>(settings, '[data-consent-back]').addEventListener('click', () => {
+        if (!undecided()) return close()
+        opener = null
+        show(notice)
+        openButton.focus()
+      })
+      settings.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !undecided()) close()
+      })
+
+      for (const button of document.querySelectorAll<HTMLElement>('[data-consent-settings]')) {
+        button.addEventListener('click', () => openSettings(button))
+      }
+    }
+  }
+
+  if (!customElements.get('oet-consent')) customElements.define('oet-consent', OetConsent)
+</script>

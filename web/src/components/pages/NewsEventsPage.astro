@@ -1,0 +1,205 @@
+---
+import CtaBanner from '../blocks/CtaBanner.astro'
+import ListingHeader from '../blocks/ListingHeader.astro'
+import PageHero from '../blocks/PageHero.astro'
+import EventCard from '../cards/EventCard.astro'
+import ListingFilter from '../interactive/ListingFilter.astro'
+import FilterTabs from '../ui/FilterTabs.astro'
+import Pagination from '../ui/Pagination.astro'
+import SortControl from '../ui/SortControl.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import {
+  eventStatus,
+  formatEventDay,
+  loadEvents,
+  loadEventsPage,
+  loadEventTypes,
+} from '../../data/events'
+import { routes } from '../../data/routes'
+import { locales } from '../../i18n/config'
+import { eventLabels, sortOptions } from '../../i18n/groups'
+import { t } from '../../i18n/ui'
+import { firstPageClass, type PageSize } from '../../lib/listing'
+
+const locale = locales.find((code) => code === Astro.currentLocale)
+if (!locale) throw new Error(`Unsupported locale: ${Astro.currentLocale}`)
+
+const [events, eventTypes, eventsPage] = await Promise.all([
+  loadEvents(locale),
+  loadEventTypes(locale),
+  loadEventsPage(locale),
+])
+const { meta, hero, listing, stateTabs, sort, cta } = eventsPage
+const pageSize = { desktop: null, mobile: 4 } satisfies PageSize
+const labels = eventLabels(locale)
+const now = new Date()
+
+const cards = events
+  .flatMap((event) => {
+    const status = eventStatus(event, now)
+    return status === 'archived' ? [] : [{ event, status }]
+  })
+  .sort((a, b) => {
+    const byTitle = a.event.title.localeCompare(b.event.title, locale)
+    return byTitle === 0 ? a.event.slug.localeCompare(b.event.slug, locale) : byTitle
+  })
+
+const stateOptions = stateTabs.map((tab) => ({
+  label: tab.label,
+  href: `?state=${tab.id}#${listing.id}`,
+  active: tab.id === 'all',
+}))
+const typeOptions = [
+  { label: t(locale, 'tabs.showAll'), href: `?type=all#${listing.id}`, active: true },
+  ...eventTypes.map((type) => ({
+    label: type.label,
+    href: `?type=${type.id}#${listing.id}`,
+    active: false,
+  })),
+]
+const totalPages = Math.ceil(cards.length / pageSize.mobile)
+const statusLabels = { upcoming: labels.upcoming, highlighted: labels.highlighted }
+const linkLabels = { upcoming: labels.register, highlighted: labels.recap }
+const hrefFor = (page: number) => `?page=${page}#${listing.id}`
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="listing"
+      title={hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-3"
+      eyebrow={null}
+      lead={[]}
+      links={[hero.link]}
+      stats={null}
+      person={null}
+      image={hero.image}
+      background="brand-900"
+      chipsBottomMobile={30}
+      ornament="right-bottom"
+      headerTheme="light"
+    />
+
+    <ListingFilter pageSize={pageSize} ranked={false} infinite={false}>
+      <ListingHeader
+        layout="split"
+        title={listing.title}
+        description={listing.description}
+        descriptionStyle="body-md-medium-to-lg"
+        tabsWidth="column"
+        topSpace={180}
+        id={listing.id}
+      >
+        <div slot="tabs" data-listing-tabs="state">
+          <FilterTabs
+            label={t(locale, 'tabs.eventState')}
+            layout="compact"
+            mobileBreakAfter={null}
+            options={stateOptions}
+          />
+        </div>
+        <div slot="controls" data-listing-tabs="type">
+          <FilterTabs
+            label={t(locale, 'tabs.eventType')}
+            layout="compact"
+            mobileBreakAfter={null}
+            options={typeOptions}
+          />
+        </div>
+        <SortControl
+          slot="controls"
+          id="sort-events"
+          label={t(locale, 'filter.sort')}
+          prefix={t(locale, 'filter.sort')}
+          icon="sort"
+          options={sortOptions(locale, sort.values)}
+          selected={sort.selected}
+          align="right"
+          listing="sort"
+          class="lg:-ml-px"
+        />
+        <Pagination
+          class="py-5 lg:hidden"
+          current={1}
+          total={totalPages}
+          hrefFor={hrefFor}
+          locale={locale}
+        />
+      </ListingHeader>
+
+      <div class="max-w-page px-gutter lg:px-gutter-lg mx-auto w-full">
+        <div class="border-t border-l border-neutral-100 pt-[19px] pb-[60px] lg:border-t-0 lg:py-5 lg:pl-[19px]">
+          <ul
+            data-listing-items
+            class="-ml-px grid gap-5 lg:ml-0 lg:grid-cols-3 lg:gap-y-[50px]"
+            aria-live="polite"
+          >
+            {cards.map(({ event, status }, index) => (
+              <li
+                class:list={['flex', firstPageClass(index, pageSize)]}
+                data-listing-item
+                data-facet-state={status}
+                data-facet-type={event.type}
+                data-title={event.title}
+                data-date={event.start}
+              >
+                <EventCard
+                  status={status}
+                  statusLabel={statusLabels[status]}
+                  date={formatEventDay(locale, event.timeZone, event.start)}
+                  dateTime={event.start}
+                  title={event.title}
+                  excerpt={event.excerpt}
+                  registration={
+                    status === 'upcoming' && event.registrationClosesAt !== null
+                      ? `${labels.registrationCloses} ${formatEventDay(locale, event.timeZone, event.registrationClosesAt)}`
+                      : null
+                  }
+                  href={routes.event(event.slug)}
+                  linkLabel={linkLabels[status]}
+                  poster={event.poster.image}
+                  posterAlt={event.poster.alt}
+                  posterFit={event.posterFit}
+                  sizes="(min-width: 1440px) 407px, (min-width: 1024px) 30vw, 100vw"
+                  class="w-full"
+                />
+              </li>
+            ))}
+          </ul>
+          <p data-listing-empty class="text-body-lg py-10 text-neutral-800 lg:px-5" hidden>
+            {labels.empty}
+          </p>
+          <Pagination
+            class="pt-10 lg:hidden"
+            current={1}
+            total={totalPages}
+            hrefFor={hrefFor}
+            locale={locale}
+          />
+        </div>
+      </div>
+    </ListingFilter>
+
+    <div class="max-w-page lg:px-gutter-lg mx-auto hidden w-full lg:block" aria-hidden="true">
+      <div class="h-43 border-l border-neutral-100"></div>
+    </div>
+    <div class="hidden lg:block">
+      <CtaBanner {...cta.support} />
+    </div>
+    <div class="lg:hidden">
+      <CtaBanner {...cta.discuss} />
+    </div>
+    <CtaBanner {...cta.updates} />
+    <div class="max-w-page lg:px-gutter-lg mx-auto hidden w-full lg:block" aria-hidden="true">
+      <div class="h-40 border-l border-neutral-100"></div>
+    </div>
+  </main>
+</BaseLayout>

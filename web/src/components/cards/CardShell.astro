@@ -1,0 +1,128 @@
+---
+import type { CardHeight, FrameTone, MobileFrame } from './types'
+
+type TabTone =
+  | 'brand'
+  | 'brand-700'
+  | 'brand-900'
+  | 'neutral-700'
+  | 'neutral-900'
+  | 'brand-tint'
+  | 'brand-950-tint'
+  | 'neutral-800-tint'
+type Body = 'fixed' | 'auto' | 'compact' | 'bare'
+type Media =
+  | { kind: 'framed'; tone: FrameTone; mobile: MobileFrame; badge: boolean }
+  | { kind: 'bleed' }
+  | null
+type Footer = 'content' | 'empty' | 'none'
+
+interface Tab {
+  label: string
+  tone: TabTone
+}
+
+interface Props {
+  tab: Tab | null
+  body: Body
+  media: Media
+  footer: Footer
+  height: CardHeight
+  class?: string
+}
+
+const { tab, body, media, footer, height, class: className } = Astro.props
+
+const tabTones: Record<TabTone, string> = {
+  brand: 'bg-brand-500 text-neutral-50',
+  'brand-700': 'bg-brand-700 text-neutral-50',
+  'brand-900': 'bg-brand-900 text-neutral-50',
+  'neutral-700': 'bg-neutral-700 text-neutral-50',
+  'neutral-900': 'bg-neutral-900 text-neutral-50',
+  'brand-tint': 'bg-brand-500 text-neutral-50',
+  'brand-950-tint': 'bg-brand-950 text-brand-50',
+  'neutral-800-tint': 'bg-neutral-800 text-brand-50',
+}
+
+const bodies: Record<Body, string> = {
+  fixed: 'h-[176px] gap-2 p-5',
+  auto: 'gap-2 p-5',
+  compact: 'flex-1 gap-4 p-4',
+  bare: '',
+}
+
+const frameTones: Record<FrameTone, string> = {
+  bright: 'bg-[#ee2042]',
+  'brand-500': 'bg-brand-500',
+  'brand-600': 'bg-brand-600',
+  'brand-700': 'bg-brand-700',
+  'brand-800': 'bg-brand-800',
+  'brand-900': 'bg-brand-900',
+  'neutral-800': 'bg-neutral-800',
+  'neutral-900': 'bg-neutral-900',
+  'neutral-950': 'bg-neutral-950',
+}
+
+const framePaddings: Record<MobileFrame, string> = {
+  scaled: 'px-[4.918cqw] pt-[4.918cqw]',
+  fixed: 'px-5 pt-5 lg:px-[4.918cqw] lg:pt-[4.918cqw]',
+}
+
+const frameAspects: Record<MobileFrame, string> = {
+  scaled: 'aspect-[366.67/238]',
+  fixed: 'aspect-[332/238] lg:aspect-[366.67/238]',
+}
+
+const badges: Record<MobileFrame, string> = {
+  scaled: 'left-[4.918cqw] w-[27.664cqw]',
+  fixed: 'left-5 w-[112.5px] lg:left-[4.918cqw] lg:w-[27.664cqw]',
+}
+
+const heights: Record<CardHeight, string> = {
+  natural: '',
+  fixed: 'min-h-[475px]',
+}
+---
+
+<article
+  class:list={[
+    '@container relative flex flex-col items-start after:pointer-events-none after:absolute after:inset-0 after:z-20 after:border after:border-neutral-100',
+    heights[height],
+    className,
+  ]}
+>
+  {tab !== null && (
+    <p class:list={['text-body-sm px-4 py-3 font-medium', tabTones[tab.tone]]}>{tab.label}</p>
+  )}
+  <div class:list={['flex w-full flex-col items-start', bodies[body]]}>
+    <slot />
+  </div>
+  {media !== null && media.kind === 'framed' && (
+    <div class:list={['relative w-full', framePaddings[media.mobile], frameTones[media.tone]]}>
+      <div class:list={['relative w-full overflow-clip', frameAspects[media.mobile]]}>
+        <slot name="media" />
+      </div>
+      {media.badge && (
+        <div
+          class:list={[
+            'absolute top-0 flex aspect-[112.5/40] items-center justify-center bg-black',
+            badges[media.mobile],
+          ]}
+        >
+          <slot name="badge" />
+        </div>
+      )}
+    </div>
+  )}
+  {media !== null && media.kind === 'bleed' && (
+    <div class="relative h-[400px] w-full overflow-clip bg-neutral-800">
+      <slot name="media" />
+    </div>
+  )}
+  {footer === 'content' && (
+    <div class="text-body-sm relative z-10 flex w-full items-start px-5 py-3 text-neutral-600">
+      <slot name="footer" />
+    </div>
+  )}
+  {footer === 'empty' && <div class="text-body-sm h-[calc(1lh+24px)] w-full shrink-0" />}
+</article>

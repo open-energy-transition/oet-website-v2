@@ -1,0 +1,524 @@
+---
+import { Image } from 'astro:assets'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import logoColour from '../../assets/brand/oet-logo-colour.svg?url&no-inline'
+import logoWhite from '../../assets/brand/oet-logo-white.svg?url&no-inline'
+import markColour from '../../assets/brand/oet-mark-colour.svg?url&no-inline'
+import markWhite from '../../assets/brand/oet-mark-white.svg?url&no-inline'
+import menuImage from '../../assets/brand/menu-services.png'
+import type { HeaderTheme, Navigation } from '../../data/navigation'
+import type { Locale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import ChevronDown from '../../icons/chevron-down.svg'
+import ChevronRight from '../../icons/chevron-right.svg'
+import Close from '../../icons/close.svg'
+import Menu from '../../icons/menu.svg'
+import LanguageSwitcher from './LanguageSwitcher.astro'
+import MobileMenu from './MobileMenu.astro'
+import NavServiceItem from './NavServiceItem.astro'
+import { barCell, focusRing, listLink, listPanel } from './menuStyles'
+
+interface Props {
+  navigation: Navigation
+  theme: HeaderTheme
+  initialTheme: HeaderTheme
+  locale: Locale
+  locales: readonly Locale[]
+}
+
+const { navigation, theme, initialTheme, locale, locales } = Astro.props
+
+const lightFirst = initialTheme === 'light' || initialTheme === 'on-red'
+const lightLoading: 'eager' | 'lazy' = lightFirst ? 'eager' : 'lazy'
+const darkLoading: 'eager' | 'lazy' = lightFirst ? 'lazy' : 'eager'
+const lightLogo = '[display:var(--h-logo-light)]'
+const darkLogo = '[display:var(--h-logo-dark)]'
+const menuId = 'site-menu'
+const cellLines = 'shadow-[inset_1px_0_0_var(--h-line),inset_0_1px_0_var(--h-line)]'
+const thumbClass =
+  'absolute inset-0 size-full object-cover object-left opacity-0 transition-opacity duration-300 ease-out data-shown:opacity-100 motion-reduce:transition-none'
+const burgerCell = `group w-[38px] rounded-r-sm text-(--h-burger) shadow-[inset_1px_0_0_var(--h-line)] max-lg:order-3 lg:hidden ${barCell}`
+---
+
+<oet-header
+  role="banner"
+  class="pointer-events-none fixed inset-x-0 top-5 z-50 block lg:top-10"
+  data-theme={initialTheme}
+  data-default-theme={theme}
+>
+  <div class="mx-auto w-full max-w-page px-5 lg:px-10">
+    <div
+      class="pointer-events-auto relative flex h-[62px] rounded-sm bg-(--h-bg) backdrop-blur-[6px] ring-1 ring-(--h-frame) transition-[background-color,box-shadow] duration-300 ease-out ring-inset motion-reduce:transition-none lg:px-5"
+      data-bar
+    >
+      <a
+        href={getRelativeLocaleUrl(locale, '')}
+        aria-label={t(locale, 'nav.home')}
+        class:list={[
+          'flex items-center py-3 pr-5 pl-3 text-(--h-fg) max-lg:flex-1 lg:pl-0',
+          focusRing,
+        ]}
+      >
+        <span class="relative block h-[38px] w-[83px] overflow-hidden lg:w-[142px]">
+          {[
+            { theme: lightLogo, wide: logoWhite, narrow: markWhite, loading: lightLoading },
+            { theme: darkLogo, wide: logoColour, narrow: markColour, loading: darkLoading },
+          ].map((logo) => (
+            <picture class={logo.theme}>
+              <source media="(min-width: 1024px)" srcset={logo.wide} width={142} height={33} />
+              <img
+                src={logo.narrow}
+                alt=""
+                width={83}
+                height={32}
+                loading={logo.loading}
+                decoding="async"
+                class="absolute inset-x-0 top-1/2 h-auto w-full -translate-y-1/2"
+              />
+            </picture>
+          ))}
+        </span>
+      </a>
+      <nav aria-label={t(locale, 'nav.primary')} class="hidden flex-1 lg:flex">
+        <ul class="flex flex-1">
+          {navigation.desktop.map((group) => (
+            <li
+              class:list={[
+                'flex flex-1',
+                group.kind === 'list' && 'relative',
+                group.kind === 'mega' && `group/cell ${cellLines}`,
+              ]}
+              data-dropdown
+            >
+              {group.kind === 'mega' && (
+                <a
+                  href={group.more.href}
+                  class:list={[
+                    'flex-auto justify-end pr-[5px] text-(--h-fg) group-has-[>[aria-expanded=true]]/cell:text-(--h-active)',
+                    barCell,
+                  ]}
+                >
+                  {group.label}
+                </a>
+              )}
+              <button
+                type="button"
+                class:list={[
+                  'peer text-(--h-fg)',
+                  group.kind === 'mega'
+                    ? 'flex-auto justify-start pl-[5px]'
+                    : `flex-1 gap-[10px] ${cellLines}`,
+                  barCell,
+                ]}
+                aria-expanded="false"
+                aria-controls={`nav-${group.id}`}
+                aria-label={
+                  group.kind === 'mega' ? `${group.label} ${t(locale, 'nav.submenu')}` : undefined
+                }
+              >
+                {group.kind === 'list' && group.label}
+                <span class="flex size-[14px] items-center justify-center">
+                  <ChevronDown aria-hidden="true" />
+                </span>
+              </button>
+              {group.kind === 'list' && (
+                <ul id={`nav-${group.id}`} class:list={['left-0 w-full', listPanel]} data-panel>
+                  {group.links.map((link) => (
+                    <li>
+                      <a href={link.href} class={listLink}>
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {group.kind === 'mega' && (
+                <div
+                  id={`nav-${group.id}`}
+                  class="absolute top-full left-0 hidden w-full gap-4 rounded-sm bg-neutral-50 p-4 ring-1 ring-neutral-100 ring-inset peer-aria-expanded:flex"
+                  data-panel
+                >
+                  <div class="relative h-[186px] w-[305px] shrink-0 overflow-hidden rounded-sm">
+                    <Image
+                      src={menuImage}
+                      alt=""
+                      width={305}
+                      height={186}
+                      densities={[1, 2]}
+                      loading="lazy"
+                      class={thumbClass}
+                      data-thumb="default"
+                      data-shown
+                    />
+                    {group.links.map((link) => (
+                      <Image
+                        src={link.thumbnail}
+                        alt=""
+                        width={Math.round((186 * link.thumbnail.width) / link.thumbnail.height)}
+                        height={186}
+                        densities={[1, 2]}
+                        loading="lazy"
+                        class={thumbClass}
+                        data-thumb={link.href}
+                      />
+                    ))}
+                  </div>
+                  <div class="flex min-w-0 flex-1 flex-col justify-center gap-2">
+                    <ul class="grid grid-cols-3 gap-x-4 gap-y-2" data-thumb-list>
+                      {group.links.map((link) => (
+                        <li class="flex" data-thumb-for={link.href}>
+                          <NavServiceItem link={link} tone="dark" />
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={group.more.href}
+                      class:list={[
+                        'flex gap-2 pt-4 pr-2 pb-2 pl-8 text-neutral-950 shadow-[inset_0_1px_0_var(--color-neutral-200)]',
+                        focusRing,
+                      ]}
+                    >
+                      <span class="flex min-w-0 flex-1 flex-col gap-1">
+                        <span class="text-body-xs font-medium">{group.more.label}</span>
+                        <span class="text-body-2xs text-neutral-900">{group.more.description}</span>
+                      </span>
+                      <span class="flex w-4 shrink-0 items-center justify-center text-neutral-900">
+                        <ChevronRight aria-hidden="true" />
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <LanguageSwitcher
+        id="nav-language"
+        locales={locales}
+        current={locale}
+        label={t(locale, 'nav.language')}
+        class="max-lg:order-2"
+      />
+      <div class="flex items-center p-3 max-lg:order-1 lg:pr-0 lg:pl-5">
+        <a
+          href={navigation.contact.href}
+          class="flex h-full items-center bg-(--h-cta-bg) px-3 text-body-sm font-medium whitespace-nowrap text-(--h-cta-fg) transition-colors hover:bg-(--h-cta-hover) motion-reduce:transition-none"
+        >
+          {navigation.contact.label}
+        </a>
+      </div>
+      <button
+        type="button"
+        class={burgerCell}
+        aria-expanded="false"
+        aria-controls={menuId}
+        data-burger
+      >
+        <span class="sr-only group-aria-expanded:hidden">{t(locale, 'nav.menu.open')}</span>
+        <span class="sr-only hidden group-aria-expanded:inline">{t(locale, 'nav.menu.close')}</span>
+        <Menu aria-hidden="true" class="group-aria-expanded:hidden" />
+        <Close aria-hidden="true" class="hidden group-aria-expanded:block" />
+      </button>
+      <noscript>
+        <a
+          href={`#${menuId}`}
+          class={burgerCell}
+          aria-label={t(locale, 'nav.menu.open')}
+          data-static-open
+        >
+          <Menu aria-hidden="true" />
+        </a>
+        <a
+          href="#main"
+          class={burgerCell}
+          aria-label={t(locale, 'nav.menu.close')}
+          data-static-close
+        >
+          <Close aria-hidden="true" />
+        </a>
+        <style is:inline>
+          oet-header noscript {
+            display: contents;
+          }
+
+          oet-header [data-burger],
+          oet-header [data-static-close],
+          oet-header:has([data-mobile-menu]:target) [data-static-open] {
+            display: none;
+          }
+
+          @media (width < 64rem) {
+            oet-header:has([data-mobile-menu]:target) [data-static-close] {
+              display: flex;
+            }
+
+            oet-header [data-mobile-menu]:target {
+              display: block;
+            }
+          }
+        </style>
+      </noscript>
+    </div>
+  </div>
+  <MobileMenu
+    id={menuId}
+    entries={navigation.mobile}
+    legal={navigation.legal}
+    consentLabel={navigation.consentLabel}
+    copyright={navigation.copyright}
+    navLabel={t(locale, 'nav.primary')}
+    legalLabel={t(locale, 'nav.legal')}
+  />
+</oet-header>
+
+<style is:global>
+  oet-header {
+    --h-fg: var(--color-neutral-50);
+    --h-burger: var(--color-neutral-50);
+    --h-active: var(--color-neutral-50);
+    --h-line: var(--color-neutral-50);
+    --h-lang-line: var(--color-neutral-50);
+    --h-frame: var(--color-neutral-50);
+    --h-bg: rgb(0 0 0 / 0.01);
+    --h-cta-bg: var(--color-brand-500);
+    --h-cta-hover: var(--color-brand-600);
+    --h-cta-fg: var(--color-neutral-50);
+    --h-logo-light: block;
+    --h-logo-dark: none;
+  }
+
+  oet-header[data-theme='dark'],
+  oet-header[data-theme='solid'],
+  oet-header[data-open],
+  oet-header:not([data-js]):has([data-dropdown]:is(:hover, :focus-within)) {
+    --h-fg: var(--color-neutral-800);
+    --h-burger: #7a7a7a;
+    --h-line: var(--color-neutral-200);
+    --h-lang-line: var(--color-neutral-200);
+    --h-frame: var(--color-neutral-200);
+    --h-logo-light: none;
+    --h-logo-dark: block;
+  }
+
+  oet-header[data-theme='solid'],
+  oet-header[data-open],
+  oet-header:not([data-js]):has([data-dropdown]:is(:hover, :focus-within)) {
+    --h-active: var(--color-brand-500);
+    --h-lang-line: var(--color-neutral-50);
+    --h-frame: var(--color-neutral-50);
+    --h-bg: var(--color-neutral-50);
+  }
+
+  oet-header[data-open],
+  oet-header:not([data-js]):has([data-dropdown]:is(:hover, :focus-within)) {
+    --h-lang-line: var(--color-neutral-200);
+    --h-frame: var(--color-neutral-200);
+  }
+
+  oet-header[data-menu-open],
+  oet-header:has([data-mobile-menu]:target) {
+    --h-fg: var(--color-neutral-50);
+    --h-burger: var(--color-neutral-50);
+    --h-active: var(--color-neutral-50);
+    --h-line: var(--color-neutral-50);
+    --h-lang-line: var(--color-neutral-50);
+    --h-frame: var(--color-neutral-50);
+    --h-bg: rgb(0 0 0 / 0.01);
+    --h-cta-bg: var(--color-white);
+    --h-cta-hover: var(--color-neutral-100);
+    --h-cta-fg: var(--color-brand-500);
+    --h-logo-light: block;
+    --h-logo-dark: none;
+  }
+
+  oet-header[data-menu-open] [data-mobile-menu] {
+    display: block;
+  }
+
+  oet-header:not([data-js]) [data-dropdown]:is(:hover, :focus-within) > [data-panel] {
+    display: flex;
+  }
+
+  oet-header [data-panel] {
+    opacity: 0;
+    transition:
+      opacity 0.3s ease-out,
+      display 0.3s allow-discrete;
+  }
+
+  oet-header [aria-expanded='true'] ~ [data-panel],
+  oet-header:not([data-js]) [data-dropdown]:is(:hover, :focus-within) > [data-panel] {
+    opacity: 1;
+  }
+
+  @starting-style {
+    oet-header [aria-expanded='true'] ~ [data-panel],
+    oet-header:not([data-js]) [data-dropdown]:is(:hover, :focus-within) > [data-panel] {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    oet-header [data-panel] {
+      transition: none;
+    }
+  }
+
+  oet-header [data-mobile-menu] ul:has(> [data-drill] > details[open]) > li:not([data-drill]) {
+    display: none;
+  }
+</style>
+
+<script>
+  const find = <T extends Element>(root: ParentNode, selector: string): T => {
+    const element = root.querySelector<T>(selector)
+    if (!element) throw new Error(`Missing ${selector}`)
+    return element
+  }
+
+  class OetHeader extends HTMLElement {
+    #abort = new AbortController()
+    #observer = new IntersectionObserver(() => {})
+
+    connectedCallback() {
+      const { signal } = this.#abort
+      const bar = find<HTMLElement>(this, '[data-bar]')
+      const burger = find<HTMLButtonElement>(this, '[data-burger]')
+      const triggers = [...this.querySelectorAll<HTMLButtonElement>('[data-dropdown] > button')]
+      const sections = [...document.querySelectorAll('[data-header-theme]')]
+      const base = this.getAttribute('data-default-theme')
+      const visible = new Set<Element>()
+      let hovered: HTMLButtonElement | null = null
+
+      const expanded = (button: HTMLButtonElement) =>
+        button.getAttribute('aria-expanded') === 'true'
+
+      const open = (target: HTMLButtonElement | null) => {
+        for (const trigger of triggers)
+          trigger.setAttribute('aria-expanded', `${trigger === target}`)
+        this.toggleAttribute('data-open', target !== null)
+      }
+
+      const menu = (state: boolean) => {
+        burger.setAttribute('aria-expanded', `${state}`)
+        this.toggleAttribute('data-menu-open', state)
+        document.documentElement.style.overflow = state ? 'hidden' : ''
+        if (!state) for (const details of this.querySelectorAll('details')) details.open = false
+      }
+
+      const watch = () => {
+        const { top, height } = bar.getBoundingClientRect()
+        const line = Math.max(Math.round(top + height / 2), 0)
+        const below = Math.max(innerHeight - line - 1, 0)
+        this.#observer.disconnect()
+        visible.clear()
+        this.#observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) visible.add(entry.target)
+              else visible.delete(entry.target)
+            }
+            const current = sections.findLast((section) => visible.has(section))
+            const theme = current ? current.getAttribute('data-header-theme') : base
+            if (theme) this.setAttribute('data-theme', theme)
+          },
+          { rootMargin: `-${line}px 0px -${below}px 0px` },
+        )
+        for (const section of sections) this.#observer.observe(section)
+      }
+
+      for (const trigger of triggers) {
+        const item = trigger.parentElement as HTMLElement
+        trigger.addEventListener('click', () =>
+          open(expanded(trigger) && hovered !== trigger ? null : trigger),
+        )
+        item.addEventListener('pointerenter', (event) => {
+          if (event.pointerType !== 'mouse') return
+          hovered = trigger
+          open(trigger)
+        })
+        item.addEventListener('pointerleave', (event) => {
+          if (event.pointerType !== 'mouse') return
+          hovered = null
+          if (expanded(trigger)) open(null)
+        })
+        item.addEventListener('focusout', (event) => {
+          const next = event.relatedTarget
+          if (next instanceof Node && !item.contains(next) && expanded(trigger)) open(null)
+        })
+      }
+
+      for (const list of this.querySelectorAll<HTMLElement>('[data-thumb-list]')) {
+        const panel = list.closest('[data-panel]') as HTMLElement
+        const thumbs = [...panel.querySelectorAll<HTMLElement>('[data-thumb]')]
+        const show = (key: string) => {
+          for (const thumb of thumbs)
+            thumb.toggleAttribute('data-shown', thumb.getAttribute('data-thumb') === key)
+        }
+        for (const item of list.querySelectorAll<HTMLElement>('[data-thumb-for]')) {
+          const key = item.getAttribute('data-thumb-for') as string
+          item.addEventListener('pointerenter', () => show(key))
+          item.addEventListener('focusin', () => show(key))
+        }
+        list.addEventListener('pointerleave', () => show('default'))
+        list.addEventListener('focusout', (event) => {
+          const next = event.relatedTarget
+          if (!(next instanceof Node && list.contains(next))) show('default')
+        })
+      }
+
+      burger.addEventListener('click', () => menu(!expanded(burger)))
+
+      this.addEventListener('keydown', (event) => {
+        const target = event.target
+        const current = triggers.find(expanded)
+        if (event.key === 'Escape' && current) {
+          open(null)
+          current.focus()
+        } else if (event.key === 'Escape' && expanded(burger)) {
+          menu(false)
+          burger.focus()
+        } else if (
+          event.key === 'ArrowDown' &&
+          target instanceof HTMLButtonElement &&
+          triggers.includes(target)
+        ) {
+          event.preventDefault()
+          open(target)
+          find<HTMLElement>(target.parentElement as HTMLElement, '[data-panel] a').focus()
+        } else if (event.key === 'Tab' && expanded(burger)) {
+          const stops = [...this.querySelectorAll<HTMLElement>('a, button, summary')].filter(
+            (element) => element.getClientRects().length > 0,
+          )
+          const edge = stops.at(event.shiftKey ? 0 : -1)
+          const wrap = stops.at(event.shiftKey ? -1 : 0)
+          if (target === edge && wrap) {
+            event.preventDefault()
+            wrap.focus()
+          }
+        }
+      })
+
+      document.addEventListener(
+        'click',
+        (event) => {
+          if (event.target instanceof Node && !this.contains(event.target)) open(null)
+        },
+        { signal },
+      )
+      addEventListener('resize', watch, { signal })
+      matchMedia('(min-width: 64rem)').addEventListener('change', () => menu(false), { signal })
+
+      this.toggleAttribute('data-js', true)
+      watch()
+    }
+
+    disconnectedCallback() {
+      this.#abort.abort()
+      this.#observer.disconnect()
+    }
+  }
+
+  customElements.define('oet-header', OetHeader)
+</script>

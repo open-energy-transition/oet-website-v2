@@ -1,0 +1,16 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { loadServices, loadServiceShared } from '../../data/services'
+import { defaultLocale } from '../../i18n/config'
+import ServiceDetailPage from '../../components/pages/ServiceDetailPage.astro'
+
+export const getStaticPaths = (async () => {
+  const [services, shared] = await Promise.all([
+    loadServices(defaultLocale),
+    loadServiceShared(defaultLocale),
+  ])
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service, shared } }))
+}) satisfies GetStaticPaths
+---
+
+<ServiceDetailPage {...Astro.props} />

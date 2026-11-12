@@ -1,0 +1,138 @@
+---
+import Button from './Button.astro'
+import Tag from './Tag.astro'
+
+type Action = {
+  label: string
+  href: string
+  variant: 'primary' | 'secondary'
+  size: 'xs' | 'sm-tall'
+  arrow: boolean
+}
+
+interface Props {
+  layout: 'stack' | 'split'
+  tag: string | null
+  title: string
+  level: 'h1' | 'h2' | 'h3'
+  gap: 8 | 10 | 12 | '8/12'
+  width: 'narrow' | 'medium' | 'full'
+  titleTone: 'neutral-900' | 'neutral-800'
+  linkTone: 'brand' | 'text'
+  align: 'center' | 'title'
+  subline: string | null
+  columns: string[]
+  columnStyle: 'body-lg' | 'body-md' | 'body-md-medium'
+  actions: Action[]
+  class?: string
+}
+
+const {
+  layout,
+  tag,
+  title,
+  level: Heading,
+  gap,
+  width,
+  titleTone,
+  linkTone,
+  align,
+  subline,
+  columns,
+  columnStyle,
+  actions,
+  class: className,
+} = Astro.props
+
+const gaps: Record<Props['gap'], string> = {
+  8: 'gap-2',
+  10: 'gap-[10px]',
+  12: 'gap-3',
+  '8/12': 'gap-2 lg:gap-3',
+}
+const widths: Record<Props['width'], string> = {
+  narrow: 'max-w-[451px]',
+  medium: 'max-w-[610px]',
+  full: '',
+}
+const columnStyles: Record<Props['columnStyle'], string> = {
+  'body-lg': 'text-body-lg',
+  'body-md': 'text-body-md',
+  'body-md-medium': 'text-[1rem] leading-[21px] font-medium tracking-[-0.01em]',
+}
+const titleTones: Record<Props['titleTone'], string> = {
+  'neutral-900': 'text-neutral-900',
+  'neutral-800': 'text-neutral-800',
+}
+const linkTones: Record<Props['linkTone'], string> = {
+  brand: '[&_p_a]:text-brand-600',
+  text: '[&_p_a]:text-neutral-800',
+}
+const aligns: Record<Props['align'], { row: string; columns: string }> = {
+  center: { row: 'lg:items-center', columns: '' },
+  title: { row: 'lg:items-start', columns: columns.length > 1 ? 'lg:pt-[46px]' : 'lg:pt-[38px]' },
+}
+const linkStyle = [linkTones[linkTone], '[&_p_a]:underline [&_p_a]:underline-offset-2']
+---
+
+<div
+  class:list={[
+    'flex flex-col',
+    layout === 'split' ? ['gap-2 lg:flex-row lg:gap-5', aligns[align].row] : gaps[gap],
+    className,
+  ]}
+>
+  <div
+    class:list={['flex flex-col items-start', gaps[gap], layout === 'split' && 'lg:w-0 lg:flex-1']}
+  >
+    {tag && <Tag label={tag} tone="dark" />}
+    <Heading
+      class:list={[
+        'text-display-5 font-medium whitespace-pre-line',
+        titleTones[titleTone],
+        widths[width],
+      ]}
+    >
+      {title}
+    </Heading>
+    {subline && <p class="text-body-lg max-w-[624px] text-neutral-800">{subline}</p>}
+  </div>
+  {layout === 'stack' && columns.length > 0 && (
+    <div
+      class:list={[
+        'flex flex-col gap-5 text-neutral-800 lg:flex-row',
+        columnStyles[columnStyle],
+        linkStyle,
+      ]}
+    >
+      {columns.map((column) => (
+        <p class="lg:w-0 lg:flex-1" set:html={column} />
+      ))}
+    </div>
+  )}
+  {layout === 'stack' && actions.length > 0 && (
+    <div class="flex flex-wrap max-lg:mt-3">
+      {actions.map((action) => (
+        <Button {...action} newTab={false} />
+      ))}
+    </div>
+  )}
+  {layout === 'split' && (
+    <div
+      class:list={[
+        'flex flex-col gap-5 pt-2 text-neutral-800 lg:w-0 lg:flex-1 lg:flex-row',
+        aligns[align].columns,
+        columnStyles[columnStyle],
+        linkStyle,
+      ]}
+    >
+      {columns.map((column, index) => (
+        <div class="flex flex-col items-start gap-4 lg:w-0 lg:flex-1">
+          <p set:html={column} />
+          {index === columns.length - 1 &&
+            actions.map((action) => <Button {...action} newTab={false} />)}
+        </div>
+      ))}
+    </div>
+  )}
+</div>

@@ -1,0 +1,98 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+import Button from '../ui/Button.astro'
+import collageBiz from '../../assets/shared/collage-biz.webp'
+import collageThermalpower from '../../assets/shared/collage-thermalpower.webp'
+import collageWind from '../../assets/shared/collage-wind.webp'
+
+type Tone = 'brand-600' | 'brand-700' | 'brand-800' | 'brand-900' | 'light'
+type Collage = 'wind' | 'thermalpower' | 'biz'
+type Action = { label: string; href: string; emphasis: 'primary' | 'secondary'; newTab: boolean }
+
+interface Props {
+  tone: Tone
+  heading: string
+  lead: string | null
+  text: string
+  actions: Action[]
+  collage: Collage
+  breakout: boolean
+}
+
+const { tone, heading, lead, text, actions, collage, breakout } = Astro.props
+
+type Variants = Record<Action['emphasis'], 'tint' | 'outline-tint' | 'primary' | 'secondary'>
+
+const onRed: Variants = { primary: 'tint', secondary: 'outline-tint' }
+const onLight: Variants = { primary: 'primary', secondary: 'secondary' }
+
+const tones: Record<
+  Tone,
+  { panel: string; text: string; variants: Variants; theme: 'light' | 'dark' }
+> = {
+  'brand-600': { panel: 'bg-brand-600', text: 'text-neutral-100', variants: onRed, theme: 'light' },
+  'brand-700': { panel: 'bg-brand-700', text: 'text-neutral-100', variants: onRed, theme: 'light' },
+  'brand-800': { panel: 'bg-brand-800', text: 'text-neutral-100', variants: onRed, theme: 'light' },
+  'brand-900': { panel: 'bg-brand-900', text: 'text-neutral-100', variants: onRed, theme: 'light' },
+  light: { panel: 'bg-neutral-100', text: 'text-neutral-900', variants: onLight, theme: 'dark' },
+}
+
+const collages: Record<Collage, { src: ImageMetadata; position: string }> = {
+  wind: { src: collageWind, position: 'top-[-29.437%] left-[-4.416%] w-[104.416%]' },
+  thermalpower: { src: collageThermalpower, position: 'top-[-10.173%] left-0 w-full' },
+  biz: { src: collageBiz, position: 'top-0 left-0 w-full' },
+}
+
+const art = collages[collage]
+---
+
+<section class="max-w-page lg:px-gutter-lg mx-auto w-full">
+  <div
+    class:list={[
+      'flex flex-col gap-3 border-l border-neutral-100 lg:grid lg:min-h-[462px] lg:grid-cols-2 lg:items-center',
+      tones[tone].panel,
+      tones[tone].text,
+    ]}
+    data-header-theme={tones[tone].theme}
+  >
+    <div class="flex min-w-0 flex-col gap-3 p-10">
+      <h2 class="text-display-5 lg:text-display-3 max-w-[550px] font-medium whitespace-pre-line">
+        {heading}
+      </h2>
+      <div class="text-body-xl flex max-w-[550px] flex-col gap-[10px] pt-2 pb-6">
+        {lead && <p class="font-semibold">{lead}</p>}
+        <p>{text}</p>
+      </div>
+      <div class="flex flex-col items-start">
+        {actions.map((action) => (
+          <Button
+            href={action.href}
+            label={action.label}
+            variant={tones[tone].variants[action.emphasis]}
+            size="sm"
+            arrow={action.emphasis === 'primary'}
+            newTab={action.newTab}
+          />
+        ))}
+      </div>
+    </div>
+    <div
+      class:list={[
+        'relative aspect-[634/462] w-full min-w-0 lg:aspect-auto lg:self-stretch',
+        !breakout && 'overflow-hidden',
+      ]}
+    >
+      <div class="absolute inset-x-0 bottom-0 aspect-[634/462]">
+        <Image
+          src={art.src}
+          alt=""
+          widths={[412, 662, 824, 1324]}
+          sizes="(min-width: 1440px) 662px, (min-width: 1024px) 46vw, 105vw"
+          loading="lazy"
+          class:list={['pointer-events-none absolute h-auto max-w-none', art.position]}
+        />
+      </div>
+    </div>
+  </div>
+</section>

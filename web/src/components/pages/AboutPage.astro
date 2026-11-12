@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import DepartmentGrid from '../blocks/DepartmentGrid.astro'
+import ImageInfoCard from '../blocks/ImageInfoCard.astro'
+import PageHero from '../blocks/PageHero.astro'
+import Reveal from '../interactive/Reveal.astro'
+import ValueCard from '../cards/ValueCard.astro'
+import Button from '../ui/Button.astro'
+import SectionHeading from '../ui/SectionHeading.astro'
+import { loadAboutPage } from '../../data/about'
+import { departmentCard } from '../../data/departments'
+import { defaultLocale } from '../../i18n/config'
+
+const { meta, hero, intro, infoCards, departmentsHeading, featuredDepartments, values } =
+  await loadAboutPage(defaultLocale)
+const cards = featuredDepartments.map((department) => departmentCard(defaultLocale, department))
+const cardPlacement = ['self-start', 'self-end lg:mt-[145px] lg:self-start']
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="dark"
+>
+  <main id="main">
+    <PageHero
+      layout="photo-centered"
+      title={hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-5"
+      eyebrow={null}
+      lead={[]}
+      links={hero.links}
+      stats={null}
+      person={null}
+      image={hero.image}
+      background="brand-700"
+      ornament="none"
+      headerTheme="dark"
+    />
+    <div class="max-w-page px-gutter lg:px-gutter-lg mx-auto w-full">
+      <div class="border-l border-neutral-100">
+        <section id={intro.id} class="flex flex-col lg:flex-row">
+          <div class="flex flex-col items-start gap-3 pt-[240px] pr-5 pb-20 pl-[19px] lg:w-[49.18%] lg:shrink-0 lg:pt-[218px] lg:pr-10 lg:pl-[39px]">
+            <h2 class="text-display-5 font-medium text-neutral-900">{intro.statement}</h2>
+            <div class="text-body-md flex w-full flex-col gap-[10px] pt-2 text-neutral-800 lg:min-h-[161px] lg:flex-row">
+              {intro.paragraphs.map((paragraph) => (
+                <p class="lg:w-0 lg:flex-1">{paragraph}</p>
+              ))}
+            </div>
+            <div class="flex flex-col items-start">
+              {intro.actions.map((action) => (
+                <Button
+                  href={action.href}
+                  label={action.label}
+                  variant={action.variant}
+                  size="sm-tall"
+                  arrow={action.arrow}
+                  newTab={false}
+                />
+              ))}
+            </div>
+          </div>
+          <Reveal
+            axis="y"
+            order="index"
+            steps={[40, 30]}
+            easing="gentle"
+            duration={1.022}
+            delay={0}
+          >
+            <div class="flex min-w-0 flex-col gap-5 lg:flex-1 lg:flex-row lg:items-start lg:pt-[218px] lg:pl-5">
+              {infoCards.map((card, index) => (
+                <ImageInfoCard
+                  {...card}
+                  class={`w-[305px] lg:w-0 lg:max-w-[305px] lg:flex-1 ${cardPlacement[index]}`}
+                />
+              ))}
+            </div>
+          </Reveal>
+        </section>
+
+        <section>
+          <SectionHeading
+            layout="stack"
+            tag={departmentsHeading.tag}
+            title={departmentsHeading.title}
+            level="h2"
+            gap={12}
+            width="full"
+            titleTone="neutral-800"
+            linkTone="brand"
+            align="center"
+            subline={null}
+            columns={[]}
+            columnStyle="body-md"
+            actions={[]}
+            class="pt-[180px] pr-5 pb-10 pl-[19px] lg:pt-[140px]"
+          />
+          <Reveal
+            axis="x"
+            order="column"
+            steps={[0, -120]}
+            easing="gentle"
+            duration={1.022}
+            delay={0.3}
+          >
+            <DepartmentGrid cards={cards} class="-ml-px" />
+          </Reveal>
+        </section>
+
+        <section class="pb-[140px]">
+          <SectionHeading
+            layout="stack"
+            tag={values.tag}
+            title={values.title}
+            level="h2"
+            gap={8}
+            width="full"
+            titleTone="neutral-800"
+            linkTone="brand"
+            align="center"
+            subline={null}
+            columns={[values.subline]}
+            columnStyle="body-md"
+            actions={[]}
+            class="pt-[200px] pr-10 pb-5 pl-[19px] lg:pt-[160px]"
+          />
+          <Reveal
+            axis="y"
+            order="column"
+            steps={[0, 20, 40, 60, 80, 100]}
+            easing="ease-out"
+            duration={0.6}
+            delay={0}
+          >
+            <ul class="-ml-px grid grid-cols-2 gap-y-5 lg:grid-cols-6">
+              {values.items.map((value) => (
+                <li class="flex min-w-0" data-reveal>
+                  <ValueCard {...value} titleLines="auto" class="w-full" />
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

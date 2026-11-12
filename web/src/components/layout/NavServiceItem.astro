@@ -1,0 +1,45 @@
+---
+import Column from '../../icons/service-column.svg'
+import Engineer from '../../icons/service-engineer.svg'
+import Government from '../../icons/service-government.svg'
+import Monitor from '../../icons/service-monitor.svg'
+import Pylon from '../../icons/service-pylon.svg'
+import Research from '../../icons/service-research.svg'
+import type { NavServiceLink, ServiceIcon } from '../../data/navigation'
+import { focusRing } from './menuStyles'
+
+type Tone = 'dark' | 'light'
+
+interface Props {
+  link: NavServiceLink
+  tone: Tone
+}
+
+const { link, tone } = Astro.props
+
+const icons: Record<ServiceIcon, typeof Pylon> = {
+  pylon: Pylon,
+  government: Government,
+  engineer: Engineer,
+  column: Column,
+  research: Research,
+  monitor: Monitor,
+}
+
+const tones: Record<Tone, { title: string; text: string }> = {
+  dark: { title: 'text-neutral-950', text: 'text-neutral-900' },
+  light: { title: 'text-neutral-50', text: 'text-neutral-100' },
+}
+
+const Icon = icons[link.icon]
+---
+
+<a href={link.href} class:list={['flex gap-2 rounded-sm p-2', tones[tone].title, focusRing]}>
+  <span class:list={['flex w-4 shrink-0 items-center justify-center', tones[tone].text]}>
+    <Icon aria-hidden="true" />
+  </span>
+  <span class="flex min-w-0 flex-1 flex-col gap-1">
+    <span class="text-body-xs font-medium">{link.label}</span>
+    <span class:list={['text-body-2xs', tones[tone].text]}>{link.description}</span>
+  </span>
+</a>

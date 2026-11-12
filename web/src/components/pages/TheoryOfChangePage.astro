@@ -1,0 +1,131 @@
+---
+import type { SvgComponent } from 'astro/types'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ApproachIllustration from '../../assets/theory/approach.webp'
+import ApproachSteps from '../blocks/ApproachSteps.astro'
+import OutcomeMatrix from '../blocks/OutcomeMatrix.astro'
+import PageHero from '../blocks/PageHero.astro'
+import TeamGlobe from '../interactive/TeamGlobe.astro'
+import TheoryScrollScene from '../interactive/TheoryScrollScene.astro'
+import Tag from '../ui/Tag.astro'
+import { defaultLocale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import BookOpenReader from '../../icons/book-open-reader.svg'
+import BoxConnection from '../../icons/box-connection.svg'
+import CodeFork from '../../icons/code-fork.svg'
+import CodeMerge from '../../icons/code-merge.svg'
+import Employees from '../../icons/employees.svg'
+import LinkHorizontal from '../../icons/link-horizontal.svg'
+import MedicalStar from '../../icons/medical-star.svg'
+import PeopleGroup from '../../icons/people-group.svg'
+import ReferralAlt from '../../icons/referral-alt.svg'
+import Tools from '../../icons/tools.svg'
+import { loadTheoryPage, type GlobeIcon, type OutcomeIcon } from '../../data/theory-of-change'
+
+const { meta, hero, scene, approach, outcomes, impact, globe } = await loadTheoryPage(defaultLocale)
+
+const outcomeIcons: Record<OutcomeIcon, SvgComponent> = {
+  'medical-star': MedicalStar,
+  employees: Employees,
+  'referral-alt': ReferralAlt,
+  'book-open-reader': BookOpenReader,
+}
+const globeIcons: Record<GlobeIcon, SvgComponent> = {
+  'code-merge': CodeMerge,
+  'code-fork': CodeFork,
+  'people-group': PeopleGroup,
+  'link-horizontal': LinkHorizontal,
+  'box-connection': BoxConnection,
+  tools: Tools,
+}
+const columns = outcomes.columns.map((column) => ({ ...column, icon: outcomeIcons[column.icon] }))
+const pins = globe.pins.map((pin) => ({ ...pin, icon: globeIcons[pin.icon] }))
+const gutter = 'mx-gutter border-l border-neutral-100 lg:mx-0 lg:border-l-0'
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="centered-dark"
+      title={hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-5"
+      eyebrow={null}
+      lead={hero.lead}
+      links={hero.links}
+      stats={null}
+      person={null}
+      image={hero.image}
+      background="neutral-900"
+      ornament="none"
+      headerTheme="light"
+    />
+
+    <TheoryScrollScene
+      id={scene.id}
+      challenge={scene.challenge}
+      goal={scene.goal}
+      values={scene.values}
+    />
+
+    <div class="max-w-page lg:px-gutter-lg mx-auto w-full">
+      <div class="relative z-10 lg:before:pointer-events-none lg:before:absolute lg:before:top-0 lg:before:-bottom-[118px] lg:before:left-0 lg:before:border-l lg:before:border-neutral-100">
+        <section class="lg:pt-40 lg:pb-20">
+          <div
+            class:list={[
+              gutter,
+              'flex flex-col items-center gap-3 pt-[180px] pb-10 pl-5 text-center font-medium lg:gap-5 lg:border-r lg:px-3 lg:py-5',
+            ]}
+          >
+            <span class="lg:hidden">
+              <Tag label={approach.mobileTag} tone="dark" />
+            </span>
+            <h2 class="text-display-5 w-full text-neutral-800 lg:text-neutral-900">
+              {approach.title}
+            </h2>
+            <p class="text-heading-2 w-full text-neutral-900">{approach.subline}</p>
+          </div>
+          <ApproachSteps
+            columns={5}
+            steps={approach.steps}
+            illustration={ApproachIllustration}
+            mobile="scroll"
+            class="break-words"
+          />
+        </section>
+
+        <section class="lg:pt-10">
+          <h2
+            class:list={[
+              gutter,
+              'text-display-5 pt-[180px] pb-10 pl-5 text-center font-medium text-neutral-800 lg:px-10 lg:pt-20 lg:pb-0 lg:text-neutral-900',
+            ]}
+          >
+            {outcomes.title}
+          </h2>
+          <OutcomeMatrix label={t(defaultLocale, 'matrix.label')} columns={columns} />
+        </section>
+
+        <section
+          class:list={[
+            gutter,
+            'flex flex-col gap-3 pt-[180px] pb-10 pl-5 font-medium lg:items-center lg:gap-5 lg:px-10 lg:pt-[237px] lg:pb-0',
+          ]}
+        >
+          <h2 class="text-display-5 w-full text-center text-neutral-800 lg:w-[550px] lg:text-left lg:text-neutral-900">
+            {impact.title}
+          </h2>
+          <p class="text-heading-3 w-full text-neutral-600 lg:w-[550px]">{impact.text}</p>
+        </section>
+      </div>
+    </div>
+
+    <TeamGlobe variant="decorative" view={globe.view} pins={pins} />
+  </main>
+</BaseLayout>

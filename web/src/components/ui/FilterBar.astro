@@ -1,0 +1,34 @@
+---
+import type { ComponentProps } from 'astro/types'
+import type { Locale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import SortControl from './SortControl.astro'
+
+type Option = { value: string; label: string }
+type Filter = { id: string; facet: string; label: string; options: Option[]; selected: string }
+
+interface Props {
+  locale: Locale
+  filters: Filter[]
+  sort: Omit<ComponentProps<typeof SortControl>, 'icon' | 'align' | 'listing' | 'class'> | null
+}
+
+const { locale, filters, sort } = Astro.props
+---
+
+<div role="group" aria-label={t(locale, 'filter.group')} class="flex flex-wrap pt-px pl-px">
+  {filters.map((filter) => (
+    <SortControl
+      id={filter.id}
+      label={filter.label}
+      prefix={null}
+      icon="chevron"
+      options={filter.options}
+      selected={filter.selected}
+      align="left"
+      listing={{ facet: filter.facet }}
+      class="-mt-px -ml-px"
+    />
+  ))}
+  {sort && <SortControl {...sort} icon="sort" align="right" listing="sort" class="-mt-px -ml-px" />}
+</div>

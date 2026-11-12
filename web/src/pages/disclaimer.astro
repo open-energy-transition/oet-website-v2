@@ -1,0 +1,12 @@
+---
+import LegalPage from '../components/pages/LegalPage.astro'
+import { loadLegalPage } from '../data/legal'
+import { locales } from '../i18n/config'
+
+const locale = locales.find((code) => code === Astro.currentLocale)
+if (!locale) throw new Error(`Unsupported locale: ${Astro.currentLocale}`)
+
+const content = await loadLegalPage(locale, 'disclaimer')
+---
+
+<LegalPage content={content} />

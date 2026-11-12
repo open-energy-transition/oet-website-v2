@@ -1,0 +1,131 @@
+---
+import type { SvgComponent } from 'astro/types'
+
+type Tone = 'brand-400' | 'brand-500' | 'brand-800' | 'brand-900'
+
+interface Column {
+  output: string
+  description: string
+  outcome: string
+  icon: SvgComponent
+  tone: Tone
+}
+
+interface Props {
+  label: string
+  columns: Column[]
+  class?: string
+}
+
+const { label, columns, class: className } = Astro.props
+
+if (columns.length !== 4) throw new Error(`OutcomeMatrix needs 4 columns, got ${columns.length}`)
+
+const tones: Record<Tone, string> = {
+  'brand-400': 'text-brand-400',
+  'brand-500': 'text-brand-500',
+  'brand-800': 'text-brand-800',
+  'brand-900': 'text-brand-900',
+}
+
+const cell = 'border-x border-neutral-100 px-[11px] text-neutral-800'
+const rule = 'pointer-events-none absolute inset-x-0 h-[2px] bg-neutral-100'
+
+const places: [string, string, string][] = [
+  [
+    'max-lg:col-start-1 max-lg:row-start-1',
+    'max-lg:col-start-1 max-lg:row-start-2',
+    'max-lg:col-start-1 max-lg:row-start-3',
+  ],
+  [
+    'max-lg:col-start-2 max-lg:row-start-1',
+    'max-lg:col-start-2 max-lg:row-start-2',
+    'max-lg:col-start-2 max-lg:row-start-3',
+  ],
+  [
+    'max-lg:col-start-1 max-lg:row-start-4',
+    'max-lg:col-start-1 max-lg:row-start-5',
+    'max-lg:col-start-1 max-lg:row-start-6',
+  ],
+  [
+    'max-lg:col-start-2 max-lg:row-start-4',
+    'max-lg:col-start-2 max-lg:row-start-5',
+    'max-lg:col-start-2 max-lg:row-start-6',
+  ],
+]
+---
+
+<oet-outcome-matrix class:list={['block', className]} role="region" aria-label={label}>
+  <div class="relative border-neutral-100 before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:border-l before:border-neutral-100 lg:border-l lg:py-20 lg:before:hidden">
+    <ul class="grid grid-cols-2 grid-rows-[120px_281px_120px_120px_281px_120px] px-5 lg:grid-flow-col lg:grid-cols-4 lg:grid-rows-[120px_auto_120px] lg:px-10">
+      {columns.map((column, index) => (
+        <li class="contents">
+          <div class:list={['flex flex-col gap-1 py-5', cell, places[index][0]]}>
+            <h3 class="text-body-lg font-semibold">{column.output}</h3>
+            <p class="text-body-sm">{column.description}</p>
+          </div>
+          <div
+            class:list={[
+              'matrix-middle flex items-center justify-center overflow-clip',
+              cell,
+              places[index][1],
+            ]}
+          >
+            <column.icon class:list={['size-12', tones[column.tone]]} aria-hidden="true" />
+          </div>
+          <p class:list={['text-body-lg flex items-center font-medium', cell, places[index][2]]}>
+            {column.outcome}
+          </p>
+        </li>
+      ))}
+    </ul>
+    <span class:list={[rule, 'top-[119px] lg:top-[199px]']}></span>
+    <span class:list={[rule, 'top-[400px] lg:top-auto lg:bottom-[199px]']}></span>
+    <span class:list={[rule, 'top-[640px] lg:hidden']}></span>
+    <span class:list={[rule, 'top-[921px] lg:hidden']}></span>
+  </div>
+</oet-outcome-matrix>
+
+<style>
+  .matrix-middle {
+    height: 281px;
+    transition: height 0.5s ease-out;
+  }
+
+  .matrix-middle :global(svg) {
+    transition: opacity 0.5s ease-out;
+  }
+
+  oet-outcome-matrix[data-collapsed] .matrix-middle {
+    height: 41px;
+  }
+
+  oet-outcome-matrix[data-collapsed] .matrix-middle :global(svg) {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  class OutcomeMatrix extends HTMLElement {
+    connectedCallback() {
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      this.setAttribute('data-collapsed', '')
+      const expand = () => {
+        this.removeAttribute('data-collapsed')
+        observer.disconnect()
+        this.removeEventListener('pointerenter', expand)
+      }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) expand()
+        },
+        { threshold: 0.6 },
+      )
+      observer.observe(this)
+      this.addEventListener('pointerenter', expand)
+    }
+  }
+
+  customElements.define('oet-outcome-matrix', OutcomeMatrix)
+</script>

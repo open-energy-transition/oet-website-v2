@@ -1,0 +1,417 @@
+---
+import type { ImageMetadata } from 'astro'
+import type { ComponentProps } from 'astro/types'
+import { getImage } from 'astro:assets'
+import HeroStatBar from './HeroStatBar.astro'
+import { pageHeroSources } from '../layout/heroSources'
+import PersonBadge from '../ui/PersonBadge.astro'
+import ResponsiveText from '../ui/ResponsiveText.astro'
+
+type CenteredLayout = 'photo-centered' | 'centered-dark'
+type BottomLayout = 'map-bottom-left' | 'listing'
+type LeftLayout = 'photo-left' | 'map-left' | 'illustration-left'
+type Layout = CenteredLayout | BottomLayout | LeftLayout
+type ChipsBottom = 30 | 42 | 62
+type TextLeft = 80 | 96
+type MobileAnchor = 'bottom-30' | 'bottom-50' | 'top-180'
+type Background = 'brand-600' | 'brand-700' | 'brand-800' | 'brand-900' | 'neutral-900'
+type Ornament =
+  | 'none'
+  | 'left-upper'
+  | 'left-middle'
+  | 'right-upper'
+  | 'right-lower'
+  | 'right-bottom'
+  | 'photo-both-sides'
+  | 'photo-right'
+  | 'department-index'
+  | 'department'
+  | 'department-inverse'
+type Block = { side: 'left' | 'right'; x: number; y: number; w: number; h: number; color: string }
+type Link = { label: string; href: string }
+
+type Placement =
+  | { layout: CenteredLayout }
+  | { layout: BottomLayout; chipsBottomMobile: ChipsBottom }
+  | { layout: LeftLayout; textLeft: TextLeft; mobileAnchor: MobileAnchor }
+
+interface Common {
+  title: ComponentProps<typeof ResponsiveText>['text']
+  titleSize: 'display-2' | 'display-3'
+  titleSizeMobile: 'display-3' | 'display-5'
+  eyebrow: { label: string; mobile: boolean } | null
+  lead: string[]
+  links: Link[]
+  stats: ComponentProps<typeof HeroStatBar> | null
+  person: ComponentProps<typeof PersonBadge> | null
+  image: { desktop: ImageMetadata; mobile: ImageMetadata }
+  background: Background
+  ornament: Ornament
+  headerTheme: 'light' | 'dark'
+}
+
+type Props = Common & Placement
+
+const props = Astro.props
+const {
+  layout,
+  title,
+  titleSize,
+  titleSizeMobile,
+  eyebrow,
+  lead,
+  links,
+  stats,
+  person,
+  image,
+  background,
+  ornament,
+  headerTheme,
+} = props
+
+const ornaments: Record<Ornament, { desktop: Block[]; mobile: Block[] }> = {
+  none: { desktop: [], mobile: [] },
+  'left-upper': {
+    desktop: [
+      { side: 'left', x: 134.6, y: 255.3, w: 55.3, h: 17.7, color: '#381d21' },
+      { side: 'left', x: 0, y: 237.7, w: 66.1, h: 17.7, color: '#ff3138' },
+      { side: 'left', x: 66.1, y: 220, w: 66.1, h: 17.7, color: '#ffffff' },
+    ],
+    mobile: [
+      { side: 'left', x: 134.6, y: 255.3, w: 55.3, h: 17.7, color: '#381d21' },
+      { side: 'left', x: 0, y: 237.7, w: 66.1, h: 17.7, color: '#ff3138' },
+      { side: 'left', x: 66.1, y: 220, w: 66.1, h: 17.7, color: '#ffffff' },
+    ],
+  },
+  'left-middle': {
+    desktop: [
+      { side: 'left', x: 186.4, y: 341.7, w: 76.6, h: 24.5, color: '#5d494b' },
+      { side: 'left', x: 0, y: 317.3, w: 91.5, h: 24.5, color: '#ff2e35' },
+      { side: 'left', x: 91.5, y: 292.8, w: 91.5, h: 24.5, color: '#ffffff' },
+    ],
+    mobile: [
+      { side: 'left', x: 121.9, y: 337.5, w: 50.1, h: 16, color: '#5e494c' },
+      { side: 'left', x: 0, y: 321.5, w: 59.9, h: 16, color: '#ff2f35' },
+      { side: 'left', x: 59.9, y: 305.5, w: 59.9, h: 16, color: '#ffffff' },
+    ],
+  },
+  'right-upper': {
+    desktop: [
+      { side: 'right', x: 0.1, y: 205.3, w: 55.3, h: 17.7, color: '#ffffff' },
+      { side: 'right', x: 123.9, y: 187.7, w: 66.1, h: 17.7, color: '#ff3138' },
+      { side: 'right', x: 57.8, y: 170, w: 66.1, h: 17.7, color: '#ffffff' },
+    ],
+    mobile: [
+      { side: 'right', x: 0.1, y: 205.3, w: 55.3, h: 17.7, color: '#ffffff' },
+      { side: 'right', x: 123.9, y: 187.7, w: 66.1, h: 17.7, color: '#ff3138' },
+      { side: 'right', x: 57.8, y: 170, w: 66.1, h: 17.7, color: '#ffffff' },
+    ],
+  },
+  'right-lower': {
+    desktop: [
+      { side: 'right', x: 0, y: 634.9, w: 76.6, h: 24.5, color: '#1a0103' },
+      { side: 'right', x: 171.5, y: 610.5, w: 91.5, h: 24.5, color: '#e01219' },
+      { side: 'right', x: 80, y: 586, w: 91.5, h: 24.5, color: '#e3e3e3' },
+    ],
+    mobile: [],
+  },
+  'right-bottom': {
+    desktop: [
+      { side: 'right', x: 0.1, y: 720.3, w: 55.3, h: 17.7, color: '#73716f' },
+      { side: 'right', x: 123.9, y: 702.7, w: 66.1, h: 17.7, color: '#ff3138' },
+      { side: 'right', x: 57.8, y: 685, w: 66.1, h: 17.7, color: '#ffffff' },
+    ],
+    mobile: [
+      { side: 'right', x: 68.9, y: 390.7, w: 66.1, h: 17.7, color: '#ff3138' },
+      { side: 'right', x: 2.8, y: 373, w: 66.1, h: 17.7, color: '#ffffff' },
+    ],
+  },
+  'photo-both-sides': {
+    desktop: [
+      { side: 'right', x: 65.6, y: 473.6, w: 110.4, h: 29.6, color: '#e0c6c2' },
+      { side: 'right', x: 0, y: 444, w: 65.6, h: 29.6, color: '#e01d1d' },
+      { side: 'left', x: 43.6, y: 452, w: 92.4, h: 29.6, color: '#301d1d' },
+      { side: 'left', x: 0, y: 393, w: 34.8, h: 29.6, color: '#e12121' },
+    ],
+    mobile: [],
+  },
+  'photo-right': {
+    desktop: [
+      { side: 'right', x: 0, y: 390, w: 92.4, h: 29.6, color: '#321e1e' },
+      { side: 'right', x: 211.6, y: 360.6, w: 110.4, h: 29.6, color: '#e1c8c2' },
+      { side: 'right', x: 101.2, y: 331, w: 110.4, h: 29.6, color: '#e21e1e' },
+    ],
+    mobile: [],
+  },
+  'department-index': {
+    desktop: [
+      { side: 'right', x: 0, y: 517.7, w: 80, h: 35.3, color: '#ff3138' },
+      { side: 'right', x: 222.8, y: 482.4, w: 132.2, h: 35.4, color: '#ffffff' },
+      { side: 'right', x: 90.6, y: 447, w: 132.2, h: 35.4, color: '#1e1e1e' },
+    ],
+    mobile: [],
+  },
+  department: {
+    desktop: [
+      { side: 'right', x: 0, y: 391.7, w: 80, h: 35.4, color: '#ff3138' },
+      { side: 'right', x: 222.8, y: 356.4, w: 132.2, h: 35.4, color: '#ffffff' },
+      { side: 'right', x: 90.6, y: 321, w: 132.2, h: 35.4, color: '#1e1e1e' },
+    ],
+    mobile: [],
+  },
+  'department-inverse': {
+    desktop: [
+      { side: 'right', x: 0, y: 391.7, w: 80, h: 35.4, color: '#ffffff' },
+      { side: 'right', x: 222.8, y: 356.4, w: 132.2, h: 35.4, color: '#1e1e1e' },
+      { side: 'right', x: 90.6, y: 321, w: 132.2, h: 35.4, color: '#ff3138' },
+    ],
+    mobile: [],
+  },
+}
+
+const group: Record<Layout, 'centered' | 'bottom' | 'left'> = {
+  'photo-centered': 'centered',
+  'centered-dark': 'centered',
+  'map-bottom-left': 'bottom',
+  listing: 'bottom',
+  'photo-left': 'left',
+  'map-left': 'left',
+  'illustration-left': 'left',
+}
+
+const backgrounds: Record<Background, string> = {
+  'brand-600': 'bg-brand-600',
+  'brand-700': 'bg-brand-700',
+  'brand-800': 'bg-brand-800',
+  'brand-900': 'bg-brand-900',
+  'neutral-900': 'bg-neutral-900',
+}
+
+const titleSizes: Record<Common['titleSize'], string> = {
+  'display-2': 'lg:text-display-2',
+  'display-3': 'lg:text-display-3',
+}
+
+const titleSizesMobile: Record<Common['titleSizeMobile'], string> = {
+  'display-3': 'text-display-3',
+  'display-5': 'text-display-5',
+}
+
+const screenHeight = 'h-[800px] lg:h-[clamp(560px,calc(100svh_-_40px),780px)]'
+const leftHeight =
+  person === null
+    ? 'min-h-[573px] lg:h-[553px] lg:min-h-0'
+    : 'min-h-[676px] lg:h-[553px] lg:min-h-0'
+const heights: Record<Layout, string> = {
+  'photo-centered': 'h-[800px] lg:h-[780px]',
+  'centered-dark': screenHeight,
+  'map-bottom-left': screenHeight,
+  listing: screenHeight,
+  'photo-left': leftHeight,
+  'map-left': leftHeight,
+  'illustration-left': leftHeight,
+}
+
+const chipsBottoms: Record<ChipsBottom, string> = {
+  30: 'bottom-[30px] lg:bottom-[42px]',
+  42: 'bottom-[42px]',
+  62: 'bottom-[62px] lg:bottom-[42px]',
+}
+
+const textLefts: Record<TextLeft, string> = {
+  80: 'lg:left-[calc(max(0px,50%_-_700px)_+_80px)]',
+  96: 'lg:left-[calc(max(0px,50%_-_700px)_+_96px)]',
+}
+
+const mobileAnchors: Record<MobileAnchor, { block: string; text: string }> = {
+  'bottom-30': { block: 'justify-end pt-[110px] pb-[30px]', text: 'lg:flex-1' },
+  'bottom-50': { block: 'justify-end pt-[110px] pb-[50px]', text: 'lg:flex-1' },
+  'top-180': { block: 'justify-start pt-[180px] pb-[30px]', text: 'flex-1' },
+}
+
+const kind = group[layout]
+const titleClass = [
+  titleSizesMobile[titleSizeMobile],
+  titleSizes[titleSize],
+  'font-medium whitespace-pre-line',
+]
+const chip =
+  'text-body-xl inline-flex items-center justify-center border border-[rgba(236,236,236,0.32)] bg-black/2 px-[11px] py-[11px] font-medium whitespace-nowrap text-white backdrop-blur-[4px] transition-colors hover:bg-white/12'
+
+const sources = await pageHeroSources(image)
+const base = await getImage({ src: image.desktop, format: 'webp', width: 1400 })
+
+const blockStyle = (block: Block, anchor: 'top' | 'bottom') =>
+  `${block.side}:${block.x}px;${anchor === 'top' ? `top:${block.y}px` : `bottom:${780 - block.y - block.h}px`};width:${block.w}px;height:${block.h}px;background-color:${block.color}`
+---
+
+<div
+  class:list={[
+    'bg-brand-500 shadow-[0_0_40px_var(--color-brand-500)] lg:px-5 lg:pt-5',
+    kind === 'left' ? 'pb-5' : 'pb-[22px]',
+  ]}
+>
+  <section
+    class:list={[
+      'relative isolate flex overflow-hidden rounded-md',
+      backgrounds[background],
+      heights[layout],
+    ]}
+    data-header-theme={headerTheme}
+  >
+    <picture>
+      {sources.map((source) => (
+        <source {...source} />
+      ))}
+      <img
+        src={base.src}
+        alt=""
+        width={image.desktop.width}
+        height={image.desktop.height}
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-0 -z-20 size-full object-cover"
+      />
+    </picture>
+    <div class="absolute inset-0 -z-10 hidden lg:block" aria-hidden="true">
+      {ornaments[ornament].desktop.map((block) => (
+        <span class="absolute" style={blockStyle(block, kind === 'bottom' ? 'bottom' : 'top')} />
+      ))}
+    </div>
+    <div class="absolute inset-0 -z-10 lg:hidden" aria-hidden="true">
+      {ornaments[ornament].mobile.map((block) => (
+        <span class="absolute" style={blockStyle(block, 'top')} />
+      ))}
+    </div>
+
+    {kind === 'centered' && (
+      <div
+        class:list={[
+          'flex w-full flex-col items-center px-5 text-center',
+          layout === 'centered-dark' && 'lg:pt-[92px] lg:pb-[90px]',
+        ]}
+      >
+        <div
+          class:list={[
+            'flex flex-col items-center gap-10',
+            layout === 'photo-centered'
+              ? 'absolute inset-x-5 top-[188px] lg:top-auto lg:bottom-[512px]'
+              : 'pt-[228px] lg:my-auto lg:pt-0',
+          ]}
+        >
+          <h1
+            class:list={[
+              titleClass,
+              'max-w-[874px]',
+              layout === 'photo-centered' ? 'text-brand-950' : 'text-neutral-50',
+            ]}
+          >
+            <ResponsiveText text={title} />
+          </h1>
+          {lead.length > 0 && (
+            <div class="text-body-lg flex max-w-[650px] flex-col gap-5 text-neutral-50 lg:flex-row lg:text-left">
+              {lead.map((paragraph) => (
+                <p class="lg:flex-1">{paragraph}</p>
+              ))}
+            </div>
+          )}
+        </div>
+        <div class="absolute inset-x-5 bottom-[61px] flex flex-wrap justify-center lg:bottom-[42px]">
+          {links.map((link) => (
+            <a href={link.href} class={chip}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {(props.layout === 'map-bottom-left' || props.layout === 'listing') && (
+      <div
+        class:list={[
+          'absolute inset-x-5 flex flex-col items-start lg:right-auto lg:left-[calc(max(0px,50%_-_700px)_+_40px)] lg:w-[650px]',
+          chipsBottoms[props.chipsBottomMobile],
+        ]}
+      >
+        {eyebrow && (
+          <p
+            class:list={[
+              'text-heading-4 mb-4 font-medium text-white',
+              !eyebrow.mobile && 'max-lg:hidden',
+            ]}
+          >
+            {eyebrow.label}
+          </p>
+        )}
+        <h1 class:list={[titleClass, 'mb-[22px] text-white']}>
+          <ResponsiveText text={title} />
+        </h1>
+        <div class="flex flex-wrap">
+          {links.map((link) => (
+            <a href={link.href} class={chip}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {(props.layout === 'photo-left' ||
+      props.layout === 'map-left' ||
+      props.layout === 'illustration-left') && (
+      <div
+        class:list={[
+          'flex w-full flex-col gap-4 px-5 lg:absolute lg:top-[160px] lg:bottom-[30px] lg:w-[650px] lg:justify-start lg:p-0 lg:pr-10',
+          mobileAnchors[props.mobileAnchor].block,
+          textLefts[props.textLeft],
+        ]}
+      >
+        <div
+          class:list={[
+            'flex flex-col gap-4 pb-3',
+            mobileAnchors[props.mobileAnchor].text,
+            layout === 'illustration-left' && 'lg:justify-end',
+          ]}
+        >
+          {eyebrow && (
+            <p
+              class:list={[
+                'text-heading-4 font-medium text-white',
+                !eyebrow.mobile && 'max-lg:hidden',
+              ]}
+            >
+              {eyebrow.label}
+            </p>
+          )}
+          <h1 class:list={[titleClass, 'text-white']}>
+            <ResponsiveText text={title} />
+          </h1>
+          {lead.length > 0 && (
+            <div
+              class:list={[
+                'flex flex-col gap-[1lh] text-neutral-50',
+                layout === 'illustration-left' ? 'text-body-md lg:text-body-xl' : 'text-body-md',
+              ]}
+            >
+              {lead.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+          )}
+        </div>
+        {stats && <HeroStatBar {...stats} />}
+        {person && (
+          <div class="lg:hidden">
+            <PersonBadge {...person} />
+          </div>
+        )}
+      </div>
+    )}
+    {kind === 'left' && person && (
+      <div class="absolute right-[calc(max(0px,50%_-_700px)_+_80px)] bottom-[30px] hidden lg:block">
+        <PersonBadge {...person} />
+      </div>
+    )}
+  </section>
+</div>

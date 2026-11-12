@@ -1,0 +1,60 @@
+---
+import type { Locale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import CloseSmall from '../../icons/close-small.svg'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+---
+
+<oet-team-profile>
+  <dialog
+    class="m-auto max-h-[calc(100dvh-40px)] w-[calc(100%-40px)] max-w-[846px] overflow-y-auto border border-neutral-100 bg-neutral-50 p-5 drop-shadow-[0_12px_10px_rgba(0,0,0,0.12)] backdrop:bg-white/44"
+    aria-labelledby="team-profile-title"
+  >
+    <div class="flex justify-end">
+      <button
+        type="button"
+        data-profile-close
+        aria-label={t(locale, 'team.profile.close')}
+        class="text-brand-500 relative flex size-4 cursor-pointer items-center justify-center before:absolute before:-inset-1"
+      >
+        <CloseSmall class="size-[9px]" aria-hidden="true" />
+      </button>
+    </div>
+    <div data-profile-body></div>
+  </dialog>
+</oet-team-profile>
+
+<script>
+  class OetTeamProfile extends HTMLElement {
+    connectedCallback() {
+      const dialog = this.querySelector('dialog')!
+      const body = this.querySelector<HTMLElement>('[data-profile-body]')!
+      let opener: HTMLElement | null = null
+      document.addEventListener('click', (event) => {
+        const button = (event.target as Element).closest<HTMLElement>('[data-profile-open]')
+        if (button === null) return
+        const template = button
+          .closest('article')!
+          .querySelector<HTMLTemplateElement>('template[data-profile]')!
+        body.replaceChildren(document.importNode(template.content, true))
+        body.querySelector('[data-profile-title]')!.id = 'team-profile-title'
+        opener = button
+        dialog.showModal()
+      })
+      this.querySelector('[data-profile-close]')!.addEventListener('click', () => dialog.close())
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) dialog.close()
+      })
+      dialog.addEventListener('close', () => {
+        body.replaceChildren()
+        opener?.focus()
+      })
+    }
+  }
+  customElements.define('oet-team-profile', OetTeamProfile)
+</script>

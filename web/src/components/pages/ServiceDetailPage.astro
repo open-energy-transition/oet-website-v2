@@ -1,0 +1,222 @@
+---
+import { Image } from 'astro:assets'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ApproachSteps from '../../components/blocks/ApproachSteps.astro'
+import CardCarousel from '../../components/blocks/CardCarousel.astro'
+import CtaBanner from '../../components/blocks/CtaBanner.astro'
+import IntroStatement from '../../components/blocks/IntroStatement.astro'
+import OfferingList from '../../components/blocks/OfferingList.astro'
+import PageHero from '../../components/blocks/PageHero.astro'
+import ProjectCard from '../../components/cards/ProjectCard.astro'
+import ValueCard from '../../components/cards/ValueCard.astro'
+import SectionHeading from '../../components/ui/SectionHeading.astro'
+import { type Service, type ServiceShared } from '../../data/services'
+import { defaultLocale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import UserHeadset from '../../icons/user-headset.svg'
+
+interface Props {
+  service: Service
+  shared: ServiceShared
+}
+
+const { service, shared } = Astro.props
+const { eyebrow, approach, ctaActions } = shared
+const locale = defaultLocale
+const { meta, hero, intro, offerings, values, related, cta } = service
+
+const valueColumns: Record<Service['values']['columns'], string> = {
+  5: 'lg:grid-cols-5',
+  6: 'lg:grid-cols-6',
+}
+
+const container = 'max-w-page px-gutter lg:px-gutter-lg mx-auto w-full'
+const rail =
+  'relative isolate before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:-z-10 before:border-l before:border-neutral-100'
+const railDesktop =
+  'relative isolate lg:before:pointer-events-none lg:before:absolute lg:before:inset-y-0 lg:before:left-0 lg:before:-z-10 lg:before:border-l lg:before:border-neutral-100'
+const topRuleDesktop = 'lg:shadow-[inset_0_1px_0_var(--color-neutral-100)]'
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: hero.image.desktop, type: 'article' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="illustration-left"
+      title={hero.title}
+      titleSize="display-3"
+      titleSizeMobile="display-3"
+      eyebrow={eyebrow}
+      lead={[hero.lead]}
+      links={[]}
+      stats={{ groups: [[{ kind: 'icon', icon: UserHeadset, tone: 'brand' }]], action: null }}
+      person={null}
+      image={hero.image}
+      background={hero.background}
+      textLeft={80}
+      mobileAnchor="bottom-30"
+      ornament="none"
+      headerTheme="light"
+    />
+
+    <IntroStatement
+      variant="service"
+      tag={intro.tag}
+      title={intro.title}
+      paragraphs={intro.paragraphs}
+      actions={[]}
+    >
+      <Image
+        slot="media"
+        src={intro.image}
+        alt={intro.alt}
+        widths={[412, 630, 824, 1260]}
+        sizes="(min-width: 1440px) 630px, (min-width: 1024px) calc(50vw - 90px), 100vw"
+        loading="lazy"
+        class="size-full object-cover"
+      />
+    </IntroStatement>
+
+    <section class="max-w-page lg:px-gutter-lg mx-auto w-full">
+      <div class:list={[railDesktop, 'lg:pt-[160px] lg:pb-10']}>
+        <OfferingList tag={offerings.tag} title={offerings.title} items={offerings.items} />
+      </div>
+    </section>
+
+    <div class={container}>
+      <div
+        class:list={[
+          rail,
+          'flex flex-col gap-5 pt-[180px] pb-[140px] lg:gap-0 lg:pt-20 lg:pb-[160px]',
+        ]}
+      >
+        <section>
+          <SectionHeading
+            layout="stack"
+            tag={values.tag}
+            title={values.title}
+            level="h2"
+            gap="8/12"
+            width="full"
+            titleTone="neutral-900"
+            linkTone="brand"
+            align="center"
+            subline={null}
+            columns={[]}
+            columnStyle="body-md"
+            actions={[]}
+            class="pr-10 pb-5 pl-5 lg:px-5 lg:pb-10"
+          />
+          <ul
+            class:list={[
+              'grid grid-cols-2 items-start gap-y-5 lg:p-5',
+              topRuleDesktop,
+              valueColumns[values.columns],
+            ]}
+          >
+            {values.items.map((value) => (
+              <li class="flex min-w-0">
+                <ValueCard
+                  thumbnail={value.thumbnail}
+                  thumbnailMobile={value.thumbnailMobile}
+                  label={value.label}
+                  title={value.title}
+                  body={value.body}
+                  titleLines="auto"
+                  class="w-full"
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {service.approach !== null && (
+          <section class="py-20 pl-5 lg:pb-10 lg:pl-0">
+            <SectionHeading
+              layout="split"
+              tag={service.approach.tag}
+              title={service.approach.title}
+              level="h2"
+              gap="8/12"
+              width="full"
+              titleTone="neutral-900"
+              linkTone="brand"
+              align="title"
+              subline={null}
+              columns={service.approach.paragraphs}
+              columnStyle="body-md"
+              actions={[]}
+              class="lg:px-5"
+            />
+            <ApproachSteps
+              columns={4}
+              steps={approach.steps}
+              illustration={approach.illustration}
+              mobile="scroll"
+              class="pt-[52px] lg:pt-10"
+            />
+          </section>
+        )}
+
+        <section>
+          <CardCarousel
+            label={t(locale, 'sidebar.relatedProjects')}
+            header="above"
+            controls="none"
+            gap={20}
+            bleed="gutter"
+            trailing="flush"
+            locale={locale}
+          >
+            <h2
+              slot="header"
+              class="text-display-5 pt-5 pr-10 pb-10 pl-5 font-medium text-neutral-900 lg:p-5 lg:py-10"
+            >
+              {t(locale, 'sidebar.relatedProjects')}
+            </h2>
+            {related.map((project) => (
+              <li class="shrink-0 snap-start">
+                <ProjectCard
+                  title={project.title}
+                  titleLines={2}
+                  excerpt={project.excerpt}
+                  period={project.period}
+                  href={project.href}
+                  linkLabel={t(locale, 'card.viewProject')}
+                  image={project.image}
+                  alt={project.alt}
+                  sizes="367px"
+                  frame={project.frame}
+                  mobileFrame="scaled"
+                  height="natural"
+                  partnerTag={project.partnerTag}
+                  partnerLink={null}
+                  footer="when-partner"
+                  class="w-[406.67px]"
+                />
+              </li>
+            ))}
+          </CardCarousel>
+        </section>
+      </div>
+    </div>
+
+    <CtaBanner
+      tone={cta.background}
+      heading={cta.heading}
+      lead={null}
+      text={cta.text}
+      actions={ctaActions}
+      collage={cta.collage}
+      breakout
+    />
+    <div class:list={[container, 'hidden lg:block']}>
+      <div class="h-[160px] border-l border-neutral-100"></div>
+    </div>
+  </main>
+</BaseLayout>

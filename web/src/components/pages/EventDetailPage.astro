@@ -1,0 +1,154 @@
+---
+import CtaBanner from '../../components/blocks/CtaBanner.astro'
+import DetailHeader from '../../components/blocks/DetailHeader.astro'
+import EventDetailsCard from '../../components/blocks/EventDetailsCard.astro'
+import EventPoster from '../../components/blocks/EventPoster.astro'
+import MediaGallery from '../../components/blocks/MediaGallery.astro'
+import VideoPoster from '../../components/blocks/VideoPoster.astro'
+import RichText from '../../components/ui/RichText.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import {
+  formatEventPublished,
+  formatEventTimes,
+  formatEventWeekday,
+  loadEventsPage,
+  type EventItem,
+} from '../../data/events'
+import { locales } from '../../i18n/config'
+import { eventLabels } from '../../i18n/groups'
+
+interface Props {
+  event: EventItem
+  status: 'upcoming' | 'highlighted'
+}
+
+const { event, status } = Astro.props
+
+const locale = locales.find((code) => code === Astro.currentLocale)
+if (!locale) throw new Error(`Unsupported locale: ${Astro.currentLocale}`)
+
+const { cta } = await loadEventsPage(locale)
+
+const labels = eventLabels(locale)
+
+const meta = [
+  {
+    icon: 'calendar' as const,
+    label: labels.published,
+    cells: [
+      {
+        layout: 'text' as const,
+        grow: false,
+        segments: [
+          {
+            text: `${labels.published} ${formatEventPublished(locale, event.timeZone, event.publishedAt)}`,
+            emphasis: false,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    icon: 'globe' as const,
+    label: labels.location,
+    cells: [
+      {
+        layout: 'text' as const,
+        grow: false,
+        segments: [{ text: event.locationRegion, emphasis: true }],
+      },
+    ],
+  },
+]
+
+const mediaSizes = '(min-width: 1440px) 847px, (min-width: 1024px) 59vw, 100vw'
+const footer =
+  status === 'upcoming'
+    ? {
+        kind: 'actions' as const,
+        calendar: { label: labels.markCalendar, href: event.calendarHref },
+        join: { label: labels.joinEvent, href: event.joinHref },
+      }
+    : { kind: 'poster' as const, image: event.poster.image, alt: event.poster.alt }
+const spacers = { upcoming: 'h-43', highlighted: 'h-30' }
+const thumbnailLabel = (position: number, total: number) =>
+  `${labels.galleryImage} ${position} / ${total}`
+---
+
+<BaseLayout
+  title={event.title}
+  description={event.excerpt}
+  share={{ image: event.poster.image, type: 'article' }}
+  headerTheme="dark"
+  initialHeaderTheme="dark"
+>
+  <main id="main">
+    <DetailHeader tone="light" title={event.title} summary={event.brief} meta={meta} />
+
+    <div class="max-w-page lg:px-gutter-lg relative mx-auto w-full lg:grid lg:grid-cols-[minmax(0,847fr)_minmax(0,427fr)_minmax(0,6fr)] lg:grid-rows-[auto_1fr]">
+      <div class="lg:col-start-1 lg:row-start-1">
+        {status === 'highlighted' && event.highlight !== null ? (
+          <VideoPoster
+            image={event.highlight.image}
+            alt={event.highlight.alt}
+            sizes={mediaSizes}
+            priority
+            video={event.highlight.video}
+            playLabel={labels.playVideo}
+          />
+        ) : (
+          <EventPoster
+            image={event.poster.image}
+            alt={event.poster.alt}
+            sizes={mediaSizes}
+            priority
+          />
+        )}
+      </div>
+      <EventDetailsCard
+        label={labels.eventDetails}
+        title={event.title}
+        date={formatEventWeekday(locale, event.timeZone, event.start)}
+        dateTime={event.start}
+        location={event.locationAddress}
+        map={{ label: labels.openMap, href: event.mapHref }}
+        time={formatEventTimes(locale, event.timeZone, event.start, event.end, labels.minutes)}
+        contributorsLabel={labels.contributors}
+        contributors={event.contributors}
+        footer={footer}
+        class="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start"
+      />
+      <div class="mx-gutter border-l border-neutral-100 pb-10 lg:col-start-1 lg:row-start-2 lg:mx-0 lg:pr-[120px]">
+        <section class="flex flex-col gap-4 px-5 pt-20 pb-[60px]">
+          <h2 class="text-heading-1 font-medium text-neutral-800">{labels.about}</h2>
+          <RichText html={event.descriptionHtml} size="lg-md" />
+        </section>
+        {status === 'highlighted' && event.gallery.length > 0 && (
+          <section class="flex flex-col gap-4 px-5 pt-20 pb-[60px] lg:pt-0">
+            <h2 class="text-heading-1 font-medium text-neutral-800">{labels.documentation}</h2>
+            <MediaGallery
+              id="event-documentation"
+              label={labels.documentation}
+              items={event.gallery}
+              thumbnailLabel={thumbnailLabel}
+            />
+          </section>
+        )}
+      </div>
+    </div>
+
+    <div class="max-w-page lg:px-gutter-lg mx-auto hidden w-full lg:block" aria-hidden="true">
+      <div class:list={['border-l border-neutral-100', spacers[status]]}></div>
+    </div>
+    <div class="hidden lg:block">
+      <CtaBanner {...cta.support} />
+    </div>
+    <div class="lg:hidden">
+      <CtaBanner {...cta.discuss} />
+    </div>
+    <CtaBanner {...cta.updates} />
+    <div class="max-w-page lg:px-gutter-lg mx-auto hidden w-full lg:block" aria-hidden="true">
+      <div class="h-40 border-l border-neutral-100"></div>
+    </div>
+  </main>
+</BaseLayout>

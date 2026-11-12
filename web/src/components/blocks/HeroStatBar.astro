@@ -1,0 +1,77 @@
+---
+import type { SvgComponent } from 'astro/types'
+import ArrowDown from '../../icons/arrow-down.svg'
+import Button from '../ui/Button.astro'
+
+type IconCell = { kind: 'icon'; icon: SvgComponent; tone: 'brand' | 'light' }
+type CountCell = { kind: 'count'; value: string; label: string; tone: 'outline' | 'glass' }
+type Action = { href: string; label: string; icon: 'arrow-right' | 'arrow-down' }
+
+interface Props {
+  groups: (IconCell | CountCell)[][]
+  action: Action | null
+}
+
+const { groups, action } = Astro.props
+
+const iconTones: Record<IconCell['tone'], string> = {
+  brand: 'border-brand-500 bg-brand-500 text-neutral-50',
+  light: 'border-neutral-50 bg-neutral-50 text-brand-500',
+}
+
+const countTones: Record<CountCell['tone'], string> = {
+  outline: '',
+  glass: 'bg-black/24 backdrop-blur-[6px]',
+}
+
+const actionBase =
+  'inline-flex h-[41px] items-center justify-center gap-2 border border-brand-500 bg-brand-500 px-[11px] text-body-sm font-medium whitespace-nowrap text-neutral-50 transition-colors hover:border-brand-600 hover:bg-brand-600'
+---
+
+<div class="flex flex-wrap items-center">
+  {groups.map((group, index) => (
+    <div
+      class:list={['flex items-center', groups.length > 2 && index === 0 && 'max-lg:basis-full']}
+    >
+      {group.map((cell) =>
+        cell.kind === 'icon' ? (
+          <span
+            class:list={[
+              'flex h-[41px] w-10 items-center justify-center border',
+              iconTones[cell.tone],
+            ]}
+          >
+            <cell.icon class="size-4" aria-hidden="true" />
+          </span>
+        ) : (
+          <span
+            class:list={[
+              'text-body-sm flex h-[41px] items-center gap-2 border border-white/44 px-[11px] font-medium whitespace-nowrap text-white',
+              countTones[cell.tone],
+            ]}
+          >
+            <span>{cell.value}</span>
+            <span>{cell.label}</span>
+          </span>
+        ),
+      )}
+    </div>
+  ))}
+  {action && action.icon === 'arrow-right' && (
+    <Button
+      href={action.href}
+      label={action.label}
+      variant="primary"
+      size="sm"
+      arrow
+      newTab={false}
+      class="h-[41px]"
+    />
+  )}
+  {action && action.icon === 'arrow-down' && (
+    <a href={action.href} class={actionBase}>
+      {action.label}
+      <ArrowDown class="h-4 w-auto shrink-0" aria-hidden="true" />
+    </a>
+  )}
+</div>

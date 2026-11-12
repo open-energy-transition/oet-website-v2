@@ -1,0 +1,17 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { eventStatus, loadEvents } from '../../../data/events'
+import { defaultLocale } from '../../../i18n/config'
+import EventDetailPage from '../../../components/pages/EventDetailPage.astro'
+
+export const getStaticPaths = (async () => {
+  const events = await loadEvents(defaultLocale)
+  const now = new Date()
+  return events.flatMap((event) => {
+    const status = eventStatus(event, now)
+    return status === 'archived' ? [] : [{ params: { slug: event.slug }, props: { event, status } }]
+  })
+}) satisfies GetStaticPaths
+---
+
+<EventDetailPage {...Astro.props} />

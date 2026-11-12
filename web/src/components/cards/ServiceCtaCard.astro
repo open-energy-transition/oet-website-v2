@@ -1,0 +1,101 @@
+---
+import type { ImageMetadata } from 'astro'
+import type { SvgComponent } from 'astro/types'
+import { getImage } from 'astro:assets'
+import ArrowRight from '../../icons/arrow-right.svg'
+
+type IconTone = 'brand-500' | 'brand-600' | 'brand-700' | 'brand-800'
+type Frame = 'brand-500' | 'brand-600'
+
+interface Props {
+  icon: SvgComponent
+  iconTone: IconTone
+  frame: Frame
+  title: string
+  paragraphs: string[]
+  link: { label: string; href: string }
+  image: ImageMetadata
+  imageMobile: ImageMetadata | null
+  class?: string
+}
+
+const {
+  icon: Icon,
+  iconTone,
+  frame,
+  title,
+  paragraphs,
+  link,
+  image,
+  imageMobile,
+  class: className,
+} = Astro.props
+
+const iconTones: Record<IconTone, string> = {
+  'brand-500': 'bg-brand-500',
+  'brand-600': 'bg-brand-600',
+  'brand-700': 'bg-brand-700',
+  'brand-800': 'bg-brand-800',
+}
+
+const frames: Record<Frame, string> = {
+  'brand-500': 'bg-brand-500',
+  'brand-600': 'bg-brand-600',
+}
+
+const wide = await getImage({ src: image, widths: [332, 519, 664, 1038], format: 'webp' })
+const narrow =
+  imageMobile === null
+    ? null
+    : await getImage({ src: imageMobile, widths: [332, 664, 996], format: 'webp' })
+---
+
+<article class:list={['relative flex flex-col border border-neutral-100 bg-neutral-50', className]}>
+  <div
+    class:list={[
+      'text-brand-50 absolute -top-px -left-px flex h-[108px] w-[52px] items-center justify-center',
+      iconTones[iconTone],
+    ]}
+  >
+    <Icon class="size-7" aria-hidden="true" />
+  </div>
+  <div class="flex flex-col gap-4 pt-[39px] pr-[19px] pb-5 pl-[71px]">
+    <div class="flex flex-col gap-6 font-medium">
+      <h3 class="text-heading-4 text-neutral-800">{title}</h3>
+      <div class="text-body-md flex flex-col gap-[1lh] pb-[1lh] text-neutral-600">
+        {paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+    <a
+      href={link.href}
+      class="text-body-md text-brand-600 hover:text-brand-500 flex items-center justify-between gap-[6px] font-medium"
+    >
+      <span class="min-w-0 truncate underline decoration-from-font">{link.label}</span>
+      <ArrowRight class="h-auto w-4 shrink-0" aria-hidden="true" />
+    </a>
+  </div>
+  <div class:list={['-mx-px -mb-px px-5 pt-5', frames[frame]]}>
+    <picture>
+      {narrow !== null && (
+        <source
+          media="(max-width: 1023.98px)"
+          srcset={narrow.srcSet.attribute}
+          sizes="calc(100vw - 80px)"
+        />
+      )}
+      <img
+        src={wide.src}
+        srcset={wide.srcSet.attribute}
+        sizes="(min-width: 1024px) 519px, calc(100vw - 80px)"
+        alt=""
+        width={image.width}
+        height={image.height}
+        loading="lazy"
+        decoding="async"
+        class="h-[238px] w-full object-cover"
+      />
+    </picture>
+  </div>
+</article>

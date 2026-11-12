@@ -1,0 +1,40 @@
+---
+import mark from '../../assets/brand/oet-mark-white.svg?url&no-inline'
+---
+
+<script is:inline>
+  if (!sessionStorage.getItem('oet-visited')) {
+    sessionStorage.setItem('oet-visited', '1')
+    document.documentElement.classList.add('oet-first-visit')
+  }
+</script>
+<div class="oet-preloader" aria-hidden="true">
+  <img src={mark} alt="" width={85} height={33} loading="lazy" decoding="async" />
+</div>
+
+<style is:global>
+  .oet-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-brand-500);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .oet-first-visit .oet-preloader {
+      display: flex;
+      animation: oet-preloader-out 0.6s ease-out 1.5s forwards;
+    }
+  }
+
+  @keyframes oet-preloader-out {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+</style>

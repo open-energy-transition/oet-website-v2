@@ -1,0 +1,76 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+import PlayCircle from '../../icons/play-circle.svg'
+
+interface Video {
+  embedUrl: string
+  watchUrl: string
+  title: string
+}
+
+interface Props {
+  image: ImageMetadata
+  alt: string
+  sizes: string
+  priority: boolean
+  video: Video | null
+  playLabel: string
+  class?: string
+}
+
+const { image, alt, sizes, priority, video, playLabel, class: className } = Astro.props
+---
+
+<oet-video-poster
+  class:list={[
+    'relative block h-[477px] overflow-hidden border-[0.914px] border-neutral-100 bg-neutral-50 lg:aspect-[847/477] lg:h-auto',
+    className,
+  ]}
+>
+  <Image
+    src={image}
+    alt={alt}
+    widths={[412, 824, 847, 1429]}
+    sizes={sizes}
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    class="absolute inset-0 size-full object-cover"
+  />
+  <span class="absolute inset-0 bg-[rgba(255,0,0,0.2)]" aria-hidden="true"></span>
+  {video !== null && (
+    <a
+      href={video.watchUrl}
+      aria-label={playLabel}
+      data-embed={video.embedUrl}
+      data-title={video.title}
+      class="bg-brand-500 hover:bg-brand-600 absolute top-1/2 left-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-white transition-colors"
+    >
+      <PlayCircle class="size-8" aria-hidden="true" />
+    </a>
+  )}
+</oet-video-poster>
+
+<script>
+  class OetVideoPoster extends HTMLElement {
+    connectedCallback() {
+      const trigger = this.querySelector<HTMLAnchorElement>('a[data-embed]')
+      if (!trigger) return
+      const { embed, title } = trigger.dataset
+      if (!embed || !title) throw new Error('oet-video-poster: missing embed data')
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault()
+        const frame = document.createElement('iframe')
+        frame.src = embed
+        frame.title = title
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'
+        frame.allowFullscreen = true
+        frame.className = 'absolute inset-0 size-full border-0'
+        this.replaceChildren(frame)
+        frame.focus()
+      })
+    }
+  }
+
+  customElements.define('oet-video-poster', OetVideoPoster)
+</script>

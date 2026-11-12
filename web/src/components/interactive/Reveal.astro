@@ -1,0 +1,97 @@
+---
+interface Props {
+  axis: 'x' | 'y'
+  order: 'column' | 'index'
+  steps: number[]
+  easing: 'gentle' | 'ease-out'
+  duration: number
+  delay: number
+}
+
+const { axis, order, steps, easing, duration, delay } = Astro.props
+const easings = { gentle: 'var(--ease-gentle)', 'ease-out': 'ease-out' }
+---
+
+<oet-reveal
+  class="contents"
+  data-axis={axis}
+  data-order={order}
+  data-steps={steps.join(' ')}
+  style={{
+    '--reveal-easing': easings[easing],
+    '--reveal-duration': `${duration}s`,
+    '--reveal-delay': `${delay}s`,
+  }}
+>
+  <slot />
+</oet-reveal>
+
+<style is:global>
+  @media (prefers-reduced-motion: no-preference) {
+    oet-reveal:defined [data-reveal]:not([data-revealed]) {
+      opacity: 0;
+      translate: var(--reveal-x) var(--reveal-y);
+    }
+
+    oet-reveal [data-revealed] {
+      transition:
+        opacity var(--reveal-duration) var(--reveal-easing) var(--reveal-delay),
+        translate var(--reveal-duration) var(--reveal-easing) var(--reveal-delay);
+    }
+  }
+</style>
+
+<script>
+  const column = (item: HTMLElement, items: HTMLElement[]) =>
+    items.filter(
+      (other) =>
+        other.offsetParent !== null &&
+        other.offsetTop === item.offsetTop &&
+        other.offsetLeft < item.offsetLeft,
+    ).length
+
+  class OetReveal extends HTMLElement {
+    observer: IntersectionObserver | null = null
+
+    connectedCallback() {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      const axis = this.dataset.axis
+      const order = this.dataset.order
+      const steps = this.dataset.steps!.split(' ').map(Number)
+      const items = [...this.querySelectorAll<HTMLElement>('[data-reveal]')]
+      const place = (item: HTMLElement) => {
+        const position = order === 'index' ? items.indexOf(item) : column(item, items)
+        const step = steps[Math.min(position, steps.length - 1)]
+        item.style.setProperty('--reveal-x', axis === 'x' ? `${step}px` : '0px')
+        item.style.setProperty('--reveal-y', axis === 'y' ? `${step}px` : '0px')
+      }
+      const inView = (item: HTMLElement) => {
+        const box = item.getBoundingClientRect()
+        return item.offsetParent !== null && box.top < innerHeight && box.bottom > 0
+      }
+      for (const item of items) {
+        place(item)
+        if (inView(item)) item.dataset.revealed = ''
+      }
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue
+            const item = entry.target as HTMLElement
+            place(item)
+            void item.offsetWidth
+            item.dataset.revealed = ''
+            this.observer!.unobserve(item)
+          }
+        },
+        { threshold: 0.2 },
+      )
+      for (const item of items) if (!('revealed' in item.dataset)) this.observer.observe(item)
+    }
+
+    disconnectedCallback() {
+      if (this.observer !== null) this.observer.disconnect()
+    }
+  }
+  customElements.define('oet-reveal', OetReveal)
+</script>

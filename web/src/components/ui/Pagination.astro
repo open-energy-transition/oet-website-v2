@@ -1,0 +1,195 @@
+---
+import AngleDouble from '../../icons/angle-double-small-up.svg'
+import AngleLeft from '../../icons/angle-left.svg'
+import AngleRight from '../../icons/angle-right.svg'
+import type { Locale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+
+interface Props {
+  current: number
+  total: number
+  hrefFor: (page: number) => string
+  locale: Locale
+  class?: string
+}
+
+const { current, total, hrefFor, locale, class: className } = Astro.props
+
+const visible = [...new Set([1, current - 1, current, current + 1, total])]
+  .filter((page) => page >= 1 && page <= total)
+  .sort((a, b) => a - b)
+const pages = visible.flatMap((page, index) =>
+  index > 0 && page - visible[index - 1] > 1 ? [0, page] : [page],
+)
+
+const cell = 'text-body-2xs flex h-6 min-w-6 items-center justify-center rounded-sm'
+const link = 'hover:bg-neutral-100'
+const currentPage = 'border-brand-200 text-brand-500 border bg-neutral-100 px-[7px]'
+const otherPage = 'px-2 text-neutral-800'
+const gap = 'px-2 text-neutral-800'
+const steps = {
+  first: { label: t(locale, 'pagination.first'), icon: AngleDouble, rotate: '-rotate-90' },
+  previous: { label: t(locale, 'pagination.previous'), icon: AngleLeft, rotate: '' },
+  next: { label: t(locale, 'pagination.next'), icon: AngleRight, rotate: '' },
+  last: { label: t(locale, 'pagination.last'), icon: AngleDouble, rotate: 'rotate-90' },
+}
+const step = (name: keyof typeof steps, page: number, enabled: boolean) => ({
+  kind: 'step' as const,
+  name,
+  page,
+  enabled,
+  ...steps[name],
+})
+const items = [
+  step('first', 1, current > 1),
+  step('previous', current - 1, current > 1),
+  ...pages.map((page) => ({ kind: 'page' as const, page })),
+  step('next', current + 1, current < total),
+  step('last', total, current < total),
+]
+const config = JSON.stringify({
+  labels: { page: t(locale, 'pagination.page') },
+  classes: { cell, link, currentPage, otherPage, gap },
+})
+---
+
+<oet-pagination
+  class:list={['block', className]}
+  data-config={config}
+  hidden={total > 1 ? undefined : true}
+>
+  <nav aria-label={t(locale, 'pagination.label')}>
+    <ul class="flex items-center justify-between gap-1 text-neutral-600">
+      {items.map((item) => (
+        <li>
+          {item.kind === 'step' && item.enabled && (
+            <a
+              href={hrefFor(item.page)}
+              class:list={[cell, link]}
+              aria-label={item.label}
+              data-page={item.page}
+            >
+              <item.icon class:list={['size-4', item.rotate]} aria-hidden="true" />
+            </a>
+          )}
+          {item.kind === 'step' && !item.enabled && (
+            <span class={cell} role="link" aria-disabled="true" aria-label={item.label}>
+              <item.icon class:list={['size-4', item.rotate]} aria-hidden="true" />
+            </span>
+          )}
+          {item.kind === 'page' && item.page === 0 && (
+            <span class:list={[cell, gap]} aria-hidden="true">
+              ...
+            </span>
+          )}
+          {item.kind === 'page' && item.page !== 0 && (
+            <a
+              href={hrefFor(item.page)}
+              class:list={[cell, link, item.page === current ? currentPage : otherPage]}
+              aria-current={item.page === current ? 'page' : undefined}
+              aria-label={`${t(locale, 'pagination.page')} ${item.page}`}
+              data-page={item.page}
+            >
+              {item.page}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </nav>
+  {Object.entries(steps).map(([name, { label, icon: Icon, rotate }]) => (
+    <template data-step={name} data-label={label}>
+      <Icon class:list={['size-4', rotate]} aria-hidden="true" />
+    </template>
+  ))}
+</oet-pagination>
+
+<script>
+  type Config = {
+    labels: { page: string }
+    classes: Record<'cell' | 'link' | 'currentPage' | 'otherPage' | 'gap', string>
+  }
+  type StepName = 'first' | 'previous' | 'next' | 'last'
+
+  const pageNumbers = (current: number, total: number) => {
+    const visible = [...new Set([1, current - 1, current, current + 1, total])]
+      .filter((page) => page >= 1 && page <= total)
+      .sort((a, b) => a - b)
+    return visible.flatMap((page, index) =>
+      index > 0 && page - visible[index - 1] > 1 ? [0, page] : [page],
+    )
+  }
+
+  class OetPagination extends HTMLElement {
+    render(current: number, total: number) {
+      const raw = this.dataset.config
+      const list = this.querySelector('ul')
+      if (!raw || !list) throw new Error('oet-pagination: missing parts')
+      const { labels, classes } = JSON.parse(raw) as Config
+      const href = (page: number) => {
+        const url = new URL(location.href)
+        url.searchParams.set('page', String(page))
+        return `${url.search}${url.hash}`
+      }
+      const anchor = (page: number, className: string, label: string) => {
+        const element = document.createElement('a')
+        element.href = href(page)
+        element.className = className
+        element.setAttribute('aria-label', label)
+        element.dataset.page = String(page)
+        return element
+      }
+      const step = (name: StepName, page: number, enabled: boolean) => {
+        const template = this.querySelector<HTMLTemplateElement>(`template[data-step="${name}"]`)
+        const label = template?.dataset.label
+        if (!template || !label) throw new Error(`oet-pagination: missing ${name} step`)
+        const element = enabled
+          ? anchor(page, `${classes.cell} ${classes.link}`, label)
+          : document.createElement('span')
+        if (!enabled) {
+          element.className = classes.cell
+          element.setAttribute('role', 'link')
+          element.setAttribute('aria-disabled', 'true')
+          element.setAttribute('aria-label', label)
+        }
+        element.append(template.content.cloneNode(true))
+        return element
+      }
+      const number = (page: number) => {
+        if (page === 0) {
+          const element = document.createElement('span')
+          element.className = `${classes.cell} ${classes.gap}`
+          element.setAttribute('aria-hidden', 'true')
+          element.textContent = '...'
+          return element
+        }
+        const style = page === current ? classes.currentPage : classes.otherPage
+        const element = anchor(
+          page,
+          `${classes.cell} ${classes.link} ${style}`,
+          `${labels.page} ${page}`,
+        )
+        if (page === current) element.setAttribute('aria-current', 'page')
+        element.textContent = String(page)
+        return element
+      }
+      const elements = [
+        step('first', 1, current > 1),
+        step('previous', current - 1, current > 1),
+        ...pageNumbers(current, total).map(number),
+        step('next', current + 1, current < total),
+        step('last', total, current < total),
+      ]
+      list.replaceChildren(
+        ...elements.map((element) => {
+          const item = document.createElement('li')
+          item.append(element)
+          return item
+        }),
+      )
+      this.hidden = total <= 1
+    }
+  }
+
+  if (!customElements.get('oet-pagination')) customElements.define('oet-pagination', OetPagination)
+</script>

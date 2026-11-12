@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import DepartmentGrid from '../blocks/DepartmentGrid.astro'
+import PageHero from '../blocks/PageHero.astro'
+import SectionHeading from '../ui/SectionHeading.astro'
+import {
+  departmentCard,
+  heroStats,
+  loadDepartments,
+  loadDepartmentsPage,
+} from '../../data/departments'
+import { defaultLocale } from '../../i18n/config'
+
+const [{ meta, hero, heading: departmentsHeading }, departments] = await Promise.all([
+  loadDepartmentsPage(defaultLocale),
+  loadDepartments(defaultLocale),
+])
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="map-left"
+      title={hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-3"
+      eyebrow={null}
+      lead={[hero.lead]}
+      links={[]}
+      stats={heroStats(defaultLocale, hero.icon, hero.count.value, hero.count.label)}
+      person={null}
+      image={hero.image}
+      background="brand-700"
+      textLeft={80}
+      mobileAnchor="top-180"
+      ornament="department-index"
+      headerTheme="light"
+    />
+    <div class="max-w-page px-gutter lg:px-gutter-lg mx-auto w-full">
+      <section class="border-l border-neutral-100 pb-[120px]">
+        <SectionHeading
+          layout="stack"
+          tag={departmentsHeading.tag}
+          title={departmentsHeading.title}
+          level="h2"
+          gap={12}
+          width="full"
+          titleTone="neutral-800"
+          linkTone="brand"
+          align="center"
+          subline={null}
+          columns={[]}
+          columnStyle="body-md"
+          actions={[]}
+          class="pt-[180px] pr-5 pb-10 pl-[19px]"
+        />
+        <DepartmentGrid
+          cards={departments.map((department) => departmentCard(defaultLocale, department))}
+          class="-ml-px"
+        />
+      </section>
+    </div>
+  </main>
+</BaseLayout>

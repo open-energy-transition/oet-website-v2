@@ -1,0 +1,42 @@
+---
+import ArrowRight from '../../icons/arrow-right.svg'
+
+import type { TitleLines } from './types'
+
+interface Props {
+  title: string
+  titleLines: TitleLines
+  excerpt: string
+  meta: string
+  href: string
+  linkLabel: string
+}
+
+const { title, titleLines, excerpt, meta, href, linkLabel } = Astro.props
+
+const clamps: Record<TitleLines, { title: string; excerpt: string }> = {
+  2: { title: 'line-clamp-2', excerpt: 'line-clamp-3' },
+  3: { title: 'line-clamp-3', excerpt: 'line-clamp-1' },
+}
+---
+
+<div class="flex min-h-0 w-full flex-1 flex-col gap-1 font-medium">
+  <h3
+    class:list={['text-heading-4 min-h-[2lh] shrink-0 text-neutral-800', clamps[titleLines].title]}
+  >
+    <a href={href} class="focus-stretched after:absolute after:inset-0 after:z-10">
+      {title}
+    </a>
+  </h3>
+  <p class:list={['text-body-sm text-neutral-600', clamps[titleLines].excerpt]}>{excerpt}</p>
+</div>
+<div class="flex w-full items-start gap-3">
+  <p class="text-body-sm min-w-0 flex-1 truncate text-neutral-600">{meta}</p>
+  <span
+    class="flex shrink-0 items-center gap-[6px] text-[0.875rem] leading-none font-semibold tracking-[-0.01em] text-brand-600"
+    aria-hidden="true"
+  >
+    {linkLabel}
+    <ArrowRight class="h-2 w-[15px]" />
+  </span>
+</div>

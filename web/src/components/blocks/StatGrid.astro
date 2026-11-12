@@ -1,0 +1,30 @@
+---
+import type { SvgComponent } from 'astro/types'
+import StatItem from '../ui/StatItem.astro'
+
+interface Props {
+  id: string
+  title: string
+  stats: { value: string; label: string; icon: SvgComponent }[]
+  class?: string
+}
+
+const { id, title, stats, class: className } = Astro.props
+---
+
+<section class:list={['flex flex-col gap-4', className]}>
+  <h3
+    id={id}
+    class="text-heading-2 scroll-mt-[38px] lg:scroll-mt-[18px] font-medium text-neutral-800"
+  >
+    {title}
+  </h3>
+  <div
+    class="grid pt-px pl-px lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)]"
+    style={`--rows:${Math.ceil(stats.length / 2)}`}
+  >
+    {stats.map((stat) => (
+      <StatItem variant="grid" {...stat} class="-mt-px -ml-px" />
+    ))}
+  </div>
+</section>

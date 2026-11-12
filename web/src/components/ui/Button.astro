@@ -1,0 +1,62 @@
+---
+import ArrowRight from '../../icons/arrow-right.svg'
+
+type Variant =
+  'primary' | 'outline' | 'secondary' | 'outline-light' | 'tint' | 'outline-tint' | 'white' | 'link'
+type Size = 'xs' | 'sm' | 'sm-tall' | 'md' | 'lg'
+
+interface Props {
+  href: string
+  label: string
+  variant: Variant
+  size: Size
+  arrow: boolean
+  newTab: boolean
+  class?: string
+}
+
+const { href, label, variant, size, arrow, newTab, class: className } = Astro.props
+
+const base = 'inline-flex items-center justify-center whitespace-nowrap transition-colors'
+
+const variants: Record<Variant, string> = {
+  primary:
+    'border border-brand-500 bg-brand-500 text-white hover:border-brand-600 hover:bg-brand-600',
+  outline: 'border border-brand-500 text-brand-500 hover:bg-brand-500 hover:text-white',
+  secondary: 'border border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-neutral-50',
+  'outline-light':
+    'border border-neutral-50 text-neutral-50 hover:bg-neutral-50 hover:text-neutral-900',
+  tint: 'border border-brand-50 bg-brand-50 text-brand-600 hover:border-white hover:bg-white',
+  'outline-tint': 'border border-brand-50 text-brand-50 hover:bg-brand-50 hover:text-brand-600',
+  white: 'border border-white bg-white text-brand-500 hover:bg-neutral-100',
+  link: 'text-brand-600 underline-offset-4 hover:underline',
+}
+
+const sizes: Record<Size, string> = {
+  xs: 'h-8 gap-[10px] px-[11px] text-[0.875rem] leading-[16px] font-semibold tracking-[-0.01em]',
+  sm: 'gap-2 px-[11px] py-[7px] text-body-sm font-medium',
+  'sm-tall': 'h-10 gap-2 px-[11px] text-body-sm font-medium',
+  md: 'gap-[10px] px-[15px] pt-[9px] pb-[11px] text-[1rem] leading-[18px] font-semibold tracking-[-0.01em]',
+  lg: 'gap-[10px] px-[15px] pt-[9px] pb-[11px] text-body-md font-medium',
+}
+
+const arrows: Record<Size, string> = {
+  xs: 'shrink-0',
+  sm: 'h-auto w-4 shrink-0',
+  'sm-tall': 'h-auto w-4 shrink-0',
+  md: 'shrink-0',
+  lg: 'shrink-0',
+}
+
+const padded = variant === 'link' ? 'gap-2 text-body-sm font-semibold' : sizes[size]
+---
+
+<a
+  href={href}
+  class:list={[base, variants[variant], padded, className]}
+  target={newTab ? '_blank' : undefined}
+  rel={newTab ? 'noopener noreferrer' : undefined}
+>
+  {label}
+  {arrow && <ArrowRight class={arrows[size]} aria-hidden="true" />}
+</a>

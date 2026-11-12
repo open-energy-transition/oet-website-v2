@@ -1,0 +1,40 @@
+---
+import type { SvgComponent } from 'astro/types'
+
+interface Props {
+  variant: 'strip' | 'grid'
+  value: string
+  label: string
+  icon: SvgComponent
+  class?: string
+}
+
+const { variant, value, label, icon: Icon, class: className } = Astro.props
+
+const boxes: Record<Props['variant'], string> = {
+  strip: 'min-h-[72px] gap-[10px] px-5 py-3 outline-neutral-100',
+  grid: 'gap-[10px] p-4 outline-neutral-200',
+}
+const values: Record<Props['variant'], string> = {
+  strip: 'text-[1.5rem] leading-none font-semibold tracking-[-0.01em]',
+  grid: 'text-heading-3 font-medium',
+}
+const labels: Record<Props['variant'], string> = {
+  strip: 'text-[1rem] leading-[20px] font-medium tracking-[-0.01em]',
+  grid: 'text-body-md font-medium whitespace-pre-line',
+}
+---
+
+<div
+  class:list={[
+    'flex items-center text-neutral-800 outline -outline-offset-1',
+    boxes[variant],
+    className,
+  ]}
+>
+  <div class="flex min-w-0 flex-1 flex-col gap-1">
+    <p class={values[variant]}>{value}</p>
+    <p class={labels[variant]}>{label}</p>
+  </div>
+  <Icon class="size-6 shrink-0" aria-hidden="true" />
+</div>

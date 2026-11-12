@@ -1,0 +1,102 @@
+---
+import type { SvgComponent } from 'astro/types'
+import ArrowRight from '../../icons/arrow-right.svg'
+import Tag from '../ui/Tag.astro'
+
+type Accent = 'brand-500' | 'brand-600' | 'brand-700' | 'brand-800' | 'brand-900'
+
+interface Item {
+  accent: Accent
+  icon: SvgComponent
+  title: string
+  text: readonly (string | { list: readonly string[] })[]
+  link: { label: string; href: string } | null
+  deliverables: readonly string[]
+}
+
+interface Props {
+  tag: string
+  title: string
+  items: readonly Item[]
+}
+
+const { tag, title, items } = Astro.props
+
+const accents: Record<Accent, string> = {
+  'brand-500': 'bg-brand-500',
+  'brand-600': 'bg-brand-600',
+  'brand-700': 'bg-brand-700',
+  'brand-800': 'bg-brand-800',
+  'brand-900': 'bg-brand-900',
+}
+
+const position = (index: number) => String(index + 1).padStart(2, '0')
+---
+
+<div>
+  <div
+    class="bg-brand-500 border-brand-500 relative z-10 flex min-h-40 flex-col items-start justify-center gap-3 border px-5 py-[39px] shadow-[0_0_30px_rgb(238_32_66/0.6)] lg:px-10"
+    data-header-theme="light"
+  >
+    <Tag label={tag} tone="white" />
+    <h2 class="text-display-5 font-medium text-white">{title}</h2>
+    <div class="absolute -inset-y-px -right-px hidden w-[214px] lg:block" aria-hidden="true">
+      <span class="absolute top-[75px] left-[71.2px] h-[28.2px] w-[71.2px] bg-white"></span>
+      <span class="absolute top-[103.2px] left-0 h-[28.2px] w-[71.2px] bg-neutral-900"></span>
+      <span class="bg-brand-700 absolute top-[131.5px] right-0 h-[28.5px] w-[71.2px]"></span>
+    </div>
+  </div>
+  <ul>
+    {items.map((item) => (
+      <li class="border-brand-500 grid grid-cols-[52px_minmax(0,1fr)] border-b-4 bg-neutral-50 lg:grid-cols-[52px_minmax(0,642fr)_minmax(0,586fr)]">
+        <div
+          class:list={[
+            'row-span-2 flex justify-center pt-9 text-brand-50 lg:row-span-1',
+            accents[item.accent],
+          ]}
+        >
+          <item.icon class="size-7" aria-hidden="true" />
+        </div>
+        <div class="flex flex-col gap-[10px] p-5 text-neutral-800 lg:px-10 lg:py-8">
+          <h3 class="text-heading-4 font-medium">{item.title}</h3>
+          <div class="text-body-lg flex-1">
+            {item.text.map((block) =>
+              typeof block === 'string' ? (
+                <p class="whitespace-pre-line">{block}</p>
+              ) : (
+                <ul class="list-disc pl-[27px]">
+                  {block.list.map((entry) => (
+                    <li>{entry}</li>
+                  ))}
+                </ul>
+              ),
+            )}
+          </div>
+          {item.link !== null && (
+            <a
+              href={item.link.href}
+              class="text-body-md text-brand-500 flex items-center gap-[6px] font-medium"
+            >
+              <span class="min-w-0 flex-1 truncate underline decoration-from-font">
+                {item.link.label}
+              </span>
+              <ArrowRight class="text-brand-500 h-auto w-4 shrink-0" aria-hidden="true" />
+            </a>
+          )}
+        </div>
+        {item.deliverables.length > 0 && (
+          <ol class="text-body-md col-start-2 flex flex-col gap-3 px-3 py-5 text-neutral-900 lg:col-start-3 lg:py-8">
+            {item.deliverables.map((deliverable, index) => (
+              <li class="flex gap-2">
+                <span class="text-body-2xs w-5 shrink-0 text-right font-medium" aria-hidden="true">
+                  {position(index)}
+                </span>
+                <span class="min-w-0 flex-1">{deliverable}</span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </li>
+    ))}
+  </ul>
+</div>

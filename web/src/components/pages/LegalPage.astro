@@ -1,0 +1,68 @@
+---
+import TableOfContents from '../blocks/TableOfContents.astro'
+import { withHeadingIds } from '../blocks/tableOfContents'
+import RichText from '../ui/RichText.astro'
+import SectionHeading from '../ui/SectionHeading.astro'
+import type { LegalPageContent } from '../../data/legal'
+import { defaultLocale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+interface Props {
+  content: LegalPageContent
+}
+
+const { meta, tag, title, body } = Astro.props.content
+const { html, items } = withHeadingIds(body, ['h2', 'h3', 'h4'])
+const hasToc = items.length > 1
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="dark"
+>
+  <main id="main" class="max-w-page px-gutter lg:px-gutter-lg mx-auto w-full">
+    <div class="border-l border-neutral-100 pt-[180px] pr-5 pb-10 pl-[19px] lg:pt-[200px] lg:pb-[60px]">
+      <SectionHeading
+        layout="stack"
+        tag={tag}
+        title={title}
+        level="h1"
+        gap={12}
+        width="medium"
+        titleTone="neutral-900"
+        linkTone="brand"
+        align="center"
+        subline={null}
+        columns={[]}
+        columnStyle="body-md"
+        actions={[]}
+      />
+    </div>
+    <div class="flex flex-col lg:flex-row lg:items-start">
+      <div
+        class:list={[
+          'min-w-0 flex-1 border-t border-l border-neutral-100 pt-10 pr-5 pb-[120px] pl-[19px] lg:pt-[60px] lg:pb-[160px]',
+          hasToc && 'lg:pr-[120px]',
+        ]}
+      >
+        <RichText
+          html={html}
+          size="md"
+          class:list={[
+            'text-justify hyphens-auto [&_:is(h2,h3,h4)]:text-left [&_:is(h2,h3,h4)]:hyphens-manual',
+            !hasToc && 'lg:max-w-[847px]',
+          ]}
+        />
+      </div>
+      {hasToc && (
+        <aside class="border-t border-l border-neutral-100 pt-[60px] pr-3 pb-5 pl-5 max-lg:hidden lg:sticky lg:top-[60px] lg:w-[305px] lg:shrink-0">
+          <TableOfContents title={t(defaultLocale, 'sidebar.tableOfContents')} items={items} />
+        </aside>
+      )}
+    </div>
+  </main>
+</BaseLayout>

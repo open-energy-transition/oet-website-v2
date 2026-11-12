@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ContinentStats from '../blocks/ContinentStats.astro'
+import ListingHeader from '../blocks/ListingHeader.astro'
+import PageHero from '../blocks/PageHero.astro'
+import TeamCard from '../cards/TeamCard.astro'
+import ListingFilter from '../interactive/ListingFilter.astro'
+import Reveal from '../interactive/Reveal.astro'
+import TeamGlobe from '../interactive/TeamGlobe.astro'
+import TeamProfileDialog from '../interactive/TeamProfileDialog.astro'
+import FilterTabs from '../ui/FilterTabs.astro'
+import SectionHeading from '../ui/SectionHeading.astro'
+import SortControl from '../ui/SortControl.astro'
+import { loadTeamPage } from '../../data/team'
+import { defaultLocale } from '../../i18n/config'
+import { sortOptions } from '../../i18n/groups'
+import { t } from '../../i18n/ui'
+import { firstPageClass } from '../../lib/listing'
+
+const { meta, hero, intro, listing, globe, countries, continents, filterGroups, members } =
+  await loadTeamPage(defaultLocale)
+const container = 'max-w-page px-gutter lg:px-gutter-lg mx-auto w-full'
+const statGroups = hero.stats.map((stat) => [
+  { kind: 'icon' as const, icon: stat.icon, tone: stat.tone },
+  { kind: 'count' as const, value: stat.value, label: stat.label, tone: 'outline' as const },
+])
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="photo-left"
+      title={hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-5"
+      eyebrow={null}
+      lead={hero.lead}
+      links={[]}
+      stats={{ groups: statGroups, action: null }}
+      person={null}
+      image={hero.image}
+      background="brand-600"
+      textLeft={96}
+      mobileAnchor="bottom-30"
+      ornament="photo-both-sides"
+      headerTheme="light"
+    />
+
+    <section class="max-w-page lg:px-gutter-lg mx-auto w-full">
+      <div class="outline-neutral-100 lg:outline lg:-outline-offset-1">
+        <div class="mx-gutter border-l border-neutral-100 pt-[180px] pb-10 pl-5 lg:mx-0 lg:border-l-0 lg:pt-[120px] lg:pb-0 lg:pl-0">
+          <SectionHeading
+            layout="stack"
+            tag={intro.tag}
+            title={intro.title}
+            level="h2"
+            gap={8}
+            width="narrow"
+            titleTone="neutral-900"
+            linkTone="brand"
+            align="center"
+            subline={intro.subline}
+            columns={[]}
+            columnStyle="body-lg"
+            actions={intro.actions}
+            class="pt-3 pb-6 lg:pr-3 lg:pl-5"
+          />
+        </div>
+        <TeamGlobe
+          variant="team"
+          view={globe.view}
+          label={t(defaultLocale, 'globe.label')}
+          hint={t(defaultLocale, 'globe.hint')}
+          countries={countries}
+          selected={globe.selected}
+          unit={t(defaultLocale, 'globe.unit')}
+        />
+        <ContinentStats id="continent-stats" label={continents.label} items={continents.items} />
+      </div>
+    </section>
+
+    <ListingFilter pageSize={listing.pageSize} ranked infinite>
+      <section>
+        <ListingHeader
+          layout="split"
+          title={listing.title}
+          description={listing.mobileDescription}
+          descriptionStyle="body-md-medium-mobile"
+          tabsWidth="wide"
+          topSpace={120}
+          id={listing.id}
+        >
+          <div slot="tabs" data-listing-tabs="group">
+            <FilterTabs
+              label={t(defaultLocale, 'tabs.teamGroup')}
+              layout="wrap"
+              mobileBreakAfter={null}
+              options={filterGroups}
+            />
+          </div>
+          <SortControl
+            slot="controls"
+            id={listing.sort.id}
+            label={t(defaultLocale, 'sort.team')}
+            options={sortOptions(defaultLocale, listing.sort.values)}
+            selected={listing.sort.selected}
+            prefix={t(defaultLocale, 'filter.sort')}
+            icon="sort"
+            align="right"
+            listing="sort"
+          />
+        </ListingHeader>
+        <div class={container}>
+          <div class="relative pt-5 pb-[180px] before:absolute before:inset-y-0 before:left-0 before:border-l before:border-neutral-100 lg:pb-[120px]">
+            <Reveal
+              axis="y"
+              order="column"
+              steps={[0, 20, 40, 80]}
+              easing="gentle"
+              duration={0.766}
+              delay={0}
+            >
+              <ul
+                data-listing-items
+                aria-live="polite"
+                class="grid scroll-mt-32 md:grid-cols-2 lg:grid-cols-4 lg:gap-y-5"
+              >
+                {members.map((member, index) => (
+                  <li
+                    class:list={['min-w-0', firstPageClass(index, listing.pageSize)]}
+                    data-listing-item
+                    data-reveal
+                    data-facet-group={member.group}
+                    data-title={member.sortName}
+                    data-rank={member.rank}
+                  >
+                    <TeamCard {...member.card} locale={defaultLocale} />
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <p
+              data-listing-empty
+              class="text-body-md py-10 pl-5 font-medium text-neutral-800"
+              hidden
+            >
+              {t(defaultLocale, 'team.empty')}
+            </p>
+            <div data-listing-sentinel aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+    </ListingFilter>
+    <TeamProfileDialog locale={defaultLocale} />
+  </main>
+</BaseLayout>

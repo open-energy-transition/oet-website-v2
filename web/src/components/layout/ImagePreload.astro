@@ -1,0 +1,22 @@
+---
+import type { HeroSource } from './heroSources'
+
+interface Props {
+  sources: HeroSource[]
+}
+
+const { sources } = Astro.props
+const preferred = sources.filter((source) => source.type === 'image/avif')
+---
+
+{preferred.map((source) => (
+  <link
+    rel="preload"
+    as="image"
+    type={source.type}
+    media={source.media}
+    imagesrcset={source.srcset}
+    imagesizes={source.sizes}
+    fetchpriority="high"
+  />
+))}

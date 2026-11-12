@@ -1,0 +1,59 @@
+---
+import type { ImageMetadata } from 'astro'
+import { getImage } from 'astro:assets'
+
+interface Props {
+  thumbnail: ImageMetadata
+  thumbnailMobile: ImageMetadata
+  label: string
+  title: string
+  body: string
+  titleLines: 'auto' | 'three'
+  class?: string
+}
+
+const { thumbnail, thumbnailMobile, label, title, body, titleLines, class: className } = Astro.props
+
+const titleHeights: Record<Props['titleLines'], string> = {
+  auto: '',
+  three: 'min-h-[4lh] lg:min-h-[3lh]',
+}
+
+const render = (image: ImageMetadata) =>
+  getImage({ src: image, widths: [image.width / 2, image.width], format: 'webp' })
+
+const wide = await render(thumbnail)
+const narrow = await render(thumbnailMobile)
+---
+
+<article
+  class:list={[
+    'relative flex min-w-0 flex-col after:pointer-events-none after:absolute after:inset-0 after:border after:border-[#ececec]',
+    className,
+  ]}
+>
+  <picture class="block w-full shrink-0">
+    <source media="(max-width: 1023.98px)" srcset={narrow.srcSet.attribute} sizes="50vw" />
+    <img
+      src={wide.src}
+      srcset={wide.srcSet.attribute}
+      sizes={`(min-width: 1024px) ${thumbnail.width / 2}px, 50vw`}
+      alt=""
+      width={thumbnail.width}
+      height={thumbnail.height}
+      loading="lazy"
+      decoding="async"
+      class="h-36 w-full object-cover"
+    />
+  </picture>
+  <div class="bg-brand-500 h-1 w-full shrink-0"></div>
+  <div class="flex w-full flex-col gap-3 p-3">
+    <div class="flex flex-col gap-[6px] text-neutral-900">
+      <p class="text-body-md">{label}</p>
+      <h3 class:list={['text-body-xl font-semibold whitespace-pre-line', titleHeights[titleLines]]}>
+        {title}
+      </h3>
+    </div>
+    <p class="text-body-sm whitespace-pre-line text-neutral-800">{body}</p>
+  </div>
+</article>

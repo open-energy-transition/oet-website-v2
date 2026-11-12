@@ -1,0 +1,61 @@
+---
+import type { TocItem } from './tableOfContents'
+
+interface Props {
+  title: string
+  items: TocItem[]
+}
+
+const { title, items } = Astro.props
+---
+
+<oet-toc class="block">
+  <nav class="flex flex-col gap-4" aria-label={title}>
+    <h2 class="text-body-lg font-medium text-neutral-800">{title}</h2>
+    <ol class="text-body-sm flex flex-col gap-3 pl-5">
+      {items.map((item, index) => (
+        <li>
+          <a
+            href={`#${item.id}`}
+            class="hover:text-brand-500 aria-[current=true]:text-brand-500 block font-medium text-neutral-800 aria-[current=true]:font-semibold"
+            aria-current={index === 0 ? 'true' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+</oet-toc>
+
+<script>
+  class OetToc extends HTMLElement {
+    connectedCallback() {
+      const links = [...this.querySelectorAll<HTMLAnchorElement>('a')]
+      const targets = links.map((link) => document.getElementById(link.hash.slice(1))!)
+      const update = () => {
+        const passed = targets.filter((target) => target.getBoundingClientRect().top < 162).length
+        const active = Math.max(passed - 1, 0)
+        links.forEach((link, index) => {
+          if (index === active) link.setAttribute('aria-current', 'true')
+          else link.removeAttribute('aria-current')
+        })
+      }
+      let queued = false
+      addEventListener(
+        'scroll',
+        () => {
+          if (queued) return
+          queued = true
+          requestAnimationFrame(() => {
+            queued = false
+            update()
+          })
+        },
+        { passive: true },
+      )
+      update()
+    }
+  }
+  customElements.define('oet-toc', OetToc)
+</script>

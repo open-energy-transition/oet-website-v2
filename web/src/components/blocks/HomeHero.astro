@@ -1,0 +1,414 @@
+---
+import type { ImageMetadata } from 'astro'
+import { getImage, Image } from 'astro:assets'
+import ArrowRight from '../../icons/arrow-right.svg'
+import { homeHeroSources } from '../layout/heroSources'
+import Button from '../ui/Button.astro'
+
+interface Slide {
+  label: string
+  title: string
+  paragraphs: [string, string]
+  image: ImageMetadata
+  imageMobile: ImageMetadata
+  thumbnail: ImageMetadata
+  pattern: { image: ImageMetadata; left: number; top: number }
+  alt: string
+}
+
+interface Action {
+  label: string
+  href: string
+}
+
+interface Props {
+  label: string
+  slideLabel: (position: number, total: number) => string
+  nextLabel: string
+  slides: Slide[]
+  secondaryAction: Action
+  primaryAction: Action
+}
+
+const { label, slideLabel, nextLabel, slides, secondaryAction, primaryAction } = Astro.props
+
+const pictures = await Promise.all(
+  slides.map(async (slide) => ({
+    sources: await homeHeroSources(slide.image, slide.imageMobile),
+    base: await getImage({ src: slide.image, width: 1400, format: 'webp' }),
+  })),
+)
+
+const box = 'border border-[rgba(236,236,236,0.32)] bg-black/2 backdrop-blur-[4px]'
+---
+
+<div class="bg-brand-500 relative z-10 pb-[22px] lg:-mb-[22px] shadow-[0_0_20px_var(--color-brand-500)] lg:px-5 lg:pt-5">
+  <oet-hero
+    class="relative block h-[800px] overflow-clip bg-white lg:h-[clamp(560px,calc(100svh_-_40px),780px)] lg:rounded-lg"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label={label}
+    data-header-theme="light"
+  >
+    {slides.map((slide, index) => {
+      const Heading = index === 0 ? 'h1' : 'h2'
+      return (
+        <div
+          class="slide absolute inset-0 [container-type:size]"
+          role="group"
+          aria-roledescription="slide"
+          aria-label={slideLabel(index + 1, slides.length)}
+          data-slide={index}
+          data-active={index === 0 ? '' : undefined}
+        >
+          <picture>
+            {pictures[index].sources.map((source) => (
+              <source {...source} />
+            ))}
+            <img
+              src={pictures[index].base.src}
+              alt={slide.alt}
+              width={slide.image.width}
+              height={slide.image.height}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchpriority={index === 0 ? 'high' : 'low'}
+              decoding={index === 0 ? 'sync' : 'async'}
+              class="slide-image absolute inset-0 size-full object-cover"
+            />
+          </picture>
+          <div
+            class="absolute top-1/2 left-1/2 hidden h-[max(100cqh,calc(100cqw_*_780_/_1400))] w-[max(100cqw,calc(100cqh_*_1400_/_780))] -translate-x-1/2 -translate-y-1/2 lg:block"
+            aria-hidden="true"
+          >
+            <Image
+              src={slide.pattern.image}
+              alt=""
+              width={slide.pattern.image.width / 2}
+              height={slide.pattern.image.height / 2}
+              densities={[1, 2]}
+              loading="lazy"
+              class="slide-pattern absolute h-auto max-w-none"
+              style={`left:${slide.pattern.left / 14}%;top:${slide.pattern.top / 7.8}%;width:${slide.pattern.image.width / 28}%`}
+            />
+          </div>
+          <div class="slide-text absolute inset-0">
+            <Heading class="slide-title text-display-3 lg:text-display-2 absolute top-[130px] right-5 left-5 font-medium whitespace-pre-line text-white lg:top-[16.8%] lg:right-auto lg:left-[calc(max(0px,50%_-_700px)_+_40px)] lg:w-[11.607em]">
+              {slide.title}
+            </Heading>
+            <div class="absolute right-5 bottom-[123px] left-5 flex flex-col text-[1rem] leading-[20px] font-medium tracking-[-0.01em] text-white lg:right-auto lg:bottom-[94px] lg:left-[calc(max(0px,50%_-_700px)_+_40px)] lg:w-[315px] lg:leading-[19px]">
+              {slide.paragraphs.map((paragraph, position) => (
+                <p
+                  class:list={[
+                    box,
+                    'px-[11px] pt-3 pb-[11px] whitespace-pre-line',
+                    position > 0 && '-mt-px',
+                  ]}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    })}
+
+    <div
+      class:list={[
+        box,
+        'absolute top-[740px] left-5 flex w-[316px] gap-[2px] lg:top-auto lg:bottom-[38px] lg:left-[calc(max(0px,50%_-_700px)_+_40px)] lg:w-[315px]',
+      ]}
+    >
+      <Button
+        href={secondaryAction.href}
+        label={secondaryAction.label}
+        variant="outline-light"
+        size="md"
+        arrow={false}
+        newTab={false}
+        class="h-10 min-w-0 flex-1"
+      />
+      <Button
+        href={primaryAction.href}
+        label={primaryAction.label}
+        variant="primary"
+        size="md"
+        arrow
+        newTab={false}
+        class="h-10 w-[198px]"
+      />
+    </div>
+
+    <div
+      class="absolute top-[677px] right-5 left-5 lg:top-auto lg:right-[calc(max(0px,50%_-_700px)_+_40px)] lg:bottom-[41px] lg:left-auto lg:w-[305px]"
+      data-controls
+    >
+      <button type="button" class="block w-full cursor-pointer text-left" data-next>
+        <span class="relative hidden h-[219px] overflow-clip border border-[rgba(236,236,236,0.32)] lg:block">
+          {slides.map((_, index) => (
+            <Image
+              src={slides[(index + 1) % slides.length].thumbnail}
+              alt=""
+              widths={[305, 610]}
+              sizes="305px"
+              loading="lazy"
+              class="fade absolute inset-0 size-full object-cover"
+              data-slide={index}
+              data-active={index === 0 ? '' : undefined}
+            />
+          ))}
+        </span>
+        <span
+          class:list={[
+            box,
+            'text-body-sm flex h-[41px] items-center gap-[10px] p-3 font-medium text-white',
+          ]}
+        >
+          <span class="min-w-0 flex-1">{nextLabel}</span>
+          <span class="grid">
+            {slides.map((_, index) => (
+              <span
+                class="fade label col-start-1 row-start-1 text-right whitespace-nowrap"
+                data-slide={index}
+                data-active={index === 0 ? '' : undefined}
+              >
+                {slides[(index + 1) % slides.length].label}
+              </span>
+            ))}
+          </span>
+          <ArrowRight class="shrink-0" aria-hidden="true" />
+        </span>
+      </button>
+      <div class:list={[box, 'relative h-2 lg:-mt-px']} aria-hidden="true">
+        {slides.map((_, index) => (
+          <span
+            class="bar absolute -inset-px origin-left"
+            data-slide={index}
+            data-active={index === 0 ? '' : undefined}
+          >
+            <span class="bar-fill block size-full origin-left bg-[#bdb2ad]" data-bar />
+          </span>
+        ))}
+      </div>
+    </div>
+  </oet-hero>
+</div>
+
+<noscript>
+  <style is:inline>
+    oet-hero:not([data-ready]) {
+      height: auto;
+    }
+
+    oet-hero:not([data-ready]) .slide,
+    oet-hero:not([data-ready]) .slide:not([data-active]) {
+      position: relative;
+      display: block;
+      height: 800px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    oet-hero:not([data-ready]) .slide .slide-text,
+    oet-hero:not([data-ready]) .slide .slide-title,
+    oet-hero:not([data-ready]) .slide .slide-pattern {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    oet-hero:not([data-ready]) [data-controls] {
+      display: none;
+    }
+
+    @media (width >= 64rem) {
+      oet-hero:not([data-ready]) .slide,
+      oet-hero:not([data-ready]) .slide:not([data-active]) {
+        height: 780px;
+      }
+    }
+  </style>
+</noscript>
+
+<style is:global>
+  oet-hero .slide,
+  oet-hero .fade {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.5s ease-out,
+      visibility 0.5s;
+  }
+
+  oet-hero .slide[data-active],
+  oet-hero .fade[data-active] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  oet-hero:not([data-ready]) .slide:not([data-active]),
+  oet-hero:not([data-ready]) img.fade:not([data-active]) {
+    display: none;
+  }
+
+  oet-hero {
+    --hero-delay: 0.8s;
+  }
+
+  .oet-first-visit oet-hero {
+    --hero-delay: 2.9s;
+  }
+
+  oet-hero[data-cycled] {
+    --hero-delay: 1.3s;
+  }
+
+  oet-hero .slide-text {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+
+  @media (width >= 64rem) {
+    oet-hero .slide-title {
+      font-size: clamp(2.5rem, calc(100cqh * 56 / 780), 3.5rem);
+    }
+  }
+
+  oet-hero .slide-title {
+    transform: translateX(40px);
+    transition: transform 0.5s ease-out;
+  }
+
+  oet-hero .slide[data-active] .slide-text {
+    opacity: 1;
+    transition: none;
+    animation: hero-fade-in 0.5s ease-out var(--hero-delay) backwards;
+  }
+
+  oet-hero .slide[data-active] .slide-title {
+    transform: none;
+    transition: none;
+    animation: hero-title-in 0.5s ease-out var(--hero-delay) backwards;
+  }
+
+  oet-hero .slide[data-active] .slide-pattern {
+    animation: hero-pattern-in 0.5s ease-out var(--hero-delay) backwards;
+  }
+
+  oet-hero .label[data-active] {
+    transition: none;
+    animation: hero-fade-in 0.5s ease-out var(--hero-delay) backwards;
+  }
+
+  oet-hero .bar {
+    opacity: 0;
+    transform: scaleX(0.0885);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+  }
+
+  oet-hero .bar[data-active] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: hero-fade-in 0.5s ease-out var(--hero-delay) backwards;
+  }
+
+  oet-hero .bar[data-active] .bar-fill {
+    animation: hero-progress 7.1s linear var(--hero-delay) both;
+  }
+
+  oet-hero:hover .bar[data-active] .bar-fill,
+  oet-hero:focus-within .bar[data-active] .bar-fill {
+    animation-play-state: paused;
+  }
+
+  @keyframes hero-title-in {
+    from {
+      transform: translateX(-40px);
+    }
+  }
+
+  @keyframes hero-pattern-in {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+  }
+
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes hero-progress {
+    0%,
+    18.31% {
+      transform: scaleX(0.0885);
+      animation-timing-function: ease-out;
+    }
+    88.73%,
+    100% {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    oet-hero .slide,
+    oet-hero .fade,
+    oet-hero .slide-text,
+    oet-hero .slide-title,
+    oet-hero .bar {
+      transition: none;
+    }
+
+    oet-hero .slide[data-active] .slide-text,
+    oet-hero .slide[data-active] .slide-title,
+    oet-hero .slide[data-active] .slide-pattern,
+    oet-hero .label[data-active],
+    oet-hero .bar[data-active],
+    oet-hero .bar[data-active] .bar-fill {
+      animation: none;
+    }
+
+    oet-hero .bar-fill {
+      transform: scaleX(0.0885);
+    }
+  }
+</style>
+
+<script>
+  class OetHero extends HTMLElement {
+    connectedCallback() {
+      const parts = [...this.querySelectorAll<HTMLElement>('[data-slide]')]
+      const total = this.querySelectorAll('[role="group"]').length
+      let current = 0
+      const show = (index: number) => {
+        current = index % total
+        this.toggleAttribute('data-cycled', true)
+        for (const part of parts) {
+          part.toggleAttribute('data-active', Number(part.dataset.slide) === current)
+        }
+      }
+      const ready = () => this.toggleAttribute('data-ready', true)
+      const first = this.querySelector('img')!
+      const settle = () => window.setTimeout(ready, 2000)
+      const painted = () => {
+        if (document.readyState === 'complete') settle()
+        else window.addEventListener('load', settle, { once: true })
+      }
+      if (first.complete) painted()
+      else first.addEventListener('load', painted, { once: true })
+      this.querySelector('[data-next]')!.addEventListener('click', () => {
+        ready()
+        show(current + 1)
+      })
+      this.addEventListener('animationend', (event) => {
+        if ((event.target as HTMLElement).hasAttribute('data-bar')) show(current + 1)
+      })
+    }
+  }
+  customElements.define('oet-hero', OetHero)
+</script>

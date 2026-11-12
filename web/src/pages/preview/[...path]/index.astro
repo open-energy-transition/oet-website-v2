@@ -1,0 +1,142 @@
+---
+import AboutPage from '../../../components/pages/AboutPage.astro'
+import CareerPage from '../../../components/pages/CareerPage.astro'
+import DepartmentDetailPage from '../../../components/pages/DepartmentDetailPage.astro'
+import DepartmentsPage from '../../../components/pages/DepartmentsPage.astro'
+import EventDetailPage from '../../../components/pages/EventDetailPage.astro'
+import HomePage from '../../../components/pages/HomePage.astro'
+import LegalPage from '../../../components/pages/LegalPage.astro'
+import NewsEventsPage from '../../../components/pages/NewsEventsPage.astro'
+import PartnersPage from '../../../components/pages/PartnersPage.astro'
+import ProjectDetailPage from '../../../components/pages/ProjectDetailPage.astro'
+import PublicationDetailPage from '../../../components/pages/PublicationDetailPage.astro'
+import PublicationsPage from '../../../components/pages/PublicationsPage.astro'
+import ServiceDetailPage from '../../../components/pages/ServiceDetailPage.astro'
+import ServicesPage from '../../../components/pages/ServicesPage.astro'
+import SuccessStoriesPage from '../../../components/pages/SuccessStoriesPage.astro'
+import TeamPage from '../../../components/pages/TeamPage.astro'
+import TheoryOfChangePage from '../../../components/pages/TheoryOfChangePage.astro'
+import ToolsAndDataPage from '../../../components/pages/ToolsAndDataPage.astro'
+import { loadDepartmentPages } from '../../../data/departments'
+import { eventStatus, loadEvents } from '../../../data/events'
+import { loadLegalPage, type LegalPageId } from '../../../data/legal'
+import { loadProjects, projectBySlug } from '../../../data/projects'
+import {
+  loadPublications,
+  publicationBySlug,
+  type PublicationTypeId,
+} from '../../../data/publications'
+import { loadServices, loadServiceShared } from '../../../data/services'
+import { loadToolCategories, loadToolsPage } from '../../../data/tools'
+import { defaultLocale } from '../../../i18n/config'
+
+export const prerender = false
+
+const locale = defaultLocale
+const path = Astro.params.path === undefined ? '' : Astro.params.path
+const [section, kind, slug] = path.split('/')
+const legalPages: LegalPageId[] = ['legal', 'privacy-statement', 'disclaimer']
+
+const fixedPages = {
+  '': HomePage,
+  services: ServicesPage,
+  'outputs/success-stories': SuccessStoriesPage,
+  'organization/about': AboutPage,
+  'organization/career': CareerPage,
+  'organization/departments': DepartmentsPage,
+  'organization/news-and-events': NewsEventsPage,
+  'organization/partners-and-funders': PartnersPage,
+  'organization/team': TeamPage,
+  'organization/theory-of-change': TheoryOfChangePage,
+}
+
+const publicationListings: Record<string, PublicationTypeId | null> = {
+  'outputs/publications': null,
+  'outputs/reports': 'reports',
+  'outputs/blogs': 'blogs',
+  'outputs/policy-briefs': 'policy-briefs',
+  'outputs/academic-publications': 'academic',
+}
+
+const isFixedPage = (value: string): value is keyof typeof fixedPages =>
+  Object.hasOwn(fixedPages, value)
+
+const notFound = (what: string) =>
+  new Response(`No draft or published ${what} has this slug.`, {
+    status: 404,
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  })
+
+const load = async () => {
+  if (isFixedPage(path)) return { page: 'fixed' as const, component: fixedPages[path] }
+  if (Object.hasOwn(publicationListings, path))
+    return { page: 'publications' as const, props: { type: publicationListings[path] } }
+  if (section === 'tools-and-data' && !slug) {
+    if (kind === undefined)
+      return {
+        page: 'tools' as const,
+        props: { page: await loadToolsPage(locale), category: null },
+      }
+    const categories = await loadToolCategories(locale)
+    if (!categories.some((item) => item.slug === kind)) return notFound('tool category')
+    return { page: 'tools' as const, props: { page: await loadToolsPage(locale), category: kind } }
+  }
+  if (section === 'outputs' && kind === 'success-stories' && slug) {
+    const projects = await loadProjects(locale)
+    const project = projects.find((item) => item.slug === slug)
+    if (!project) return notFound('success story')
+    const related = project.detail.related.map((item) => projectBySlug(projects, item))
+    return { page: 'project' as const, props: { project, related } }
+  }
+  if (section === 'outputs' && kind === 'publications' && slug) {
+    const publications = await loadPublications(locale)
+    const publication = publications.find((item) => item.slug === slug)
+    if (!publication) return notFound('publication')
+    const related = publication.detail.related.map((item) => publicationBySlug(publications, item))
+    return { page: 'publication' as const, props: { publication, related } }
+  }
+  if (section === 'organization' && kind === 'news-and-events' && slug) {
+    const event = (await loadEvents(locale)).find((item) => item.slug === slug)
+    if (!event) return notFound('event')
+    const status = eventStatus(event, new Date())
+    if (status === 'archived')
+      return new Response('This event has ended and is not highlighted, so it has no page.', {
+        status: 404,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+      })
+    return { page: 'event' as const, props: { event, status } }
+  }
+  if (section === 'organization' && kind === 'departments' && slug) {
+    const department = (await loadDepartmentPages(locale)).find(
+      (item) => item.department.slug === slug,
+    )
+    if (!department) return notFound('department page')
+    return { page: 'department' as const, props: department }
+  }
+  if (section === 'services' && kind && !slug) {
+    const [services, shared] = await Promise.all([loadServices(locale), loadServiceShared(locale)])
+    const service = services.find((item) => item.slug === kind)
+    if (!service) return notFound('service')
+    return { page: 'service' as const, props: { service, shared } }
+  }
+  const legal = legalPages.find((item) => item === section)
+  if (legal && !kind)
+    return { page: 'legal' as const, props: { content: await loadLegalPage(locale, legal) } }
+  return notFound('page')
+}
+
+const result = await load()
+if (result instanceof Response) return result
+const FixedPage = result.page === 'fixed' ? result.component : null
+---
+
+{FixedPage && <FixedPage />}
+{result.page === 'publications' && <PublicationsPage {...result.props} />}
+{result.page === 'tools' && <ToolsAndDataPage {...result.props} />}
+
+{result.page === 'project' && <ProjectDetailPage {...result.props} />}
+{result.page === 'publication' && <PublicationDetailPage {...result.props} />}
+{result.page === 'event' && <EventDetailPage {...result.props} />}
+{result.page === 'department' && <DepartmentDetailPage {...result.props} />}
+{result.page === 'service' && <ServiceDetailPage {...result.props} />}
+{result.page === 'legal' && <LegalPage {...result.props} />}

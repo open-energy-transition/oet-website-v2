@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import LogoGrid from '../blocks/LogoGrid.astro'
+import PageHero from '../blocks/PageHero.astro'
+import ListingFilter from '../interactive/ListingFilter.astro'
+import FilterTabs from '../ui/FilterTabs.astro'
+import { loadPartnersPage } from '../../data/partners'
+import { defaultLocale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+
+const { meta, hero, intro, filter, logos, logosMobile, types, typesMobile } =
+  await loadPartnersPage(defaultLocale)
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="photo-left"
+      title={hero.title}
+      titleSize="display-3"
+      titleSizeMobile="display-5"
+      eyebrow={null}
+      lead={[]}
+      links={[]}
+      stats={{
+        groups: hero.stats.map((stat) => [
+          { kind: 'icon', icon: stat.icon, tone: stat.tone },
+          { kind: 'count', value: stat.value, label: stat.label, tone: 'outline' },
+        ]),
+        action: null,
+      }}
+      person={null}
+      image={hero.image}
+      background="brand-600"
+      textLeft={80}
+      mobileAnchor="bottom-50"
+      ornament="none"
+      headerTheme="light"
+    />
+    <div class="max-w-page px-gutter mx-auto w-full lg:pr-[100px] lg:pl-20">
+      <div class="flex flex-col border-l border-neutral-100 lg:flex-row lg:border-r">
+        <section class="flex flex-col gap-[7px] pt-[180px] pr-5 pb-3 pl-[19px] lg:gap-3 lg:w-[32.78%] lg:shrink-0 lg:border-r lg:border-neutral-100 lg:pt-[120px] lg:pr-10 lg:pb-20 lg:pl-[39px]">
+          <h2 class="text-display-5 font-medium text-neutral-900">{intro.statement}</h2>
+          <div class="text-body-md flex flex-col gap-2 text-neutral-800 lg:gap-[10px] lg:pt-2">
+            {intro.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+        <ListingFilter
+          pageSize={{ desktop: null, mobile: null }}
+          ranked={false}
+          infinite={false}
+          class="min-w-0 lg:flex-1"
+        >
+          <section class="pb-[120px] lg:pt-[120px] lg:pb-20">
+            <div class="pl-[19px] lg:pl-0" data-listing-tabs="type">
+              <FilterTabs
+                label={t(defaultLocale, 'tabs.partnerType')}
+                layout="compact"
+                mobileBreakAfter={null}
+                options={filter.options}
+              />
+            </div>
+            <LogoGrid
+              columns={4}
+              mobileColumns={2}
+              inset="none"
+              groups={[{ label: null, logos }]}
+              facets={[types]}
+              class="hidden lg:block"
+            />
+            <LogoGrid
+              columns={4}
+              mobileColumns={2}
+              inset="none"
+              groups={[{ label: null, logos: logosMobile }]}
+              facets={[typesMobile]}
+              class="-ml-px pt-10 lg:hidden"
+            />
+            <p
+              data-listing-empty
+              class="text-body-md py-10 pl-[19px] font-medium text-neutral-800 lg:pl-0"
+              hidden
+            >
+              {t(defaultLocale, 'partners.empty')}
+            </p>
+          </section>
+        </ListingFilter>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

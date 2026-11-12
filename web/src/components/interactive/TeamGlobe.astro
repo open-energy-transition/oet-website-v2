@@ -1,0 +1,335 @@
+---
+import type { ImageMetadata } from 'astro'
+import type { SvgComponent } from 'astro/types'
+import worldData from '../../assets/team/world.json'
+import PeopleGroup from '../../icons/people-group.svg'
+import GlobeCountryCard from '../cards/GlobeCountryCard.astro'
+import {
+  CARD_OFFSET,
+  STAGE,
+  decode,
+  landPath,
+  percent,
+  pinPosition,
+  pinScale,
+  projectPoint,
+  shapePath,
+  stageView,
+  type World,
+} from './globe'
+
+interface Country {
+  code: string
+  name: string
+  count: string
+  lon: number
+  lat: number
+  photo: ImageMetadata
+  photoAlt: string
+}
+
+interface TeamProps {
+  variant: 'team'
+  view: { lon: number; lat: number }
+  label: string
+  hint: string
+  countries: Country[]
+  selected: string
+  unit: string
+  class?: string
+}
+
+interface DecorativeProps {
+  variant: 'decorative'
+  view: { lon: number; lat: number }
+  pins: { icon: SvgComponent; lon: number; lat: number; scale: number }[]
+  class?: string
+}
+
+type Props = TeamProps | DecorativeProps
+
+const props = Astro.props
+const view = stageView(props.view.lon, props.view.lat)
+const shapes = decode(worldData as World)
+
+const place = (lon: number, lat: number) => {
+  const point = projectPoint(lon, lat, view)
+  const position = pinPosition(point, view)
+  return {
+    left: percent(position.x, STAGE.width),
+    top: percent(position.y, STAGE.height),
+    scale: pinScale(point.depth),
+    point,
+  }
+}
+
+const countries =
+  props.variant === 'team'
+    ? props.countries.map((country) => {
+        const shape = shapes.find((candidate) => candidate.id === country.code)
+        if (!shape) throw new Error(`Unknown country code: ${country.code}`)
+        return {
+          ...country,
+          d: shapePath(shape, view),
+          active: country.code === props.selected,
+          ...place(country.lon, country.lat),
+        }
+      })
+    : []
+const photos =
+  props.variant === 'team'
+    ? [
+        ...Map.groupBy(props.countries, (country) => `${country.photo.src} ${country.photoAlt}`)
+          .values()
+          .map((group) => ({
+            photo: group[0].photo,
+            alt: group[0].photoAlt,
+            codes: group.map((country) => country.code),
+          })),
+      ]
+    : []
+const ordered = [...countries].sort((a, b) => Number(a.active) - Number(b.active))
+const active = countries.find((country) => country.active)
+if (props.variant === 'team' && !active) throw new Error(`Unknown selection: ${props.selected}`)
+
+const land = landPath(shapes, view, new Set(countries.map((country) => country.code)))
+const icons = props.variant === 'decorative' ? props.pins : []
+const glowId = `globe-glow-${props.variant}`
+
+const roots: Record<Props['variant'], string> = {
+  team: 'h-[444px] lg:h-auto lg:aspect-[1280/582]',
+  decorative: 'h-[520px]',
+}
+const stages: Record<Props['variant'], string> = {
+  team: 'top-0 left-[calc(45.22%-468px)] h-[444px] w-[976.5px] lg:left-0 lg:size-full',
+  decorative: '-top-[10px] left-1/2 h-[582px] w-[1280px] -translate-x-1/2',
+}
+const fades: Record<Props['variant'], string> = {
+  team: 'top-[73px] left-[85px] h-[537px] w-[1057px] lg:top-[12.543%] lg:left-[6.641%] lg:h-[92.268%] lg:w-[82.578%]',
+  decorative: 'top-[12.543%] left-[6.641%] h-[92.268%] w-[82.578%]',
+}
+const pin =
+  'bg-brand-500 text-neutral-50 absolute flex -translate-1/2 scale-(--pin-scale) items-center justify-center gap-[0.714em] min-h-[2.929em] border-[0.0714em] border-neutral-50 p-[0.7856em] text-[0.8121cqw] leading-[1.2] font-medium tracking-[-0.01em] whitespace-nowrap'
+---
+
+<oet-team-globe
+  class:list={['focus-frame relative block overflow-clip', roots[props.variant], props.class]}
+  data-variant={props.variant}
+  data-view={JSON.stringify(props.view)}
+  data-selected={props.variant === 'team' ? props.selected : undefined}
+  data-countries={
+    props.variant === 'team'
+      ? JSON.stringify(
+          props.countries.map(({ code, name, count, lon, lat }) => ({
+            code,
+            name,
+            count,
+            lon,
+            lat,
+          })),
+        )
+      : undefined
+  }
+  aria-hidden={props.variant === 'decorative' ? 'true' : undefined}
+>
+  <div
+    class:list={[
+      '@container absolute touch-pan-y select-none focus-stretched',
+      stages[props.variant],
+    ]}
+    data-globe="stage"
+    role={props.variant === 'team' ? 'group' : undefined}
+    aria-label={props.variant === 'team' ? props.label : undefined}
+    aria-describedby={props.variant === 'team' ? 'team-globe-hint' : undefined}
+  >
+    <svg
+      viewBox={`0 0 ${STAGE.width} ${STAGE.height}`}
+      class="absolute inset-0 size-full overflow-visible"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <filter
+          id={glowId}
+          x="0"
+          y="-30"
+          width={STAGE.width}
+          height={STAGE.height + 60}
+          filterUnits="userSpaceOnUse"
+        >
+          <feGaussianBlur stdDeviation="20"></feGaussianBlur>
+        </filter>
+      </defs>
+      <circle
+        cx="612.5"
+        cy="598.5"
+        r="549"
+        fill="none"
+        stroke-width="2"
+        class="stroke-brand-500"
+        filter={`url(#${glowId})`}
+      ></circle>
+      <circle
+        cx="612.5"
+        cy="601.5"
+        r="538"
+        fill="none"
+        class="stroke-brand-500 opacity-80"
+      ></circle>
+      <circle cx={STAGE.cx} cy={STAGE.cy} r={STAGE.radius} class="fill-neutral-50"></circle>
+      <path d={land} class="fill-neutral-100 stroke-neutral-400" data-globe="land"></path>
+      {ordered.map((country) => (
+        <path
+          d={country.d}
+          class="globe-country fill-neutral-100 stroke-neutral-400"
+          data-globe="country"
+          data-code={country.code}
+          data-active={country.active ? '' : undefined}
+        />
+      ))}
+      <circle
+        cx={STAGE.cx}
+        cy={STAGE.cy}
+        r={STAGE.radius}
+        fill="none"
+        stroke-width="2"
+        class="stroke-neutral-300"
+      ></circle>
+    </svg>
+    {props.variant === 'team' && (
+      <ul>
+        {countries.map((country) => (
+          <li class="contents">
+            <button
+              type="button"
+              disabled
+              class:list={[pin, 'globe-pin cursor-pointer']}
+              style={{ left: country.left, top: country.top, '--pin-scale': country.scale }}
+              data-globe="pin"
+              data-code={country.code}
+              aria-pressed={country.active ? 'true' : 'false'}
+            >
+              <PeopleGroup class="size-[1.143em]" aria-hidden="true" />
+              <span>
+                <span class="sr-only">{country.name}: </span>
+                {country.count}
+                <span class="sr-only"> {props.unit}</span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    )}
+    {icons.map(({ icon: Icon, lon, lat, scale }) => {
+      const position = place(lon, lat)
+      return (
+        <span class={pin} style={{ left: position.left, top: position.top, '--pin-scale': scale }}>
+          <Icon class="size-[1.143em]" />
+        </span>
+      )
+    })}
+    <div
+      class:list={[
+        'pointer-events-none absolute rounded-t-full bg-linear-to-b from-neutral-50/0 from-60% to-neutral-50',
+        fades[props.variant],
+      ]}
+    />
+  </div>
+  {props.variant === 'team' && active && (
+    <>
+      <div
+        class="globe-card absolute top-4 left-1/2 -translate-x-1/2 max-lg:hidden lg:top-auto lg:bottom-(--card-bottom) lg:left-[min(var(--card-left),calc(100%-305px))] lg:translate-x-0"
+        style={{
+          '--card-left': percent(active.point.x + CARD_OFFSET.x, STAGE.width),
+          '--card-bottom': percent(STAGE.height - active.point.y - CARD_OFFSET.y, STAGE.height),
+        }}
+        data-globe="card"
+        aria-live="polite"
+      >
+        <GlobeCountryCard
+          photos={photos}
+          selected={active.code}
+          country={active.name}
+          count={active.count}
+          unit={props.unit}
+        />
+      </div>
+      <p id="team-globe-hint" class="sr-only">
+        {props.hint}
+      </p>
+    </>
+  )}
+</oet-team-globe>
+
+<style>
+  .globe-country[data-active] {
+    fill: var(--color-brand-500);
+    stroke: var(--color-white);
+    filter: drop-shadow(0 0 10px var(--color-brand-500));
+  }
+
+  oet-team-globe[data-ready] [data-globe='stage'] {
+    cursor: grab;
+  }
+
+  oet-team-globe[data-ready] [data-globe='stage'][data-dragging] {
+    cursor: grabbing;
+  }
+
+  oet-team-globe[data-ready] .globe-country {
+    cursor: pointer;
+  }
+
+  oet-team-globe[data-ready] .globe-country:not([data-active]):hover {
+    fill: var(--color-brand-200);
+  }
+
+  .globe-pin[aria-pressed='true']:not(:focus-visible) {
+    opacity: 0;
+  }
+
+  .globe-pin:focus-visible {
+    z-index: 1;
+  }
+
+  .globe-pin[data-hidden],
+  .globe-card[data-hidden] {
+    visibility: hidden;
+  }
+
+  oet-team-globe[data-touched] .globe-card {
+    display: block;
+  }
+</style>
+
+<script>
+  class TeamGlobe extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.variant !== 'team') return
+      const stage = this.querySelector<HTMLElement>('[data-globe="stage"]')!
+      const pins = [...this.querySelectorAll<HTMLButtonElement>('[data-globe="pin"]')]
+      let started = false
+      const start = () => {
+        if (started) return
+        started = true
+        observer.disconnect()
+        import('./teamGlobe.client')
+          .then(({ mount }) => mount(this))
+          .then(() => {
+            for (const pin of pins) pin.disabled = false
+          })
+      }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) start()
+        },
+        { rootMargin: '300px 0px' },
+      )
+      stage.tabIndex = 0
+      this.addEventListener('focusin', start, { once: true })
+      observer.observe(this)
+    }
+  }
+
+  customElements.define('oet-team-globe', TeamGlobe)
+</script>

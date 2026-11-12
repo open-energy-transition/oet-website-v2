@@ -1,0 +1,214 @@
+---
+import CtaBanner from '../blocks/CtaBanner.astro'
+import PageHero from '../blocks/PageHero.astro'
+import ToolCard from '../cards/ToolCard.astro'
+import ListingFilter from '../interactive/ListingFilter.astro'
+import Reveal from '../interactive/Reveal.astro'
+import FilterTabs from '../ui/FilterTabs.astro'
+import Pagination from '../ui/Pagination.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { routes } from '../../data/routes'
+import { defaultLocale } from '../../i18n/config'
+import { t } from '../../i18n/ui'
+import type { ToolsPage } from '../../data/tools'
+import { firstPageClass, type PageSize } from '../../lib/listing'
+
+interface Props {
+  page: ToolsPage
+  category: string | null
+}
+
+const { page, category } = Astro.props
+const { meta, hero, intro, cta, categories, tools } = page
+const locale = defaultLocale
+
+const active = categories.find((item) => item.slug === category)
+if (category !== null && !active) throw new Error(`Unknown tool category: ${category}`)
+
+const columns = 4
+const groups = categories
+  .filter((item) => category === null || item.slug === category)
+  .map((item) => ({
+    category: item,
+    tools: tools.filter((tool) => tool.categories.includes(item.slug)),
+  }))
+const rows = groups
+  .flatMap((group) =>
+    Array.from({ length: Math.ceil(group.tools.length / columns) }, (_, index) => ({
+      category: group.category,
+      tools: group.tools.slice(index * columns, (index + 1) * columns),
+    })),
+  )
+  .map((row, index, all) => ({
+    ...row,
+    start: all.slice(0, index).reduce((sum, previous) => sum + previous.tools.length, 0),
+  }))
+const count = rows.reduce((sum, row) => sum + row.tools.length, 0)
+const pageSize = { desktop: null, mobile: 11 } satisfies PageSize
+const totalPages = Math.max(1, Math.ceil(count / pageSize.mobile))
+
+const tabs = [
+  {
+    label: t(locale, 'tabs.showAll'),
+    href: `${routes.toolsAndData}#${intro.id}`,
+    active: category === null,
+  },
+  ...categories.map((item) => ({
+    label: item.tabLabel,
+    href: `${item.href}#${intro.id}`,
+    active: item.slug === category,
+  })),
+]
+
+const title = active ? `${active.tabLabel} | ${meta.title}` : meta.title
+const hrefFor = (page: number) => `?page=${page}#${intro.id}`
+---
+
+<BaseLayout
+  title={title}
+  description={meta.description}
+  share={{ image: null, type: 'website' }}
+  headerTheme="dark"
+  initialHeaderTheme="light"
+>
+  <main id="main">
+    <PageHero
+      layout="listing"
+      title={hero.title}
+      titleSize="display-2"
+      titleSizeMobile="display-5"
+      eyebrow={hero.eyebrow}
+      lead={[]}
+      links={[hero.link]}
+      stats={null}
+      person={null}
+      image={hero.image}
+      background="brand-700"
+      chipsBottomMobile={30}
+      ornament="right-lower"
+      headerTheme="light"
+    />
+
+    <ListingFilter pageSize={pageSize} ranked={false} infinite={false}>
+      <section id={intro.id} class="max-w-page px-gutter lg:px-gutter-lg mx-auto w-full">
+        <div class="flex flex-col gap-3 border-l border-neutral-100 pt-[180px] pb-10 pl-5 lg:gap-10 lg:pt-[120px] lg:pb-5 lg:pl-0">
+          <div class="flex flex-col gap-2 lg:flex-row lg:gap-5 lg:px-5">
+            <h2 class="text-display-5 font-medium whitespace-pre-line text-neutral-800 lg:flex-1 lg:text-neutral-900">
+              {intro.title}
+            </h2>
+            <div class="text-body-md flex flex-col gap-2 text-neutral-800 lg:flex-1 lg:flex-row lg:gap-5 lg:pt-2">
+              {intro.paragraphs.map((paragraph) => (
+                <p class="lg:flex-1">{paragraph}</p>
+              ))}
+            </div>
+          </div>
+          <div data-tab-swap>
+            <FilterTabs
+              label={t(locale, 'tabs.toolCategory')}
+              layout="equal"
+              mobileBreakAfter={null}
+              options={tabs}
+            />
+          </div>
+          <Pagination
+            class="py-5 lg:hidden"
+            current={1}
+            total={totalPages}
+            hrefFor={hrefFor}
+            locale={locale}
+          />
+        </div>
+      </section>
+
+      <div class="max-w-page px-gutter lg:px-gutter-lg mx-auto w-full">
+        <div
+          data-listing-items
+          class="flex scroll-mt-32 flex-col gap-5 border-t border-l border-neutral-100 pt-[19px] pb-[140px] lg:gap-0 lg:border-t-0 lg:pt-0 lg:pb-[120px]"
+        >
+          <Reveal
+            axis="x"
+            order="column"
+            steps={[0, -120]}
+            easing="gentle"
+            duration={1.022}
+            delay={0.3}
+          >
+            {rows.map((row) => (
+              <ul class="-ml-px flex flex-col gap-5 border-neutral-100 lg:grid lg:grid-cols-4 lg:border-t lg:pt-[19px] lg:pb-10 max-lg:[&:not(:has(>li:not([hidden])))]:hidden">
+                {row.tools.map((tool, index) => (
+                  <li
+                    class:list={['flex', firstPageClass(row.start + index, pageSize)]}
+                    data-listing-item
+                    data-reveal
+                  >
+                    <ToolCard
+                      category={{ label: row.category.label, tone: row.category.tone }}
+                      name={tool.name}
+                      description={tool.description}
+                      source={{ label: t(locale, 'tool.source'), href: tool.sourceHref }}
+                      website={{ label: t(locale, 'tool.website'), href: tool.websiteHref }}
+                      github={{ label: t(locale, 'tool.github'), href: tool.githubHref }}
+                      class="w-full lg:h-[360px]"
+                    />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </Reveal>
+          <Pagination
+            class="py-10 lg:hidden"
+            current={1}
+            total={totalPages}
+            hrefFor={hrefFor}
+            locale={locale}
+          />
+        </div>
+      </div>
+    </ListingFilter>
+
+    <script>
+      const swap = async (href: string) => {
+        const current = document.querySelector('oet-listing')
+        if (!current) throw new Error('tools page: missing oet-listing')
+        current.setAttribute('aria-busy', 'true')
+        const response = await fetch(href)
+        if (!response.ok) throw new Error(`tools page: ${response.status} for ${href}`)
+        const page = new DOMParser().parseFromString(await response.text(), 'text/html')
+        const next = page.querySelector('oet-listing')
+        if (!next) throw new Error(`tools page: ${href} has no oet-listing`)
+        document.adoptNode(next)
+        customElements.upgrade(next)
+        current.replaceWith(next)
+        document.title = page.title
+        return next
+      }
+
+      document.addEventListener('click', async (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+          return
+        const link = (event.target as Element).closest<HTMLAnchorElement>('[data-tab-swap] a')
+        if (!link) return
+        event.preventDefault()
+        if (link.hasAttribute('aria-current')) return
+        const href = link.href
+        history.pushState({ toolsTab: true }, '', href)
+        const next = await swap(href)
+        const target = new URL(href).pathname
+        const tab = [...next.querySelectorAll<HTMLAnchorElement>('[data-tab-swap] a')].find(
+          (candidate) => new URL(candidate.href).pathname === target,
+        )
+        tab?.focus({ preventScroll: true })
+      })
+
+      history.replaceState({ toolsTab: true }, '', location.href)
+      addEventListener('popstate', (event) => {
+        if (event.state?.toolsTab === true) swap(location.href)
+      })
+    </script>
+    <CtaBanner {...cta} />
+
+    <div class="max-w-page lg:px-gutter-lg mx-auto hidden w-full lg:block" aria-hidden="true">
+      <div class="h-40 border-l border-neutral-100"></div>
+    </div>
+  </main>
+</BaseLayout>

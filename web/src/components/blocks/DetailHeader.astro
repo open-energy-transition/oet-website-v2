@@ -1,0 +1,178 @@
+---
+import type { ComponentProps } from 'astro/types'
+import AttributionPen from '../../icons/attribution-pen.svg'
+import BallotCheck from '../../icons/ballot-check.svg'
+import BoxConnection from '../../icons/box-connection.svg'
+import Tasks from '../../icons/tasks.svg'
+import DetailMeta from './DetailMeta.astro'
+
+type GroupIcon = 'tools' | 'services' | 'authors'
+type MetaRows = ComponentProps<typeof DetailMeta>['rows']
+type Highlights =
+  { kind: 'list'; label: string; items: string[] } | { kind: 'text'; label: string; text: string }
+type Group = { icon: GroupIcon; label: string; items: string[] }
+
+type Props =
+  | {
+      tone: 'red' | 'maroon'
+      title: string
+      highlights: Highlights
+      groups: Group[]
+      meta: MetaRows
+    }
+  | { tone: 'light'; title: string; summary: string; meta: MetaRows }
+
+const props = Astro.props
+
+const groupIcons: Record<GroupIcon, typeof Tasks> = {
+  tools: BoxConnection,
+  services: Tasks,
+  authors: AttributionPen,
+}
+
+const tones: Record<
+  Props['tone'],
+  {
+    theme: 'light' | 'dark'
+    section: string
+    band: string
+    glow: string
+    panel: string
+    title: string
+    line: string
+    side: string
+    items: string
+  }
+> = {
+  red: {
+    theme: 'light',
+    section: 'bg-brand-700 lg:bg-transparent',
+    band: 'bg-brand-700 bg-[radial-gradient(101%_101%_at_50.9%_101%,var(--color-brand-500),transparent)] lg:block',
+    glow: 'lg:block',
+    panel: 'bg-brand-700',
+    title: 'text-white',
+    line: 'before:bg-brand-800',
+    side: 'border-brand-800 lg:pr-0',
+    items: 'gap-[2px] text-brand-50',
+  },
+  maroon: {
+    theme: 'light',
+    section: 'bg-brand-900 lg:bg-transparent',
+    band: 'bg-brand-900 bg-[radial-gradient(101%_101%_at_50.9%_101%,var(--color-brand-800),transparent)] lg:block',
+    glow: 'lg:block',
+    panel: 'bg-brand-900',
+    title: 'text-white',
+    line: 'before:bg-brand-800',
+    side: 'border-brand-800',
+    items: 'gap-2 font-medium text-white',
+  },
+  light: {
+    theme: 'dark',
+    section: '',
+    band: 'bg-brand-50 bg-[radial-gradient(101%_101%_at_50.8%_101%,rgb(227_25_55/0.5),rgb(232_67_82/0.25)_50%,rgb(237_108_108/0))] shadow-[0_0_20px_var(--color-brand-500)] lg:block',
+    glow: '',
+    panel: 'bg-neutral-50',
+    title: 'text-black',
+    line: 'before:bg-neutral-100',
+    side: '',
+    items: '',
+  },
+}
+
+const tone = tones[props.tone]
+---
+
+<header class:list={['relative isolate', tone.section]} data-header-theme={tone.theme}>
+  <div
+    class:list={[
+      'bg-brand-500 absolute inset-x-0 top-0 -z-20 hidden h-[822px] blur-[20px]',
+      tone.glow,
+    ]}
+    aria-hidden="true"
+  ></div>
+  <div
+    class:list={['absolute inset-x-0 top-0 -z-10 hidden h-[822px]', tone.band]}
+    aria-hidden="true"
+  ></div>
+  <div class="max-w-page lg:px-gutter-lg mx-auto flex w-full flex-col lg:flex-row lg:items-end">
+    <div
+      class:list={[
+        'flex flex-col pt-[160px] lg:w-[calc(100%_-_325px)] lg:max-w-[847px] lg:shrink-0',
+        tone.panel,
+      ]}
+    >
+      <div class="flex items-center px-5 pb-5 lg:min-h-[209px]">
+        <h1
+          class:list={[
+            'text-display-3 lg:text-display-2 w-full font-medium whitespace-pre-line',
+            tone.title,
+          ]}
+        >
+          {props.title}
+        </h1>
+      </div>
+      <div
+        class:list={[
+          'relative flex flex-col before:absolute before:inset-x-0 before:top-0 before:h-px',
+          tone.line,
+          props.tone !== 'light' && 'lg:flex-row',
+        ]}
+      >
+        {props.tone !== 'light' && (
+          <>
+            <div class="flex flex-col gap-2 px-5 pt-5 lg:w-0 lg:flex-1 lg:pb-5">
+              <p class="text-body-lg flex items-center gap-2 font-medium text-neutral-50">
+                <BallotCheck class="size-4 shrink-0" aria-hidden="true" />
+                {props.highlights.label}
+              </p>
+              {props.highlights.kind === 'list' && (
+                <ul class="text-body-md text-brand-50 list-disc pl-6 font-medium">
+                  {props.highlights.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+              {props.highlights.kind === 'text' && (
+                <p class="text-body-md text-brand-50 font-medium">{props.highlights.text}</p>
+              )}
+            </div>
+            <div
+              class:list={[
+                'flex flex-col gap-2 p-5 lg:w-[220px] lg:shrink-0 lg:border-l',
+                tone.side,
+              ]}
+            >
+              {props.groups.map((group) => {
+                const Icon = groupIcons[group.icon]
+                return (
+                  <>
+                    <p class="text-body-md flex items-center gap-2 font-medium text-neutral-50">
+                      <Icon class="size-4 shrink-0" aria-hidden="true" />
+                      {group.label}
+                    </p>
+                    <ul class:list={['text-body-sm flex flex-col pb-2 pl-6', tone.items]}>
+                      {group.items.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </>
+                )
+              })}
+            </div>
+          </>
+        )}
+        {props.tone === 'light' && (
+          <>
+            <p class="text-body-md px-5 pt-5 pb-4 font-medium whitespace-pre-line text-black">
+              {props.summary}
+            </p>
+            <DetailMeta tone="light" rows={props.meta} class="lg:w-[433px]" />
+          </>
+        )}
+      </div>
+    </div>
+    {props.tone !== 'light' && (
+      <DetailMeta tone={props.tone} rows={props.meta} class="lg:w-0 lg:flex-1" />
+    )}
+  </div>
+</header>

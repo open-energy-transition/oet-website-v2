@@ -1,0 +1,42 @@
+---
+type Option = { label: string; href: string; active: boolean }
+
+interface Props {
+  label: string
+  layout: 'compact' | 'wrap' | 'equal'
+  options: Option[]
+  mobileBreakAfter: number | null
+}
+
+const { label, layout, options, mobileBreakAfter } = Astro.props
+
+const lists: Record<Props['layout'], string> = {
+  compact: 'flex flex-wrap pt-px pl-px',
+  wrap: '-mr-2 flex flex-wrap pt-px pl-px lg:mr-0',
+  equal: 'flex flex-wrap pt-px pl-px lg:grid lg:auto-cols-fr lg:grid-flow-col',
+}
+
+const item =
+  'text-body-sm relative -mt-px -ml-px flex h-10 items-center justify-center border px-[11px] font-medium whitespace-nowrap transition-colors focus-visible:z-20'
+const active = 'z-10 border-brand-500 bg-brand-500 text-neutral-50'
+const inactive = 'border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-neutral-50'
+---
+
+<nav aria-label={label}>
+  <ul class={lists[layout]}>
+    {options.map((option, index) => (
+      <>
+        <li class="contents">
+          <a
+            href={option.href}
+            class:list={[item, option.active ? active : inactive]}
+            aria-current={option.active ? 'true' : undefined}
+          >
+            {option.label}
+          </a>
+        </li>
+        {index === mobileBreakAfter && <li aria-hidden="true" class="basis-full lg:hidden" />}
+      </>
+    ))}
+  </ul>
+</nav>

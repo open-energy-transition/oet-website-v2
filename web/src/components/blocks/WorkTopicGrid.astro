@@ -1,0 +1,33 @@
+---
+import type { SvgComponent } from 'astro/types'
+
+interface Topic {
+  title: string
+  description: string | null
+  icon: SvgComponent
+}
+
+interface Props {
+  topics: Topic[]
+  class?: string
+}
+
+const { topics, class: className } = Astro.props
+
+const cell = 'flex items-center gap-[10px] border border-neutral-200 p-[15px]'
+---
+
+<ul class:list={['grid grid-cols-1 lg:grid-cols-2', className]}>
+  {topics.map((topic) => (
+    <li class={cell}>
+      <div class="flex min-w-0 flex-1 flex-col gap-1 self-stretch">
+        <p class="text-body-md font-medium whitespace-pre-line text-neutral-800">{topic.title}</p>
+        {topic.description !== null && (
+          <p class="text-body-sm font-medium text-neutral-600">{topic.description}</p>
+        )}
+      </div>
+      <topic.icon class="size-[18px] shrink-0 text-neutral-800" aria-hidden="true" />
+    </li>
+  ))}
+  {topics.length % 2 === 1 && <li class:list={[cell, 'max-lg:hidden']} aria-hidden="true" />}
+</ul>

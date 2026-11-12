@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths } from 'astro'
+import SharedDemo from '../../components/dev/SharedDemo.astro'
+import ShellDemo from '../../components/dev/ShellDemo.astro'
+
+type Demo = 'shared' | 'shell'
+
+interface Props {
+  demo: Demo
+}
+
+export const getStaticPaths = (() => {
+  const demos: Demo[] = import.meta.env.DEV ? ['shared', 'shell'] : []
+  return demos.map((demo) => ({ params: { demo }, props: { demo } }))
+}) satisfies GetStaticPaths
+
+const { demo } = Astro.props
+---
+
+{demo === 'shared' && <SharedDemo />}
+{demo === 'shell' && <ShellDemo />}
