@@ -254,7 +254,7 @@ export interface Project {
     | 'neutral-900'
     | 'neutral-950';
   /**
-   * Partner whose tag logo is laid over the thumbnail. Only partners with a tag logo can be chosen.
+   * Partner whose tag logo is laid over the thumbnail. The partner needs a tag logo (Partners and funders → Card tag).
    */
   partnerTag?: (number | null) | Partner;
   /**
