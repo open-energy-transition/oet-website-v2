@@ -167,14 +167,11 @@ const project = (
       tags: required(doc.tags, `${what} tags`).map((tag) => tagLabel(tag, `${what} tag`)),
       body: articleHtml(doc.bodyHtml, `${what} body`),
       linkGroups: linkGroups(doc.linkGroups, `${what} link groups`),
-      contact: required(
-        person(
-          locale,
-          doc.contact,
-          doc.contact.role === undefined ? null : doc.contact.role,
-          `${what} contact`,
-        ),
-        `${what} contact photo`,
+      contact: person(
+        locale,
+        doc.contact,
+        doc.contact.role === undefined ? null : doc.contact.role,
+        `${what} contact`,
       ),
       partners: required(doc.partners, `${what} partners`).map((partner) =>
         sidebarPartner(partner, `${what} partner`),

@@ -17,12 +17,20 @@ type Link = { kind: PersonSocialKind; href: string; label: string }
 interface Props {
   name: string
   title: string | null
-  photo: ImageMetadata
+  photo: ImageMetadata | null
   role: string | null
   links: Link[]
 }
 
 const { name, title, photo, role, links } = Astro.props
+
+const nameWords = name.split(/\s+/).filter((word) => word !== '' && !word.endsWith('.'))
+const [firstWord] = nameWords
+if (firstWord === undefined) throw new Error(`Person name "${name}" has no word for initials`)
+const lastWord = nameWords[nameWords.length - 1]
+const initials = (
+  nameWords.length > 1 ? `${firstWord[0]}${lastWord[0]}` : firstWord[0]
+).toUpperCase()
 
 const icons: Record<PersonSocialKind, typeof Envelope> = {
   email: Envelope,
@@ -39,14 +47,23 @@ const icons: Record<PersonSocialKind, typeof Envelope> = {
 ---
 
 <div class="flex items-start gap-2">
-  <Image
-    src={photo}
-    alt=""
-    widths={[44, 88, 132]}
-    sizes="44px"
-    loading="lazy"
-    class="bg-brand-500 size-11 shrink-0 object-cover"
-  />
+  {photo === null ? (
+    <span
+      aria-hidden="true"
+      class="bg-brand-500 text-body-sm flex size-11 shrink-0 items-center justify-center font-medium text-neutral-50"
+    >
+      {initials}
+    </span>
+  ) : (
+    <Image
+      src={photo}
+      alt=""
+      widths={[44, 88, 132]}
+      sizes="44px"
+      loading="lazy"
+      class="bg-brand-500 size-11 shrink-0 object-cover"
+    />
+  )}
   <div class="flex min-w-0 flex-1 flex-col">
     {role && <p class="text-body-2xs font-medium text-neutral-800">{role}</p>}
     <p class="text-body-sm line-clamp-2 font-medium text-neutral-800">{name}</p>

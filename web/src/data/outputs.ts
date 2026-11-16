@@ -37,7 +37,7 @@ export interface LinkGroup {
 export interface Person {
   name: string
   title: string | null
-  photo: ImageMetadata
+  photo: ImageMetadata | null
   role: string | null
   links: { kind: PersonSocialKind; href: string; label: string }[]
 }
@@ -235,26 +235,22 @@ export const person = (
   source: PersonSource,
   role: string | null,
   what: string,
-): Person | null => {
+): Person => {
   if (source.kind === 'team-member') {
     const member = resolved(source.member, `${what} team member`)
-    const photo = optionalImage(member.photo, `${what} head photo`)
-    if (!photo) return null
     return {
       name: member.name,
       title: member.role,
-      photo,
+      photo: optionalImage(member.photo, `${what} head photo`),
       role,
       links: personLinks(locale, member.name, required(member.socialLinks, `${what} social links`)),
     }
   }
   const name = required(source.name, `${what} name`)
-  const photo = optionalImage(source.photo, `${what} photo`)
-  if (!photo) return null
   return {
     name,
     title: present(source.title),
-    photo,
+    photo: optionalImage(source.photo, `${what} photo`),
     role,
     links: personLinks(locale, name, required(source.socialLinks, `${what} social links`)),
   }
