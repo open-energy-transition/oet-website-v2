@@ -1,6 +1,6 @@
 import type { Locale } from '../i18n/config'
 import type { Config } from './payload-types'
-import { inPreview, previewApiKey } from './preview'
+import { inPreview, previewApiKey, previewTarget } from './preview'
 
 type Collections = Config['collections']
 type Globals = Config['globals']
@@ -27,20 +27,41 @@ const load = async (url: URL, headers: Record<string, string>): Promise<unknown>
   return response.json()
 }
 
-const request = <Result>(path: string, params: Record<string, string>): Promise<Result> => {
+const request = <Result>(
+  path: string,
+  params: Record<string, string>,
+  draft: boolean,
+): Promise<Result> => {
   if (!base) throw new Error('PAYLOAD_URL is not set')
   const url = new URL(`/api/${path}`, base)
   for (const [key, value] of Object.entries(params)) url.searchParams.set(key, value)
-  if (inPreview()) {
+  if (draft) {
     url.searchParams.set('draft', 'true')
     return load(url, { Authorization: `users API-Key ${previewApiKey()}` }) as Promise<Result>
   }
-  if (!import.meta.env.PROD) return load(url, {}) as Promise<Result>
+  if (!import.meta.env.PROD || inPreview()) return load(url, {}) as Promise<Result>
   const cached = cache.get(url.href)
   if (cached) return cached as Promise<Result>
   const pending = load(url, {})
   cache.set(url.href, pending)
   return pending as Promise<Result>
+}
+
+const hasSlug = (doc: object, slug: string): boolean => 'slug' in doc && doc.slug === slug
+
+const withDraft = async <Slug extends CollectionSlug>(
+  collection: Slug,
+  params: Record<string, string>,
+  slug: string,
+): Promise<Doc<Slug>[]> => {
+  const [published, drafts] = await Promise.all([
+    request<{ docs: Doc<Slug>[] }>(collection, params, false),
+    request<{ docs: Doc<Slug>[] }>(collection, { ...params, 'where[slug][equals]': slug }, true),
+  ])
+  const [draft] = drafts.docs
+  if (draft === undefined) return published.docs
+  if (!published.docs.some((doc) => hasSlug(doc, slug))) return [...published.docs, draft]
+  return published.docs.map((doc) => (hasSlug(doc, slug) ? draft : doc))
 }
 
 export const findAll = async <Slug extends CollectionSlug>(
@@ -55,7 +76,12 @@ export const findAll = async <Slug extends CollectionSlug>(
     ...query.where,
   }
   if (query.sort) params.sort = query.sort
-  const result = await request<{ docs: Doc<Slug>[] }>(collection, params)
+  if (inPreview()) {
+    const target = previewTarget()
+    if (target.kind === 'document' && target.collection === collection)
+      return withDraft(collection, params, target.slug)
+  }
+  const result = await request<{ docs: Doc<Slug>[] }>(collection, params, false)
   return result.docs
 }
 
@@ -64,7 +90,11 @@ export const findGlobal = <Slug extends GlobalSlug>(
   locale: Locale,
   depth: number,
 ): Promise<GlobalDoc<Slug>> =>
-  request<GlobalDoc<Slug>>(`globals/${slug}`, { locale, depth: String(depth) })
+  request<GlobalDoc<Slug>>(
+    `globals/${slug}`,
+    { locale, depth: String(depth) },
+    inPreview() && previewTarget().kind === 'globals',
+  )
 
 export const resolved = <Value extends object>(
   value: number | Value | null | undefined,
