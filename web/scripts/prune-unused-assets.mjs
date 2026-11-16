@@ -25,12 +25,16 @@ export const pruneUnusedAssets = () => {
       'astro:config:done': ({ config }) => {
         serverDir = fileURLToPath(config.build.server)
       },
-      'astro:build:ssr': () => {
+      'astro:build:ssr': ({ manifest }) => {
         if (serverDir === null) throw new Error('prune-unused-assets: build.server is unknown')
-        serverText = textOf(serverDir)
+        const manifestText = JSON.stringify(manifest, (_key, value) =>
+          value instanceof Map || value instanceof Set ? [...value] : value,
+        )
+        serverText = `${textOf(serverDir)}\n${manifestText}`
       },
       'astro:build:done': ({ dir, logger }) => {
-        if (serverText === null) throw new Error('prune-unused-assets: the server build was not read')
+        if (serverText === null)
+          throw new Error('prune-unused-assets: the server build was not read')
         const root = fileURLToPath(dir)
         const assets = join(root, '_astro')
         const text = `${textOf(root)}\n${serverText}`
