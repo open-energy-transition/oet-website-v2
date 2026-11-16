@@ -11,19 +11,10 @@ import { cmsRedirects } from './scripts/cms-redirects.mjs'
 if (existsSync('.env')) process.loadEnvFile('.env')
 const site = process.env.SITE_URL
 if (!site) throw new Error('SITE_URL is not set')
-const cmsUrl = process.env.PAYLOAD_URL
-if (!cmsUrl) throw new Error('PAYLOAD_URL is not set')
-const cms = new URL(cmsUrl)
 
 export default defineConfig({
   site,
   adapter: vercel(),
-  image: {
-    remotePatterns: [
-      { protocol: cms.protocol.replace(':', ''), hostname: cms.hostname },
-      { protocol: 'https', hostname: '**.public.blob.vercel-storage.com' },
-    ],
-  },
   integrations: [
     cmsRedirects(),
     cmsMedia(),

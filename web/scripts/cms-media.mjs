@@ -22,6 +22,18 @@ const removeStale = async (directory, wanted) => {
   return stale.length
 }
 
+export const mediaOrigins = async (base) => {
+  const response = await fetch(new URL('/api/media?limit=0&depth=0&select[url]=true', base))
+  if (!response.ok) throw new Error(`CMS answered ${response.status} for the media list`)
+  const { docs } = await response.json()
+  const origins = new Map()
+  for (const url of [base, ...docs.map((doc) => new URL(doc.url, base).href)]) {
+    const { protocol, hostname, port, origin } = new URL(url)
+    origins.set(origin, { protocol: protocol.replace(':', ''), hostname, port })
+  }
+  return [...origins.values()]
+}
+
 export const syncMedia = async () => {
   const base = cmsUrl()
   const response = await fetch(new URL('/api/media?limit=0&depth=0', base))
@@ -50,8 +62,9 @@ export const syncMedia = async () => {
 export const cmsMedia = () => ({
   name: 'cms-media',
   hooks: {
-    'astro:config:setup': async ({ command, logger }) => {
+    'astro:config:setup': async ({ command, logger, updateConfig }) => {
       if (command !== 'dev' && command !== 'build') return
+      updateConfig({ image: { remotePatterns: await mediaOrigins(cmsUrl()) } })
       const result = await syncMedia()
       logger.info(
         `${result.total} media files, ${result.downloaded} downloaded, ${result.removed} removed`,
