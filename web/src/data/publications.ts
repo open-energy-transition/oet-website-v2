@@ -135,10 +135,7 @@ const publication = (
       heroAlt: altOf(doc.hero, `${what} hero`),
       body: doc.body.map((block) => bodyBlock(block, what)),
       linkGroups: linkGroups(doc.linkGroups, `${what} link groups`),
-      authors: doc.authors.flatMap((author) => {
-        const row = person(locale, author, null, `${what} author`)
-        return row === null ? [] : [row]
-      }),
+      authors: doc.authors.map((author) => person(locale, author, null, `${what} author`)),
       citation: doc.citation,
       related: required(doc.related, `${what} related publications`).flatMap((related) => {
         const slug = slugs.get(typeof related === 'number' ? related : related.id)
