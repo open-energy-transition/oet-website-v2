@@ -26,12 +26,21 @@ export const withHeadingIds = (
   tags: HeadingTag[],
 ): { html: string; items: TocItem[] } => {
   const items: TocItem[] = []
-  const pattern = new RegExp(`<(${tags.join('|')})>([\\s\\S]*?)<\\/\\1>`, 'g')
-  const output = html.replace(pattern, (_, tag: string, inner: string) => {
-    const label = plain(inner)
-    const id = slugify(label)
-    items.push({ id, label })
-    return `<${tag} id="${id}" class="scroll-mt-[38px] lg:scroll-mt-[18px]">${inner}</${tag}>`
-  })
+  const bases: string[] = []
+  const pattern = new RegExp(`<(${tags.join('|')})(\\s[^>]*)?>([\\s\\S]*?)<\\/\\1>`, 'g')
+  const output = html.replace(
+    pattern,
+    (match: string, tag: string, attributes: string | undefined, inner: string) => {
+      const label = plain(inner)
+      const base = slugify(label)
+      if (base === '') return match
+      const count = bases.filter((seen) => seen === base).length
+      bases.push(base)
+      const id = count === 0 ? base : `${base}-${count + 1}`
+      items.push({ id, label })
+      const kept = attributes === undefined ? '' : attributes.replace(/\s(?:id|class)="[^"]*"/g, '')
+      return `<${tag}${kept} id="${id}" class="scroll-mt-[38px] lg:scroll-mt-[18px]">${inner}</${tag}>`
+    },
+  )
   return { html: output, items }
 }
