@@ -6,10 +6,11 @@ import { t } from '../../i18n/ui'
 interface Props {
   title: string
   citation: string
+  pdf: string | null
   locale: Locale
 }
 
-const { title, citation, locale } = Astro.props
+const { title, citation, pdf, locale } = Astro.props
 
 const button =
   'text-body-sm border-brand-600 text-brand-600 hover:bg-brand-600 relative -ml-px flex h-10 cursor-pointer items-center gap-2 border px-[11px] font-medium whitespace-nowrap transition-colors hover:text-neutral-50 focus-visible:z-10'
@@ -29,10 +30,17 @@ const button =
     <button type="button" class={button} data-action="cite">
       {t(locale, 'share.cite')}
     </button>
-    <button type="button" class={button} data-action="pdf">
-      <Download class="size-4 shrink-0" aria-hidden="true" />
-      {t(locale, 'share.pdf')}
-    </button>
+    {pdf === null ? (
+      <button type="button" class={button} data-action="pdf">
+        <Download class="size-4 shrink-0" aria-hidden="true" />
+        {t(locale, 'share.pdf')}
+      </button>
+    ) : (
+      <a href={pdf} class={button} target="_blank" rel="noopener">
+        <Download class="size-4 shrink-0" aria-hidden="true" />
+        {t(locale, 'share.pdf')}
+      </a>
+    )}
   </div>
   <p class="text-body-xs text-neutral-600 empty:hidden" role="status" data-status></p>
 </oet-share-bar>

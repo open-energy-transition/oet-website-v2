@@ -2,7 +2,7 @@ import type { Block, CollectionConfig } from 'payload'
 
 import { publishedRead } from '../../access'
 import { always, draftVersions, previewOptions } from '../../preview'
-import { icon, image, plainText, richText, slug, text, textarea } from '../../fields'
+import { href, icon, image, plainText, richText, slug, text, textarea } from '../../fields'
 import {
   cardAppearance,
   checkbox,
@@ -206,6 +206,12 @@ export const Publications: CollectionConfig = {
           textarea('citation', {
             required: true,
             description: 'Text the "Cite" button in the sidebar copies to the clipboard.',
+          }),
+          href('pdfHref', {
+            required: false,
+            label: 'PDF link',
+            description:
+              'Optional link to the full publication as a PDF (https://…). Filled: the "Save as PDF" button in the sidebar opens this link in a new tab. Empty: the button prints the page.',
           }),
           {
             name: 'related',
