@@ -120,7 +120,7 @@ const tocItems = blocks.flatMap((block) => block.items)
           <LinkListGroup groups={detail.linkGroups} class="px-5 pt-5 pb-[60px]" />
         </div>
         <aside
-          class="flex flex-col gap-5 border-neutral-100 pt-20 pb-5 max-lg:order-first max-lg:shadow-[inset_1px_0_0_var(--color-neutral-100)] lg:sticky lg:top-[60px] lg:w-[305px] lg:shrink-0 lg:border-l"
+          class="flex flex-col gap-5 border-neutral-100 pt-20 pb-5 max-lg:order-first max-lg:shadow-[inset_1px_0_0_var(--color-neutral-100)] lg:sticky lg:top-[60px] lg:max-h-[calc(100dvh-60px)] lg:w-[305px] lg:shrink-0 lg:overflow-y-auto lg:overscroll-contain lg:border-l"
           data-print="hide"
         >
           {detail.authors.length > 0 && (
@@ -132,11 +132,13 @@ const tocItems = blocks.flatMap((block) => block.items)
             </section>
           )}
           <div class="border-t border-neutral-100 pt-5 pr-3 pl-5">
-            <TableOfContents title={sidebar.tableOfContents} items={tocItems} />
-          </div>
-          <div class="border-t border-neutral-100 pt-5 pr-3 pl-5">
             <ShareBar title={publication.title} citation={detail.citation} locale={locale} />
           </div>
+          {tocItems.length > 0 && (
+            <div class="border-t border-neutral-100 pt-5 pr-3 pl-5">
+              <TableOfContents title={sidebar.tableOfContents} items={tocItems} />
+            </div>
+          )}
         </aside>
       </div>
       {relatedPublications.length > 0 && (
