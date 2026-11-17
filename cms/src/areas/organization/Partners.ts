@@ -140,7 +140,7 @@ export const Partners: CollectionConfig = {
             required: false,
             label: 'Tag logo',
             description:
-              'Small logo in the tag on project and publication cards that name this organisation as partner.',
+              'Optional small logo in the tag on project cards that name this organisation as partner. Empty: the tag shows the name instead.',
           }),
           size('tagSize', {
             label: 'Tag logo display size',

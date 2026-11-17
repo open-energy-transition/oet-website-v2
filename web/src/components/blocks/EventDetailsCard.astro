@@ -10,10 +10,11 @@ import MapPin from '../../icons/map-pin.svg'
 import EventPoster from './EventPoster.astro'
 
 type Link = { label: string; href: string }
-type Contributor = { name: string; title: string; photo: ImageMetadata }
+type Contributor = { name: string; title: string; photo: ImageMetadata | null }
 type Footer =
-  | { kind: 'actions'; calendar: Link; join: Link }
+  | { kind: 'actions'; calendar: Link | null; join: Link | null }
   | { kind: 'poster'; image: ImageMetadata; alt: string }
+  | { kind: 'none' }
 
 interface Props {
   label: string
@@ -21,7 +22,7 @@ interface Props {
   date: string
   dateTime: string
   location: string
-  map: Link
+  map: Link | null
   time: string
   contributorsLabel: string
   contributors: Contributor[]
@@ -67,55 +68,63 @@ const icon = 'size-5 shrink-0 text-neutral-800'
     <p class={row}>
       <LandLocation class={icon} aria-hidden="true" />
       <span class={text}>{location}</span>
-      <a
-        href={map.href}
-        aria-label={map.label}
-        class="text-brand-500 hover:text-brand-600 shrink-0"
-      >
-        <MapPin class="size-[18px]" aria-hidden="true" />
-      </a>
+      {map !== null && (
+        <a
+          href={map.href}
+          aria-label={map.label}
+          class="text-brand-500 hover:text-brand-600 shrink-0"
+        >
+          <MapPin class="size-[18px]" aria-hidden="true" />
+        </a>
+      )}
     </p>
     <p class={row}>
       <ClockTen class={icon} aria-hidden="true" />
       <span class={text}>{time}</span>
     </p>
   </div>
-  <div class="flex w-full flex-col gap-3 border-t border-neutral-200 px-5 pt-5 pb-6">
-    <h3 class="text-body-lg font-medium text-neutral-800">{contributorsLabel}</h3>
-    <ul class="flex flex-col gap-3">
-      {contributors.map((person) => (
-        <li>
-          <PersonRow
-            name={person.name}
-            title={person.title}
-            photo={person.photo}
-            role={null}
-            links={[]}
-          />
-        </li>
-      ))}
-    </ul>
-  </div>
+  {contributors.length > 0 && (
+    <div class="flex w-full flex-col gap-3 border-t border-neutral-200 px-5 pt-5 pb-6">
+      <h3 class="text-body-lg font-medium text-neutral-800">{contributorsLabel}</h3>
+      <ul class="flex flex-col gap-3">
+        {contributors.map((person) => (
+          <li>
+            <PersonRow
+              name={person.name}
+              title={person.title}
+              photo={person.photo}
+              role={null}
+              links={[]}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
   {footer.kind === 'actions' && (
     <div class="flex w-full">
-      <Button
-        href={footer.calendar.href}
-        label={footer.calendar.label}
-        variant="secondary"
-        size="sm"
-        arrow={false}
-        newTab={false}
-        class="h-[49px] min-w-0 flex-1"
-      />
-      <Button
-        href={footer.join.href}
-        label={footer.join.label}
-        variant="primary"
-        size="sm"
-        arrow
-        newTab={false}
-        class="h-[49px] min-w-0 flex-1"
-      />
+      {footer.calendar !== null && (
+        <Button
+          href={footer.calendar.href}
+          label={footer.calendar.label}
+          variant="secondary"
+          size="sm"
+          arrow={false}
+          newTab={false}
+          class="h-[49px] min-w-0 flex-1"
+        />
+      )}
+      {footer.join !== null && (
+        <Button
+          href={footer.join.href}
+          label={footer.join.label}
+          variant="primary"
+          size="sm"
+          arrow
+          newTab={false}
+          class="h-[49px] min-w-0 flex-1"
+        />
+      )}
     </div>
   )}
   {footer.kind === 'poster' && (

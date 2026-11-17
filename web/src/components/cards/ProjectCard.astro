@@ -72,7 +72,7 @@ const footerKind = partnerLink !== null ? 'content' : reserved ? 'empty' : 'none
     loading="lazy"
     class="absolute inset-0 size-full object-cover"
   />
-  {partnerTag !== null && (
+  {partnerTag !== null && partnerTag.kind === 'logo' && (
     <Image
       slot="badge"
       src={partnerTag.logo}
@@ -84,6 +84,14 @@ const footerKind = partnerLink !== null ? 'content' : reserved ? 'empty' : 'none
       class="h-auto"
       style={`width:${(partnerTag.width / 112.5) * 100}%`}
     />
+  )}
+  {partnerTag !== null && partnerTag.kind === 'name' && (
+    <span
+      slot="badge"
+      class="text-body-xs w-full truncate px-2 text-center font-medium text-neutral-50"
+    >
+      {partnerTag.name}
+    </span>
   )}
   {partnerLink !== null && (
     <a

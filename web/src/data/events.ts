@@ -2,7 +2,7 @@ import type { ImageMetadata } from 'astro'
 import type { Locale } from '../i18n/config'
 import type { SortValue } from '../i18n/groups'
 import { findAll, findGlobal, required, resolved, richHtml, type Doc } from '../lib/cms'
-import { altOf, image } from '../lib/media'
+import { altOf, image, optionalImage } from '../lib/media'
 import type { CtaBanner, Media } from '../lib/payload-types'
 
 export type EventStatus = 'upcoming' | 'highlighted' | 'archived'
@@ -23,7 +23,7 @@ export interface EventImage {
 export interface EventContributor {
   name: string
   title: string
-  photo: ImageMetadata
+  photo: ImageMetadata | null
 }
 
 export interface EventVideo {
@@ -51,9 +51,9 @@ export interface EventItem {
   featuredAsHighlight: boolean
   locationRegion: string
   locationAddress: string
-  mapHref: string
-  calendarHref: string
-  joinHref: string
+  mapHref: string | null
+  calendarHref: string | null
+  joinHref: string | null
   contributors: EventContributor[]
   poster: EventImage
   posterFit: PosterFit
@@ -91,6 +91,11 @@ const optional = <Value>(value: Value | null | undefined, what: string): Value |
   return value
 }
 
+const link = (value: string | null | undefined, what: string): string | null => {
+  const target = optional(value, what)
+  return target === '' ? null : target
+}
+
 const picture = (media: number | Media, what: string): EventImage => ({
   image: image(media, what),
   alt: altOf(media, what),
@@ -101,12 +106,16 @@ const contributorOf = (
   what: string,
 ): EventContributor => {
   if (block.blockType === 'external')
-    return { name: block.name, title: block.title, photo: image(block.photo, `${what} photo`) }
+    return {
+      name: block.name,
+      title: block.title,
+      photo: optionalImage(block.photo, `${what} photo`),
+    }
   const member = resolved(block.member, `${what} team member`)
   return {
     name: member.name,
     title: member.role,
-    photo: image(member.photo, `${what} team member photo`),
+    photo: optionalImage(member.photo, `${what} team member photo`),
   }
 }
 
@@ -150,9 +159,9 @@ const eventOf = (doc: Doc<'events'>): EventItem => {
     featuredAsHighlight: doc.featuredAsHighlight,
     locationRegion: doc.locationRegion,
     locationAddress: doc.locationAddress,
-    mapHref: doc.mapHref,
-    calendarHref: doc.calendarHref,
-    joinHref: doc.joinHref,
+    mapHref: link(doc.mapHref, `${what} map link`),
+    calendarHref: link(doc.calendarHref, `${what} calendar link`),
+    joinHref: link(doc.joinHref, `${what} join link`),
     contributors: required(doc.contributors, `${what} contributors`).map((block, index) =>
       contributorOf(block, `${what} contributor ${index + 1}`),
     ),
