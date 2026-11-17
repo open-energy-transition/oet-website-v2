@@ -132,7 +132,12 @@ const tocItems = blocks.flatMap((block) => block.items)
             </section>
           )}
           <div class="border-t border-neutral-100 pt-5 pr-3 pl-5">
-            <ShareBar title={publication.title} citation={detail.citation} locale={locale} />
+            <ShareBar
+              title={publication.title}
+              citation={detail.citation}
+              pdf={detail.pdf}
+              locale={locale}
+            />
           </div>
           {tocItems.length > 0 && (
             <div class="border-t border-neutral-100 pt-5 pr-3 pl-5">

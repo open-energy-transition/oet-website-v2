@@ -10,6 +10,7 @@ import * as migration_20261023_103012_team_member_profile from './20261023_10301
 import * as migration_20261105_054346_home_sections_social_links from './20261105_054346_home_sections_social_links';
 import * as migration_20261111_035430_page_global_drafts from './20261111_035430_page_global_drafts';
 import * as migration_20261111_045922_person_social_links_and_funders from './20261111_045922_person_social_links_and_funders';
+import * as migration_20261117_102416_publication_pdf_link from './20261117_102416_publication_pdf_link';
 
 export const migrations = [
   {
@@ -70,6 +71,11 @@ export const migrations = [
   {
     up: migration_20261111_045922_person_social_links_and_funders.up,
     down: migration_20261111_045922_person_social_links_and_funders.down,
-    name: '20261111_045922_person_social_links_and_funders'
+    name: '20261111_045922_person_social_links_and_funders',
+  },
+  {
+    up: migration_20261117_102416_publication_pdf_link.up,
+    down: migration_20261117_102416_publication_pdf_link.down,
+    name: '20261117_102416_publication_pdf_link'
   },
 ];

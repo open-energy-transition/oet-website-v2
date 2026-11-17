@@ -2143,6 +2143,10 @@ export interface Publication {
    */
   citation: string;
   /**
+   * Optional link to the full publication as a PDF (https://…). Filled: the "Save as PDF" button in the sidebar opens this link in a new tab. Empty: the button prints the page.
+   */
+  pdfHref?: string | null;
+  /**
    * Cards in the "Related Publications" carousel, in this order. Leave empty for a page without it.
    */
   related?: (number | Publication)[] | null;
@@ -3005,6 +3009,7 @@ export interface PublicationsSelect<T extends boolean = true> {
         id?: T;
       };
   citation?: T;
+  pdfHref?: T;
   related?: T;
   cta?:
     | T

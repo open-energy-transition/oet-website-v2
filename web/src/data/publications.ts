@@ -45,6 +45,7 @@ export interface PublicationDetail {
   linkGroups: LinkGroup[]
   authors: Person[]
   citation: string
+  pdf: string | null
   related: string[]
   cta: CtaContent
   serviceCta: ServiceCta
@@ -70,6 +71,11 @@ export interface Publication {
 type PublicationDoc = Doc<'publications'>
 
 const listingId = 'publications'
+
+const optionalLink = (value: string | null | undefined, what: string): string | null => {
+  if (value === undefined) throw new Error(`${what} is missing from the CMS answer`)
+  return value === null || value === '' ? null : value
+}
 
 const bodyBlock = (block: PublicationDoc['body'][number], what: string): BodyBlock => {
   if (block.blockType === 'richText')
@@ -137,6 +143,7 @@ const publication = (
       linkGroups: linkGroups(doc.linkGroups, `${what} link groups`),
       authors: doc.authors.map((author) => person(locale, author, null, `${what} author`)),
       citation: doc.citation,
+      pdf: optionalLink(doc.pdfHref, `${what} PDF link`),
       related: required(doc.related, `${what} related publications`).flatMap((related) => {
         const slug = slugs.get(typeof related === 'number' ? related : related.id)
         return slug === undefined ? [] : [slug]
