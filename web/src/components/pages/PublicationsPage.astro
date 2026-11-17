@@ -34,16 +34,36 @@ if (type !== null && !activeTab) throw new Error(`Unknown publication type: ${ty
 const base = activeTab ? activeTab.href : routes.publications
 const title = activeTab ? `${activeTab.label} | ${meta.title}` : meta.title
 const tabs = [
-  { label: t(locale, 'tabs.showAll'), href: routes.publications, active: type === null },
+  {
+    label: t(locale, 'tabs.showAll'),
+    href: `${routes.publications}#${listing.id}`,
+    active: type === null,
+  },
   ...listing.typeTabs.map((tab) => ({
     label: tab.label,
     href: `${tab.href}#${listing.id}`,
     active: tab.type === type,
   })),
 ]
-const ofType = (items: Publication[]) => items.filter((item) => type === null || item.type === type)
-const listed = sortByNewest(ofType(listing.items), (item) => item.isoDate)
-const outputItems = sortByNewest(ofType(outputs.items), (item) => item.isoDate)
+const typeHref = (item: Publication) => {
+  const tab = listing.typeTabs.find((typeTab) => typeTab.type === item.type)
+  if (!tab) throw new Error(`Publication ${item.slug} has unknown type ${item.type}`)
+  return tab.href
+}
+const typeFacet = (item: Publication) => `${routes.publications} ${typeHref(item)}`
+const inType = (item: Publication) => type === null || item.type === type
+const placed = (items: Publication[]) => {
+  const sorted = sortByNewest(items, (item) => item.isoDate)
+  const shown = sorted.filter(inType)
+  return {
+    shown: shown.length,
+    items: sorted.map((item) => ({ item, rank: inType(item) ? shown.indexOf(item) : null })),
+  }
+}
+const listed = placed(listing.items)
+const outputItems = placed(outputs.items)
+const outputsId = `${listing.id}-outputs`
+const leaderId = `${listing.id}-listing`
 const hrefFor = (page: number) => `${base}?page=${page}#${listing.id}`
 const pages = (count: number, size: number) => Math.max(1, Math.ceil(count / size))
 const container = 'max-w-page px-gutter lg:px-gutter-lg mx-auto w-full'
@@ -78,7 +98,7 @@ const grid =
       headerTheme="light"
     />
 
-    <ListingFilter pageSize={listing.pageSize} ranked={false} infinite={false}>
+    <ListingFilter id={leaderId} pageSize={listing.pageSize} ranked={false} infinite={false}>
       <ListingHeader
         layout="split"
         title={listing.title}
@@ -88,13 +108,14 @@ const grid =
         topSpace={180}
         id={listing.id}
       >
-        <FilterTabs
-          slot="tabs"
-          label={t(locale, 'tabs.publicationType')}
-          layout="compact"
-          mobileBreakAfter={1}
-          options={tabs}
-        />
+        <div slot="tabs" data-listing-tabs="type" data-listing-tabs-path>
+          <FilterTabs
+            label={t(locale, 'tabs.publicationType')}
+            layout="compact"
+            mobileBreakAfter={1}
+            options={tabs}
+          />
+        </div>
         <FilterBar
           slot="controls"
           locale={locale}
@@ -104,7 +125,7 @@ const grid =
         <Pagination
           class="py-5 lg:hidden"
           current={1}
-          total={pages(listed.length, listing.pageSize.mobile)}
+          total={pages(listed.shown, listing.pageSize.mobile)}
           hrefFor={hrefFor}
           locale={locale}
         />
@@ -112,10 +133,12 @@ const grid =
 
       <div class={container}>
         <ul data-listing-items aria-live="polite" class:list={[grid, 'pb-5 lg:gap-y-10']}>
-          {listed.map((publication, index) => (
+          {listed.items.map(({ item: publication, rank }) => (
             <li
-              class:list={firstPageClass(index, listing.pageSize)}
+              class:list={rank === null ? [] : firstPageClass(rank, listing.pageSize)}
+              hidden={rank === null}
               data-listing-item
+              data-facet-type={typeFacet(publication)}
               data-facet-region={publication.facets.region}
               data-facet-service={publication.facets.service}
               data-facet-product={publication.facets.product}
@@ -146,18 +169,18 @@ const grid =
         <p
           data-listing-empty
           class="text-body-md border-t border-neutral-100 py-10 pl-5 font-medium text-neutral-800 lg:border-l"
-          hidden={listed.length > 0}
+          hidden={listed.shown > 0}
         >
-          {t(locale, listed.length > 0 ? 'publications.noMatch' : 'publications.empty')}
+          {t(locale, listed.items.length > 0 ? 'publications.noMatch' : 'publications.empty')}
         </p>
         <div
           class="flex justify-center border-neutral-100 pt-10 pb-[60px] lg:border-l"
-          hidden={listed.length === 0}
+          hidden={listed.shown === 0}
         >
           <Pagination
             class="w-full lg:w-[372px]"
             current={1}
-            total={pages(listed.length, listing.pageSize.desktop)}
+            total={pages(listed.shown, listing.pageSize.desktop)}
             hrefFor={hrefFor}
             locale={locale}
           />
@@ -166,8 +189,15 @@ const grid =
     </ListingFilter>
 
     <div class={container}>
-      {outputItems.length > 0 ? (
-        <ListingFilter pageSize={outputs.pageSize} ranked={false} infinite={false}>
+      {outputItems.items.length > 0 && (
+        <ListingFilter
+          id={outputsId}
+          follow={leaderId}
+          pageSize={outputs.pageSize}
+          ranked={false}
+          infinite={false}
+          hidden={outputItems.shown === 0}
+        >
           <div class="flex flex-col gap-3 border-l border-neutral-100 pt-[180px] pb-10 pl-5 font-medium text-neutral-800">
             <h2 class="text-display-5">{outputs.title}</h2>
             <p class="text-[1rem] leading-[21px] tracking-[-0.01em] whitespace-pre-line">
@@ -175,11 +205,13 @@ const grid =
             </p>
           </div>
           <ul data-listing-items class={grid}>
-            {outputItems.map((publication, index) => {
+            {outputItems.items.map(({ item: publication, rank }) => {
               return (
                 <li
-                  class:list={firstPageClass(index, outputs.pageSize)}
+                  class:list={rank === null ? [] : firstPageClass(rank, outputs.pageSize)}
+                  hidden={rank === null}
                   data-listing-item
+                  data-facet-type={typeFacet(publication)}
                   data-title={publication.title}
                   data-date={publication.isoDate}
                 >
@@ -202,15 +234,19 @@ const grid =
             <Pagination
               class="w-full lg:w-[372px]"
               current={1}
-              total={pages(outputItems.length, outputs.pageSize.desktop)}
+              total={pages(outputItems.shown, outputs.pageSize.desktop)}
               hrefFor={hrefFor}
               locale={locale}
             />
           </div>
         </ListingFilter>
-      ) : (
-        <div class="h-[160px] border-neutral-100 lg:h-[120px] lg:border-l" />
       )}
+      <div
+        class:list={[
+          'h-[160px] border-neutral-100 lg:h-[120px] lg:border-l',
+          outputItems.items.length > 0 && 'hidden [oet-listing[hidden]+&]:block',
+        ]}
+      />
     </div>
   </main>
 </BaseLayout>

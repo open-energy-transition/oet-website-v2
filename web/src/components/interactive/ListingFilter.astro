@@ -5,14 +5,20 @@ interface Props {
   pageSize: PageSize
   ranked: boolean
   infinite: boolean
+  id?: string
+  follow?: string
+  hidden?: boolean
   class?: string
 }
 
-const { pageSize, ranked, infinite, class: className } = Astro.props
+const { pageSize, ranked, infinite, id, follow, hidden, class: className } = Astro.props
 ---
 
 <oet-listing
-  class:list={['block', className]}
+  id={id}
+  data-listing-follow={follow}
+  hidden={hidden}
+  class:list={['block [&[hidden]]:hidden', className]}
   data-page-size-desktop={pageSize.desktop === null ? 'all' : pageSize.desktop}
   data-page-size-mobile={pageSize.mobile === null ? 'all' : pageSize.mobile}
   data-ranked={ranked ? '' : undefined}
@@ -39,6 +45,8 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
   const desktop = window.matchMedia('(min-width: 1024px)')
 
   class OetListing extends HTMLElement {
+    tabState: Map<string, string> | null = null
+
     connectedCallback() {
       const lists = [...this.querySelectorAll<HTMLElement>('[data-listing-items]')].map(
         (element) => ({
@@ -74,17 +82,20 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
       const tabGroups = [...this.querySelectorAll<HTMLElement>('[data-listing-tabs]')].map(
         (group) => {
           const key = group.dataset.listingTabs
+          const byPath = 'listingTabsPath' in group.dataset
           const links = [...group.querySelectorAll<HTMLAnchorElement>('a[href]')]
           const on = links.find((link) => link.hasAttribute('aria-current'))
           const off = links.find((link) => !link.hasAttribute('aria-current'))
           if (!key || !on || !off) throw new Error(`oet-listing: tabs "${key}" are incomplete`)
           const valueOf = (link: HTMLAnchorElement) => {
+            if (byPath) return new URL(link.href).pathname
             const value = new URL(link.href).searchParams.get(key)
             if (value === null) throw new Error(`oet-listing: tab without "${key}" parameter`)
             return value
           }
           return {
             key,
+            byPath,
             links,
             valueOf,
             initial: valueOf(on),
@@ -113,6 +124,7 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
         newest: (a, b) => Date.parse(read(b, 'date')) - Date.parse(read(a, 'date')),
         oldest: (a, b) => Date.parse(read(a, 'date')) - Date.parse(read(b, 'date')),
       }
+      const following = this.dataset.listingFollow
       const ranked = 'ranked' in this.dataset
       const infinite = 'infinite' in this.dataset
       const sentinel = this.querySelector<HTMLElement>('[data-listing-sentinel]')
@@ -129,7 +141,7 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
       const filters = new Map<string, string>()
       const defaults = new Map<string, string>()
       for (const group of tabGroups) {
-        const requested = params.get(group.key)
+        const requested = group.byPath ? null : params.get(group.key)
         const known = group.links.some((link) => group.valueOf(link) === requested)
         defaults.set(group.key, group.initial)
         filters.set(group.key, requested !== null && known ? requested : group.initial)
@@ -163,7 +175,11 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
 
       const writeUrl = () => {
         const url = new URL(location.href)
+        for (const group of tabGroups) {
+          if (group.byPath) url.pathname = String(filters.get(group.key))
+        }
         for (const [key, value] of filters) {
+          if (tabGroups.some((group) => group.byPath && group.key === key)) continue
           if (value === defaults.get(key)) url.searchParams.delete(key)
           else url.searchParams.set(key, value)
         }
@@ -199,6 +215,7 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
           for (const item of items) item.hidden = !visible.has(item)
         }
         if (empty) empty.hidden = count > 0
+        if (following) this.hidden = count === 0
         for (const pagination of paginations) pagination.render(page, total)
         if (sentinel) {
           sentinel.hidden = page >= total
@@ -218,6 +235,13 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
           )
         : null
 
+      const publishTabs = () => {
+        this.tabState = new Map(
+          tabGroups.map((group) => [group.key, String(filters.get(group.key))]),
+        )
+        this.dispatchEvent(new Event('oet-listing:tabs'))
+      }
+
       const update = () => {
         writeUrl()
         apply()
@@ -230,6 +254,7 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
             filters.set(group.key, group.valueOf(link))
             page = 1
             update()
+            publishTabs()
           })
         }
       }
@@ -259,7 +284,24 @@ const { pageSize, ranked, infinite, class: className } = Astro.props
         })
       }
       desktop.addEventListener('change', apply)
+      if (following) {
+        const leader = document.getElementById(following)
+        if (!(leader instanceof OetListing) || leader.tabState === null)
+          throw new Error(`oet-listing: leader "${following}" is not ready`)
+        const adopt = (state: Map<string, string>) => {
+          for (const [key, value] of state) filters.set(key, value)
+          page = 1
+        }
+        adopt(leader.tabState)
+        leader.addEventListener('oet-listing:tabs', () => {
+          if (leader.tabState === null)
+            throw new Error(`oet-listing: leader "${following}" lost its state`)
+          adopt(leader.tabState)
+          apply()
+        })
+      }
       apply()
+      publishTabs()
     }
   }
 
