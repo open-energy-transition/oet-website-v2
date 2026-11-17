@@ -254,7 +254,7 @@ export interface Project {
     | 'neutral-900'
     | 'neutral-950';
   /**
-   * Partner whose tag logo is laid over the thumbnail. The partner needs a tag logo (Partners and funders → Card tag).
+   * Partner tag laid over the thumbnail. Shows the tag logo of the partner (Partners and funders → Card tag), or its name when it has no tag logo.
    */
   partnerTag?: (number | null) | Partner;
   /**
@@ -593,7 +593,7 @@ export interface Partner {
     height?: number | null;
   };
   /**
-   * Small logo in the tag on project and publication cards that name this organisation as partner.
+   * Optional small logo in the tag on project cards that name this organisation as partner. Empty: the tag shows the name instead.
    */
   tagLogo?: (number | null) | Media;
   /**
@@ -2341,17 +2341,17 @@ export interface Event {
    */
   locationAddress: string;
   /**
-   * Target of "Open Map" on the details card. Full URL, site path or mailto:.
+   * Optional target of the map pin on the details card. Full URL, site path or mailto:. Empty: no map pin.
    */
-  mapHref: string;
+  mapHref?: string | null;
   /**
-   * Target of "Mark Calendar" on the details card while the event is upcoming.
+   * Optional target of "Mark Calendar" on the details card while the event is upcoming. Empty: no such button.
    */
-  calendarHref: string;
+  calendarHref?: string | null;
   /**
-   * Target of "Join Event" on the details card while the event is upcoming.
+   * Optional target of "Join Event" on the details card while the event is upcoming. Empty: no such button.
    */
-  joinHref: string;
+  joinHref?: string | null;
   /**
    * People listed on the details card, in this order. Choose "OET team member" for someone in the team list, "External person" for anyone else.
    */
@@ -2359,7 +2359,7 @@ export interface Event {
     | (
         | {
             /**
-             * Name, job title and head photo are taken from the team member. The team member needs a head photo.
+             * Name, job title and head photo are taken from the team member. Without a head photo the site shows their initials.
              */
             member: number | TeamMember;
             id?: string | null;
@@ -2376,9 +2376,9 @@ export interface Event {
              */
             title: string;
             /**
-             * Square head photo, shown at 44 px.
+             * Optional square head photo, shown at 44 px. Empty: the site shows the initials.
              */
-            photo: number | Media;
+            photo?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'external';

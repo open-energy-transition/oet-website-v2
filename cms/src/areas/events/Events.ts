@@ -1,4 +1,4 @@
-import type { Block, CollectionConfig, PayloadRequest } from 'payload'
+import type { Block, CollectionConfig } from 'payload'
 
 import { publishedRead } from '../../access'
 import { always, draftVersions, previewOptions } from '../../preview'
@@ -66,19 +66,6 @@ const endAfterStart = (value: unknown, { siblingData }: { siblingData: { start?:
   return end > start ? true : 'The end must be after the start'
 }
 
-const memberWithPhoto = async (value: unknown, { req }: { req: PayloadRequest }) => {
-  if (typeof value !== 'number' && typeof value !== 'string') return 'Choose a team member'
-  const member = await req.payload.findByID({
-    collection: 'team-members',
-    id: value,
-    depth: 0,
-    req,
-  })
-  return member.photo === null || member.photo === undefined
-    ? `${member.name} has no head photo. Add one to the team member before listing them as a contributor.`
-    : true
-}
-
 const memberBlock: Block = {
   slug: 'member',
   labels: { singular: 'OET team member', plural: 'OET team members' },
@@ -89,10 +76,9 @@ const memberBlock: Block = {
       relationTo: 'team-members',
       required: true,
       label: 'Team member',
-      validate: memberWithPhoto,
       admin: {
         description:
-          'Name, job title and head photo are taken from the team member. The team member needs a head photo.',
+          'Name, job title and head photo are taken from the team member. Without a head photo the site shows their initials.',
       },
     },
   ],
@@ -111,9 +97,10 @@ const externalBlock: Block = {
       description: 'Job title and organisation. One line on the site, longer text is cut off.',
     }),
     image('photo', {
-      required: true,
+      required: false,
       label: 'Photo',
-      description: 'Square head photo, shown at 44 px.',
+      description:
+        'Optional square head photo, shown at 44 px. Empty: the site shows the initials.',
     }),
   ],
 }
@@ -240,25 +227,25 @@ export const Events: CollectionConfig = {
               description: 'Full address or joining details on the details card.',
             }),
             href('mapHref', {
-              required: true,
+              required: false,
               label: 'Map link',
               description:
-                'Target of "Open Map" on the details card. Full URL, site path or mailto:.',
+                'Optional target of the map pin on the details card. Full URL, site path or mailto:. Empty: no map pin.',
             }),
             {
               type: 'row',
               fields: [
                 href('calendarHref', {
-                  required: true,
+                  required: false,
                   label: 'Calendar link',
                   description:
-                    'Target of "Mark Calendar" on the details card while the event is upcoming.',
+                    'Optional target of "Mark Calendar" on the details card while the event is upcoming. Empty: no such button.',
                 }),
                 href('joinHref', {
-                  required: true,
+                  required: false,
                   label: 'Join link',
                   description:
-                    'Target of "Join Event" on the details card while the event is upcoming.',
+                    'Optional target of "Join Event" on the details card while the event is upcoming. Empty: no such button.',
                 }),
               ],
             },

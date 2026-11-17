@@ -62,14 +62,15 @@ const meta = [
 ]
 
 const mediaSizes = '(min-width: 1440px) 847px, (min-width: 1024px) 59vw, 100vw'
+const actionOf = (label: string, href: string | null) => (href === null ? null : { label, href })
+const calendar = actionOf(labels.markCalendar, event.calendarHref)
+const join = actionOf(labels.joinEvent, event.joinHref)
 const footer =
-  status === 'upcoming'
-    ? {
-        kind: 'actions' as const,
-        calendar: { label: labels.markCalendar, href: event.calendarHref },
-        join: { label: labels.joinEvent, href: event.joinHref },
-      }
-    : { kind: 'poster' as const, image: event.poster.image, alt: event.poster.alt }
+  status !== 'upcoming'
+    ? { kind: 'poster' as const, image: event.poster.image, alt: event.poster.alt }
+    : calendar === null && join === null
+      ? { kind: 'none' as const }
+      : { kind: 'actions' as const, calendar, join }
 const spacers = { upcoming: 'h-43', highlighted: 'h-30' }
 const thumbnailLabel = (position: number, total: number) =>
   `${labels.galleryImage} ${position} / ${total}`
@@ -111,7 +112,7 @@ const thumbnailLabel = (position: number, total: number) =>
         date={formatEventWeekday(locale, event.timeZone, event.start)}
         dateTime={event.start}
         location={event.locationAddress}
-        map={{ label: labels.openMap, href: event.mapHref }}
+        map={actionOf(labels.openMap, event.mapHref)}
         time={formatEventTimes(locale, event.timeZone, event.start, event.end, labels.minutes)}
         contributorsLabel={labels.contributors}
         contributors={event.contributors}
