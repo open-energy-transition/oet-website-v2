@@ -1,11 +1,8 @@
 import type { ImageMetadata } from 'astro'
 
-export interface PartnerTag {
-  name: string
-  logo: ImageMetadata
-  width: number
-  height: number
-}
+export type PartnerTag =
+  | { kind: 'logo'; name: string; logo: ImageMetadata; width: number; height: number }
+  | { kind: 'name'; name: string }
 
 export type TitleLines = 2 | 3
 

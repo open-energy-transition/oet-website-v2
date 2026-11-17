@@ -83,8 +83,10 @@ const listingId = 'success-stories'
 export const partnerTag = (source: ProjectDoc['partnerTag'], what: string): PartnerTag | null => {
   if (source === null || source === undefined) return null
   const partner = resolved(source, what)
-  const logo = image(partner.tagLogo, `${what} tag logo`)
+  const logo = optionalImage(partner.tagLogo, `${what} tag logo`)
+  if (logo === null) return { kind: 'name', name: partner.name }
   return {
+    kind: 'logo',
     name: partner.name,
     logo,
     ...logoBox(partner.tagSize, logo, logoFits.tag, `${what} tag size`),

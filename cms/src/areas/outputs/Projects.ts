@@ -1,4 +1,4 @@
-import type { CollectionConfig, PayloadRequest } from 'payload'
+import type { CollectionConfig } from 'payload'
 
 import { publishedRead } from '../../access'
 import { always, draftVersions, previewOptions } from '../../preview'
@@ -44,15 +44,6 @@ const titleLinesDescription =
 const empty = (value: unknown) => value === null || value === undefined || value === ''
 
 const hrefPattern = /^(\/|https?:\/\/|mailto:)/
-
-const partnerWithTagLogo = async (value: unknown, { req }: { req: PayloadRequest }) => {
-  if (value === null || value === undefined) return true
-  if (typeof value !== 'number' && typeof value !== 'string') return 'Choose a partner'
-  const partner = await req.payload.findByID({ collection: 'partners', id: value, depth: 0, req })
-  return partner.tagLogo === null || partner.tagLogo === undefined
-    ? `${partner.name} has no tag logo. Upload one in Partners and funders → ${partner.name} → Card tag, then choose it again.`
-    : true
-}
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -119,15 +110,12 @@ export const Projects: CollectionConfig = {
                 'Optional. The tag sits on the thumbnail, the link in the footer of the card.',
             },
             fields: [
-              {
-                ...relation('partnerTag', 'partners', {
-                  required: false,
-                  label: 'Partner tag',
-                  description:
-                    'Partner whose tag logo is laid over the thumbnail. The partner needs a tag logo (Partners and funders → Card tag).',
-                }),
-                validate: partnerWithTagLogo,
-              },
+              relation('partnerTag', 'partners', {
+                required: false,
+                label: 'Partner tag',
+                description:
+                  'Partner tag laid over the thumbnail. Shows the tag logo of the partner (Partners and funders → Card tag), or its name when it has no tag logo.',
+              }),
               {
                 name: 'partnerLink',
                 type: 'group',
