@@ -48,3 +48,18 @@ export const logoBox = (
     throw new Error(`${what}: width and height must be filled in together`)
   return { width: set.width, height: set.height }
 }
+
+export type PartnerMark =
+  | { kind: 'image'; name: string; image: ImageMetadata; width: number; height: number }
+  | { kind: 'name'; name: string }
+
+export const partnerMark = (
+  name: string,
+  logo: ImageMetadata | null,
+  set: LogoSet | null | undefined,
+  fit: LogoFit,
+  what: string,
+): PartnerMark =>
+  logo === null
+    ? { kind: 'name', name }
+    : { kind: 'image', name, image: logo, ...logoBox(set, logo, fit, what) }

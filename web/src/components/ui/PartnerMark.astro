@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets'
+import type { PartnerMark } from '../../lib/logoSize'
+
+interface Props {
+  mark: PartnerMark
+  class?: string
+}
+
+const { mark, class: className } = Astro.props
+---
+
+{
+  mark.kind === 'image' ? (
+    <Image
+      src={mark.image}
+      alt={mark.name}
+      width={mark.width}
+      height={mark.height}
+      densities={[1, 2, 3]}
+      loading="lazy"
+      class:list={['h-auto max-w-full mix-blend-multiply', className]}
+    />
+  ) : (
+    <span
+      class:list={[
+        'text-body-sm max-w-full text-center font-semibold text-balance break-words text-neutral-900',
+        className,
+      ]}
+    >
+      {mark.name}
+    </span>
+  )
+}

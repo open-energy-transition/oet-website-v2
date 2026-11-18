@@ -2,8 +2,8 @@ import type { ImageMetadata } from 'astro'
 import type { PartnerTag, TitleLines } from '../components/cards/types'
 import type { Locale } from '../i18n/config'
 import { findAll, findGlobal, required, texts, type Doc } from '../lib/cms'
-import { altOf, image } from '../lib/media'
-import { logoBox, logoFits } from '../lib/logoSize'
+import { altOf, image, optionalImage } from '../lib/media'
+import { logoFits, partnerMark, type PartnerMark } from '../lib/logoSize'
 import { partnerLink, partnerTag, projectPeriod } from './projects'
 import { routes } from './routes'
 
@@ -61,7 +61,7 @@ export interface CarouselStep {
 
 export interface LogoGroup {
   label: string
-  logos: Logo[]
+  logos: PartnerMark[]
 }
 
 export interface Project {
@@ -113,14 +113,14 @@ const pair = (values: string[], what: string): [string, string] => {
 
 const partnerFits = { logoDesktop: logoFits.desktop, logoMobile: logoFits.mobile }
 
-const partnerLogo = (partner: Partner, box: PartnerBox): Logo => {
-  const logo = image(partner.logo, `partner "${partner.name}" logo`)
-  return {
-    name: partner.name,
-    image: logo,
-    ...logoBox(partner[box], logo, partnerFits[box], `partner "${partner.name}" ${box}`),
-  }
-}
+const partnerLogo = (partner: Partner, box: PartnerBox): PartnerMark =>
+  partnerMark(
+    partner.name,
+    optionalImage(partner.logo, `partner "${partner.name}" logo`),
+    partner[box],
+    partnerFits[box],
+    `partner "${partner.name}" ${box}`,
+  )
 
 export const loadHomePage = async (locale: Locale): Promise<HomePage> => {
   const [page, services, partners, projects] = await Promise.all([
