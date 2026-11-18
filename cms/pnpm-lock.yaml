@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@payloadcms/storage-vercel-blob@3.90.2': 554554c9a50bb899973f73ef1022725532a60c6e5c08a5e1829a1ef9e1562a5d
+
 importers:
 
   .:
@@ -19,7 +22,7 @@ importers:
         version: 3.90.2(@faceless-ui/modal@3.0.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@faceless-ui/scroll-info@2.0.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@payloadcms/next@3.90.2(@types/react@19.3.0)(graphql@16.14.2)(monaco-editor@0.57.0)(next@16.3.8(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.77.4))(payload@3.90.2(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3))(@types/react@19.3.0)(monaco-editor@0.57.0)(next@16.3.8(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.77.4))(payload@3.90.2(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)(yjs@13.6.33)
       '@payloadcms/storage-vercel-blob':
         specifier: 3.90.2
-        version: 3.90.2(@types/react@19.3.0)(monaco-editor@0.57.0)(next@16.3.8(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.77.4))(payload@3.90.2(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)
+        version: 3.90.2(patch_hash=554554c9a50bb899973f73ef1022725532a60c6e5c08a5e1829a1ef9e1562a5d)(@types/react@19.3.0)(monaco-editor@0.57.0)(next@16.3.8(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.77.4))(payload@3.90.2(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)
       '@payloadcms/ui':
         specifier: 3.90.2
         version: 3.90.2(@types/react@19.3.0)(monaco-editor@0.57.0)(next@16.3.8(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.77.4))(payload@3.90.2(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)
@@ -3871,7 +3874,7 @@ snapshots:
       - utf-8-validate
       - yjs
 
-  '@payloadcms/storage-vercel-blob@3.90.2(@types/react@19.3.0)(monaco-editor@0.57.0)(next@16.3.8(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.77.4))(payload@3.90.2(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)':
+  '@payloadcms/storage-vercel-blob@3.90.2(patch_hash=554554c9a50bb899973f73ef1022725532a60c6e5c08a5e1829a1ef9e1562a5d)(@types/react@19.3.0)(monaco-editor@0.57.0)(next@16.3.8(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.77.4))(payload@3.90.2(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)':
     dependencies:
       '@payloadcms/plugin-cloud-storage': 3.90.2(@types/react@19.3.0)(monaco-editor@0.57.0)(next@16.3.8(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.77.4))(payload@3.90.2(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)
       '@vercel/blob': 2.3.1
