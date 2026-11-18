@@ -575,7 +575,7 @@ export interface Partner {
    */
   homeOrder?: number | null;
   /**
-   * Logo for the grids on the home and partners pages. Dark on a transparent or white background.
+   * Optional logo for the grids on the home and partners pages. Dark on a transparent or white background. Empty: the grid cell shows the organisation name instead.
    */
   logo?: (number | null) | Media;
   /**

@@ -1,19 +1,11 @@
-import type { ImageMetadata } from 'astro'
 import type { SvgComponent } from 'astro/types'
 import type { Locale } from '../i18n/config'
 import { t } from '../i18n/ui'
 import { findAll, findGlobal, required, texts, type Doc } from '../lib/cms'
 import { facet } from '../lib/listing'
-import { icon, image } from '../lib/media'
-import { logoBox, logoFits } from '../lib/logoSize'
+import { icon, image, optionalImage } from '../lib/media'
+import { logoFits, partnerMark, type PartnerMark } from '../lib/logoSize'
 import { routes } from './routes'
-
-export interface PartnerLogo {
-  name: string
-  image: ImageMetadata
-  width: number
-  height: number
-}
 
 export interface PartnerStat {
   icon: SvgComponent
@@ -24,14 +16,14 @@ export interface PartnerStat {
 
 const logoColumns = 4
 
-const toLogo = (partner: Doc<'partners'>): PartnerLogo => {
-  const logo = image(partner.logo, `partner ${partner.name} logo`)
-  return {
-    name: partner.name,
-    image: logo,
-    ...logoBox(partner.logoDesktop, logo, logoFits.desktop, `partner ${partner.name} logo size`),
-  }
-}
+const toLogo = (partner: Doc<'partners'>): PartnerMark =>
+  partnerMark(
+    partner.name,
+    optionalImage(partner.logo, `partner ${partner.name} logo`),
+    partner.logoDesktop,
+    logoFits.desktop,
+    `partner ${partner.name} logo size`,
+  )
 
 const columnByColumn = <Item>(items: Item[], columns: number): Item[] =>
   Array.from({ length: columns }, (_, column) =>

@@ -102,14 +102,14 @@ export const Partners: CollectionConfig = {
           },
           {
             ...image('logo', {
-              required: true,
+              required: false,
               description:
-                'Logo for the grids on the home and partners pages. Dark on a transparent or white background.',
+                'Optional logo for the grids on the home and partners pages. Dark on a transparent or white background. Empty: the grid cell shows the organisation name instead.',
             }),
             admin: {
               condition: inLogoGrid,
               description:
-                'Logo for the grids on the home and partners pages. Dark on a transparent or white background.',
+                'Optional logo for the grids on the home and partners pages. Dark on a transparent or white background. Empty: the grid cell shows the organisation name instead.',
             },
           },
           {
