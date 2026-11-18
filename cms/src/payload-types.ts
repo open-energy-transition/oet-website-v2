@@ -2337,13 +2337,13 @@ export interface Event {
    */
   featuredAsHighlight: boolean;
   /**
-   * Place at the top of the event page, for example "Online" or a city.
+   * Optional place at the top of the event page, for example "Online" or a city. Empty: no location line there.
    */
-  locationRegion: string;
+  locationRegion?: string | null;
   /**
-   * Full address or joining details on the details card.
+   * Optional full address or joining details on the details card. Empty: no address line there.
    */
-  locationAddress: string;
+  locationAddress?: string | null;
   /**
    * Optional target of the map pin on the details card. Full URL, site path or mailto:. Empty: no map pin.
    */

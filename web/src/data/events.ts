@@ -49,8 +49,8 @@ export interface EventItem {
   publishedAt: string
   registrationClosesAt: string | null
   featuredAsHighlight: boolean
-  locationRegion: string
-  locationAddress: string
+  locationRegion: string | null
+  locationAddress: string | null
   mapHref: string | null
   calendarHref: string | null
   joinHref: string | null
@@ -91,7 +91,7 @@ const optional = <Value>(value: Value | null | undefined, what: string): Value |
   return value
 }
 
-const link = (value: string | null | undefined, what: string): string | null => {
+const nonEmpty = (value: string | null | undefined, what: string): string | null => {
   const target = optional(value, what)
   return target === '' ? null : target
 }
@@ -157,11 +157,11 @@ const eventOf = (doc: Doc<'events'>): EventItem => {
     publishedAt: doc.publishedAt,
     registrationClosesAt: optional(doc.registrationClosesAt, `${what} registrationClosesAt`),
     featuredAsHighlight: doc.featuredAsHighlight,
-    locationRegion: doc.locationRegion,
-    locationAddress: doc.locationAddress,
-    mapHref: link(doc.mapHref, `${what} map link`),
-    calendarHref: link(doc.calendarHref, `${what} calendar link`),
-    joinHref: link(doc.joinHref, `${what} join link`),
+    locationRegion: nonEmpty(doc.locationRegion, `${what} short location`),
+    locationAddress: nonEmpty(doc.locationAddress, `${what} full location`),
+    mapHref: nonEmpty(doc.mapHref, `${what} map link`),
+    calendarHref: nonEmpty(doc.calendarHref, `${what} calendar link`),
+    joinHref: nonEmpty(doc.joinHref, `${what} join link`),
     contributors: required(doc.contributors, `${what} contributors`).map((block, index) =>
       contributorOf(block, `${what} contributor ${index + 1}`),
     ),

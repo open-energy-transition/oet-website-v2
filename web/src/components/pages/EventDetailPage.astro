@@ -31,35 +31,39 @@ const { cta } = await loadEventsPage(locale)
 
 const labels = eventLabels(locale)
 
-const meta = [
-  {
-    icon: 'calendar' as const,
-    label: labels.published,
-    cells: [
-      {
-        layout: 'text' as const,
-        grow: false,
-        segments: [
-          {
-            text: `${labels.published} ${formatEventPublished(locale, event.timeZone, event.publishedAt)}`,
-            emphasis: false,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    icon: 'globe' as const,
-    label: labels.location,
-    cells: [
-      {
-        layout: 'text' as const,
-        grow: false,
-        segments: [{ text: event.locationRegion, emphasis: true }],
-      },
-    ],
-  },
-]
+const published = {
+  icon: 'calendar' as const,
+  label: labels.published,
+  cells: [
+    {
+      layout: 'text' as const,
+      grow: false,
+      segments: [
+        {
+          text: `${labels.published} ${formatEventPublished(locale, event.timeZone, event.publishedAt)}`,
+          emphasis: false,
+        },
+      ],
+    },
+  ],
+}
+const meta =
+  event.locationRegion === null
+    ? [published]
+    : [
+        published,
+        {
+          icon: 'globe' as const,
+          label: labels.location,
+          cells: [
+            {
+              layout: 'text' as const,
+              grow: false,
+              segments: [{ text: event.locationRegion, emphasis: true }],
+            },
+          ],
+        },
+      ]
 
 const mediaSizes = '(min-width: 1440px) 847px, (min-width: 1024px) 59vw, 100vw'
 const actionOf = (label: string, href: string | null) => (href === null ? null : { label, href })

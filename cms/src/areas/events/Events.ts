@@ -217,14 +217,16 @@ export const Events: CollectionConfig = {
           label: 'Location and links',
           fields: [
             text('locationRegion', {
-              required: true,
+              required: false,
               label: 'Location (short)',
-              description: 'Place at the top of the event page, for example "Online" or a city.',
+              description:
+                'Optional place at the top of the event page, for example "Online" or a city. Empty: no location line there.',
             }),
             textarea('locationAddress', {
-              required: true,
+              required: false,
               label: 'Location (full)',
-              description: 'Full address or joining details on the details card.',
+              description:
+                'Optional full address or joining details on the details card. Empty: no address line there.',
             }),
             href('mapHref', {
               required: false,

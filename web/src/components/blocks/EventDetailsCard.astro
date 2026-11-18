@@ -21,7 +21,7 @@ interface Props {
   title: string
   date: string
   dateTime: string
-  location: string
+  location: string | null
   map: Link | null
   time: string
   contributorsLabel: string
@@ -65,19 +65,21 @@ const icon = 'size-5 shrink-0 text-neutral-800'
         {date}
       </time>
     </p>
-    <p class={row}>
-      <LandLocation class={icon} aria-hidden="true" />
-      <span class={text}>{location}</span>
-      {map !== null && (
-        <a
-          href={map.href}
-          aria-label={map.label}
-          class="text-brand-500 hover:text-brand-600 shrink-0"
-        >
-          <MapPin class="size-[18px]" aria-hidden="true" />
-        </a>
-      )}
-    </p>
+    {(location !== null || map !== null) && (
+      <p class={row}>
+        <LandLocation class={icon} aria-hidden="true" />
+        <span class={text}>{location}</span>
+        {map !== null && (
+          <a
+            href={map.href}
+            aria-label={map.label}
+            class="text-brand-500 hover:text-brand-600 shrink-0"
+          >
+            <MapPin class="size-[18px]" aria-hidden="true" />
+          </a>
+        )}
+      </p>
+    )}
     <p class={row}>
       <ClockTen class={icon} aria-hidden="true" />
       <span class={text}>{time}</span>
