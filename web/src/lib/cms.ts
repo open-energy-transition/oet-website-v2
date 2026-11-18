@@ -114,6 +114,9 @@ export const required = <Value>(value: Value | null | undefined, what: string): 
 export const texts = (rows: { text: string }[] | null | undefined, what: string): string[] =>
   required(rows, what).map((row) => row.text)
 
+export const optionalTexts = (rows: { text: string }[] | null | undefined): string[] =>
+  rows === null || rows === undefined ? [] : rows.map((row) => row.text)
+
 const richTextWrapper = /^<div class="payload-richtext">([\s\S]*)<\/div>$/
 
 export const richHtml = (value: string | null | undefined, what: string): string => {

@@ -95,9 +95,10 @@ export const Projects: CollectionConfig = {
           },
           paragraphs('highlights', {
             label: 'Highlights',
-            minRows: 1,
+            minRows: 0,
             maxRows: 4,
-            description: 'Bullet list in the page header. One row per bullet, four at most.',
+            description:
+              'Optional bullet list in the page header. One row per bullet, four at most. Empty: no highlights there.',
           }),
           cardAppearance(
             'Pre-composed picture made with the Thumbnail Maker Guide, 734 × 476 px. Used by every card of the project.',

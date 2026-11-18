@@ -121,11 +121,13 @@ const tone = tones[props.tone]
         {props.tone !== 'light' && (
           <>
             <div class="flex flex-col gap-2 px-5 pt-5 lg:w-0 lg:flex-1 lg:pb-5">
-              <p class="text-body-lg flex items-center gap-2 font-medium text-neutral-50">
-                <BallotCheck class="size-4 shrink-0" aria-hidden="true" />
-                {props.highlights.label}
-              </p>
-              {props.highlights.kind === 'list' && (
+              {(props.highlights.kind === 'text' || props.highlights.items.length > 0) && (
+                <p class="text-body-lg flex items-center gap-2 font-medium text-neutral-50">
+                  <BallotCheck class="size-4 shrink-0" aria-hidden="true" />
+                  {props.highlights.label}
+                </p>
+              )}
+              {props.highlights.kind === 'list' && props.highlights.items.length > 0 && (
                 <ul class="text-body-md text-brand-50 list-disc pl-6 font-medium">
                   {props.highlights.items.map((item) => (
                     <li>{item}</li>
