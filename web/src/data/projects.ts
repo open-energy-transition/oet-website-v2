@@ -5,9 +5,9 @@ import { t } from '../i18n/ui'
 import {
   findAll,
   findGlobal,
+  optionalTexts,
   required,
   resolved,
-  texts,
   type Doc,
   type GlobalDoc,
 } from '../lib/cms'
@@ -154,7 +154,7 @@ const project = (
     },
     date: doc.startDate,
     detail: {
-      highlights: texts(doc.highlights, `${what} highlights`),
+      highlights: optionalTexts(doc.highlights),
       tools: required(doc.tools, `${what} tools`).map(
         (tool) => resolved(tool, `${what} tool`).name,
       ),

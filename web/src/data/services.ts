@@ -2,7 +2,15 @@ import type { ImageMetadata } from 'astro'
 import type { SvgComponent } from 'astro/types'
 import type { FrameTone, PartnerTag } from '../components/cards/types'
 import type { Locale } from '../i18n/config'
-import { findAll, findGlobal, required, texts, type Doc, type GlobalDoc } from '../lib/cms'
+import {
+  findAll,
+  findGlobal,
+  optionalTexts,
+  required,
+  texts,
+  type Doc,
+  type GlobalDoc,
+} from '../lib/cms'
 import { altOf, icon, image, optionalImage } from '../lib/media'
 import { partnerTag, projectPeriod } from './projects'
 import { routes } from './routes'
@@ -117,13 +125,9 @@ export interface ServicesPage {
 type ServiceDoc = Doc<'services'>
 type ProjectDoc = Doc<'projects'>
 type PageDoc = GlobalDoc<'services-page'>
-type Rows = { text: string }[] | null | undefined
 
 const introId = 'services'
 const valueColumns = { '5': 5, '6': 6 } as const
-
-const optionalTexts = (rows: Rows): string[] =>
-  rows === null || rows === undefined ? [] : rows.map((row) => row.text)
 
 const valueItems = (items: PageDoc['values']['items'], what: string): ValueItem[] =>
   items.map((item) => ({

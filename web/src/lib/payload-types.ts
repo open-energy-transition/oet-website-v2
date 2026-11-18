@@ -228,7 +228,7 @@ export interface Project {
    */
   endDate: string;
   /**
-   * Bullet list in the page header. One row per bullet, four at most.
+   * Optional bullet list in the page header. One row per bullet, four at most. Empty: no highlights there.
    */
   highlights?:
     | {
