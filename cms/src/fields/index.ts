@@ -11,6 +11,7 @@ import type {
   UploadField,
 } from 'payload'
 
+import { htmlConverters } from '../editor'
 import { iconNames } from './iconNames'
 
 type Common = { required: boolean; label?: string; description?: string }
@@ -176,7 +177,11 @@ export const richText = (name: string, options: Common): [RichTextField, Field] 
     label: options.label,
     ...adminOf(options),
   },
-  lexicalHTMLField({ htmlFieldName: `${name}Html`, lexicalFieldName: name }),
+  lexicalHTMLField({
+    htmlFieldName: `${name}Html`,
+    lexicalFieldName: name,
+    converters: htmlConverters,
+  }),
 ]
 
 export const seo = (): GroupField => ({
