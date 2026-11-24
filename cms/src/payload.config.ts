@@ -1,7 +1,7 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { buildConfig } from 'payload'
 
@@ -12,6 +12,7 @@ import * as outputs from './areas/outputs'
 import * as site from './areas/site'
 import { Media } from './collections/Media'
 import { Users } from './collections/Users'
+import { editor } from './editor'
 import { env } from './env'
 import { migrations } from './migrations'
 import { rebuildOnPublish } from './plugins/rebuildOnPublish'
@@ -48,7 +49,7 @@ export default buildConfig({
   },
   collections: [...areas.flatMap((area) => area.collections), Media, Users],
   globals: areas.flatMap((area) => area.globals),
-  editor: lexicalEditor(),
+  editor,
   db: postgresAdapter({
     pool: { connectionString: env('DATABASE_URL') },
     migrationDir: path.resolve(dirname, 'migrations'),

@@ -146,6 +146,26 @@
     line-height: 1;
   }
 
+  [data-text-color='red'] {
+    color: var(--color-brand-500);
+  }
+
+  [data-text-color='dark-red'] {
+    color: var(--color-brand-700);
+  }
+
+  [data-text-color='grey'] {
+    color: var(--color-neutral-600);
+  }
+
+  [data-text-size='large'] {
+    font-size: 1.25em;
+  }
+
+  [data-text-size='small'] {
+    font-size: 0.875em;
+  }
+
   :focus-visible {
     @apply ring-[6px] ring-neutral-50 outline-2 outline-offset-2 outline-brand-600;
   }
