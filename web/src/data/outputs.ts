@@ -3,7 +3,17 @@ import type { SvgComponent } from 'astro/types'
 import type { Locale } from '../i18n/config'
 import { sortOptions, type SortValue } from '../i18n/groups'
 import { t, type UiKey } from '../i18n/ui'
-import { findAll, required, resolved, richHtml, texts, type Doc } from '../lib/cms'
+import {
+  draftResolved,
+  draftText,
+  findAll,
+  notFilledIn,
+  required,
+  resolved,
+  richHtml,
+  texts,
+  type Doc,
+} from '../lib/cms'
 import { icon, image, optionalImage } from '../lib/media'
 import { routes } from './routes'
 import { personSocialLabels, type PersonSocialKind } from './socials'
@@ -185,9 +195,9 @@ export const linkGroups = (source: Doc<'projects'>['linkGroups'], what: string):
   }))
 
 export const ctaContent = (source: Doc<'projects'>['cta'], what: string): CtaContent => ({
-  heading: source.heading,
-  primary: source.primary,
-  secondary: source.secondary,
+  heading: draftText(source.heading, `${what} heading`),
+  primary: draftText(source.primary, `${what} primary text`),
+  secondary: draftText(source.secondary, `${what} secondary text`),
   actions: required(source.actions, `${what} actions`).map(({ label, href, emphasis }) => ({
     label,
     href,
@@ -227,8 +237,8 @@ const present = <Value>(value: Value | null | undefined): Value | null =>
 
 export const personName = (source: PersonSource, what: string): string =>
   source.kind === 'team-member'
-    ? resolved(source.member, `${what} team member`).name
-    : required(source.name, `${what} name`)
+    ? draftResolved(source.member, `${what} team member`, (member) => member.name, notFilledIn)
+    : draftText(source.name, `${what} name`)
 
 export const person = (
   locale: Locale,
@@ -236,17 +246,24 @@ export const person = (
   role: string | null,
   what: string,
 ): Person => {
-  if (source.kind === 'team-member') {
-    const member = resolved(source.member, `${what} team member`)
-    return {
-      name: member.name,
-      title: member.role,
-      photo: optionalImage(member.photo, `${what} head photo`),
-      role,
-      links: personLinks(locale, member.name, required(member.socialLinks, `${what} social links`)),
-    }
-  }
-  const name = required(source.name, `${what} name`)
+  if (source.kind === 'team-member')
+    return draftResolved(
+      source.member,
+      `${what} team member`,
+      (member): Person => ({
+        name: member.name,
+        title: member.role,
+        photo: optionalImage(member.photo, `${what} head photo`),
+        role,
+        links: personLinks(
+          locale,
+          member.name,
+          required(member.socialLinks, `${what} social links`),
+        ),
+      }),
+      { name: notFilledIn, title: null, photo: null, role, links: [] },
+    )
+  const name = draftText(source.name, `${what} name`)
   return {
     name,
     title: present(source.title),

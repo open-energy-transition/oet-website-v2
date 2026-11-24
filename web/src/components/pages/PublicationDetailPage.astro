@@ -198,7 +198,7 @@ const tocItems = blocks.flatMap((block) => block.items)
 
     <div data-print="hide">
       <ServiceCtaBand tone="brand-600" {...detail.cta}>
-        <ServiceCtaCard {...detail.serviceCta} class="w-full lg:w-[559px]" />
+        {detail.serviceCta && <ServiceCtaCard {...detail.serviceCta} class="w-full lg:w-[559px]" />}
       </ServiceCtaBand>
       <div class={container}>
         <div class="h-[240px] border-l border-neutral-100 lg:h-[119px]"></div>

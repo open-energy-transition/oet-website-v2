@@ -3,7 +3,18 @@ import type { SvgComponent } from 'astro/types'
 import type { FrameTone } from '../components/cards/types'
 import type { Locale } from '../i18n/config'
 import { t } from '../i18n/ui'
-import { findAll, findGlobal, required, resolved, type Doc } from '../lib/cms'
+import {
+  draftList,
+  draftRequired,
+  draftResolved,
+  draftText,
+  findAll,
+  findGlobal,
+  notFilledIn,
+  required,
+  resolved,
+  type Doc,
+} from '../lib/cms'
 import { facet, type PageSize } from '../lib/listing'
 import { altOf, icon, image } from '../lib/media'
 import {
@@ -48,7 +59,7 @@ export interface PublicationDetail {
   pdf: string | null
   related: string[]
   cta: CtaContent
-  serviceCta: ServiceCta
+  serviceCta: ServiceCta | null
 }
 
 export type PublicationTypeId = 'academic' | 'blogs' | 'policy-briefs' | 'reports'
@@ -103,19 +114,29 @@ const publication = (
   slugs: Map<number, string>,
 ): Publication => {
   const what = `publication ${doc.slug}`
-  const date = longDate(locale, doc.date)
+  const date = draftRequired(
+    doc.date,
+    `${what} date`,
+    (value) => longDate(locale, value),
+    notFilledIn,
+  )
   return {
     slug: doc.slug,
     type: doc.type,
-    title: doc.title,
-    excerpt: doc.excerpt,
+    title: draftText(doc.title, `${what} title`),
+    excerpt: draftText(doc.excerpt, `${what} excerpt`),
     date: doc.preprint ? t(locale, 'publication.preprint') : date,
-    category: resolved(doc.category, `${what} category`).name,
+    category: draftResolved(
+      doc.category,
+      `${what} category`,
+      (category) => category.name,
+      notFilledIn,
+    ),
     thumbnail: image(doc.thumbnail, `${what} thumbnail`),
     alt: altOf(doc.thumbnail, `${what} thumbnail`),
     frame: doc.frame,
     facets: {
-      region: resolved(doc.region, `${what} region`).slug,
+      region: draftResolved(doc.region, `${what} region`, (region) => region.slug, ''),
       service: facet(
         required(doc.services, `${what} services`).map(
           (service) => resolved(service, `${what} service`).slug,
@@ -130,26 +151,35 @@ const publication = (
         required(doc.tags, `${what} tags`).map((tag) => resolved(tag, `${what} tag`).slug),
       ),
     },
-    isoDate: doc.date,
+    isoDate: draftRequired(doc.date, `${what} date`, (value) => value, ''),
     detail: {
-      highlight: doc.highlight,
-      authorNames: doc.authors.map((author) => personName(author, `${what} author`)),
+      highlight: draftText(doc.highlight, `${what} highlight`),
+      authorNames: draftList(doc.authors, `${what} authors`).map((author) =>
+        personName(author, `${what} author`),
+      ),
       date,
-      region: resolved(doc.region, `${what} region`).name,
+      region: draftResolved(doc.region, `${what} region`, (region) => region.name, notFilledIn),
       tags: required(doc.tags, `${what} tags`).map((tag) => tagLabel(tag, `${what} tag`)),
       hero: image(doc.hero, `${what} hero`),
       heroAlt: altOf(doc.hero, `${what} hero`),
-      body: doc.body.map((block) => bodyBlock(block, what)),
+      body: draftList(doc.body, `${what} body`).map((block) => bodyBlock(block, what)),
       linkGroups: linkGroups(doc.linkGroups, `${what} link groups`),
-      authors: doc.authors.map((author) => person(locale, author, null, `${what} author`)),
-      citation: doc.citation,
+      authors: draftList(doc.authors, `${what} authors`).map((author) =>
+        person(locale, author, null, `${what} author`),
+      ),
+      citation: draftText(doc.citation, `${what} citation`),
       pdf: optionalLink(doc.pdfHref, `${what} PDF link`),
       related: required(doc.related, `${what} related publications`).flatMap((related) => {
         const slug = slugs.get(typeof related === 'number' ? related : related.id)
         return slug === undefined ? [] : [slug]
       }),
       cta: ctaContent(doc.cta, `${what} call to action`),
-      serviceCta: serviceCta(doc.ctaService, `${what} service`),
+      serviceCta: draftRequired(
+        doc.ctaService,
+        `${what} service`,
+        (service) => serviceCta(service, `${what} service`),
+        null,
+      ),
     },
   }
 }
