@@ -154,8 +154,24 @@
     color: var(--color-brand-700);
   }
 
+  [data-text-color='deep-red'] {
+    color: var(--color-brand-900);
+  }
+
   [data-text-color='grey'] {
     color: var(--color-neutral-600);
+  }
+
+  [data-text-color='near-black'] {
+    color: var(--color-neutral-950);
+  }
+
+  [data-text-highlight='soft-red'] {
+    background-color: var(--color-brand-50);
+  }
+
+  [data-text-highlight='soft-grey'] {
+    background-color: var(--color-neutral-100);
   }
 
   [data-text-size='large'] {
