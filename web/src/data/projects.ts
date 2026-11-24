@@ -3,8 +3,12 @@ import type { FrameTone, PartnerTag } from '../components/cards/types'
 import type { Locale } from '../i18n/config'
 import { t } from '../i18n/ui'
 import {
+  draftRequired,
+  draftResolved,
+  draftText,
   findAll,
   findGlobal,
+  notFilledIn,
   optionalTexts,
   required,
   resolved,
@@ -56,7 +60,7 @@ export interface ProjectDetail {
   testimonial: Testimonial[]
   related: string[]
   cta: CtaContent
-  serviceCta: ServiceCta
+  serviceCta: ServiceCta | null
 }
 
 export interface Project {
@@ -101,8 +105,14 @@ export const partnerLink = (
   return label && href ? { label, href } : null
 }
 
+const draftDate = (
+  value: string | null | undefined,
+  what: string,
+  format: (value: string) => string,
+) => draftRequired(value, what, format, notFilledIn)
+
 export const projectPeriod = (doc: ProjectDoc): string =>
-  `${monthOfYear(doc.startDate)} - ${monthOfYear(doc.endDate)}`
+  `${draftDate(doc.startDate, `project ${doc.slug} start date`, monthOfYear)} - ${draftDate(doc.endDate, `project ${doc.slug} end date`, monthOfYear)}`
 
 const sidebarPartner = (source: number | Doc<'partners'>, what: string): SidebarPartner => {
   const partner = resolved(source, what)
@@ -126,8 +136,8 @@ const project = (
   }
   return {
     slug: doc.slug,
-    title: doc.title,
-    excerpt: doc.excerpt,
+    title: draftText(doc.title, `${what} title`),
+    excerpt: draftText(doc.excerpt, `${what} excerpt`),
     period: projectPeriod(doc),
     thumbnail: image(doc.thumbnail, `${what} thumbnail`),
     hero: image(doc.hero, `${what} hero`),
@@ -136,8 +146,8 @@ const project = (
     partnerTag: partnerTag(doc.partnerTag, `${what} partner tag`),
     partnerLink: partnerLink(doc.partnerLink, `${what} partner link`),
     facets: {
-      status: doc.projectStatus,
-      region: resolved(doc.region, `${what} region`).slug,
+      status: draftRequired(doc.projectStatus, `${what} status`, (status) => status, ''),
+      region: draftResolved(doc.region, `${what} region`, (region) => region.slug, ''),
       service: facet(
         required(doc.services, `${what} services`).map(
           (service) => resolved(service, `${what} service`).slug,
@@ -152,7 +162,7 @@ const project = (
         required(doc.tags, `${what} tags`).map((tag) => resolved(tag, `${what} tag`).slug),
       ),
     },
-    date: doc.startDate,
+    date: draftDate(doc.startDate, `${what} start date`, (value) => value),
     detail: {
       highlights: optionalTexts(doc.highlights),
       tools: required(doc.tools, `${what} tools`).map(
@@ -161,13 +171,23 @@ const project = (
       services: required(doc.services, `${what} services`).map(
         (service) => resolved(service, `${what} service`).name,
       ),
-      start: longDate(locale, doc.startDate),
+      start: draftDate(doc.startDate, `${what} start date`, (value) => longDate(locale, value)),
       rangeWord: t(locale, 'detail.rangeWord'),
-      end: longDate(locale, doc.endDate),
-      status: statuses[doc.projectStatus],
-      region: resolved(doc.region, `${what} region`).name,
+      end: draftDate(doc.endDate, `${what} end date`, (value) => longDate(locale, value)),
+      status: draftRequired(
+        doc.projectStatus,
+        `${what} status`,
+        (status) => statuses[status],
+        notFilledIn,
+      ),
+      region: draftResolved(doc.region, `${what} region`, (region) => region.name, notFilledIn),
       tags: required(doc.tags, `${what} tags`).map((tag) => tagLabel(tag, `${what} tag`)),
-      body: articleHtml(doc.bodyHtml, `${what} body`),
+      body: draftRequired(
+        doc.bodyHtml,
+        `${what} body`,
+        (html) => articleHtml(html, `${what} body`),
+        `<p>${notFilledIn}</p>`,
+      ),
       linkGroups: linkGroups(doc.linkGroups, `${what} link groups`),
       contact: person(
         locale,
@@ -191,7 +211,12 @@ const project = (
         return slug === undefined ? [] : [slug]
       }),
       cta: ctaContent(doc.cta, `${what} call to action`),
-      serviceCta: serviceCta(doc.ctaService, `${what} service`),
+      serviceCta: draftRequired(
+        doc.ctaService,
+        `${what} service`,
+        (service) => serviceCta(service, `${what} service`),
+        null,
+      ),
     },
   }
 }

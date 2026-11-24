@@ -1,8 +1,9 @@
 import type { ImageMetadata } from 'astro'
 import type { SvgComponent } from 'astro/types'
-import { required, resolved } from './cms'
+import missingImage from '../assets/preview/missing-image.png'
+import { notFilledIn, required, resolved } from './cms'
 import type { Media } from './payload-types'
-import { inPreview } from './preview'
+import { inPreview, markMissing } from './preview'
 
 type MediaRef = number | Media | null | undefined
 
@@ -35,7 +36,14 @@ const cmsImage = (doc: Media, what: string): ImageMetadata => {
   }
 }
 
+const absentInPreview = (media: MediaRef): boolean =>
+  (media === null || media === undefined) && inPreview()
+
 export const image = (media: MediaRef, what: string): ImageMetadata => {
+  if (absentInPreview(media)) {
+    markMissing(what)
+    return missingImage
+  }
   const doc = resolved(media, what)
   const file = files[`../assets/cms/${doc.filename}`]
   if (file) return file
@@ -47,6 +55,7 @@ export const optionalImage = (media: MediaRef, what: string): ImageMetadata | nu
   media === null || media === undefined ? null : image(media, what)
 
 export const altOf = (media: MediaRef, what: string): string => {
+  if (absentInPreview(media)) return notFilledIn
   const { alt } = resolved(media, what)
   return alt === null || alt === undefined ? '' : alt
 }

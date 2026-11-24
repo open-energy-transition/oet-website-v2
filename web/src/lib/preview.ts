@@ -5,6 +5,7 @@ export type PreviewTarget =
 
 interface PreviewRequest {
   target: PreviewTarget | null
+  missing: Set<string>
 }
 
 const previewRequests = new AsyncLocalStorage<PreviewRequest>()
@@ -12,7 +13,7 @@ const previewRequests = new AsyncLocalStorage<PreviewRequest>()
 export const inPreview = (): boolean => previewRequests.getStore() !== undefined
 
 export const withPreview = <Result>(run: () => Result): Result =>
-  previewRequests.run({ target: null }, run)
+  previewRequests.run({ target: null, missing: new Set() }, run)
 
 const previewRequest = (): PreviewRequest => {
   const store = previewRequests.getStore()
@@ -29,6 +30,12 @@ export const previewTarget = (): PreviewTarget => {
   if (target === null) throw new Error('The preview target is not set')
   return target
 }
+
+export const markMissing = (what: string): void => {
+  previewRequest().missing.add(what)
+}
+
+export const missingFields = (): string[] => [...previewRequest().missing]
 
 export const previewApiKey = (): string => {
   const key = import.meta.env.PAYLOAD_PREVIEW_API_KEY

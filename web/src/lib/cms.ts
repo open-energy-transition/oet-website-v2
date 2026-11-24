@@ -1,6 +1,6 @@
 import type { Locale } from '../i18n/config'
 import type { Config } from './payload-types'
-import { inPreview, previewApiKey, previewTarget } from './preview'
+import { inPreview, markMissing, previewApiKey, previewTarget } from './preview'
 
 type Collections = Config['collections']
 type Globals = Config['globals']
@@ -110,6 +110,40 @@ export const required = <Value>(value: Value | null | undefined, what: string): 
   if (value === null || value === undefined) throw new Error(`${what} is missing`)
   return value
 }
+
+export const notFilledIn = 'Not filled in yet'
+
+const isBlank = (value: unknown): boolean =>
+  value === null ||
+  value === undefined ||
+  value === '' ||
+  (Array.isArray(value) && value.length === 0)
+
+export const draftRequired = <Value, Result>(
+  value: Value | null | undefined,
+  what: string,
+  use: (value: Value) => Result,
+  placeholder: Result,
+): Result => {
+  if (inPreview() && isBlank(value)) {
+    markMissing(what)
+    return placeholder
+  }
+  return use(required(value, what))
+}
+
+export const draftResolved = <Value extends object, Result>(
+  value: number | Value | null | undefined,
+  what: string,
+  use: (value: Value) => Result,
+  placeholder: Result,
+): Result => draftRequired(value, what, (present) => use(resolved(present, what)), placeholder)
+
+export const draftText = (value: string | null | undefined, what: string): string =>
+  draftRequired(value, what, (text) => text, notFilledIn)
+
+export const draftList = <Item>(value: Item[] | null | undefined, what: string): Item[] =>
+  draftRequired(value, what, (list) => list, [])
 
 export const texts = (rows: { text: string }[] | null | undefined, what: string): string[] =>
   required(rows, what).map((row) => row.text)
