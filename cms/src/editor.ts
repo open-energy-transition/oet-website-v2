@@ -1,8 +1,8 @@
 import {
+  createServerFeature,
   FixedToolbarFeature,
   HeadingFeature,
   lexicalEditor,
-  TextStateFeature,
   type SerializedTextNode,
 } from '@payloadcms/richtext-lexical'
 import {
@@ -10,30 +10,19 @@ import {
   type HTMLConverterAsync,
   type HTMLConvertersFunctionAsync,
 } from '@payloadcms/richtext-lexical/html-async'
+import { isTextStyleValue, textStyleKeys } from './textStyles'
 
-const textStates = {
-  color: {
-    red: { label: 'Red', css: { color: '#e31937' } },
-    'dark-red': { label: 'Dark red', css: { color: '#9b112e' } },
-    grey: { label: 'Grey', css: { color: '#73716f' } },
-  },
-  size: {
-    large: { label: 'Large text', css: { 'font-size': '1.25em' } },
-    small: { label: 'Small text', css: { 'font-size': '0.875em' } },
-  },
-}
-
-const stateAttributes: Record<keyof typeof textStates, string> = {
-  color: 'data-text-color',
-  size: 'data-text-size',
-}
+const TextStyleFeature = createServerFeature({
+  feature: { ClientFeature: './components/TextStyleFeature#TextStyleFeatureClient' },
+  key: 'textStyle',
+})
 
 export const editor = lexicalEditor({
   features: ({ defaultFeatures }) => [
     ...defaultFeatures.filter((feature) => feature.key !== 'heading'),
     HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
     FixedToolbarFeature(),
-    TextStateFeature({ state: textStates }),
+    TextStyleFeature(),
   ],
 })
 
@@ -41,19 +30,18 @@ const plainText = TextHTMLConverterAsync.text
 if (typeof plainText !== 'function')
   throw new Error('Payload text HTML converter is not a function')
 
-const stateAttributesOf = (node: SerializedTextNode): string[] => {
+const styleAttributesOf = (node: SerializedTextNode): string[] => {
   const state = node.$
   if (state === undefined) return []
-  return (Object.keys(stateAttributes) as (keyof typeof textStates)[]).flatMap((key) => {
+  return textStyleKeys.flatMap((key) => {
     const value = state[key]
-    if (typeof value !== 'string' || !Object.hasOwn(textStates[key], value)) return []
-    return [`${stateAttributes[key]}="${value}"`]
+    return isTextStyleValue(key, value) ? [`data-text-${key}="${value}"`] : []
   })
 }
 
 const text: HTMLConverterAsync<SerializedTextNode> = async (args) => {
   const html = await plainText(args)
-  const attributes = stateAttributesOf(args.node)
+  const attributes = styleAttributesOf(args.node)
   return attributes.length === 0 ? html : `<span ${attributes.join(' ')}>${html}</span>`
 }
 
