@@ -1,0 +1,29 @@
+---
+import { missingFields, previewTarget } from '../../lib/preview'
+
+const target = previewTarget()
+const docPrefix = target.kind === 'document' ? ` ${target.slug} ` : null
+
+const label = (field: string) => {
+  if (docPrefix === null) return field
+  const at = field.indexOf(docPrefix)
+  return at === -1 ? field : field.slice(at + docPrefix.length)
+}
+
+const missing = missingFields().map(label)
+---
+
+{missing.length > 0 && (
+  <aside
+    id="preview-missing"
+    role="status"
+    class="sticky bottom-0 z-50 border-t border-brand-300 bg-brand-50 px-5 py-3 text-body-sm text-neutral-900 lg:px-10"
+  >
+    <p class="font-semibold">This draft is not complete. Fill these in before publishing:</p>
+    <ul class="mt-1 flex flex-wrap gap-x-4 gap-y-1">
+      {missing.map((field) => (
+        <li>{field}</li>
+      ))}
+    </ul>
+  </aside>
+)}

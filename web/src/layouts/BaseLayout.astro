@@ -5,6 +5,7 @@ import { getAbsoluteLocaleUrl } from 'astro:i18n'
 import '../styles/global.css'
 import ConsentManager from '../components/layout/ConsentManager.astro'
 import LivePreview from '../components/layout/LivePreview.astro'
+import PreviewMissing from '../components/layout/PreviewMissing.astro'
 import Preloader from '../components/layout/Preloader.astro'
 import SiteFooter from '../components/layout/SiteFooter.astro'
 import SiteHeader from '../components/layout/SiteHeader.astro'
@@ -121,7 +122,10 @@ const organization = {
     <slot />
     <SiteFooter content={footer} locale={locale} />
     {previewPage ? (
-      <LivePreview serverUrl={import.meta.env.PAYLOAD_URL} />
+      <>
+        <PreviewMissing />
+        <LivePreview serverUrl={import.meta.env.PAYLOAD_URL} />
+      </>
     ) : (
       <ConsentManager
         texts={settings.consent}

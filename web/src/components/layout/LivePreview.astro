@@ -31,6 +31,9 @@ const { serverUrl } = Astro.props
         const current = document.querySelector('main#main')
         if (!incoming || !current) throw new Error('oet-live-preview: page without main#main')
         current.replaceWith(document.importNode(incoming, true))
+        document.querySelector('#preview-missing')?.remove()
+        const missing = next.querySelector('#preview-missing')
+        if (missing) document.body.append(document.importNode(missing, true))
         document.title = next.title
       }
 

@@ -147,7 +147,18 @@ const load = async () => {
   return notFound('page')
 }
 
-const result = await load()
+const failed = (error: unknown) => {
+  if (!(error instanceof Error)) throw error
+  console.error(error)
+  return new Response(
+    `This draft cannot be shown yet: ${error.message}.
+
+Fill it in in the CMS, save, and reload the preview.`,
+    { status: 500, headers: { 'Content-Type': 'text/plain; charset=utf-8' } },
+  )
+}
+
+const result = await load().catch(failed)
 if (result instanceof Response) return result
 const FixedPage = result.page === 'fixed' ? result.component : null
 ---
