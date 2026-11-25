@@ -88,8 +88,8 @@ const link =
   <FooterCta content={content.cta} />
   <div class="mx-auto mb-5 flex w-full max-w-page flex-col px-5 ring-1 ring-[rgba(236,236,236,0.44)] ring-inset lg:mb-0 lg:flex-row lg:px-10">
     <div class="contents lg:relative lg:flex lg:w-[305px] lg:shrink-0 lg:flex-col lg:gap-[10px] lg:pt-5 lg:pr-5 lg:pb-10 lg:after:pointer-events-none lg:after:absolute lg:after:inset-0 lg:after:border-y lg:after:border-r lg:after:border-[rgba(236,236,236,0.32)] lg:after:content-['']">
-      <div class="contents lg:flex lg:h-[90px] lg:flex-col lg:justify-between">
-        <p class:list={['order-2 text-body-xs font-medium text-white lg:order-none', box]}>
+      <div class="contents lg:flex lg:flex-col lg:gap-4">
+        <p class:list={['order-2 text-body-sm font-medium text-white lg:order-none', box]}>
           {content.blurb}
         </p>
         {content.socials.length > 0 && (
@@ -118,7 +118,7 @@ const link =
       <p class:list={['order-4 text-body-xs text-white lg:order-none', box]}>{content.copyright}</p>
       <ul
         aria-label={t(locale, 'nav.legal')}
-        class:list={['order-3 text-body-xs text-neutral-50 lg:order-none lg:text-body-2xs', box]}
+        class:list={['order-3 text-body-xs text-neutral-50 lg:order-none', box]}
       >
         {content.legal.map((item) => (
           <li class="inline">
@@ -149,10 +149,10 @@ const link =
         <div class:list={['flex gap-[10px] lg:contents', box]}>
           {pair.map((column) => (
             <div class="flex min-w-0 flex-1 flex-col gap-2 lg:gap-1">
-              <h3 class="text-body-xs font-medium">{column.title}</h3>
+              <h3 class="text-body-sm font-medium">{column.title}</h3>
               <ul class="contents">
                 {column.links.map((item) => (
-                  <li class="text-body-2xs">
+                  <li class="text-body-sm">
                     <a href={item.href} class={link}>
                       {item.label}
                     </a>
