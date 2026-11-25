@@ -199,9 +199,7 @@ const titleSizesMobile: Record<Common['titleSizeMobile'], string> = {
 
 const screenHeight = 'h-[800px] lg:h-[clamp(560px,calc(100svh_-_40px),780px)]'
 const leftHeight =
-  person === null
-    ? 'min-h-[573px] lg:min-h-[553px]'
-    : 'min-h-[676px] lg:min-h-[553px]'
+  person === null ? 'min-h-[573px] lg:min-h-[553px]' : 'min-h-[676px] lg:min-h-[553px]'
 const heights: Record<Layout, string> = {
   'photo-centered': 'h-[800px] lg:h-[780px]',
   'centered-dark': screenHeight,
