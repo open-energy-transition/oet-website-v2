@@ -201,7 +201,7 @@ const screenHeight = 'h-[800px] lg:h-[clamp(560px,calc(100svh_-_40px),780px)]'
 const leftHeight =
   person === null ? 'min-h-[573px] lg:min-h-[553px]' : 'min-h-[676px] lg:min-h-[553px]'
 const heights: Record<Layout, string> = {
-  'photo-centered': 'h-[800px] lg:h-[780px]',
+  'photo-centered': screenHeight,
   'centered-dark': screenHeight,
   'map-bottom-left': screenHeight,
   listing: screenHeight,
@@ -294,7 +294,7 @@ const blockStyle = (block: Block, anchor: 'top' | 'bottom') =>
           class:list={[
             'flex flex-col items-center gap-10',
             layout === 'photo-centered'
-              ? 'absolute inset-x-5 top-[188px] lg:top-auto lg:bottom-[512px]'
+              ? 'absolute inset-x-5 top-[188px] lg:top-[142px]'
               : 'pt-[228px] lg:my-auto lg:pt-0',
           ]}
         >
