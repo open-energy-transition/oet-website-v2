@@ -200,8 +200,8 @@ const titleSizesMobile: Record<Common['titleSizeMobile'], string> = {
 const screenHeight = 'h-[800px] lg:h-[clamp(560px,calc(100svh_-_40px),780px)]'
 const leftHeight =
   person === null
-    ? 'min-h-[573px] lg:h-[553px] lg:min-h-0'
-    : 'min-h-[676px] lg:h-[553px] lg:min-h-0'
+    ? 'min-h-[573px] lg:min-h-[553px]'
+    : 'min-h-[676px] lg:min-h-[553px]'
 const heights: Record<Layout, string> = {
   'photo-centered': 'h-[800px] lg:h-[780px]',
   'centered-dark': screenHeight,
@@ -219,8 +219,8 @@ const chipsBottoms: Record<ChipsBottom, string> = {
 }
 
 const textLefts: Record<TextLeft, string> = {
-  80: 'lg:left-[calc(max(0px,50%_-_700px)_+_80px)]',
-  96: 'lg:left-[calc(max(0px,50%_-_700px)_+_96px)]',
+  80: 'lg:ml-[calc(max(0px,50%_-_700px)_+_80px)]',
+  96: 'lg:ml-[calc(max(0px,50%_-_700px)_+_96px)]',
 }
 
 const mobileAnchors: Record<MobileAnchor, { block: string; text: string }> = {
@@ -362,7 +362,7 @@ const blockStyle = (block: Block, anchor: 'top' | 'bottom') =>
       props.layout === 'illustration-left') && (
       <div
         class:list={[
-          'flex w-full flex-col gap-4 px-5 lg:absolute lg:top-[160px] lg:bottom-[30px] lg:w-[650px] lg:justify-start lg:p-0 lg:pr-10',
+          'flex w-full flex-col gap-4 px-5 lg:w-[650px] lg:shrink-0 lg:justify-start lg:p-0 lg:pt-[160px] lg:pr-10 lg:pb-[30px]',
           mobileAnchors[props.mobileAnchor].block,
           textLefts[props.textLeft],
         ]}
